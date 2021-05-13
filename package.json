@@ -13,12 +13,10 @@
   "license": "ISC",
   "devDependencies": {
     "cypress": "^6.7.1",
-    "cypress-cucumber-preprocessor": "^4.0.1",
+    "cypress-cucumber-preprocessor": "^4.1.0",
     "cypress-image-snapshot": "^4.0.1"
   },
-  
   "cypress-cucumber-preprocessor": {
     "nonGlobalStepDefinitions": true
   }
-
 }
