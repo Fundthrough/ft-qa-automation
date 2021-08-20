@@ -66,8 +66,8 @@ describe('Sign Up page', () => {
         getaccount.getFollowingNextBtn().should('contain', 'Next').click()
        
         //redirects to /onboarding flow
-        cy.intercept('POST', '/v1/i', {}).as('url')
-        cy.wait('@url', {timeout: 8000}).then(() => {
+        cy.intercept('POST', '/v1/t', {}).as('url')
+        cy.wait('@url', {timeout: 10000}).then(() => {
             cy.url().should('include', '/onboarding')
         })
           
@@ -78,7 +78,7 @@ describe('Sign Up page', () => {
         getaccount.getLinkOnStepOne().contains("SKIP/ I DON'T USE QUICKBOOK").click()
 
         cy.intercept({ method: 'POST', url: 'https://api.segment.io/v1/p' }, { success: true }).as('search')
-        cy.wait('@search', {timeout: 7000})
+        cy.wait('@search', {timeout: 8000})
         //Step 2 page validation
         getaccount.getHeaderOnboard().contains('Step 2 of 6')
         getaccount.getMouseHover()
