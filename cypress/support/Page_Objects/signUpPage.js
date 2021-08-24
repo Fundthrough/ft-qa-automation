@@ -200,4 +200,13 @@ export class getAccount {
         return cy.get('.u-mt')
     }
     
+    getErrorMsgInvalidEmail() {
+        return cy.get('.error-height').find('[class="error"]')
+    }
+
+    getPassInput(Pass, domain) {
+
+        return cy.get('#password')
+        .type(Pass, domain)
+    }
 }
