@@ -18,6 +18,140 @@ describe('Sign Up page', () => {
         getaccount.getUserNameEmpty()
         getaccount.verifyBtnNextDisabled().should('be.disabled')
 
+        //input generating function
+        function randomChars(length) {
+            var result = '';
+            var characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
+            var charactersLength = characters.length;
+            for (var i = 0; i < length; i++) {
+                result += characters.charAt(Math.floor(Math.random() * charactersLength));
+            }
+            return result;
+        }
+
+        function radnomNum (length) {
+            var result = '';
+            var numbers = '0123456789';
+            var numbersLength = numbers.length;
+            for (var i = 0; i < length; i++) {
+                result += numbers.charAt(Math.floor(Math.random() * numbersLength));
+            }
+            return result;
+        }
+
+        function radnomLetter (length) {
+            var result = '';
+            var letters = 'abcdefghijklmnopqrstuvwxyz';
+            var lettersLength = letters.length;
+            for (var i = 0; i < length; i++) {
+                result += letters.charAt(Math.floor(Math.random() * lettersLength));
+            }
+            return result;
+        }
+
+
+        console.log(randomChars(4));
+
+        //Negative input on SignUp page
+        getaccount.getUserInput("saksham+" + randomChars(5))
+        getaccount.verifyBtnNextDisabled().should('be.disabled')
+        getaccount.getErrorMsgInvalidEmail().should('contain', 'Invalid email format')
+
+        getaccount.getUserInput("saksham+" + randomChars(5)+ "@")
+        getaccount.verifyBtnNextDisabled().should('be.disabled')
+        getaccount.getErrorMsgInvalidEmail().should('contain', 'Invalid email format')
+
+        getaccount.getUserInput("saksham+" + randomChars(5)+ "@fundthrough")
+        getaccount.verifyBtnNextDisabled().should('be.disabled')
+        getaccount.getErrorMsgInvalidEmail().should('contain', 'Invalid email format')
+
+        getaccount.getUserInput("saksham+" + randomChars(5)+ "@fundthrough.co")
+        getaccount.verifyBtnNextDisabled().should('be.disabled')
+        getaccount.getErrorMsgInvalidEmail().should('contain', 'Invalid email format')
+
+        //successful input to go to the next step
+        getaccount.getUserInput("saksham+" + randomChars(5)+ "@fundthrough.com")
+        getaccount.getFirstNextBtn().should('contain', 'Next').click()
+
+                //Make the password field visible
+                getaccount.iconPassword().click()
+                .then(Password => {
+                    cy.wrap(Password)
+                        .should('be.visible')
+                })
+        
+                //Negative test cases for Password Input
+                getaccount.getPassInput(radnomNum(9))
+                getaccount.getRadioBtn().then(Radiobuttons => {
+                    cy.wrap(Radiobuttons)
+                        .first()
+                        .should('be.checked')
+        
+                    cy.wrap(Radiobuttons)
+                        .eq(1).uncheck()
+                       
+                       // cy.get('[type="checkbox"]').uncheck()
+                    cy.wrap(Radiobuttons)
+                        .eq(2)
+                        .should('be.checked')
+                })
+        
+                getaccount.getPassInput(radnomNum(5))
+                getaccount.getRadioBtn().then(Radiobuttons => {
+                    cy.wrap(Radiobuttons)
+                        .first()
+                        .should('be.checked')
+        
+                    cy.wrap(Radiobuttons)
+                        .eq(1).uncheck()
+                        
+        
+                    cy.wrap(Radiobuttons)
+                        .eq(2).uncheck()
+                        
+                })
+        
+                getaccount.getPassInput(radnomLetter(9))
+                getaccount.getRadioBtn().then(Radiobuttons => {
+                    cy.wrap(Radiobuttons)
+                        .first().uncheck()
+                        
+        
+                    cy.wrap(Radiobuttons)
+                        .eq(1)
+                        .should('be.checked')
+        
+                    cy.wrap(Radiobuttons)
+                        .eq(2)
+                        .should('be.checked')
+                })
+        
+                getaccount.getPassInput(radnomLetter(5))
+                getaccount.getRadioBtn().then(Radiobuttons => {
+                    cy.wrap(Radiobuttons)
+                        .first().uncheck()
+                        
+        
+                    cy.wrap(Radiobuttons)
+                        .eq(1)
+                        .should('be.checked')
+        
+                    cy.wrap(Radiobuttons)
+                        .eq(2).uncheck()
+                        
+                })
+    })
+
+    it('should create new account', function () {
+        cy.clearLocalStorage()
+        const getaccount = new getAccount();
+
+        //navigates to the Sign Up page, verifies it's elements and state before any input
+        getaccount.pageNavigate()
+        getaccount.signupVerify()
+        getaccount.getUserNameEmpty()
+        getaccount.verifyBtnNextDisabled().should('be.disabled')
+
         //input generating functions
         function randomChars(length) {
             var result = '';
