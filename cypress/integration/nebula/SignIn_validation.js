@@ -44,44 +44,26 @@ expect($i).to.contain('Add your bank')
 })
 
 
-    it("Sign In with invalid Credentials", function () {
-        signinElements.usercredential.getusername().type(this.user.username)
-        signinElements.usercredential.getpassword().type(PasswordInvalid)
-        signinElements.usercredential.getskipcontainer().click({ force: true })
-        //give element 10 seconds to appear
-        cy.get('[data-test=authenticator-error] > span',
-            { timeout: 10000 })
-            .should('be.visible');
+it("Sign In with invalid Credentials", function()  {
+signinElements.usercredential.getusername().type(this.user.username)
+signinElements.usercredential.getpassword().type(PasswordInvalid)
+signinElements.usercredential.getskipcontainer().click({force:true})
+//give element 10 seconds to appear
+cy.get('[data-test=authenticator-error] > span', 
+{ timeout: 10000 })
+.should('be.visible');
 
-        //signin with invalid data
-        cy.request({
-            url: 'https://cognito-idp.us-east-1.amazonaws.com/',
-            failOnStatusCode: false,
-            method: 'POST',
-        }).then((resp) => {
-            expect(resp.status).to.eq(400)
-        })
-    })
+//signin with invalid data
+cy.request({
+url: 'https://cognito-idp.us-east-1.amazonaws.com/',
+failOnStatusCode: false,
+method: 'POST',
+}).then((resp) => {
+expect(resp.status).to.eq(400)
+})
+})
 
-    it("Input invalid Data on username and password", function () {
-        signinElements.usercredential.getusername().type(TestEmail)
-        signinElements.usercredential.getpassword().type(InvalidTextPassword)
-        signinElements.usercredential.getskipcontainer().click({ force: true })
-        cy.get('input').then(($input) => {
-            if ($input.hasClass('bordered__error')) {
-                signinElements.usercredential.fieldlevelerror().should('be.visible');
-            } else {
-                signinElements.usercredential.fieldlevelerror().should('not.be.visible');
-            }
-        })
-    })
-
-    Cypress.on('uncaught:exception', (err, runnable) => {
-        return false
-    })
-
-it("Input invalid Data on username and password", function()  { 
-    
+it("Input invalid Data on username and password", function()  {  
 signinElements.usercredential.getusername().type(TestEmail)
 signinElements.usercredential.getpassword().type(InvalidTextPassword)
 signinElements.usercredential.getskipcontainer().click({force:true})
@@ -99,3 +81,4 @@ return false
 })
  
 })
+  
