@@ -89,7 +89,7 @@ describe('Sign Up page', () => {
         getaccount.clickOnNextBtn().should('contain', 'Next').click()
         //redirects to Step 3 and fills in Company Address info
         cy.intercept('POST', '/v1/p', {}).as('search')
-        cy.wait('@search')
+        cy.wait('@search', {timeout: 7000})
         getaccount.getHeaderOnboard().contains("Step 3 of 6")
         getaccount.getBnAddress().should('contain', 'Business Address')
         getaccount.elements.getBusinessAddress().should('be.empty').click()
@@ -136,7 +136,19 @@ describe('Sign Up page', () => {
         getaccount.getSkipBtn().contains('button', 'Skip').click()
 
         cy.wait(3000)
-        cy.get('.action-card-carousel-spacing')
+        getaccount.getNavbar().click()
+        getaccount.getLeftMenu().should('be.visible')
+        getaccount.getLeftHeading().should('contain', 'Account Setup').click()
+        getaccount.getTopHeading().should('contain', 'Account Setup')
+        getaccount.getBodyHeading().should('contain', 'Tell us about your business')
+        getaccount.getNavbar().click()
+        getaccount.getLeftMenuSetting().click()
+        getaccount.getMenuContainer().should('contain', 'Invoicing Software')
+        //cy.get('.ui > img').expect($el).to.have.text('Connect to QuickBooks')
+        getaccount.getNavbar().click()
+        getaccount.getLeftBottomTitle().click()
+        getaccount.getSignOut().click()
+
 
     })
 })

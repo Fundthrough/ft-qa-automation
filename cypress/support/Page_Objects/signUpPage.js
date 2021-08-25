@@ -199,5 +199,40 @@ export class getAccount {
     getSkipBtn() {
         return cy.get('.u-mt')
     }
+
+    getNavbar() {
+        return cy.get('.bars')
+    }
+
+    getLeftMenu() {
+        return cy.get('.top-padded-row > .column')
+    }
+
+    getLeftHeading() {
+        return cy.get('[href="/account"] > div')
+    }
+
+    getTopHeading() {
+        return cy.get('.flex-left > .ui')
+    }
     
+    getBodyHeading() {
+        return cy.get('.u-p > div')
+    }
+
+    getLeftMenuSetting() {
+        return cy.get('[href="/settings"]')
+    }
+
+    getMenuContainer() {
+        return cy.get('.menu-container')
+    }
+
+    getLeftBottomTitle() {
+        return cy.get('.title')
+    }
+
+    getSignOut() {
+        return cy.get('.accordion__content_button')
+    }
 }
