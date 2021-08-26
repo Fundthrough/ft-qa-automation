@@ -1,7 +1,8 @@
 {
     "projectId": "ac8uqn",
-    "baseUrl": "https://nebula-qa1.fundthrough.com/signup/",
+    "baseUrl": "https://nebula-staging.fundthrough.com/signup/",
     "ignoreTestFiles": "**/examples/*",
     "viewportHeight": 1080,
-    "viewportWidth": 1920
+    "viewportWidth": 1920,
+    "watchForFileChanges": false
 }
