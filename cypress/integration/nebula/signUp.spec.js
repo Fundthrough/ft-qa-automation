@@ -1,6 +1,6 @@
 // <reference types="cypress" />
 
-import {getAccount}  from "../../support/Page_Objects/signUpPage.js";
+import { getAccount } from "../../support/Page_Objects/signUpPage.js";
 
 Cypress.on('uncaught:exception', (err, runnable) => {
     return false;
@@ -18,7 +18,7 @@ describe('Sign Up page', () => {
         getaccount.getUserNameEmpty()
         getaccount.verifyBtnNextDisabled().should('be.disabled')
 
-        //input generating function
+        //input generating functions
         function randomChars(length) {
             var result = '';
             var characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
@@ -54,20 +54,28 @@ describe('Sign Up page', () => {
 
         //Negative input on SignUp page
         getaccount.getUserInput("saksham+" + randomChars(5))
+        cy.get('.u-p').click()
         getaccount.verifyBtnNextDisabled().should('be.disabled')
         getaccount.getErrorMsgInvalidEmail().should('contain', 'Invalid email format')
+        getaccount.clearUsername().clear()
 
         getaccount.getUserInput("saksham+" + randomChars(5)+ "@")
+        cy.get('.u-p').click()
         getaccount.verifyBtnNextDisabled().should('be.disabled')
         getaccount.getErrorMsgInvalidEmail().should('contain', 'Invalid email format')
+        getaccount.clearUsername().clear()
 
         getaccount.getUserInput("saksham+" + randomChars(5)+ "@fundthrough")
+        cy.get('.u-p').click()
         getaccount.verifyBtnNextDisabled().should('be.disabled')
         getaccount.getErrorMsgInvalidEmail().should('contain', 'Invalid email format')
+        getaccount.clearUsername().clear()
 
-        getaccount.getUserInput("saksham+" + randomChars(5)+ "@fundthrough.co")
-        getaccount.verifyBtnNextDisabled().should('be.disabled')
-        getaccount.getErrorMsgInvalidEmail().should('contain', 'Invalid email format')
+            // getaccount.getUserInput("saksham+" + randomChars(5)+ "@fundthrough.co")
+            // cy.get('.u-p').click()
+            // getaccount.verifyBtnNextDisabled().should('be.disabled')
+            // getaccount.getErrorMsgInvalidEmail().should('contain', 'Invalid email format')
+            // getaccount.clearUsername().clear()
 
         //successful input to go to the next step
         getaccount.getUserInput("saksham+" + randomChars(5)+ "@fundthrough.com")
@@ -81,20 +89,23 @@ describe('Sign Up page', () => {
                 })
         
                 //Negative test cases for Password Input
-                getaccount.getPassInput(radnomNum(9))
+                getaccount.getPassInput(radnomNum(8))
                 getaccount.getRadioBtn().then(Radiobuttons => {
                     cy.wrap(Radiobuttons)
                         .first()
                         .should('be.checked')
         
                     cy.wrap(Radiobuttons)
-                        .eq(1).uncheck()
+                        .eq(1)
+                        .should('not.be.checked')
                        
                        // cy.get('[type="checkbox"]').uncheck()
                     cy.wrap(Radiobuttons)
                         .eq(2)
                         .should('be.checked')
                 })
+
+                getaccount.passwClear().clear()
         
                 getaccount.getPassInput(radnomNum(5))
                 getaccount.getRadioBtn().then(Radiobuttons => {
@@ -103,19 +114,23 @@ describe('Sign Up page', () => {
                         .should('be.checked')
         
                     cy.wrap(Radiobuttons)
-                        .eq(1).uncheck()
+                        .eq(1)
+                        .should('not.be.checked')
                         
         
                     cy.wrap(Radiobuttons)
-                        .eq(2).uncheck()
+                        .eq(2)
+                        .should('not.be.checked')
                         
                 })
+
+                getaccount.passwClear().clear()
         
-                getaccount.getPassInput(radnomLetter(9))
+                getaccount.getPassInput(radnomLetter(8))
                 getaccount.getRadioBtn().then(Radiobuttons => {
                     cy.wrap(Radiobuttons)
-                        .first().uncheck()
-                        
+                        .first()
+                        .should('not.be.checked')
         
                     cy.wrap(Radiobuttons)
                         .eq(1)
@@ -125,19 +140,22 @@ describe('Sign Up page', () => {
                         .eq(2)
                         .should('be.checked')
                 })
+
+                getaccount.passwClear().clear()
         
                 getaccount.getPassInput(radnomLetter(5))
                 getaccount.getRadioBtn().then(Radiobuttons => {
                     cy.wrap(Radiobuttons)
-                        .first().uncheck()
-                        
+                        .first()
+                        .should('not.be.checked')                    
         
                     cy.wrap(Radiobuttons)
                         .eq(1)
                         .should('be.checked')
         
                     cy.wrap(Radiobuttons)
-                        .eq(2).uncheck()
+                        .eq(2)
+                        .should('not.be.checked')
                         
                 })
     })
