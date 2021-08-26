@@ -1,6 +1,10 @@
 /// <reference types="cypress" />
 
+<<<<<<< HEAD
 import { getAccount } from "../../support/Page_Objects/signUpPage.js";
+=======
+import {getAccount}  from "../../support/Page_Objects/signUpPage.js";
+>>>>>>> 29a9d5746dfbea5e4bbeff99d319c3b6a73653ec
 
 Cypress.on('uncaught:exception', (err, runnable) => {
     return false;
