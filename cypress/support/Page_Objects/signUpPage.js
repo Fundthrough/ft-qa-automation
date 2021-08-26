@@ -2,7 +2,7 @@
 export class getAccount {
 
     pageNavigate() {
-        cy.visit('https://nebula-partnership.fundthrough.com/signup/')
+        cy.visit('https://nebula-staging.fundthrough.com/signup/')
     }
 
     signupVerify() {
@@ -24,6 +24,10 @@ export class getAccount {
 
         return cy.get('#username')
         .type(userName, domain)
+    }
+
+    clearUsername() {
+        return cy.get('#username')
     }
 
 
@@ -244,5 +248,9 @@ export class getAccount {
 
         return cy.get('#password')
         .type(Pass, domain)
+    }
+
+    passwClear() {
+        return cy.get('#password')
     }
 }
