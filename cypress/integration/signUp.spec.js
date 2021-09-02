@@ -67,7 +67,7 @@ describe('Sign Up page', () => {
        
         //redirects to /onboarding flow
         cy.intercept('POST', '/v1/t', {}).as('url')
-        cy.wait('@url', {timeout: 10000}).then(() => {
+        cy.wait('@url', {timeout: 15000}).then(() => {
             cy.url().should('include', '/onboarding')
         })
           
@@ -78,7 +78,7 @@ describe('Sign Up page', () => {
         getaccount.getLinkOnStepOne().contains("SKIP/ I DON'T USE QUICKBOOK").click()
 
         cy.intercept({ method: 'POST', url: 'https://api.segment.io/v1/p' }, { success: true }).as('search')
-        cy.wait('@search', {timeout: 8000})
+        cy.wait('@search', {timeout: 15000})
         //Step 2 page validation
         getaccount.getHeaderOnboard().contains('Step 2 of 6')
         getaccount.getMouseHover()
@@ -89,7 +89,7 @@ describe('Sign Up page', () => {
         getaccount.clickOnNextBtn().should('contain', 'Next').click()
         //redirects to Step 3 and fills in Company Address info
         cy.intercept('POST', '/v1/p', {}).as('search')
-        cy.wait('@search', {timeout: 7000})
+        cy.wait('@search', {timeout: 15000})
         getaccount.getHeaderOnboard().contains("Step 3 of 6")
         getaccount.getBnAddress().should('contain', 'Business Address')
         getaccount.elements.getBusinessAddress().should('be.empty').click()
