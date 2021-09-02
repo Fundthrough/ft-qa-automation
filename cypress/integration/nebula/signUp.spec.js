@@ -54,19 +54,19 @@ describe('Sign Up page', () => {
 
         //Negative input on SignUp page
         getaccount.getUserInput("saksham+" + randomChars(5))
-        cy.get('.u-p').click()
+        getaccount.clickOnPage().click()
         getaccount.verifyBtnNextDisabled().should('be.disabled')
         getaccount.getErrorMsgInvalidEmail().should('contain', 'Invalid email format')
         getaccount.clearUsername().clear()
 
         getaccount.getUserInput("saksham+" + randomChars(5)+ "@")
-        cy.get('.u-p').click()
+        getaccount.clickOnPage().click()
         getaccount.verifyBtnNextDisabled().should('be.disabled')
         getaccount.getErrorMsgInvalidEmail().should('contain', 'Invalid email format')
         getaccount.clearUsername().clear()
 
         getaccount.getUserInput("saksham+" + randomChars(5)+ "@fundthrough")
-        cy.get('.u-p').click()
+        getaccount.clickOnPage().click()
         getaccount.verifyBtnNextDisabled().should('be.disabled')
         getaccount.getErrorMsgInvalidEmail().should('contain', 'Invalid email format')
         getaccount.clearUsername().clear()

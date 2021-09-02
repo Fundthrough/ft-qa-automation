@@ -61,6 +61,10 @@ beforeEach(() => {
         signinElements.velocitydashboard.contentbutton().click();
         })
 
+
+        cy.get('[data-index="2"] > :nth-child(1) > [tabindex="-1"] > .ft-action-card-wrapper > .white-background > .u-pt').click()
+        
+
     
     
     })

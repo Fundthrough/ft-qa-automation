@@ -253,4 +253,8 @@ export class getAccount {
     passwClear() {
         return cy.get('#password')
     }
+
+    clickOnPage() {
+        return cy.get('.u-p')
+    }
 }
