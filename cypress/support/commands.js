@@ -1,5 +1,5 @@
 
-import 'cypress-file-upload';
+
 
 
 Cypress.Commands.add('login' ,(username, password) =>{
