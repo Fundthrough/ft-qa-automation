@@ -1,10 +1,6 @@
 /// <reference types="cypress" />
 
-<<<<<<< HEAD
-import { getAccount } from "../../support/Page_Objects/signUpPage.js";
-=======
 import {getAccount}  from "../../support/Page_Objects/signUpPage.js";
->>>>>>> 29a9d5746dfbea5e4bbeff99d319c3b6a73653ec
 
 Cypress.on('uncaught:exception', (err, runnable) => {
     return false;
@@ -58,19 +54,19 @@ describe('Sign Up page', () => {
 
         //Negative input on SignUp page
         getaccount.getUserInput("saksham+" + randomChars(5))
-        cy.get('.u-p').click()
+        getaccount.clickOnPage().click()
         getaccount.verifyBtnNextDisabled().should('be.disabled')
         getaccount.getErrorMsgInvalidEmail().should('contain', 'Invalid email format')
         getaccount.clearUsername().clear()
 
         getaccount.getUserInput("saksham+" + randomChars(5)+ "@")
-        cy.get('.u-p').click()
+        getaccount.clickOnPage().click()
         getaccount.verifyBtnNextDisabled().should('be.disabled')
         getaccount.getErrorMsgInvalidEmail().should('contain', 'Invalid email format')
         getaccount.clearUsername().clear()
 
         getaccount.getUserInput("saksham+" + randomChars(5)+ "@fundthrough")
-        cy.get('.u-p').click()
+        getaccount.clickOnPage().click()
         getaccount.verifyBtnNextDisabled().should('be.disabled')
         getaccount.getErrorMsgInvalidEmail().should('contain', 'Invalid email format')
         getaccount.clearUsername().clear()
