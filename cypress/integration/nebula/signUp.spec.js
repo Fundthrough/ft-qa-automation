@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-import { getAccount } from "../support/Page_Objects/signUpPage.js";
+import { getAccount } from "../../support/Page_Objects/signUpPage.js";
 
 Cypress.on('uncaught:exception', (err, runnable) => {
     return false;
@@ -123,7 +123,7 @@ describe('Sign Up page', () => {
         getaccount.getPopUpDesc().should('be.visible').should('contain', 'To keep you in the loop on your funding progress, please provide your business’s phone number. If it’s easier, you can provide your direct line.')
         getaccount.getNextBtnFolStep().should('contain', 'Next').click()
 
-        cy.wait(2000)
+        cy.wait(5000)
         getaccount.getHeaderOnboard().contains("Step 5 of 6")
         getaccount.getPrefName("test" + randomChars(3))
         getaccount.getFirstName("test" + randomChars(3))
