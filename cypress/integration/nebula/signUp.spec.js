@@ -1,6 +1,8 @@
 // <reference types="cypress" />
 
+
 import {getAccount}  from "../../support/Page_Objects/signUpPage.js";
+
 
 Cypress.on('uncaught:exception', (err, runnable) => {
     return false;
