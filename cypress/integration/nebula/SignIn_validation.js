@@ -36,15 +36,15 @@ describe('Velocity', () => {
                 signinElements.velocitydashboard.getyellowactioncard()
 
 
-                signinElements.velocitydashboard.getallctioncard().should(($i) => {
-                    expect($i).to.have.length(4)
-                    expect($i).to.contain('Add your first invoice')
-                    expect($i).to.contain('Tell us about your business')
-                    expect($i).to.contain('Review the funding agreement')
-                    expect($i).to.contain('Add your bank')
-                })
-            })
-    })
+signinElements.velocitydashboard.getallctioncard().should(($i) => {
+    expect($i).to.have.length(3)
+expect($i).to.contain('Add your first invoice')
+expect($i).to.contain('Tell us about your business')
+expect($i).to.contain('Review the funding agreement')
+expect($i).to.contain('Add your bank')
+})
+})
+})
 
 
     it("Sign In with invalid Credentials", function () {
