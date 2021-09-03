@@ -116,7 +116,7 @@ describe('Sign Up page', () => {
         getaccount.getNextBtnStepThree().click()
 
         cy.intercept('POST', '/v1/p', {}).as('userPut')
-        cy.wait('@userPut', {timeout: 7000})
+        cy.wait('@userPut', {timeout: 9000})
         getaccount.getHeaderOnboard().contains("Step 4 of 6")
         getaccount.getPhoneNumber('6470001234')
         getaccount.getMouseHover()
