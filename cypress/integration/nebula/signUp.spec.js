@@ -77,8 +77,11 @@ describe('Sign Up page', () => {
         getaccount.getImageOnStepOne().should('be.visible')
         getaccount.getLinkOnStepOne().contains("SKIP/ I DON'T USE QUICKBOOK").click()
 
-        cy.intercept({ method: 'POST', url: 'https://api.segment.io/v1/p' }, { success: true }).as('search')
-        cy.wait('@search', {timeout: 15000})
+        cy.intercept('POST' , '/v1/p' , {success:true}).as('search')
+
+        //cy.intercept({ method: 'POST', url: 'https://api.segment.io/v1/p' }, { success: true }).as('search')
+        // cy.wait('@search', {timeout: 15000})
+        cy.wait('@search')
         //Step 2 page validation
         getaccount.getHeaderOnboard().contains('Step 2 of 6')
         getaccount.getMouseHover()
