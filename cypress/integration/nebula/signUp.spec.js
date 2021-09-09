@@ -115,8 +115,20 @@ describe('Sign Up page', () => {
         getaccount.inputPostalCode('12345')
         getaccount.getNextBtnStepThree().click()
 
-        cy.intercept('POST', '/v1/p', {}).as('userPut')
-        cy.wait('@userPut', {timeout: 9000})
+        // cy.intercept({
+
+        //     path : '/onboarding'
+        // }).as('userPut')
+    
+
+        // // cy.intercept('POST', '/v1/p', {}).
+        // cy.wait('@userPut')
+
+
+
+        cy.intercept('POST' , '/onboarding' , {statusCode:200}).as('userPut')
+        
+        cy.wait('@userPut')
         getaccount.getHeaderOnboard().contains("Step 4 of 6")
         getaccount.getPhoneNumber('6470001234')
         getaccount.getMouseHover()
