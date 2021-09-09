@@ -203,18 +203,40 @@ export class getAccount {
     getSkipBtn() {
         return cy.get('.u-mt')
     }
+
+    getNavbar() {
+        return cy.get('.bars')
+    }
+
+    getLeftMenu() {
+        return cy.get('.top-padded-row > .column')
+    }
+
+    getLeftHeading() {
+        return cy.get('[href="/account"] > div')
+    }
+
+    getTopHeading() {
+        return cy.get('.flex-left > .ui')
+    }
     
-    getErrorMsgInvalidEmail() {
-        return cy.get('.error-height').find('[class="error"]')
+    getBodyHeading() {
+        return cy.get('.u-p > div')
     }
 
-    getPassInput(Pass, domain) {
-
-        return cy.get('#password')
-        .type(Pass, domain)
+    getLeftMenuSetting() {
+        return cy.get('[href="/settings"]')
     }
 
-    passwClear() {
-        return cy.get('#password')
+    getMenuContainer() {
+        return cy.get('.menu-container')
+    }
+
+    getLeftBottomTitle() {
+        return cy.get('.title')
+    }
+
+    getSignOut() {
+        return cy.get('.accordion__content_button')
     }
 }
