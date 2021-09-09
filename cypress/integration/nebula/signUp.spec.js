@@ -129,9 +129,9 @@ describe('Sign Up page', () => {
 
 
 
-        cy.intercept('POST' , '/onboarding' , {statusCode:200}).as('userPut')
+        //cy.intercept('POST' , '/onboarding' , {statusCode:200}).as('userPut')
         
-        cy.wait('@userPut')
+        cy.wait('@search')
         getaccount.getHeaderOnboard().contains("Step 4 of 6")
         getaccount.getPhoneNumber('6470001234')
         getaccount.getMouseHover()
