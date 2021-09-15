@@ -5,7 +5,7 @@
     "viewportHeight": 1080,
     "viewportWidth": 1920,
     "watchForFileChanges": false,
-    "retries" :2 ,
+  
    "env" :
 
    {
