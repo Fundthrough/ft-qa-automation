@@ -397,8 +397,8 @@ describe('Sign Up page', () => {
         getaccount.clickOnNextBtn().should('contain', 'Next').click()
         //redirects to Step 3 and fills in Company Address info
         cy.intercept('POST' , '/v1/p' , {success:true}).as('search')
-        cy.wait('@search')
-        //cy.wait('@search', {timeout: 15000})
+        //cy.wait('@search')
+        cy.wait('@search', {timeout: 15000})
         //redirects to Step 3 and fills in Company Address info
         // cy.intercept('POST', '/v1/p', {}).as('search')
         // cy.wait('@search', {timeout: 15000})
