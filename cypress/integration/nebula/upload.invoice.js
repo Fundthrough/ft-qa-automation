@@ -2,9 +2,6 @@ import SigninElements from '../../support/Page_Objects/SigninElements.js';
 import 'cypress-file-upload';
 
 describe('upload invoice from dashboard', () => {
-   
-       beforeEach(() => {
-       cy.visit('https://nebula-client.fundthrough.com/signin')
 
        cy.clearLocalStorage()
        cy.fixture('profile').then(function(user)
@@ -73,7 +70,7 @@ describe('upload invoice from dashboard', () => {
        }
       })
       })
-      })
+      
 
       Cypress.on('uncaught:exception', (err, runnable) => {
       return false
