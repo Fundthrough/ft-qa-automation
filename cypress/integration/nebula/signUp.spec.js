@@ -165,8 +165,7 @@ describe('Sign Up page', () => {
     it('should create new account', function () {
         cy.clearLocalStorage()
         const getaccount = new getAccount();
-
-        //navigates to the Sign Up page, verifies it's elements and state before any input
+//navigates to the Sign Up page, verifies it's elements and state before any input
         getaccount.pageNavigate()
         getaccount.signupVerify()
         getaccount.getUserNameEmpty()
@@ -398,8 +397,8 @@ describe('Sign Up page', () => {
         getaccount.clickOnNextBtn().should('contain', 'Next').click()
         //redirects to Step 3 and fills in Company Address info
         cy.intercept('POST' , '/v1/p' , {success:true}).as('search')
-        //cy.wait('@search')
-        cy.wait('@search', {timeout: 15000})
+        cy.wait('@search')
+        //cy.wait('@search', {timeout: 15000})
         //redirects to Step 3 and fills in Company Address info
         // cy.intercept('POST', '/v1/p', {}).as('search')
         // cy.wait('@search', {timeout: 15000})
