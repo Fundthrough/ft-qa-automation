@@ -6,7 +6,7 @@ Cypress.on('uncaught:exception', (err, runnable) => {
     return false;
 });
 
-describe('Sign Up page', () => {
+describe('Sign1 Up page', () => {
 
     it('should create new account', function () {
         cy.clearLocalStorage()
