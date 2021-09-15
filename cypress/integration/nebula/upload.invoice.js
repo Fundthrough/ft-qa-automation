@@ -14,7 +14,7 @@ describe('Implicit Assertions', () => {
  
        it('SignIn with Valid Credential', function test() {
            
-       cy.login(this.user.username ,  this.user.password)  
+              cy.login(this.user.username ,  this.user.password)  
        cy.intercept({ method: 'GET', url: '/client/credit/client_data' }, { status: 200 }).as('total')
        cy.wait('@total')
        const signinElements = new SigninElements();
