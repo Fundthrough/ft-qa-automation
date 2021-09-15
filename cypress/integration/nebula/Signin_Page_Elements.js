@@ -8,7 +8,7 @@ before(function() {
 cy.visit('https://nebula-client.fundthrough.com/signin')
 cy.clearLocalStorage()
 
-cy.fixture('user').then(function(user)
+cy.fixture('profile').then(function(user)
 {this.user=user;
 })
 

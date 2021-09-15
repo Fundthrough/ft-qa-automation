@@ -1,8 +1,22 @@
 {
-    "projectId": "ac8uqn",
-    "baseUrl": "https://nebula-staging.fundthrough.com/signup/",
+    "projectId": "ekqhck",
+    "baseUrl": "https://nebula-client.fundthrough.com/signup/",
     "ignoreTestFiles": "**/examples/*",
     "viewportHeight": 1080,
     "viewportWidth": 1920,
-    "watchForFileChanges": false
+    "watchForFileChanges": false,
+    "testFiles":[
+   "nebula/signUp.spec.js",    
+   "nebula/upload.invoice.js",
+   "nebula/Signin_Page_Elements.js",
+   "nebula/SignIn_validation.js"
+
+    ],
+    "retries" : 2
+    ,
+   "env" :
+
+   {
+       "url":"https://nebula-client.fundthrough.com/signup/"
+   }
 }

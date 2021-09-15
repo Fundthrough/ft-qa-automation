@@ -2,58 +2,94 @@
 export class getAccount {
 
     pageNavigate() {
-        cy.visit('https://nebula-staging.fundthrough.com/signup/')
+    cy.visit('https://nebula-client.fundthrough.com/signup/')
     }
 
     signupVerify() {
-        cy.contains('Sign Up')
+    cy.contains('Sign Up')
     }
 
     getUserNameEmpty() {
-        return cy.get('#username').find('[value]').should(($el) => {
-            expect($el.text().trim()).equal('')
-        })
+    return cy.get('#username').find('[value]').should(($el) => {
+    expect($el.text().trim()).equal('')
+    })
     }
 
     verifyBtnNextDisabled() {
-        return cy.get('.row').find('[class="right aligned column"]').contains('button','Next')
+    return cy.get('.row').find('[class="right aligned column"]').contains('button','Next')
                   
     }
 
-    getUserInput(userName, domain) {
-
-        return cy.get('#username')
-        .type(userName, domain)
+    getErrorMsgInvalidEmail() {
+        return cy.get('.error')
+    }
+    
+    randomChars(length) {
+    var result = '';
+    var characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for (var i = 0; i < length; i++) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
     }
 
+    getUserInput(userName, domain) {
+    return cy.get('#username').type(userName, domain)
+    }
+
+
+    inputuseremail(){
+
+    let email = "kristina+" + this.randomChars(4) + "@fundthrough.com"
+    this.getUserInput(email)
+    }
+ 
+    einputuseremail(){
+    cy.get('#username').then(elem => {
+    const xyz = Cypress.$(elem).val()
+    cy.log(xyz)
+    cy.writeFile('./cypress/fixtures/profile.json', { username: xyz, password: '1Password' })
+    })
+
+    }
+ 
     clearUsername() {
-        return cy.get('#username')
+    return cy.get('#username')
+    }
+
+    passwClear() {
+        return cy.get('#password')
     }
 
 
     getFirstNextBtn() {
-            return cy.get('.row').find('button')
+    return cy.get('.row').find('button')
     
+    }
+
+    getPassInput() {
+        return cy.get('#password')
     }
 
     
     getPassword() {
-        cy.get('#password').type('1Password')
+    cy.get('#password').type('1Password')
     }
 
 
     iconPassword() {
-        return cy.get('.icon-b-preview-16')
+    return cy.get('.icon-b-preview-16')
 
     }
 
     iconPasswordNotVisible() {
-        return cy.get('.icon-preview-16')
+    return cy.get('.icon-preview-16')
     }
 
 
     getRadioBtn() {
-       return cy.get('[class="inline fields"]').find('[type="radio"]')
+    return cy.get('[class="inline fields"]').find('[type="radio"]')
     }
 
 
@@ -131,7 +167,7 @@ export class getAccount {
     }
 
     inputBusName(value) {
-        this.elements.getBusinessName().type(value)
+        this.elements.getBusinessName().type('test' + this.randomChars(4))
     }
 
     getBnCheckBox() {
@@ -173,16 +209,16 @@ export class getAccount {
 
 
     getPrefName(Name) {
-        cy.get('#preferredName').type(Name)
+        cy.get('#preferredName').type('test' + this.randomChars(4))
     }
 
 
     getFirstName(ClientName) {
-        cy.get('#firstName').type(ClientName)
+        cy.get('#firstName').type('test' + this.randomChars(4))
     }
 
     getLastName(Surname) {
-        cy.get('#lastName').type(Surname)
+        cy.get('#lastName').type('test' + this.randomChars(4))
     }
 
 
@@ -203,19 +239,41 @@ export class getAccount {
     getSkipBtn() {
         return cy.get('.u-mt')
     }
+
+    getNavbar() {
+        return cy.get('.bars')
+    }
+
+    getLeftMenu() {
+        return cy.get('.top-padded-row > .column')
+    }
+
+    getLeftHeading() {
+        return cy.get('[href="/account"] > div')
+    }
+
+    getTopHeading() {
+        return cy.get('.flex-left > .ui')
+    }
     
-    getErrorMsgInvalidEmail() {
-        return cy.get('.error-height').find('[class="error"]')
+    getBodyHeading() {
+        return cy.get('.u-p > div')
     }
 
-    getPassInput(Pass, domain) {
-
-        return cy.get('#password')
-        .type(Pass, domain)
+    getLeftMenuSetting() {
+        return cy.get('[href="/settings"]')
     }
 
-    passwClear() {
-        return cy.get('#password')
+    getMenuContainer() {
+        return cy.get('.menu-container')
+    }
+
+    getLeftBottomTitle() {
+        return cy.get('.title')
+    }
+
+    getSignOut() {
+        return cy.get('.accordion__content_button')
     }
 
     clickOnPage() {
