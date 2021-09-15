@@ -15,7 +15,10 @@ describe('Implicit Assertions', () => {
         
  
        it('SignIn with Valid Credential', function test() {
+           
        cy.login(this.user.username ,  this.user.password) 
+       cy.intercept({ method: 'GET', url: '/client/credit/client_data' }, { status: 200 }).as('total')
+       cy.wait('@total')
        const signinElements = new SigninElements();
        function uploadinvoice()  {
        signinElements.customerPage.getcardcotent().then(($element)=>{
@@ -60,10 +63,10 @@ describe('Implicit Assertions', () => {
         signinElements.velocitydashboard.getallctioncard().then((body)=> {
         if(body.find('.ft-action-card-strip').length >3){
         cy.get('.slick-current > :nth-child(1)').click();
-        uploadinvoice()
-        }
-        else
-        {
+       uploadinvoice()
+       }
+       else
+       {
        cy.get('.AddInvoiceButton_uploadButton__2Wner').should('be.visible')
        .click()
        uploadinvoice()
