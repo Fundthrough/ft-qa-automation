@@ -1,7 +1,7 @@
 import SigninElements from '../../support/Page_Objects/SigninElements.js';
 import 'cypress-file-upload';
 
-describe('Implicit Assertions', () => {
+describe('upload invoice from dashboard', () => {
    
        beforeEach(() => {
        cy.visit('https://nebula-client.fundthrough.com/signin')
