@@ -45,7 +45,7 @@ export class getAccount {
     cy.get('#username').then(elem => {
     const xyz = Cypress.$(elem).val()
     cy.log(xyz)
-    cy.writeFile('./cypress/fixtures/profile.json', { username: xyz, password: 'Password1' })
+    cy.writeFile('./cypress/fixtures/profile.json', { username: xyz, password: '1Password' })
     })
 
     }
