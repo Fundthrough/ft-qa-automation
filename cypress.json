@@ -11,9 +11,9 @@
    "nebula/Signin_Page_Elements.js",
    "nebula/SignIn_validation.js"
 
-    ]
-    
-,
+    ],
+    "retries" : 2
+    ,
    "env" :
 
    {
