@@ -2,7 +2,7 @@
 export class getAccount {
 
     pageNavigate() {
-        cy.visit('https://nebula-client.fundthrough.com/signup/')
+        cy.visit('https://nebula-partnership.fundthrough.com/signup/')
     }
 
     signupVerify() {
