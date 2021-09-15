@@ -40,3 +40,8 @@ testem.log
 # 1System Files
 .DS_Store
 Thumbs.db
+
+# Ignored screenshots and videos
+cypress/videos
+cypress/screenshots
+cypress/snapshots
