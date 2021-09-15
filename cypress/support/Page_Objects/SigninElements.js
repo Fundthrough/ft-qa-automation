@@ -26,7 +26,10 @@ contentbutton :() => cy.get('.accordion__content_button'),
 getnavbar:()=> cy.get('.bars'),
 gettitle:() => cy.get('.title'),
 getyellowactioncard:() => cy.get('.ExpressAndVelocity_wrapper__JTgiJ'),
-getallctioncard:()=> cy.get('.action-card-carousel-spacing').find('.slick-slide')
+getallctioncard:()=> cy.get('.action-card-carousel-spacing').find('.slick-slide'),
+getactioncardupload:() =>cy.get('.AddInvoiceButton_uploadButton__2Wner'),
+getinvoicecard:() => cy.get('.slick-current > :nth-child(1)')
+
 }
 elementsui ={
 getsignuphyperlink:()=> cy.get('.signup_prompt_parent').find('p'),

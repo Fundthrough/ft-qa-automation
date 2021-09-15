@@ -4,5 +4,11 @@
     "ignoreTestFiles": "**/examples/*",
     "viewportHeight": 1080,
     "viewportWidth": 1920,
-    "watchForFileChanges": false
+    "watchForFileChanges": false,
+    "retries" :2 ,
+   "env" :
+
+   {
+       "url":"https://nebula-client.fundthrough.com/signup/"
+   }
 }
