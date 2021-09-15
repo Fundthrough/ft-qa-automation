@@ -9,27 +9,30 @@ describe('Sign Up page', () => {
     it('should create new account', function () {
         cy.clearLocalStorage()
         const getaccount = new getAccount();
-
-        //navigates to the Sign Up page, verifies it's elements and state before any input
+//navigates to the Sign Up page, verifies it's elements and state before any input
         getaccount.pageNavigate()
         getaccount.signupVerify()
         getaccount.getUserNameEmpty()
         getaccount.verifyBtnNextDisabled().should('be.disabled')
 
         //input generating function
-        function randomChars(length) {
-            var result = '';
-            var characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
-            var charactersLength = characters.length;
-            for (var i = 0; i < length; i++) {
-                result += characters.charAt(Math.floor(Math.random() * charactersLength));
-            }
-            return result;
-        }
-        console.log(randomChars(4));
+        // function randomChars(length) {
+        //     var result = '';
+        //     var characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
+        //     var charactersLength = characters.length;
+        //     for (var i = 0; i < length; i++) {
+        //         result += characters.charAt(Math.floor(Math.random() * charactersLength));
+        //     }
+
+        //     return result;
+        // }
+        // console.log(randomChars(4));
+        //const email = "kristina+" + randomChars(4) + "@fundthrough.com"
 
         //Verification of elements activation and Input on Sign Up page   
-        getaccount.getUserInput("kristina+" + randomChars(5) + "@fundthrough.com")
+        getaccount.inputuseremail()
+        getaccount.einputuseremail()
+       
         getaccount.getFirstNextBtn().should('contain', 'Next').click()
         getaccount.getPassword()
         getaccount.iconPassword().click()
@@ -82,12 +85,16 @@ describe('Sign Up page', () => {
         getaccount.getMouseHover()
         getaccount.getPopUpDesc().should('be.visible').should('contain', 'To get started, what is the registered name')
         getaccount.elements.getBusinessName().should('exist')
-        getaccount.inputBusName("test " + randomChars(6))
+        getaccount.inputBusName()
         getaccount.getBnCheckBox().should('be.checked')
         getaccount.clickOnNextBtn().should('contain', 'Next').click()
         //redirects to Step 3 and fills in Company Address info
-        cy.intercept('POST', '/v1/p', {}).as('search')
-        cy.wait('@search', {timeout: 15000})
+        cy.intercept('POST' , '/v1/p' , {success:true}).as('search')
+        cy.wait('@search')
+        //cy.wait('@search', {timeout: 15000})
+        //redirects to Step 3 and fills in Company Address info
+        // cy.intercept('POST', '/v1/p', {}).as('search')
+        // cy.wait('@search', {timeout: 15000})
         getaccount.getHeaderOnboard().contains("Step 3 of 6")
         getaccount.getBnAddress().should('contain', 'Business Address')
         getaccount.elements.getBusinessAddress().should('be.empty').click()
@@ -113,8 +120,8 @@ describe('Sign Up page', () => {
         getaccount.inputPostalCode('12345')
         getaccount.getNextBtnStepThree().click()
 
-        cy.intercept('POST', '/v1/p', {}).as('userPut')
-        cy.wait('@userPut', {timeout: 9000})
+        
+        cy.wait('@search')
         getaccount.getHeaderOnboard().contains("Step 4 of 6")
         getaccount.getPhoneNumber('6470001234')
         getaccount.getMouseHover()
@@ -123,9 +130,9 @@ describe('Sign Up page', () => {
 
         cy.wait(8000)
         getaccount.getHeaderOnboard().contains("Step 5 of 6")
-        getaccount.getPrefName("test" + randomChars(3))
-        getaccount.getFirstName("test" + randomChars(3))
-        getaccount.getLastName("test" + randomChars(4))
+        getaccount.getPrefName()
+        getaccount.getFirstName()
+        getaccount.getLastName()
         getaccount.getMouseHoveroneOfMany().first().trigger('mouseover')
         getaccount.getPopUpDesc().should('be.visible').should('contain', 'To verify your identity, we need to know your legal name. This should match your government-issued ID. We’ll use your preferred name to communicate with you.')
         getaccount.getNextBtnFolStep().should('contain', 'Next').click()

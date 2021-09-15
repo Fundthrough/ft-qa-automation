@@ -1,4 +1,3 @@
-
 import SigninElements from '../../support/Page_Objects/SigninElements.js';
 import { getAccount } from "../../support/Page_Objects/signUpPage.js";
 
@@ -7,11 +6,10 @@ describe('Velocity', () =>
 beforeEach(function()  {
 cy.visit('https://nebula-client.fundthrough.com/signin')
 cy.clearLocalStorage()
-cy.fixture('user').then(function(user)
+cy.fixture('profile').then(function(user)
 {this.user=user;
 })
 })
-
 
 const emails = (val) => {
 var email = "";
@@ -23,7 +21,6 @@ return email;
 const TestEmail = emails(9)
 const PasswordInvalid = emails(9)
 const InvalidTextPassword = emails(4)
-
 const signinElements = new SigninElements();
 const getaccountpage = new getAccount(); 
 it('SignIn with Valid Credential', function () {
@@ -31,13 +28,13 @@ cy.login(this.user.username ,  this.user.password)
 signinElements.usercredential.getskipcontainer().click({force:true})
 cy.intercept('POST', '/v1/t', {}).as('userSignin')
 //cy.intercept('POST', '/v1/p', {}).as('addinvoice')
-cy.wait('@userSignin', {timeout:8000})
+cy.wait('@userSignin', {timeout:20000})
 .then(($div) => {
 signinElements.velocitydashboard.getyellowactioncard()
 
 
 signinElements.velocitydashboard.getallctioncard().should(($i) => {
-    expect($i).to.have.length(3)
+expect($i).to.have.length(4)
 expect($i).to.contain('Add your first invoice')
 expect($i).to.contain('Tell us about your business')
 expect($i).to.contain('Review the funding agreement')
@@ -66,7 +63,8 @@ expect(resp.status).to.eq(400)
 })
 })
 
-it("Input invalid Data on username and password", function()  {  
+it("Input invalid Data on username and password", function()  { 
+    
 signinElements.usercredential.getusername().type(TestEmail)
 signinElements.usercredential.getpassword().type(InvalidTextPassword)
 signinElements.usercredential.getskipcontainer().click({force:true})
