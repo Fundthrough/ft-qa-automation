@@ -235,4 +235,14 @@ export class getAccount {
     getSignOut() {
         return cy.get('.accordion__content_button')
     }
+
+    getErrorMsgInvalidEmail() {
+        return cy.get('.error-height').find('[class="error"]')
+    }
+
+    getPassInput(Pass, domain) {
+
+        return cy.get('#password')
+        .type(Pass, domain)
+    }
 }
