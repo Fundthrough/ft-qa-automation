@@ -1,4 +1,4 @@
-/// <reference types="cypress" />
+// <reference types="cypress" />
 
 import { getAccount } from "../../support/Page_Objects/signUpPage.js";
 

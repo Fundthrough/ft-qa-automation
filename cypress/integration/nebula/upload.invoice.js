@@ -88,5 +88,5 @@ describe('upload invoice from dashboard', () => {
         Cypress.on('uncaught:exception', (err, runnable) => {
                 return false
         })
-
 })
+
