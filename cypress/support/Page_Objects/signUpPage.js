@@ -58,18 +58,6 @@ export class getAccount {
     return cy.get('#username')
     }
  
-    einputuseremail(){
-    cy.get('#username').then(elem => {
-    const xyz = Cypress.$(elem).val()
-    cy.log(xyz)
-    cy.writeFile('./cypress/fixtures/profile.json', { username: xyz, password: 'Password1' })
-    })
-
-    }
- 
-    clearUsername() {
-    return cy.get('#username')
-    }
 
     passwClear() {
         return cy.get('#password')
