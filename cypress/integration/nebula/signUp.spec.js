@@ -1,4 +1,4 @@
-/// <reference types="cypress" />
+// <reference types="cypress" />
 
 import { getAccount } from "../../support/Page_Objects/signUpPage.js";
 
@@ -6,7 +6,7 @@ Cypress.on('uncaught:exception', (err, runnable) => {
     return false;
 });
 
-describe('Sign Up page', () => {
+describe('Sign1 Up page', () => {
 
     it('should create new account', function () {
         cy.clearLocalStorage()
@@ -77,8 +77,11 @@ describe('Sign Up page', () => {
         getaccount.getImageOnStepOne().should('be.visible')
         getaccount.getLinkOnStepOne().contains("SKIP/ I DON'T USE QUICKBOOK").click()
 
-        cy.intercept({ method: 'POST', url: 'https://api.segment.io/v1/p' }, { success: true }).as('search')
-        cy.wait('@search', {timeout: 15000})
+        cy.intercept('POST' , '/v1/p' , {success:true}).as('search')
+
+        //cy.intercept({ method: 'POST', url: 'https://api.segment.io/v1/p' }, { success: true }).as('search')
+        // cy.wait('@search', {timeout: 15000})
+        cy.wait('@search')
         //Step 2 page validation
         getaccount.getHeaderOnboard().contains('Step 2 of 6')
         getaccount.getMouseHover()
@@ -115,8 +118,20 @@ describe('Sign Up page', () => {
         getaccount.inputPostalCode('12345')
         getaccount.getNextBtnStepThree().click()
 
-        cy.intercept('POST', '/v1/p', {}).as('userPut')
-        cy.wait('@userPut', {timeout: 12000})
+        // cy.intercept({
+
+        //     path : '/onboarding'
+        // }).as('userPut')
+    
+
+        // // cy.intercept('POST', '/v1/p', {}).
+        // cy.wait('@userPut')
+
+
+
+        //cy.intercept('POST' , '/onboarding' , {statusCode:200}).as('userPut')
+        
+        cy.wait('@search')
         getaccount.getHeaderOnboard().contains("Step 4 of 6")
         getaccount.getPhoneNumber('6470001234')
         getaccount.getMouseHover()
