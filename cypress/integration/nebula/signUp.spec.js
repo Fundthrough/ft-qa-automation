@@ -1,14 +1,11 @@
 // <reference types="cypress" />
-
-
 import {getAccount}  from "../../support/Page_Objects/signUpPage.js";
-
 
 Cypress.on('uncaught:exception', (err, runnable) => {
     return false;
 });
 
-describe('Sign Up page', () => {
+describe('Sign1 Up page', () => {
 
     it('should not create new account', function () {
         cy.clearLocalStorage()
