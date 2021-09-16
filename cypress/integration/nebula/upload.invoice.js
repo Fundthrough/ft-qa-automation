@@ -12,7 +12,7 @@ describe('upload invoice from dashboard', () => {
        })
        })
  
-       it('SignIn with Valid Credential', function test() {
+       it('upload invoice through add invoice action card or add invoice button', function test() {
            
               cy.login(this.user.username ,  this.user.password)  
        cy.intercept({ method: 'GET', url: '/client/credit/client_data' }, { status: 200 }).as('total')

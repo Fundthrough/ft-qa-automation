@@ -2,7 +2,7 @@
 import SigninElements from '../../support/Page_Objects/SigninElements.js';
 import { getAccount } from "../../support/Page_Objects/signUpPage.js";
 
-describe('Velocity', () => 
+describe('Velocity Signin Page', () => 
 {
 before(function() {
 cy.visit('https://nebula-client.fundthrough.com/signin')

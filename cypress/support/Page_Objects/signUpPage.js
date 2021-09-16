@@ -20,6 +20,10 @@ export class getAccount {
                   
     }
 
+    getErrorMsgInvalidEmail() {
+        return cy.get('.error')
+    }
+    
     randomChars(length) {
     var result = '';
     var characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
@@ -54,10 +58,18 @@ export class getAccount {
     return cy.get('#username')
     }
 
+    passwClear() {
+        return cy.get('#password')
+    }
+
 
     getFirstNextBtn() {
     return cy.get('.row').find('button')
     
+    }
+
+    getPassInput() {
+        return cy.get('#password')
     }
 
     
@@ -262,5 +274,9 @@ export class getAccount {
 
     getSignOut() {
         return cy.get('.accordion__content_button')
+    }
+
+    clickOnPage() {
+        return cy.get('.u-p')
     }
 }
