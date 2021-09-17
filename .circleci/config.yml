@@ -1,11 +1,3 @@
-# version: 2.1
-# orbs:
-#   cypress: cypress-io/cypress@1
-# workflows:
-#   build:
-#     jobs:
-#       - cypress/run:
-#           record: true
 
 
 version: 2.1
@@ -21,7 +13,7 @@ workflows:
     jobs:
       - cypress/run:
            name: Win test
-          executor: win/default
+          executor: win
       - cypress/run:
           name: Mac test
           executor: mac
