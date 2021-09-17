@@ -6,10 +6,10 @@
     "viewportWidth": 1920,
     "watchForFileChanges": false,
     "testFiles":[
-   "nebula/TC01_signUp.spec.js",    
-   "nebula/TC02_SignIn_validation.js",
-   "nebula/TC03_upload.invoice.js",
-   "nebula/TC04_Signin_Page_Elements.js"
+   "nebula/TC01_SignUp.spec.js",    
+   "nebula/TC02_SignIn.validation.js",
+   "nebula/TC03_Upload.invoice.js",
+   "nebula/TC04_Signin.Page.Elements.js"
 
     ],
     "retries" : 2
