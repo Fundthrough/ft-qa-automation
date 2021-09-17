@@ -1,8 +1,21 @@
+
+
 version: 2.1
 orbs:
   cypress: cypress-io/cypress@1
+executors:
+
+macos:
+    xcode: 10.1.0
+
 workflows:
   build:
     jobs:
       - cypress/run:
-          record: true
+          name: Win test
+          executor: win/default
+      - cypress/run:
+          name: Mac test
+          executor: mac
+      - cypress/run:
+         record: true
