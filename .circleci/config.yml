@@ -13,7 +13,5 @@ workflows:
           executor: with-chrome
           browser: chrome
           record: true
-      - aws-s3/sync:
-          from: ./cypress/videos
-          to: 's3://ftautomation-artifacts-storage/test-run'
-
+          store_artifacts: true
+    
