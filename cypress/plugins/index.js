@@ -23,9 +23,6 @@
 module.exports = (on, config) => {
   config.env.sharedSecret =
     process.env.NODE_ENV === 'qa' ? 'hoop brick tort' : 'sushi cup lemon'
-    on('after:run', (results) => {
-      cypress/fixtures/upload_artifacts_toS3.js
-    })
-
+    
   return config
 }
