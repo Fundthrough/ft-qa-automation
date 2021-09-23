@@ -3,13 +3,26 @@
 version: 2.1
 orbs:
   cypress: cypress-io/cypress@1
+   win: circleci/windows@2.2.0
+
+
 executors:
   mac:
     macos:
       xcode: 11.7
+
+
+executor:
+  name: win/default # executor type
+  size: "medium"
+
 workflows:
   build:
     jobs:
+    - cypress/run:
+          name: Windows test
+          executor: win/default
+
       - cypress/run:
           name: Linux test
       - cypress/run:
