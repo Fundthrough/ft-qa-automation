@@ -18,6 +18,5 @@ workflows:
       - cypress/run:
           name: Mac test
           executor: mac
-          executor: with-chrome
           browser: chrome
           record: true
