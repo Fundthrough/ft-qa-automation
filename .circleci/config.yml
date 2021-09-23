@@ -3,6 +3,8 @@
 version: 2.1
 orbs:
   cypress: cypress-io/cypress@1
+
+ orbs: 
    win: circleci/windows@2.2.0
 
 
