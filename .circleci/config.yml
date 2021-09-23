@@ -1,32 +1,21 @@
 
-
 version: 2.1
 orbs:
   cypress: cypress-io/cypress@1
-
- orbs: 
-   win: circleci/windows@2.2.0
-
-
 executors:
   mac:
     macos:
       xcode: 11.7
-
-
-executor:
-  name: win/default # executor type
-  size: "medium"
-
+  with-chrome:
+    docker:
+      - image: 'cypress/browsers:node14.16.0-chrome90-ff88'
 workflows:
   build:
     jobs:
-    - cypress/run:
-          name: Windows test
-          executor: win/default
-
       - cypress/run:
           name: Linux test
+          record: true
       - cypress/run:
           name: Mac test
+          record: true
           executor: mac
