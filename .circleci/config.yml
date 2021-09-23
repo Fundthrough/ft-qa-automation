@@ -14,13 +14,10 @@ workflows:
     jobs:
       - cypress/run:
           name: Linux test
-          executor: with-chrome
           browser: chrome
           record: true
       - cypress/run:
           name: Mac test
-          executor: mac
-          executor: with-chrome
           browser: chrome
           record: true
 
