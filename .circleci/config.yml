@@ -1,21 +1,17 @@
+
+
 version: 2.1
 orbs:
   cypress: cypress-io/cypress@1
 executors:
   mac:
     macos:
-      xcode: 11.5.2
-  with-chrome:
-    docker:
-      - image: 'cypress/browsers:node14.16.0-chrome90-ff88'
+      xcode: 10.1.0
 workflows:
   build:
     jobs:
       - cypress/run:
           name: Linux test
-          record: true
       - cypress/run:
           name: Mac test
-          record: true
           executor: mac
-
