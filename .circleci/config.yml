@@ -5,7 +5,6 @@ executors:
   mac:
     macos:
       xcode: 10.1.0
-executors:
   with-chrome:
     docker:
       - image: 'cypress/browsers:node14.16.0-chrome90-ff88'
