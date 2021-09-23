@@ -17,4 +17,5 @@ workflows:
       - cypress/run:
           name: Mac test
           record: true
+          executor: mac
 
