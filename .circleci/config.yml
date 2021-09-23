@@ -14,10 +14,8 @@ workflows:
     jobs:
       - cypress/run:
           name: Linux test
-          browser: chrome
           record: true
       - cypress/run:
           name: Mac test
-          browser: chrome
           record: true
 
