@@ -12,9 +12,7 @@ executors:
 workflows:
   build:
     jobs:
-      - cypress/run:
-          name: Linux test
-          record: true
+      
       - cypress/run:
           name: Mac test
           executor: mac
