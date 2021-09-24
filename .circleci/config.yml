@@ -32,8 +32,8 @@ jobs:
             - ~/.cache
       - run: $(npm bin)/cypress run --record -b chrome
       - aws-s3/sync:
-        from: ./cypress/videos
-        to: s3://ftautomation-artifacts-storage
+          from: ./cypress/videos
+          to: s3://ftautomation-artifacts-storage
     
 
 
