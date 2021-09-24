@@ -33,7 +33,13 @@ jobs:
       - run: $(npm bin)/cypress run --record -b chrome
       - aws-s3/sync:
           from: ./cypress/videos
-          to: s3://ftautomation-artifacts-storage
+          to: s3://ftautomation-artifacts-storage/$CIRCLE_BRANCH/$CIRCLE_SHA1/videos
+      - aws-s3/sync:
+          from: ./cypress/screenshots
+          to: s3://ftautomation-artifacts-storage/$CIRCLE_BRANCH/$CIRCLE_SHA1/screenshots
+      - aws-s3/sync:
+          from: ./cypress/snapshots
+          to: s3://ftautomation-artifacts-storage/$CIRCLE_BRANCH/$CIRCLE_SHA1/snapshots
     
 
 
