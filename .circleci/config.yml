@@ -1,6 +1,7 @@
 version: 2.1
 orbs:
   cypress: cypress-io/cypress@1
+  aws-s3: circleci/aws-s3@3.0.0
 executors:
   with-chrome:
     docker:
@@ -12,4 +13,5 @@ workflows:
           executor: with-chrome
           browser: chrome
           record: true
-
+          store_artifacts: true
+    

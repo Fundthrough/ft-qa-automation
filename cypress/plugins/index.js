@@ -23,6 +23,6 @@
 module.exports = (on, config) => {
   config.env.sharedSecret =
     process.env.NODE_ENV === 'qa' ? 'hoop brick tort' : 'sushi cup lemon'
-
+    
   return config
 }
