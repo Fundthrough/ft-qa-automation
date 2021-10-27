@@ -1,6 +1,5 @@
 {
     "projectId": "ekqhck",
-    "baseUrl": "https://nebula-client.fundthrough.com/signup/",
     "ignoreTestFiles": "**/examples/*",
     "viewportHeight": 1080,
     "viewportWidth": 1920,
