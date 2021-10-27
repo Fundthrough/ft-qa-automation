@@ -12,10 +12,5 @@
    "nebula/TC04_Signin.Page.Elements.js"
     ],
     "retries" : 2
-    ,
-   "env" :
-
-   {
-       "url":"https://nebula-client.fundthrough.com/signup/"
-   }
+   
 }
