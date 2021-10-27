@@ -5,7 +5,7 @@ import { getAccount } from "../../support/Page_Objects/signUpPage.js";
 describe('Velocity Signin Page', () => 
 {
 before(function() {
-cy.visit('https://nebula-client.fundthrough.com/signin')
+cy.visit('/')
 cy.clearLocalStorage()
 
 cy.fixture('profile').then(function(user)
@@ -56,7 +56,7 @@ cy.url().should('include', '/signup');
 })
 //redirect to forgot-password page and validate elements on forgot password page
 it('validate elements on forgot password page', function()  {
-  cy.visit('https://nebula-client.fundthrough.com/signin')
+  cy.visit('/')
 signinElements.elementsui.forgotpasswordlink().click();
 cy.url().should('include', '/forgot-password');
 signinElements.elementsui.cardcontent().should(($div) => {

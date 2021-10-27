@@ -4,7 +4,7 @@ import { getAccount } from "../../support/Page_Objects/signUpPage.js";
 
 describe('Signin Validation', () => {
     beforeEach(function () {
-        cy.visit('https://nebula-client.fundthrough.com/signin')
+        cy.visit('/')
         cy.clearLocalStorage()
         cy.fixture('profile').then(function (user) {
             this.user = user;
