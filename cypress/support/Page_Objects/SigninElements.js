@@ -46,6 +46,10 @@ class SigninElements {
         getsettingslink: () => cy.get('[href="/settings"]')
     }
 
+    accountsetup = {
+        getcardtitle: () => cy.get('h4')
+    }
+
     netDaysCount() {
         var netdayscount = [30, 60, 90];
         var randomnetDays = Math.floor(Math.random() * netdayscount.length);
