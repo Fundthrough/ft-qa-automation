@@ -17,7 +17,7 @@ describe('Sign Up page', () => {
         getaccount.getUserNameEmpty()
         getaccount.verifyBtnNextDisabled().should('be.disabled')
 
-        //input generating functions
+       
         function randomChars(length) {
             var result = '';
             var characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
