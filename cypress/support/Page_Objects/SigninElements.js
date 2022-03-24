@@ -10,10 +10,14 @@ amountError:() => cy.get('.error'),
 getNetDays:() => cy.get('#netDays'),
 getbuttonuploadinvoice:()=>cy.get('.forward').contains('Finish'),
 getinvoicecreated:()=>cy.get('.notification-container'),
-getsuccessmessage:() =>  cy.get('.extra'),
+getsuccessmessage:() =>  cy.get('.green-text.extra'),
 clickdropdown:() => cy.get('.active').click(),
 getupoadinvoice:() => cy.get('button.ui.primary.button.upload.circular'),
-getcardcotent:() => cy.get('.card-content-left')
+getcardcotent:() => cy.get('.card-content-left'),
+getstartbusiness:() => cy.get('.ui.circular.button.bordered__small__dark-primary.ui.action'),
+uploadfiles:() => cy.get('.ui.primary.button.upload.circular'),
+getforwardbutton:() => cy.get('.ui.circular.button.forward'),
+getreversebutton:() => cy.get('.ui.button.reverse}'),
 }
 usercredential = {
 getusername:() => cy.get('#username'),
