@@ -15,7 +15,7 @@ describe('Tell us about your business', () => {
 
     })
 
-    it('Signin with valid credentials and start Business', () => {
+    it('Validate the start business process', () => {
         cy.login(this.user.username, this.user.password)
         const signinElements = new SigninElements();
 
@@ -75,7 +75,7 @@ describe('Tell us about your business', () => {
                 uploadBusinessFiles()
             }
             else {
-                cy.log('This action step is completed')
+                cy.log('The `About your Business` step is completed')
             }
         })
     })

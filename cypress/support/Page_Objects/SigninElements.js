@@ -18,6 +18,10 @@ getstartbusiness:() => cy.get('.ui.circular.button.bordered__small__dark-primary
 uploadfiles:() => cy.get('.ui.primary.button.upload.circular'),
 getforwardbutton:() => cy.get('.ui.circular.button.forward'),
 getreversebutton:() => cy.get('.ui.button.reverse}'),
+geterror:() => cy.get('.error'),
+updatebutton:() => cy.get('ui.circular.primary.button.bold-text.u-mb+'),
+anyelement:() => cy.get('.ui.header.casing.header'),
+getbusinessname:() => cy.get('.no-float > .clickable-text ')
 }
 usercredential = {
 getusername:() => cy.get('#username'),
