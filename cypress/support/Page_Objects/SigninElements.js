@@ -19,9 +19,14 @@ uploadfiles:() => cy.get('.ui.primary.button.upload.circular'),
 getforwardbutton:() => cy.get('.ui.circular.button.forward'),
 getreversebutton:() => cy.get('.ui.button.reverse}'),
 geterror:() => cy.get('.error'),
-updatebutton:() => cy.get('ui.circular.primary.button.bold-text.u-mb+'),
+updatebutton:() => cy.get('ui.circular.primary.button.bold-text.u-mb+').invoke('show'),
 anyelement:() => cy.get('.ui.header.casing.header'),
-getbusinessname:() => cy.get('.no-float > .clickable-text ')
+getinputfield:() => cy.get('.no-float > .clickable-text > .meta.black-text'),
+getbusinessname:() => cy.xpath('//*[@id="businessName"]'),
+getjobtitle:() => cy.xpath('//*[@id="jobTitle"]'),
+getfirstname:() => cy.xpath('//*[@id="firstName"]'),
+getlastname:() => cy.xpath('//*[@id="lastName"]')
+
 }
 usercredential = {
 getusername:() => cy.get('#username'),

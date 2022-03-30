@@ -20,27 +20,109 @@ describe('Review the funding agreement',() => {
 
         function reviewAgreement() {
             signinElements.customerPage.getforwardbutton().click()
-            signinElements.customerPage.getbusinessname().eq(0).type('{selectall}{backspace}')
+            //Business Name
+            signinElements.customerPage.getinputfield().eq(0).click()
+            signinElements.customerPage.getbusinessname().clear()
             signinElements.customerPage.anyelement().eq(0).click()
             //Validate error message
             signinElements.customerPage.geterror().invoke('text').then(text => {
                 expect(text).to.eql('Invalid business name')
             })
             //Validate successful update
-            signinElements.customerPage.getbusinessname().eq(0).type('Insurance')
-            signinElements.customerPage.updatebutton().click()
-            // cy.get('.full-width.mobilize').then(($el) => {
-            //     if($el.find('p[id="updatingJobTitle"]').length > 0 ) {
-            //         cy.get('p[id="updatingJobTitle"]').click()
-            //         signinElements.customerPage.getbusinessname().eq(0).type('Insurance')
-            //         signinElements.customerPage.updatebutton().click()
+            signinElements.customerPage.getbusinessname().type('Insurance')
+            //signinElements.customerPage.updatebutton().click()
 
-            //     } else if($el.find('button[id="addingJobTitle"]').length > 0){
-            //         cy.get('button[id="addingJobTitle"]').click()
-            //         signinElements.customerPage.getbusinessname().type('Insurance')
-            //         signinElements.customerPage.updatebutton().click()
-            //     }
+            //Job Title
+            signinElements.customerPage.getinputfield().eq(0).click()
+            signinElements.customerPage.getjobtitle().clear()
+            signinElements.customerPage.anyelement().eq(0).click()
+            //Validate error message
+            signinElements.customerPage.geterror().invoke('text').then(text => {
+                expect(text).to.eql('Invalid job title')
+            })
+            //Validate successful update
+            signinElements.customerPage.getjobtitle().type('Director')
+            // signinElements.customerPage.updatebutton().click()
+
+            //First Business tax year
+            // signinElements.customerPage.gettaxyear().type('{selectall}{backspace}')
+            // signinElements.customerPage.anyelement().eq(0).click()
+            // //Validate error message
+            // signinElements.customerPage.geterror().invoke('text').then(text => {
+            //     expect(text).to.eql('Please enter a year between 1945 and 2022')
             // })
+            // //Validate successful update
+            // // signinElements.customerPage.gettaxyear().type('2000')
+            // // signinElements.customerPage.updatebutton().click()
+
+            // //Business Phone Number
+            // signinElements.customerPage.getbusinessnumber().type('{selectall}{backspace}')
+            // signinElements.customerPage.anyelement().eq(0).click()
+            // //Validate error message
+            // signinElements.customerPage.geterror().invoke('text').then(text => {
+            //     expect(text).to.eql('Please enter a valid phone number')
+            // })
+            // //Validate successful update
+            // // signinElements.customerPage.getbusinessnumber().type('649-1234-567')
+            // // signinElements.customerPage.updatebutton().click()
+
+            //Business Address
+            // signinElements.customerPage.getbusinessaddress().type('{selectall}{backspace}')
+            // signinElements.customerPage.anyelement().eq(0).click()
+            // //Validate error message
+            // signinElements.customerPage.geterror().invoke('text').then(text => {
+            //     expect(text).to.eql('Invalid address')
+            // })
+            // //Validate successful update
+            // signinElements.customerPage.getbusinessname().type('Insurance')
+            // signinElements.customerPage.updatebutton().click()
+
+            // //Business Number
+            // signinElements.customerPage.getjobtitle().type('{selectall}{backspace}')
+            // signinElements.customerPage.anyelement().eq(0).click()
+            // //Validate error message
+            // signinElements.customerPage.geterror().invoke('text').then(text => {
+            //     expect(text).to.eql('Invalid business name')
+            // })
+            // //Validate successful update
+            // signinElements.customerPage.getbusinessname().type('Insurance')
+            // signinElements.customerPage.updatebutton().click()
+
+            //Legal Name
+            signinElements.customerPage.getinputfield().eq(1).click()
+            signinElements.customerPage.getfirstname().clear()
+            signinElements.customerPage.anyelement().eq(0).click()
+            signinElements.customerPage.geterror().invoke('text').then(text => {
+                expect(text).to.equals('Invalid First Name')
+            })
+            signinElements.customerPage.getlastname().clear()
+            signinElements.customerPage.anyelement().eq(0).click()
+            signinElements.customerPage.geterror().eq(1).invoke('text').then((text) => {
+                    expect(text).to.equals('Invalid Last Name')
+            })
+            
+            // signinElements.customerPage.anyelement().eq(0).click()
+            //Validate error message
+            
+            // signinElements.customerPage.geterror().invoke('text').each((text,index) => {
+            //     expect(text[index]).to.eql('Invalid First Name')
+            //     expect(text[index]).to.eql('Invalid Last Name')
+            // })
+            // //Validate successful update
+            // signinElements.customerPage.getbusinessname().type('Insurance')
+            // signinElements.customerPage.updatebutton().click()
+
+            // //Checkbox Business Address
+            // signinElements.customerPage.getjobtitle().type('{selectall}{backspace}')
+            // signinElements.customerPage.anyelement().eq(0).click()
+            // //Validate error message
+            // signinElements.customerPage.geterror().invoke('text').then(text => {
+            //     expect(text).to.eql('Invalid business name')
+            // })
+            // //Validate successful update
+            // signinElements.customerPage.getbusinessname().type('Insurance')
+            // signinElements.customerPage.updatebutton().click()
+
         }
 
         signinElements.velocitydashboard.getallctioncard().then((body) => {

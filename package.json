@@ -16,7 +16,8 @@
     "cypress-cucumber-preprocessor": "^4.1.0",
     "cypress-file-upload": "^5.0.8",
     "cypress-image-snapshot": "^4.0.1",
-    "cypress-wait-until": "^1.7.2"
+    "cypress-wait-until": "^1.7.2",
+    "cypress-xpath": "^1.6.2"
   },
   "cypress-cucumber-preprocessor": {
     "nonGlobalStepDefinitions": true
