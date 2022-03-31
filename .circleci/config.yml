@@ -2,10 +2,11 @@ version: 2.1
 orbs:
   cypress: cypress-io/cypress@1
   aws-s3: circleci/aws-s3@3.0.0
+  slack: circleci/slack@4.9.3
 workflows:
   build:
     jobs:
-      - build     
+      - build
 jobs:
   build:
     docker:
@@ -34,13 +35,15 @@ jobs:
       - aws-s3/sync:
           from: ./cypress/videos
           to: s3://ftautomation-artifacts-storage/$CIRCLE_BRANCH/$CIRCLE_SHA1/videos
+      - slack/notify:
+          event: always
       # - aws-s3/sync:
       #     from: ./cypress/screenshots
       #     to: s3://ftautomation-artifacts-storage/$CIRCLE_BRANCH/$CIRCLE_SHA1/screenshots
       # - aws-s3/sync:
       #     from: ./cypress/snapshots
       #     to: s3://ftautomation-artifacts-storage/$CIRCLE_BRANCH/$CIRCLE_SHA1/snapshots
-    
 
 
-        
+
+
