@@ -126,7 +126,7 @@ describe('Review the funding agreement',() => {
         }
 
         signinElements.velocitydashboard.getallctioncard().then((body) => {
-            if (body.find('.ft-action-card-strip').length > 3) {
+            if (body.find('.ft-action-card-strip').length >= 3) {
                 cy.get('.slick-slide').eq(2).click()
                 reviewAgreement()
             }

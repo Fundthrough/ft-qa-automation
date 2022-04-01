@@ -5,13 +5,15 @@
     "viewportHeight": 1080,
     "viewportWidth": 1920,
     "watchForFileChanges": false,
+    "chromeWebSecurity": false,
     "testFiles":[
    "nebula/TC01_SignUp.spec.js",    
    "nebula/TC02_SignIn.validation.js",
    "nebula/TC03_Upload.invoice.js",
    "nebula/TC04_Signin.Page.Elements.js",
    "nebula/TC05_start.business.js",
-   "nebula/TC06_funding_agreement.js"
+   "nebula/TC06_funding.agreement.js",
+   "nebula/TC07_linking.to.bank.js"
     ],
     "retries" : 2
     ,

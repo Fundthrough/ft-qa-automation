@@ -25,7 +25,13 @@ getinputfield:() => cy.get('.no-float > .clickable-text > .meta.black-text'),
 getbusinessname:() => cy.xpath('//*[@id="businessName"]'),
 getjobtitle:() => cy.xpath('//*[@id="jobTitle"]'),
 getfirstname:() => cy.xpath('//*[@id="firstName"]'),
-getlastname:() => cy.xpath('//*[@id="lastName"]')
+getlastname:() => cy.xpath('//*[@id="lastName"]'),
+getIframe:() => cy.get('#plaid-link-iframe-3'),
+getcontinuebutton:() => cy.xpath('//*[@id="aut-continue-button"]'),
+selectbank:() => cy.get('.ThreadsInstitutionResult__text').eq(0),
+getusername:() => cy.xpath('//*[@id="username"]'),
+getpassword:() => cy.xpath('//*[@id="password"]'),
+getcheckbox:() => cy.get('//*[@id="card-page-content"]/div[1]/div/div/form/div/div/input')
 
 }
 usercredential = {
