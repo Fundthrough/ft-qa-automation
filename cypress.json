@@ -23,7 +23,8 @@
    "nebula/TC02_SignIn.validation.js",
    "nebula/TC03_Upload.invoice.js",
    "nebula/TC04_Signin.Page.Elements.js",
-   "nebula/TC05_start.business.js"
+   "nebula/TC05_start.business.js",
+   "nebula/TC06_funding.flow.spec.js"
     ],
     "retries" : 2
     ,
