@@ -1,0 +1,107 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2022-04-04T18:23:58.273Z",
+    "end": "2022-04-04T18:24:04.877Z",
+    "duration": 6604,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "32afc7ad-019c-4d75-bb12-324e10bccc0d",
+      "title": "",
+      "fullFile": "cypress/integration/nebula/TC05_start.business.js",
+      "file": "cypress/integration/nebula/TC05_start.business.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "84700567-e62a-4951-8629-71c75c3c5c91",
+          "title": "Tell us about your business",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Validate the start business process",
+              "fullTitle": "Tell us about your business Validate the start business process",
+              "timedOut": null,
+              "duration": 6505,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "//cy.login(this.user.username, this.user.password)\nvar signinElements = new _SigninElements[\"default\"]();\nfunction uploadBusinessFiles() {\n  signinElements.customerPage.getforwardbutton().click();\n  signinElements.customerPage.uploadfiles().attachFile('example.json', {\n    subjectType: 'drag-n-drop'\n  }); //Validate Error Message\n  cy.get('.message').then(function ($m) {\n    expect($m).to.have[\"class\"]('ui icon message error');\n    expect($m).to.have.text('There was an error uploading the file. Please ensure the file is a .pdf, .jpg, .png, or other image file and try again.');\n    expect($m).to.have.css('background-color', 'rgb(255, 232, 230)');\n  }).then(function ($el) {\n    signinElements.customerPage.uploadfiles().attachFile('testPicture.png', {\n      subjectType: 'drag-n-drop'\n    }); //Validate Success Message\n    cy.waitUntil(function () {\n      return signinElements.customerPage.getsuccessmessage().invoke('text').then(function (text) {\n        expect(text).to.equals('Got it!');\n      });\n    });\n    signinElements.customerPage.getforwardbutton().click().then(function ($el) {\n      signinElements.customerPage.uploadfiles().attachFile('example.json', {\n        subjectType: 'drag-n-drop'\n      }); //Validate error message\n      cy.get('.message').then(function ($m) {\n        expect($m).to.have[\"class\"]('ui icon message error');\n        expect($m).to.have.text('There was an error uploading the file. Please ensure the file is a .pdf, .jpg, .png, or other image file and try again.');\n        expect($m).to.have.css('background-color', 'rgb(255, 232, 230)');\n      }).then(function ($el) {\n        signinElements.customerPage.uploadfiles().attachFile('testPicture.png', {\n          subjectType: 'drag-n-drop'\n        }); //Validate Success Message\n        signinElements.customerPage.getsuccessmessage().invoke('text').then(function (text) {\n          expect(text).to.equals('Got it!');\n        });\n        signinElements.customerPage.getforwardbutton().click().then(function ($el) {\n          signinElements.customerPage.uploadfiles().attachFile('example.json', {\n            subjectType: 'drag-n-drop'\n          }); //Validate error message\n          cy.get('.message').then(function ($m) {\n            expect($m).to.have[\"class\"]('ui icon message error');\n            expect($m).to.have.text('There was an error uploading the file. Please ensure the file is a .pdf, .jpg, .png, or other image file and try again.');\n            expect($m).to.have.css('background-color', 'rgb(255, 232, 230)');\n          }).then(function ($el) {\n            signinElements.customerPage.uploadfiles().attachFile('testPicture.png', {\n              subjectType: 'drag-n-drop'\n            }); //Validate Success Message\n            signinElements.customerPage.getsuccessmessage().invoke('text').then(function (text) {\n              expect(text).to.equals('Got it!');\n            });\n            signinElements.customerPage.getforwardbutton().click();\n            cy.url().should('include', '/legal');\n          });\n        });\n      });\n    });\n  });\n}\nsigninElements.velocitydashboard.getallctioncard().then(function (body) {\n  if (body.find('.ft-action-card-strip').length > 3) {\n    console.log(cy.get('.slick-list'));\n    cy.get('.slick-slide').eq(1).click();\n    uploadBusinessFiles();\n  } else {\n    cy.log('The `About your Business` step is completed');\n  }\n});",
+              "err": {},
+              "uuid": "c49e7acf-7b19-4f48-a149-47af32170e68",
+              "parentUUID": "84700567-e62a-4951-8629-71c75c3c5c91",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "c49e7acf-7b19-4f48-a149-47af32170e68"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 6505,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/reports/mocha",
+        "quite": true,
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}

@@ -6,17 +6,17 @@ describe('Tell us about your business', () => {
 
     before(() => {
         cy.visit('https://nebula-client.fundthrough.com/signin')
-        cy.clearLocalStorage()
-        // cy.get('#username').type('add@gmail.com')
-        // cy.get('#password').type('1Password')
-        // cy.get('.ui.circular.button.forward').click()
-        // cy.url().should('include', '/invoices')
-        cy.fixture('businessuser').then(function (user) { this.user = user; })
+        //cy.clearLocalStorage()
+        cy.get('#username').type('asset2@fundthrough.com')
+        cy.get('#password').type('1Password')
+        cy.get('.ui.circular.button.forward').click()
+        cy.url().should('include', '/invoices')
+        //cy.fixture('businessuser').then(function (user) { this.user = user; })
 
     })
 
     it('Validate the start business process', () => {
-        cy.login(this.user.username, this.user.password)
+        //cy.login(this.user.username, this.user.password)
         const signinElements = new SigninElements();
 
         function uploadBusinessFiles() {
