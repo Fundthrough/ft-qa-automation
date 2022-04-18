@@ -1,5 +1,4 @@
 import SigninElements from '../../support/Page_Objects/SigninElements.js';
-import 'cypress-file-upload';
 import 'cypress-wait-until';
 
 describe('Tell us about your business', () => {
