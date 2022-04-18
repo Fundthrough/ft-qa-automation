@@ -17,15 +17,13 @@
             "json": true
         }
     },
+    
     "testFiles":[
    "nebula/TC01_SignUp.spec.js",    
    "nebula/TC02_SignIn.validation.js",
    "nebula/TC03_Upload.invoice.js",
    "nebula/TC04_Signin.Page.Elements.js",
-   "nebula/TC05_start.business.js",
-   "nebula/TC06_funding.agreement.js",
-   "nebula/TC07_linking.to.bank.js",
-   "nebula/TC08_funding.flow.spec.js"
+   "nebula/TC05_start.business.js"
     ],
     "retries" : 2
     ,
