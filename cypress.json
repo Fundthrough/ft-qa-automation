@@ -2,14 +2,29 @@
     "projectId": "ekqhck",
     "baseUrl": "https://nebula-client.fundthrough.com/signup/",
     "ignoreTestFiles": "**/examples/*",
-    "viewportHeight": 1080,
-    "viewportWidth": 1920,
+    "viewportHeight": 920,
+    "viewportWidth": 1440,
     "watchForFileChanges": false,
+    "chromeWebSecurity": false,
+    "reporter": "cypress-multi-reporters",
+    "reporterOptions": {
+        "reporterEnabled": "mochawesome",
+        "mochawesomeReporterOptions": {
+            "reportDir": "cypress/reports/mocha",
+            "quite": true,
+            "overwrite": false,
+            "html": true,
+            "json": true
+        }
+    },
+    
     "testFiles":[
    "nebula/TC01_SignUp.spec.js",    
    "nebula/TC02_SignIn.validation.js",
    "nebula/TC03_Upload.invoice.js",
-   "nebula/TC04_Signin.Page.Elements.js"
+   "nebula/TC04_Signin.Page.Elements.js",
+   "nebula/TC05_start.business.js",
+   "nebula/TC06_funding.flow.spec.js"
     ],
     "retries" : 2
     ,
