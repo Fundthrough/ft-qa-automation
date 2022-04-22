@@ -19,13 +19,23 @@ class SigninElements {
         getforwardbutton: () => cy.get('.ui.circular.button.forward'),
         getreversebutton: () => cy.get('.ui.button.reverse}'),
         geterror: () => cy.get('.error'),
-        getpaidbutton: () => cy.get('.get_paid_now-button'),
+        
+    }
+    fundingflow = {
+        gettablerow:() => cy.get('.table__body__row'),
+        getpaidbutton: () => cy.get('.table__body__row').find('.get_paid_now-button'),
         getinvoicename: () => cy.get('.invoice__number'),
         getduedate: () => cy.get('.invoice__dueDate'),
         getheader: () => cy.get('.fund-header'),
         getblueinfotext: () => cy.get('.FTMessageBox_ftMessageBox__1QEbD'),
+        getheading1:() => cy.get(':nth-child(3) > div > .normal-text'),
+        getheading2: () => cy.get('[data-test=credit-title]'),
+        getheading3:() => cy.get(':nth-child(5) > div > .normal-text'),
+        getheading4:() => cy.get(':nth-child(6) > div > .normal-text'),
+        getheading5:() => cy.get(':nth-child(7) > :nth-child(2) > .normal-text'),
         getvelocitytext: () => cy.get('[data-test=here-is-how]'),
         gettooltip: () => cy.get('.column > .question'),
+        gettooltiptext:() => cy.get('.top'),
         getinvoicetotal: () => cy.get('.amount.bold-text.font-22'),
         getenteredinvoice: () => cy.get('.invoice__price'),
         getfundingtext: () => cy.get('[data-test=you-get] > .normal-text'),
@@ -44,7 +54,8 @@ class SigninElements {
         getreviewduedate: () => cy.get('.review-list-date'),
         getreviewprice: () => cy.get('.review-list-price'),
         getemailaddress: () => cy.get('#email'),
-        getreviewingstatus: () => cy.get('.TableBodyRow_icon__3YAHS')
+        getcontainer:() => cy.get('.ui.fluid.container'),
+        getreviewingstatus: () => cy.get('.invoice-table_body').find('.invoice__state')
     }
 
     usercredential = {
