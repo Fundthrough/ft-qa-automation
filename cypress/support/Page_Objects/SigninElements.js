@@ -22,6 +22,7 @@ class SigninElements {
         
     }
     fundingflow = {
+        gettablebody:() => cy.get('.invoice-table_body'),
         gettablerow:() => cy.get('.table__body__row'),
         getpaidbutton: () => cy.get('.table__body__row').find('.get_paid_now-button'),
         getinvoicename: () => cy.get('.invoice__number'),
