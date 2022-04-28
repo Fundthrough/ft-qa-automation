@@ -1,283 +1,356 @@
+export const signUpSelectors = {
+    signUpPage: '.sign-up-value-flow',
+    checkboxWrapper: '[class="inline fields"]',
+    error: '.error',
+    signUpCard: '[id="card-page-content"]',
+    userEmail: '#username',
+    userPassword: '#password',
+    eyeIcon: '.icon-b-preview-16',
+    termsAndConditions: '[name="termsAndConditions"]',
+    stepContainer: '#ft-card-next-gen',
+    currentStep: '.fund-step',
+    imageQuickBooks: '.ui > img',
+    quickBooksSkip: '[class="skip-container u-mb0"]',
+    tooltipIcon: '.question',
+    tooltipDescription: '.description',
+    businessName: '#businessName',
+    locationForm: '#locationForm',
+    mainAddress: '#address',
+    secondAddress: '#addressTwo',
+    city: '#city',
+    country: '#country',
+    province: '#province',
+    postalCode: '#postalCode',
+    phoneNumber: '#phoneNumber',
+    dropdown: '.dropdown',
+    navbar: '.bars',
+    navHeader: '.flex-left > .ui',
+    navSettings: '[href="/settings"]',
+    navContent: '[href="/account"] > div',
+    cardContentHeader: '.card-content-left',
+    menuContainerInvoice: '.menu-container',
+    companyName: '.accordion__company-name',
+    logOut: '.accordion__content_button',
+    heardAboutUs: '#howYouHeardAboutUs',
+    firstName: '#firstName',
+    lastName: '#lastName',
+    preferredName: '#preferredName'
+};
 
-export class getAccount {
+export const signUpTexts = {
+    oneNumber: 'have at least one number',
+    oneLetter: 'have at least one letter',
+    charLength: 'be 8 or more characters long',
+    termsAndConditions: 'Please indicate that you have read and agree to the Terms and Conditions and Privacy Policy.',
+    quickBooksHeader: 'Add your invoices from QuickBooks and start funding them in less than 24 hours.',
+    businessLegalName: 'To get started, what is the registered name of your business? This is the name that you use on government documents and tax filings.',
+    businessAddress: 'We use your address to verify your business. If you have multiple locations, enter where your business was registered.',
+    contactPhone: 'To keep you in the loop on your funding progress, please provide your business’s phone number. If it’s easier, you can provide your direct line.',
+    firstName: 'To verify your identity, we need to know your legal name. This should match your government-issued ID. We’ll use your preferred name to communicate with you.',
+    emailError: 'Invalid email format',
+    skipQuickBooks: "SKIP/ I DON'T USE QUICKBOOK",
+    accountSetupBusiness: 'Tell us about your business',
+    accountSetupFunding: 'Review the funding agreement',
+    accountSetupDeposit: 'Provide deposit information'
+};
 
-    pageNavigate() {
-    cy.visit('https://nebula-client.fundthrough.com/signup/')
+export class SignUpPage {
+
+    visit() {
+        cy.visit('/')
+        cy.url().should('include', 'signup')
+
+        return this;
     }
 
     signupVerify() {
-    cy.contains('Sign Up')
+        cy.get(signUpSelectors.signUpCard).should('exist')
+
+        return this;
     }
 
-    getUserNameEmpty() {
-    return cy.get('#username').find('[value]').should(($el) => {
-    expect($el.text().trim()).equal('')
-    })
-    }
+    checkUserNameEmpty() {
+        cy.get(signUpSelectors.userEmail)
+            .find('[value]')
+            .should(($el) => {
+                expect($el.text().trim()).equal('')
+        })
 
-    verifyBtnNextDisabled() {
-    return cy.get('.row').find('[class="right aligned column"]').contains('button','Next')
-                  
+        return this;
     }
 
     getErrorMsgInvalidEmail() {
-        return cy.get('.error')
-    }
-    
-    randomChars(length) {
-    var result = '';
-    var characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
-    var charactersLength = characters.length;
-    for (var i = 0; i < length; i++) {
-    result += characters.charAt(Math.floor(Math.random() * charactersLength));
-    }
-    return result;
+        cy.get(signUpSelectors.error).should('contain', signUpTexts.emailError)
+
+        return this;
     }
 
-    getUserInput(userName, domain) {
-    return cy.get('#username').type(userName, domain)
+    clickOnCard() {
+        cy.get(signUpSelectors.signUpCard).click()
+
+        return this;
     }
 
+    fillUserEmailInput(email) {
+        cy.get(signUpSelectors.userEmail).type(email)
 
-    inputuseremail(){
+        return this;
+    }
 
-    let email = "kristina+" + this.randomChars(4) + "@fundthrough.com"
-    this.getUserInput(email)
+    checkUserEmailInput(email) {
+        cy.get(signUpSelectors.userEmail).should('have.value', email)
+
+        return this;
+    }
+
+    clearUserEmailInput() {
+        cy.get(signUpSelectors.userEmail).clear()
+
+        return this;
+    }
+
+    revealPassword(reveal = false) {
+        cy.get(signUpSelectors.eyeIcon).should('be.visible').click().then(Password => {
+            cy.wrap(Password)
+                .should(reveal ? 'be.visible' : 'not.be.visible')
+            })
+        cy.get(signUpSelectors.userPassword)
+            .invoke('attr', 'type')
+            .should('eq', 'text')
+
+        return this;
+    }
+
+    fillPasswordInput(password) {
+        cy.get(signUpSelectors.userPassword)
+            .should('be.visible')
+            .type(password)
+
+        return this;
+    }
+
+    clearPasswordInput() {
+        cy.get(signUpSelectors.userPassword)
+            .should('be.visible')
+            .clear()
+
+        return this;
     }
  
-    einputuseremail(){
-    cy.get('#username').then(elem => {
-    const xyz = Cypress.$(elem).val()
-    cy.log(xyz)
-    cy.writeFile('./cypress/fixtures/profile.json', { username: xyz, password: '1Password' })
-    })
-
-    }
- 
-    clearUsername() {
-    return cy.get('#username')
-    }
- 
-
-    passwClear() {
-        return cy.get('#password')
+    saveUserEmail_LS(){
+        cy.get(signUpSelectors.userEmail).then(elem => {
+            const emailInputValue = Cypress.$(elem).val()
+            cy.writeFile('./cypress/fixtures/profile.json', { username: emailInputValue, password: '1Password' })
+        });
+    return this;
     }
 
+    verifyRadioBtn(checkbox, checkboxTitle, checked = false) {
+        cy.get(checkbox)
+            .find('label')
+            .then(radioButtons => {
+                cy.wrap(radioButtons)
+                    .contains(checkboxTitle)
+                    .siblings()
+                    .should(checked ? 'be.checked' : 'not.be.checked')
+        })
 
-    getFirstNextBtn() {
-    return cy.get('.row').find('button')
-    
+        return this;
     }
 
-    getPassInput() {
-        return cy.get('#password')
+    checkTermsAndCond() {
+        cy.get(signUpSelectors.termsAndConditions).check({force: true})
+
+        return this;
     }
 
-    
-    getPassword() {
-    cy.get('#password').type('1Password')
+    uncheckTermsAndCond() {
+        cy.get(signUpSelectors.termsAndConditions).uncheck({force: true})
+
+        return this;
     }
 
+    checkErrorMsgTermsAndCond() {
+        cy.get(signUpSelectors.error).should('contain', signUpTexts.termsAndConditions)
 
-    iconPassword() {
-    return cy.get('.icon-b-preview-16')
-
+        return this;
     }
 
-    iconPasswordNotVisible() {
-    return cy.get('.icon-preview-16')
+    checkOnboardingDirectionUrl() {
+        cy.intercept('POST', '/v1/t', {}).as('url')
+        cy.wait('@url', { timeout: 15000 }).then(() => {
+            cy.url().should('include', '/onboarding')
+        })
+
+        return this;
     }
 
+    checkOnboardStep(currentStep) {
+        cy.get(signUpSelectors.stepContainer)
+            .find(signUpSelectors.currentStep)
+            .should('contain', `Step ${currentStep} of 6`)
 
-    getRadioBtn() {
-    return cy.get('[class="inline fields"]').find('[type="radio"]')
+        return this;
     }
 
+    checkQuickBooksHeader () {
+        cy.get('.bold-text').should('contain', signUpTexts.quickBooksHeader)
 
-    getCheckBox() {
-        return cy.get('[type="checkbox"]')
+        return this;
     }
 
-    getErrorMsgTermsAndCond() {
-        return cy.get('.field').find('[class="error"]')
-    }
+    checkImage() {
+        cy.get(signUpSelectors.imageQuickBooks).should('be.visible')
 
-
-    getFollowingNextBtn() {
-         return cy.get('.right > .skip-container > .ui > p')
-    }
-
-
-    getStepOneOnboard() {
-        return cy.get('#ft-card-next-gen').find('.fund-step')
-    }
-
-    getTextOnStepOne() {
-        return cy.get('.bold-text')
-    }
-
-    getImageOnStepOne(){
-        return cy.get('.ui > img')
+        return this;
     }
 
 
-    getLinkOnStepOne() {
-        return cy.get('[class="skip-container u-mb0"]')
+    skipQuickBooksStep() {
+        cy.get(signUpSelectors.quickBooksSkip)
+            .contains(signUpTexts.skipQuickBooks)
+            .click()
+
+        return this;
     }
 
-    getHeaderOnboard() {
-        //return cy.get('#ft-card-next-gen').find('.fund-step')
-        return cy.get('.fund-step')
+    checkTooltip(tooltipLabel, tooltipMessage) {
+        cy.get('.input-label')
+            .contains(tooltipLabel)
+            .within(() => {
+                cy.get(signUpSelectors.tooltipIcon).trigger('mouseover')
+        })
+        cy.get(signUpSelectors.tooltipDescription)
+            .invoke('show')
+            .should('be.visible')
+            .should('contain', tooltipMessage)
+
+        return this;
     }
 
+    inputBusinessName(value) {
+        cy.get(signUpSelectors.businessName)
+            .should('exist')
+            .type(value)
 
-    getMouseHover() {
-        return cy.get('.question').trigger('mouseover')
+        return this;
     }
 
-    getPopUpDesc() {
-        return cy.get('.description').invoke('show')
-        
+    fillBusinessAddressInput(labelText, value) {
+        cy.get(signUpSelectors.locationForm)
+            .find('.input-label')
+            .should('contain', labelText)
+        cy.get('.left')
+            .find(signUpSelectors.mainAddress)
+            .should('be.empty')
+            .click()
+            .type(value)
+
+        return this;
     }
 
+    checkAddressField() {
+        cy.get(signUpSelectors.secondAddress)
+            .should('exist')
+            .and('be.empty')
 
-    getCountry() {
-       return cy.get('#country')
+        return this;
     }
 
+    fillCityNameInput(city) {
+        cy.get(signUpSelectors.city).type(city)
 
-    getProvince() {
-       return cy.get('#province').find('.dropdown')
+        return this;
     }
 
+    selectCountry(country) {
+        cy.get(signUpSelectors.country).click()
+        cy.get('.text').each((e1) => {
+            if (e1.text() === country) {
+                e1.click()
+            }
+        })
 
-    getCityName(cityText) {
-        cy.get('#city').type(cityText)
-    }
-    
-
-    elements = {
-       getZipField:() => cy.get('#postalCode'),
-       getBusinessName:() => cy.get('#businessName'),
-       getBusinessAddress:() => cy.get('.left').find('#address')
-    }
-
-
-    inputPostalCode(value) {
-        this.elements.getZipField().type(value)
+        return this;
     }
 
-    inputBusName(value) {
-        this.elements.getBusinessName().type('test' + this.randomChars(4))
+    selectProvince(province) {
+        cy.get(signUpSelectors.province).find(signUpSelectors.dropdown).click()
+        cy.get('.text').each((e1) => {
+            if (e1.text() === province) {
+                e1.click()
+            }
+        })
+
+        return this;
     }
 
-    getBnCheckBox() {
-        return cy.get('[class="ui checked checkbox u-pt"]').find('[type="checkbox"]')
+    selectPostalCode(postalCode) {
+        cy.get(signUpSelectors.postalCode)
+            .should('be.empty')
+            .click()
+            .type(postalCode)
+
+        return this;
     }
 
+    fillPhoneNumber(numberDigits) {
+        cy.get(signUpSelectors.phoneNumber).type(numberDigits)
 
-    getNextBtnStepThree() {
-        return cy.get('#footer > :nth-child(2) > .ui')
+        return this;
     }
 
+    fillPrefName(name) {
+        cy.get(signUpSelectors.preferredName).type('test' + name)
 
-    clickOnNextBtn() {
-        return cy.get('#footer').find('.u-mt')
+        return this;
     }
 
+    fillFirstName(firstName) {
+        cy.get(signUpSelectors.firstName).type('test' + firstName)
 
-    getBnAddress() {
-        return cy.get('#locationForm').find('.input-label')
+        return this;
     }
 
+    fillLastName(surname) {
+        cy.get(signUpSelectors.lastName).type('test' + surname)
 
-    inputBusinessAddress(value) {
-        this.elements.getBusinessAddress().type(value)
+        return this;
     }
 
-    getEmptyAdrField() {
-        return cy.get('#addressTwo')
+    checkHeardAboutUsInput() {
+        cy.get(signUpSelectors.heardAboutUs).should('be.empty')
+
+        return this;
     }
 
-    getDropDownValue() {
-        return cy.get('.text')
-    }
+    logOut() {
+        cy.get(signUpSelectors.navbar).click()
+        cy.get(signUpSelectors.navContent)
+            .should('be.visible')
+            .contains('Account Setup')
+            .click()
+        cy.get(signUpSelectors.navHeader)
+            .should('contain', 'Account Setup')
+        cy.get(signUpSelectors.cardContentHeader)
+            .find('h4')
+            .contains(signUpTexts.accountSetupBusiness)
+            .should('be.visible')
+        cy.get(signUpSelectors.cardContentHeader)
+            .find('h4')
+            .contains(signUpTexts.accountSetupFunding)
+            .should('be.visible')
+        cy.get(signUpSelectors.cardContentHeader)
+            .find('h4')
+            .contains(signUpTexts.accountSetupDeposit)
+            .should('be.visible')
+        cy.get(signUpSelectors.navbar).click()
+        cy.get(signUpSelectors.navSettings).click()
+        cy.get(signUpSelectors.menuContainerInvoice).should('contain', 'Invoicing Software')
+        cy.get(signUpSelectors.navbar).click()
+        cy.get(signUpSelectors.companyName).click()
+        cy.get(signUpSelectors.logOut).click()
 
-
-    getPhoneNumber(numberDigits) {
-        cy.get('#phoneNumber').type(numberDigits)
-    }
-
-
-    getPrefName(Name) {
-        cy.get('#preferredName').type('test' + this.randomChars(4))
-    }
-
-
-    getFirstName(ClientName) {
-        cy.get('#firstName').type('test' + this.randomChars(4))
-    }
-
-    getLastName(Surname) {
-        cy.get('#lastName').type('test' + this.randomChars(4))
-    }
-
-
-    getNextBtnFolStep() {
-        return cy.get(':nth-child(2) > .ui > p')
-    }
-
-
-    getMouseHoveroneOfMany() {
-        return cy.get('.question')
-    }
-
-
-    getHearedAboutUsEmpty() {
-        return cy.get('#howYouHeardAboutUs')
-    }
-
-    getSkipBtn() {
-        return cy.get('.u-mt')
-    }
-
-    getNavbar() {
-        return cy.get('.bars')
-    }
-
-    getLeftMenu() {
-        return cy.get('.top-padded-row > .column')
-    }
-
-    getLeftHeading() {
-        return cy.get('[href="/account"] > div')
-    }
-
-    getTopHeading() {
-        return cy.get('.flex-left > .ui')
-    }
-    
-    getBodyHeading() {
-        return cy.get('.u-p > div')
-    }
-
-    getLeftMenuSetting() {
-        return cy.get('[href="/settings"]')
-    }
-
-    getMenuContainer() {
-        return cy.get('.menu-container')
-    }
-
-    getLeftBottomTitle() {
-        return cy.get('.title')
-    }
-
-    getSignOut() {
-        return cy.get('.accordion__content_button')
-    }
-
-    clickOnPage() {
-        return cy.get('.u-p')
+        return this;
     }
 }
