@@ -3,7 +3,7 @@ import {SignUpPage, signUpSelectors, signUpTexts} from "../../support/Page_Objec
 import {randomChars, randomLetter, randomNum} from "../../support/Helpers/common";
 import {checkButtonIsActive, checkButtonIsDisabled, clickButtonByValue} from "../../support/Helpers/common/button";
 
-Cypress.on('uncaught:exception', (err, runnable) => {
+Cypress.on('uncaught:exception', () => {
     return false;
 });
 
