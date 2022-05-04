@@ -23,7 +23,7 @@ describe('Sign Up page', () => {
         checkButtonIsDisabled('Next')
 
         signUpPage
-            .fillUserEmailInput("saksham+" + randomChars(5))
+            .fillUserEmailInput("techadmin" + randomChars(5))
             .clickOnCard()
             .getErrorMsgInvalidEmail()
 
@@ -32,14 +32,14 @@ describe('Sign Up page', () => {
         signUpPage
             .clearUserEmailInput()
             .checkUserNameEmpty()
-            .fillUserEmailInput("saksham+" + randomChars(5) + "@")
+            .fillUserEmailInput("techadmin" + randomChars(5) + "@")
             .clickOnCard()
             .getErrorMsgInvalidEmail()
 
         checkButtonIsDisabled('Next')
 
         signUpPage
-            .fillUserEmailInput("saksham+" + randomChars(5) + "@")
+            .fillUserEmailInput("techadmin" + randomChars(5) + "@")
             .clickOnCard()
             .getErrorMsgInvalidEmail()
 
@@ -47,7 +47,7 @@ describe('Sign Up page', () => {
 
         signUpPage
             .clearUserEmailInput()
-            .fillUserEmailInput("saksham+" + randomChars(5) + "@fundthrough")
+            .fillUserEmailInput("techadmin" + randomChars(5) + "@fundthrough")
             .clickOnCard()
 
         checkButtonIsDisabled('Next')
@@ -59,7 +59,7 @@ describe('Sign Up page', () => {
         checkButtonIsDisabled('Next')
 
         signUpPage
-            .fillUserEmailInput("saksham+" + randomChars(5)+ "@fundthrough.co")
+            .fillUserEmailInput("techadmin" + randomChars(5)+ "@fundthrough.co")
             .clickOnCard()
 
         checkButtonIsActive('Next')
@@ -75,7 +75,7 @@ describe('Sign Up page', () => {
             .visit()
             .signupVerify()
             .checkUserNameEmpty()
-            .fillUserEmailInput("saksham+" + randomChars(5) + "@fundthrough.com")
+            .fillUserEmailInput("techadmin" + randomChars(5) + "@fundthrough.com")
 
         checkButtonIsActive('Next')
         clickButtonByValue('Next')
@@ -113,7 +113,7 @@ describe('Sign Up page', () => {
     it('Sign Up with correct credentials', function () {
         const signUpPage = new SignUpPage();
 
-        const email = "kristina+" + randomChars(4) + "@fundthrough.com";
+        const email = "techadmin" + randomChars(4) + "@fundthrough.com";
 
         signUpPage
             .visit()
@@ -129,7 +129,7 @@ describe('Sign Up page', () => {
 
         clickButtonByValue('Next')
 
-        // signUpPage.checkUserEmailInput(email)
+        signUpPage.checkUserEmailInput(email)
 
         signUpPage
             .saveUserEmail_LS()
@@ -161,7 +161,7 @@ describe('Sign Up page', () => {
             .checkOnboardStep(2)
             .checkTooltip('Business Legal Name', signUpTexts.businessLegalName)
             .inputBusinessName(randomChars(4))
-            .verifyRadioBtn('.checkbox','This is also what my customers call my business.', true)
+            .verifyRadioBtn(signUpSelectors.checkbox, signUpTexts.customerCallCheckbox, true)
 
         clickButtonByValue('Next')
 

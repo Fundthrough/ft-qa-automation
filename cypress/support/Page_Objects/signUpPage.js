@@ -34,7 +34,8 @@ export const signUpSelectors = {
     heardAboutUs: '#howYouHeardAboutUs',
     firstName: '#firstName',
     lastName: '#lastName',
-    preferredName: '#preferredName'
+    preferredName: '#preferredName',
+    checkbox: '.checkbox'
 };
 
 export const signUpTexts = {
@@ -51,7 +52,8 @@ export const signUpTexts = {
     skipQuickBooks: "SKIP/ I DON'T USE QUICKBOOK",
     accountSetupBusiness: 'Tell us about your business',
     accountSetupFunding: 'Review the funding agreement',
-    accountSetupDeposit: 'Provide deposit information'
+    accountSetupDeposit: 'Provide deposit information',
+    customerCallCheckbox: 'This is also what my customers call my business.'
 };
 
 export class SignUpPage {
