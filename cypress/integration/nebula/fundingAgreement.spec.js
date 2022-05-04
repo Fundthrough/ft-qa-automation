@@ -18,8 +18,7 @@ describe('Legal Details', () => {
         const fundingAgreementPage = new FundingAgreementPage()
 
         cy.visit('https://nebula-client.fundthrough.com/signin');
-
-        cy.loginFast(this.user.username, this.user.password)
+        cy.login(this.user.username, this.user.password)
         signInElements.usercredential.getskipcontainer().click({ force: true })
         cy.intercept('POST', '/v1/t', {}).as('userSignin')
         cy.wait('@userSignin', { timeout: 20000 })
