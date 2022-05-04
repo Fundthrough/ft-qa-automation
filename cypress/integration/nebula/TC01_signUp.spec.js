@@ -2,6 +2,7 @@
 import {SignUpPage, signUpSelectors, signUpTexts} from "../../support/Page_Objects/signUpPage.js";
 import {randomChars, randomLetter, randomNum} from "../../support/Helpers/common";
 import {checkButtonIsActive, checkButtonIsDisabled, clickButtonByValue} from "../../support/Helpers/common/button";
+import {checkErrorMessage, messageTexts} from "../../support/Helpers/common/messages";
 
 Cypress.on('uncaught:exception', () => {
     return false;
@@ -25,8 +26,8 @@ describe('Sign Up page', () => {
         signUpPage
             .fillUserEmailInput("techadmin" + randomChars(5))
             .clickOnCard()
-            .getErrorMsgInvalidEmail()
 
+        checkErrorMessage(messageTexts.emailError)
         checkButtonIsDisabled('Next')
 
         signUpPage
@@ -34,15 +35,15 @@ describe('Sign Up page', () => {
             .checkUserNameEmpty()
             .fillUserEmailInput("techadmin" + randomChars(5) + "@")
             .clickOnCard()
-            .getErrorMsgInvalidEmail()
 
+        checkErrorMessage(messageTexts.emailError)
         checkButtonIsDisabled('Next')
 
         signUpPage
             .fillUserEmailInput("techadmin" + randomChars(5) + "@")
             .clickOnCard()
-            .getErrorMsgInvalidEmail()
 
+        checkErrorMessage(messageTexts.emailError)
         checkButtonIsDisabled('Next')
 
         signUpPage
@@ -51,9 +52,9 @@ describe('Sign Up page', () => {
             .clickOnCard()
 
         checkButtonIsDisabled('Next')
+        checkErrorMessage(messageTexts.emailError)
 
         signUpPage
-            .getErrorMsgInvalidEmail()
             .clearUserEmailInput()
 
         checkButtonIsDisabled('Next')
@@ -140,7 +141,10 @@ describe('Sign Up page', () => {
             .verifyRadioBtn(signUpSelectors.checkboxWrapper,signUpTexts.charLength, true)
             .checkTermsAndCond()
             .uncheckTermsAndCond()
-            .checkErrorMsgTermsAndCond()
+
+        checkErrorMessage(messageTexts.termsAndConditions)
+
+        signUpPage
             .checkTermsAndCond()
 
         clickButtonByValue('Next')
@@ -209,6 +213,5 @@ describe('Sign Up page', () => {
         signUpPage
             .logOut()
             .signupVerify()
-
     })
 })

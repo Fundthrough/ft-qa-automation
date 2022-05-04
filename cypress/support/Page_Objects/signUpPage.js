@@ -1,7 +1,6 @@
 export const signUpSelectors = {
     signUpPage: '.sign-up-value-flow',
     checkboxWrapper: '[class="inline fields"]',
-    error: '.error',
     signUpCard: '[id="card-page-content"]',
     userEmail: '#username',
     userPassword: '#password',
@@ -48,7 +47,6 @@ export const signUpTexts = {
     businessAddress: 'We use your address to verify your business. If you have multiple locations, enter where your business was registered.',
     contactPhone: 'To keep you in the loop on your funding progress, please provide your business’s phone number. If it’s easier, you can provide your direct line.',
     firstName: 'To verify your identity, we need to know your legal name. This should match your government-issued ID. We’ll use your preferred name to communicate with you.',
-    emailError: 'Invalid email format',
     skipQuickBooks: "SKIP/ I DON'T USE QUICKBOOK",
     accountSetupBusiness: 'Tell us about your business',
     accountSetupFunding: 'Review the funding agreement',
@@ -59,7 +57,7 @@ export const signUpTexts = {
 export class SignUpPage {
 
     visit() {
-        cy.visit('/')
+        cy.visit('/signup')
         cy.url().should('include', 'signup')
 
         return this;
@@ -77,12 +75,6 @@ export class SignUpPage {
             .should(($el) => {
                 expect($el.text().trim()).equal('')
         })
-
-        return this;
-    }
-
-    getErrorMsgInvalidEmail() {
-        cy.get(signUpSelectors.error).should('contain', signUpTexts.emailError)
 
         return this;
     }
@@ -168,12 +160,6 @@ export class SignUpPage {
 
     uncheckTermsAndCond() {
         cy.get(signUpSelectors.termsAndConditions).uncheck({force: true})
-
-        return this;
-    }
-
-    checkErrorMsgTermsAndCond() {
-        cy.get(signUpSelectors.error).should('contain', signUpTexts.termsAndConditions)
 
         return this;
     }

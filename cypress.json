@@ -1,6 +1,6 @@
 {
     "projectId": "ekqhck",
-    "baseUrl": "https://nebula-client.fundthrough.com/signup/",
+    "baseUrl": "https://nebula-qa1.fundthrough.com",
     "ignoreTestFiles": "**/examples/*",
     "viewportHeight": 1080,
     "viewportWidth": 1920,
@@ -12,10 +12,4 @@
    "nebula/TC04_Signin.Page.Elements.js"
     ],
     "retries" : 2
-    ,
-   "env" :
-
-   {
-       "url":"https://nebula-client.fundthrough.com/signup/"
-   }
 }
