@@ -2,7 +2,7 @@
 export class getAccount {
 
     pageNavigate() {
-    cy.visit('https://nebula-client.fundthrough.com/signup/')
+    cy.visit('https://nebula-qa1.fundthrough.com/signup/')
     }
 
     signupVerify() {
@@ -41,7 +41,7 @@ export class getAccount {
 
     inputuseremail(){
 
-    let email = "kristina" + this.randomChars(4) + "@fundthrough.com"
+    let email = "techadmin" + this.randomChars(4) + "@fundthrough.com"
     this.getUserInput(email)
     }
  

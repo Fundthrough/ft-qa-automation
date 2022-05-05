@@ -1,4 +1,3 @@
-import { should } from "chai";
 
 export const fundingflowText = {
     infoText: 'Since this is your first time funding with this customer, your request may take up to 5 business days to arrive, pending review. Learn more',
@@ -57,28 +56,34 @@ class SigninElements {
 
     }
     fundingflow = {
+
         gettablerow: () => 
             cy
                 .get('.table__body__row'),
         getCustomerName: () => 
             cy
-                .get('.invoice__customer__name').invoke('text'),
+                .get('.invoice__customer__name')
+                .invoke('text'),
         getInvoiceNumber: () => 
             cy
-                .get('.invoice__number').invoke('text'),
+                .get('.invoice__number')
+                .invoke('text'),
         getInvoiceAmount: () => 
             cy
                 .get('.invoice__price')
                 .invoke('text'),
         getInvoiceDueDate: () => 
             cy
-                .get('.invoice__dueDate').invoke('text'),
+                .get('.invoice__dueDate')
+                .invoke('text'),
         getCheckbox: () => 
             cy
-                .get('[type="checkbox"]'),
-        getPaidNow: () => 
+                .get('[type="checkbox"]')
+                .check({ force: true }),
+        fundNow: () => 
             cy
-                .get('.get_paid_now-button'),
+                .get('.get_paid_now-button')
+                .click({force:true}),
         verifyHeader: (expectedText) =>
             cy
                 .get('.fund-header')
@@ -172,10 +177,13 @@ class SigninElements {
         getrandomele: () => 
             cy
                 .get('.contact-list-emailHeader'),
-        getError: () => 
+        verifyError: (expectedError) => 
             cy
-                .get('.error')
-                .invoke('text'),
+                .get('span.error')
+                .invoke('text')
+                .then(actualError => {
+                    expect(actualError).to.equals(expectedError)
+                }),
         verifyMainText: (expectedText) => 
             cy
                 .get('.mainBodyText')
@@ -196,9 +204,23 @@ class SigninElements {
             cy
                 .get('#email')
                 .invoke('text'),
-        getreviewingstatus: () => 
+        verifyStatus: (rowNum, expectedText) => 
             cy
-                .get('.invoice-table_body').find('.invoice__state')
+                .get('.invoice__state')
+                .eq(rowNum)
+                .invoke('text')
+                .then(actualText => {
+                    expect(actualText).to.equals(expectedText)
+                }),
+        clickOnDropdown:() => 
+            cy
+                .get('[role="listbox"]')
+                .click(),
+        getEligibleInvoiceList: () => 
+            cy
+                .get('[name="eligible"]')
+                .click()
+            
     }
 
 
@@ -226,7 +248,7 @@ class SigninElements {
 
     getrandomnumber() {
         var min = 0;
-        var max = 5;
+        var max = 2;
         return Math.floor(Math.random() * (max - min)) + min;
     }
 
