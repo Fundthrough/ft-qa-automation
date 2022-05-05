@@ -41,7 +41,7 @@ export class getAccount {
 
     inputuseremail(){
 
-    let email = "kristina+" + this.randomChars(4) + "@fundthrough.com"
+    let email = "kristina" + this.randomChars(4) + "@fundthrough.com"
     this.getUserInput(email)
     }
  
