@@ -1,15 +1,15 @@
 {
   "stats": {
-    "suites": 5,
-    "tests": 9,
+    "suites": 4,
+    "tests": 8,
     "passes": 5,
     "pending": 0,
-    "failures": 4,
-    "start": "2022-04-18T19:31:33.589Z",
-    "end": "2022-04-18T19:34:21.937Z",
-    "duration": 56092,
-    "testsRegistered": 9,
-    "passPercent": 55.55555555555556,
+    "failures": 3,
+    "start": "2022-05-05T13:31:21.302Z",
+    "end": "2022-05-05T13:34:44.317Z",
+    "duration": 66908,
+    "testsRegistered": 8,
+    "passPercent": 62.5,
     "pendingPercent": 0,
     "other": 0,
     "hasOther": false,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "59935ed2-7be5-4f3d-9892-c3966fbc5c07",
+      "uuid": "89387541-3f0b-409b-acd8-35a154c2b055",
       "title": "",
       "fullFile": "cypress/integration/nebula/TC01_SignUp.spec.js",
       "file": "cypress/integration/nebula/TC01_SignUp.spec.js",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "2e3f906d-8281-415c-965d-3469c3ebbd44",
+          "uuid": "e275a325-53fa-43fd-b676-1481759ade83",
           "title": "Sign Up page",
           "fullFile": "",
           "file": "",
@@ -38,7 +38,7 @@
               "title": "should not create new account",
               "fullTitle": "Sign Up page should not create new account",
               "timedOut": null,
-              "duration": 10034,
+              "duration": 10027,
               "state": "passed",
               "speed": "slow",
               "pass": true,
@@ -47,8 +47,8 @@
               "context": null,
               "code": "cy.clearLocalStorage();\nvar getaccount = new _signUpPage.getAccount(); //navigates to the Sign Up page, verifies it's elements and state before any input\ngetaccount.pageNavigate();\ngetaccount.signupVerify();\ngetaccount.getUserNameEmpty();\ngetaccount.verifyBtnNextDisabled().should('be.disabled'); //input generating functions\nfunction randomChars(length) {\n  var result = '';\n  var characters = 'abcdefghijklmnopqrstuvwxyz0123456789';\n  var charactersLength = characters.length;\n  for (var i = 0; i < length; i++) {\n    result += characters.charAt(Math.floor(Math.random() * charactersLength));\n  }\n  return result;\n}\nfunction randomNum(length) {\n  var result = '';\n  var numbers = '0123456789';\n  var numbersLength = numbers.length;\n  for (var i = 0; i < length; i++) {\n    result += numbers.charAt(Math.floor(Math.random() * numbersLength));\n  }\n  return result;\n}\nfunction randomLetter(length) {\n  var result = '';\n  var letters = 'abcdefghijklmnopqrstuvwxyz';\n  var lettersLength = letters.length;\n  for (var i = 0; i < length; i++) {\n    result += letters.charAt(Math.floor(Math.random() * lettersLength));\n  }\n  return result;\n}\nconsole.log(randomChars(4)); //Negative input on SignUp page\ngetaccount.getUserInput(\"saksham+\" + randomChars(5));\ngetaccount.clickOnPage().click();\ngetaccount.verifyBtnNextDisabled().should('be.disabled');\ngetaccount.getErrorMsgInvalidEmail().should('contain', 'Invalid email format');\ngetaccount.clearUsername().clear();\ngetaccount.getUserInput(\"saksham+\" + randomChars(5) + \"@\");\ngetaccount.clickOnPage().click();\ngetaccount.verifyBtnNextDisabled().should('be.disabled');\ngetaccount.getErrorMsgInvalidEmail().should('contain', 'Invalid email format');\ngetaccount.clearUsername().clear();\ngetaccount.getUserInput(\"saksham+\" + randomChars(5) + \"@fundthrough\");\ngetaccount.clickOnPage().click();\ngetaccount.verifyBtnNextDisabled().should('be.disabled');\ngetaccount.getErrorMsgInvalidEmail().should('contain', 'Invalid email format');\ngetaccount.clearUsername().clear(); // getaccount.getUserInput(\"saksham+\" + randomChars(5)+ \"@fundthrough.co\")\n// cy.get('.u-p').click()\n// getaccount.verifyBtnNextDisabled().should('be.disabled')\n// getaccount.getErrorMsgInvalidEmail().should('contain', 'Invalid email format')\n// getaccount.clearUsername().clear()\n//successful input to go to the next step\ngetaccount.getUserInput(\"saksham+\" + randomChars(5) + \"@fundthrough.com\");\ngetaccount.getFirstNextBtn().should('contain', 'Next').click(); //Make the password field visible\ngetaccount.iconPassword().click().then(function (Password) {\n  cy.wrap(Password).should('be.visible');\n}); //Negative test cases for Password Input\ngetaccount.getPassInput().type(randomNum(8));\ngetaccount.getRadioBtn().then(function (Radiobuttons) {\n  cy.wrap(Radiobuttons).first().should('be.checked');\n  cy.wrap(Radiobuttons).eq(1).should('not.be.checked'); // cy.get('[type=\"checkbox\"]').uncheck()\n  cy.wrap(Radiobuttons).eq(2).should('be.checked');\n});\ngetaccount.passwClear().clear();\ngetaccount.getPassInput().type(randomNum(5));\ngetaccount.getRadioBtn().then(function (Radiobuttons) {\n  cy.wrap(Radiobuttons).first().should('be.checked');\n  cy.wrap(Radiobuttons).eq(1).should('not.be.checked');\n  cy.wrap(Radiobuttons).eq(2).should('not.be.checked');\n});\ngetaccount.passwClear().clear();\ngetaccount.getPassInput().type(randomLetter(8));\ngetaccount.getRadioBtn().then(function (Radiobuttons) {\n  cy.wrap(Radiobuttons).first().should('not.be.checked');\n  cy.wrap(Radiobuttons).eq(1).should('be.checked');\n  cy.wrap(Radiobuttons).eq(2).should('be.checked');\n});\ngetaccount.passwClear().clear();\ngetaccount.getPassInput().type(randomLetter(5));\ngetaccount.getRadioBtn().then(function (Radiobuttons) {\n  cy.wrap(Radiobuttons).first().should('not.be.checked');\n  cy.wrap(Radiobuttons).eq(1).should('be.checked');\n  cy.wrap(Radiobuttons).eq(2).should('not.be.checked');\n});",
               "err": {},
-              "uuid": "a2a9781e-ced0-45c6-b7e7-b9f8646bd752",
-              "parentUUID": "2e3f906d-8281-415c-965d-3469c3ebbd44",
+              "uuid": "6ceedd98-08a7-4cd4-a397-d88224aa74d2",
+              "parentUUID": "e275a325-53fa-43fd-b676-1481759ade83",
               "isHook": false,
               "skipped": false
             },
@@ -56,7 +56,7 @@
               "title": "should create new account",
               "fullTitle": "Sign Up page should create new account",
               "timedOut": null,
-              "duration": 16744,
+              "duration": 17436,
               "state": "failed",
               "speed": null,
               "pass": false,
@@ -66,25 +66,25 @@
               "code": "cy.clearLocalStorage();\nvar getaccount = new _signUpPage.getAccount(); //navigates to the Sign Up page, verifies it's elements and state before any input\ngetaccount.pageNavigate();\ngetaccount.signupVerify();\ngetaccount.getUserNameEmpty();\ngetaccount.verifyBtnNextDisabled().should('be.disabled'); //input generating function\n// function randomChars(length) {\n//     var result = '';\n//     var characters = 'abcdefghijklmnopqrstuvwxyz0123456789';\n//     var charactersLength = characters.length;\n//     for (var i = 0; i < length; i++) {\n//         result += characters.charAt(Math.floor(Math.random() * charactersLength));\n//     }\n//     return result;\n// }\n// console.log(randomChars(4));\n//const email = \"kristina+\" + randomChars(4) + \"@fundthrough.com\"\n//Verification of elements activation and Input on Sign Up page   \ngetaccount.inputuseremail();\ngetaccount.einputuseremail();\ngetaccount.getFirstNextBtn().should('contain', 'Next').click();\ngetaccount.getPassword();\ngetaccount.iconPassword().click().then(function (Password) {\n  cy.wrap(Password).should('be.visible');\n});\ngetaccount.iconPasswordNotVisible().click();\ngetaccount.getRadioBtn().then(function (Radiobuttons) {\n  cy.wrap(Radiobuttons).first().check({\n    force: true\n  }).should('be.checked');\n  cy.wrap(Radiobuttons).eq(1).check({\n    force: true\n  }).should('be.checked');\n  cy.wrap(Radiobuttons).eq(2).check({\n    force: true\n  }).should('be.checked');\n}); //checks and unchecks checkbox and validates error message\ngetaccount.getCheckBox().eq(0).check({\n  force: true\n});\ngetaccount.getCheckBox().click({\n  force: true\n});\ngetaccount.getErrorMsgTermsAndCond().should('contain', 'Please indicate that you have read and agree to the Terms and Conditions and Privacy Policy.');\ngetaccount.getCheckBox().eq(0).check({\n  force: true\n});\ngetaccount.getFollowingNextBtn().should('contain', 'Next').click(); //redirects to /onboarding flow\ncy.intercept('POST', '/v1/t', {}).as('url');\ncy.wait('@url', {\n  timeout: 15000\n}).then(function () {\n  cy.url().should('include', '/onboarding');\n}); //Step 1 page validation\ngetaccount.getStepOneOnboard().contains('Step 1 of 6');\ngetaccount.getTextOnStepOne().should('contain', 'Add your invoices from QuickBooks and start funding them in less than 24 hours.');\ngetaccount.getImageOnStepOne().should('be.visible');\ngetaccount.getLinkOnStepOne().contains(\"SKIP/ I DON'T USE QUICKBOOK\").click();\ncy.intercept({\n  method: 'POST',\n  url: 'https://api.segment.io/v1/p'\n}, {\n  success: true\n}).as('search');\ncy.wait('@search', {\n  timeout: 15000\n}); //Step 2 page validation\ngetaccount.getHeaderOnboard().contains('Step 2 of 6');\ngetaccount.getMouseHover();\ngetaccount.getPopUpDesc().should('be.visible').should('contain', 'To get started, what is the registered name');\ngetaccount.elements.getBusinessName().should('exist');\ngetaccount.inputBusName();\ngetaccount.getBnCheckBox().should('be.checked');\ngetaccount.clickOnNextBtn().should('contain', 'Next').click(); //redirects to Step 3 and fills in Company Address info\ncy.intercept('POST', '/v1/p', {\n  success: true\n}).as('search'); //cy.wait('@search')\ncy.wait('@search', {\n  timeout: 15000\n}); //redirects to Step 3 and fills in Company Address info\n// cy.intercept('POST', '/v1/p', {}).as('search')\n// cy.wait('@search', {timeout: 15000})\ngetaccount.getHeaderOnboard().contains(\"Step 3 of 6\");\ngetaccount.getBnAddress().should('contain', 'Business Address');\ngetaccount.elements.getBusinessAddress().should('be.empty').click();\ngetaccount.inputBusinessAddress('100 test street');\ngetaccount.getEmptyAdrField().should('be.empty');\ngetaccount.getCityName('Cary');\ngetaccount.getCountry().click();\ngetaccount.getDropDownValue().each(function (e1, index, $list) {\n  if (e1.text() == \"USA\") {\n    e1.click();\n  }\n});\ngetaccount.getProvince().click();\ngetaccount.getDropDownValue().each(function (e1, index, $list) {\n  if (e1.text() == \"West Virginia\") {\n    e1.click();\n  }\n});\ngetaccount.getMouseHover();\ngetaccount.getPopUpDesc().should('be.visible').should('contain', 'We use your address to verify your business. If you have multiple locations, enter where your business was registered.');\ngetaccount.elements.getZipField().should('be.empty').click();\ngetaccount.inputPostalCode('12345');\ngetaccount.getNextBtnStepThree().click();\ncy.wait('@search');\ngetaccount.getHeaderOnboard().contains(\"Step 4 of 6\");\ngetaccount.getPhoneNumber('6470001234');\ngetaccount.getMouseHover();\ngetaccount.getPopUpDesc().should('be.visible').should('contain', 'To keep you in the loop on your funding progress, please provide your business’s phone number. If it’s easier, you can provide your direct line.');\ngetaccount.getNextBtnFolStep().should('contain', 'Next').click();\ncy.wait(8000);\ngetaccount.getHeaderOnboard().contains(\"Step 5 of 6\");\ngetaccount.getPrefName();\ngetaccount.getFirstName();\ngetaccount.getLastName();\ngetaccount.getMouseHoveroneOfMany().first().trigger('mouseover');\ngetaccount.getPopUpDesc().should('be.visible').should('contain', 'To verify your identity, we need to know your legal name. This should match your government-issued ID. We’ll use your preferred name to communicate with you.');\ngetaccount.getNextBtnFolStep().should('contain', 'Next').click();\ngetaccount.getHearedAboutUsEmpty().should('be.empty');\ngetaccount.getSkipBtn().contains('button', 'Skip').click();\ncy.wait(3000);\ngetaccount.getNavbar().click();\ngetaccount.getLeftMenu().should('be.visible');\ngetaccount.getLeftHeading().should('contain', 'Account Setup').click();\ngetaccount.getTopHeading().should('contain', 'Account Setup');\ngetaccount.getBodyHeading().should('contain', 'Tell us about your business');\ngetaccount.getNavbar().click();\ngetaccount.getLeftMenuSetting().click();\ngetaccount.getMenuContainer().should('contain', 'Invoicing Software'); //cy.get('.ui > img').expect($el).to.have.text('Connect to QuickBooks')\ngetaccount.getNavbar().click();\ngetaccount.getLeftBottomTitle().click();\ngetaccount.getSignOut().click();",
               "err": {
                 "message": "AssertionError: Timed out retrying after 4000ms: Expected to find content: 'Step 3 of 6' within the element: <h4.ui.header.u-pb0.fund-step> but never did.",
-                "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find content: 'Step 3 of 6' within the element: <h4.ui.header.u-pb0.fund-step> but never did.\n    at Context.eval (https://nebula-client.fundthrough.com/__cypress/tests?p=cypress/integration/nebula/TC01_SignUp.spec.js:393:35)",
+                "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find content: 'Step 3 of 6' within the element: <h4.ui.header.u-pb0.fund-step> but never did.\n    at Context.eval (https://nebula-qa1.fundthrough.com/__cypress/tests?p=cypress/integration/nebula/TC01_SignUp.spec.js:393:35)",
                 "diff": null
               },
-              "uuid": "258c2a58-30ad-478f-ab2d-52759338bac8",
-              "parentUUID": "2e3f906d-8281-415c-965d-3469c3ebbd44",
+              "uuid": "c90fecb5-d7a6-41f4-a429-7eaf10609295",
+              "parentUUID": "e275a325-53fa-43fd-b676-1481759ade83",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "a2a9781e-ced0-45c6-b7e7-b9f8646bd752"
+            "6ceedd98-08a7-4cd4-a397-d88224aa74d2"
           ],
           "failures": [
-            "258c2a58-30ad-478f-ab2d-52759338bac8"
+            "c90fecb5-d7a6-41f4-a429-7eaf10609295"
           ],
           "pending": [],
           "skipped": [],
-          "duration": 26778,
+          "duration": 27463,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
@@ -100,7 +100,7 @@
       "_timeout": 2000
     },
     {
-      "uuid": "f6338494-0d0d-4c15-9e22-8bad9163544a",
+      "uuid": "1026097d-d29d-4a49-b46a-738b4addc32b",
       "title": "",
       "fullFile": "cypress/integration/nebula/TC02_SignIn.validation.js",
       "file": "cypress/integration/nebula/TC02_SignIn.validation.js",
@@ -109,7 +109,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "a778a4d0-39d1-4c8a-9a19-778629ea7023",
+          "uuid": "9283b997-1f6c-49c5-8d69-1bcf89f719b3",
           "title": "Signin Validation",
           "fullFile": "",
           "file": "",
@@ -120,7 +120,7 @@
               "title": "SignIn with Valid Credential",
               "fullTitle": "Signin Validation SignIn with Valid Credential",
               "timedOut": null,
-              "duration": 8506,
+              "duration": 22424,
               "state": "failed",
               "speed": null,
               "pass": false,
@@ -129,12 +129,12 @@
               "context": null,
               "code": "cy.login(this.user.username, this.user.password);\nsigninElements.usercredential.getskipcontainer().click({\n  force: true\n});\ncy.intercept('POST', '/v1/t', {}).as('userSignin'); //cy.intercept('POST', '/v1/p', {}).as('addinvoice')\ncy.wait('@userSignin', {\n  timeout: 20000\n}).then(function ($div) {\n  signinElements.velocitydashboard.getyellowactioncard();\n  signinElements.velocitydashboard.getallctioncard().should(function ($i) {\n    //expect($i).to.have.length(4)\n    //expect($i).to.contain('Add your first invoice')\n    expect($i).to.contain('Tell us about your business');\n    expect($i).to.contain('Review the funding agreement');\n    expect($i).to.contain('Add your bank');\n  });\n});",
               "err": {
-                "message": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `.ExpressAndVelocity_wrapper__JTgiJ`, but never found it.",
-                "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `.ExpressAndVelocity_wrapper__JTgiJ`, but never found it.\n    at Object.getyellowactioncard (https://nebula-client.fundthrough.com/__cypress/tests?p=cypress/integration/nebula/TC02_SignIn.validation.js:505:19)\n    at Context.eval (https://nebula-client.fundthrough.com/__cypress/tests?p=cypress/integration/nebula/TC02_SignIn.validation.js:231:40)",
+                "message": "CypressError: Timed out retrying after 20000ms: `cy.wait()` timed out waiting `20000ms` for the 1st request to the route: `userSignin`. No request ever occurred.\n\nhttps://on.cypress.io/wait",
+                "estack": "CypressError: Timed out retrying after 20000ms: `cy.wait()` timed out waiting `20000ms` for the 1st request to the route: `userSignin`. No request ever occurred.\n\nhttps://on.cypress.io/wait\n    at cypressErr (https://nebula-qa1.fundthrough.com/__cypress/runner/cypress_runner.js:174213:18)\n    at Object.errByPath (https://nebula-qa1.fundthrough.com/__cypress/runner/cypress_runner.js:174264:10)\n    at checkForXhr (https://nebula-qa1.fundthrough.com/__cypress/runner/cypress_runner.js:161288:33)\n    at https://nebula-qa1.fundthrough.com/__cypress/runner/cypress_runner.js:161311:28\n    at tryCatcher (https://nebula-qa1.fundthrough.com/__cypress/runner/cypress_runner.js:10765:23)\n    at Function.Promise.attempt.Promise.try (https://nebula-qa1.fundthrough.com/__cypress/runner/cypress_runner.js:8039:29)\n    at tryFn (https://nebula-qa1.fundthrough.com/__cypress/runner/cypress_runner.js:167065:21)\n    at whenStable (https://nebula-qa1.fundthrough.com/__cypress/runner/cypress_runner.js:167103:12)\n    at https://nebula-qa1.fundthrough.com/__cypress/runner/cypress_runner.js:166598:16\n    at tryCatcher (https://nebula-qa1.fundthrough.com/__cypress/runner/cypress_runner.js:10765:23)\n    at Promise._settlePromiseFromHandler (https://nebula-qa1.fundthrough.com/__cypress/runner/cypress_runner.js:8700:31)\n    at Promise._settlePromise (https://nebula-qa1.fundthrough.com/__cypress/runner/cypress_runner.js:8757:18)\n    at Promise._settlePromise0 (https://nebula-qa1.fundthrough.com/__cypress/runner/cypress_runner.js:8802:10)\n    at Promise._settlePromises (https://nebula-qa1.fundthrough.com/__cypress/runner/cypress_runner.js:8882:18)\n    at Promise._fulfill (https://nebula-qa1.fundthrough.com/__cypress/runner/cypress_runner.js:8826:18)\n    at https://nebula-qa1.fundthrough.com/__cypress/runner/cypress_runner.js:10440:46\nFrom Your Spec Code:\n    at Context.eval (https://nebula-qa1.fundthrough.com/__cypress/tests?p=cypress/integration/nebula/TC02_SignIn.validation.js:228:8)",
                 "diff": null
               },
-              "uuid": "4851e881-d171-489a-af45-6040168433cb",
-              "parentUUID": "a778a4d0-39d1-4c8a-9a19-778629ea7023",
+              "uuid": "03a265a2-b2a6-4afd-a11f-1138dd8d2d4e",
+              "parentUUID": "9283b997-1f6c-49c5-8d69-1bcf89f719b3",
               "isHook": false,
               "skipped": false
             },
@@ -142,7 +142,7 @@
               "title": "Sign In with invalid Credentials",
               "fullTitle": "Signin Validation Sign In with invalid Credentials",
               "timedOut": null,
-              "duration": 1753,
+              "duration": 2101,
               "state": "passed",
               "speed": "slow",
               "pass": true,
@@ -151,8 +151,8 @@
               "context": null,
               "code": "signinElements.usercredential.getusername().type(this.user.username);\nsigninElements.usercredential.getpassword().type(PasswordInvalid);\nsigninElements.usercredential.getskipcontainer().click({\n  force: true\n}); //give element 10 seconds to appear\ncy.get('[data-test=authenticator-error] > span', {\n  timeout: 10000\n}).should('be.visible'); //signin with invalid data\ncy.request({\n  url: 'https://cognito-idp.us-east-1.amazonaws.com/',\n  failOnStatusCode: false,\n  method: 'POST'\n}).then(function (resp) {\n  expect(resp.status).to.eq(400);\n});",
               "err": {},
-              "uuid": "d2f5070a-5f2e-4703-a535-5f8a67a6316d",
-              "parentUUID": "a778a4d0-39d1-4c8a-9a19-778629ea7023",
+              "uuid": "1405dd05-a783-4e73-a55f-00405d61a517",
+              "parentUUID": "9283b997-1f6c-49c5-8d69-1bcf89f719b3",
               "isHook": false,
               "skipped": false
             },
@@ -160,7 +160,7 @@
               "title": "Input invalid Data on username and password",
               "fullTitle": "Signin Validation Input invalid Data on username and password",
               "timedOut": null,
-              "duration": 1079,
+              "duration": 1220,
               "state": "passed",
               "speed": "slow",
               "pass": true,
@@ -169,23 +169,23 @@
               "context": null,
               "code": "signinElements.usercredential.getusername().type(TestEmail);\nsigninElements.usercredential.getpassword().type(InvalidTextPassword);\nsigninElements.usercredential.getskipcontainer().click({\n  force: true\n});\ncy.get('input').then(function ($input) {\n  if ($input.hasClass('bordered__error')) {\n    signinElements.usercredential.fieldlevelerror().should('be.visible');\n  } else {\n    signinElements.usercredential.fieldlevelerror().should('not.be.visible');\n  }\n});",
               "err": {},
-              "uuid": "2f8a992c-a1a4-41cf-9600-8ecb989ed156",
-              "parentUUID": "a778a4d0-39d1-4c8a-9a19-778629ea7023",
+              "uuid": "5adda27b-1ab0-40e9-95a8-23fc716f601f",
+              "parentUUID": "9283b997-1f6c-49c5-8d69-1bcf89f719b3",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "d2f5070a-5f2e-4703-a535-5f8a67a6316d",
-            "2f8a992c-a1a4-41cf-9600-8ecb989ed156"
+            "1405dd05-a783-4e73-a55f-00405d61a517",
+            "5adda27b-1ab0-40e9-95a8-23fc716f601f"
           ],
           "failures": [
-            "4851e881-d171-489a-af45-6040168433cb"
+            "03a265a2-b2a6-4afd-a11f-1138dd8d2d4e"
           ],
           "pending": [],
           "skipped": [],
-          "duration": 11338,
+          "duration": 25745,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
@@ -201,7 +201,7 @@
       "_timeout": 2000
     },
     {
-      "uuid": "64630726-8913-43f9-b601-f2f8ce2dd214",
+      "uuid": "140d9ef4-f6fe-4242-abdc-7a0466983b61",
       "title": "",
       "fullFile": "cypress/integration/nebula/TC03_Upload.invoice.js",
       "file": "cypress/integration/nebula/TC03_Upload.invoice.js",
@@ -210,7 +210,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "81d848c5-cf07-436d-8bf9-fcc16c392638",
+          "uuid": "805e2939-7e81-4591-8f18-4f27d747adf2",
           "title": "upload invoice from dashboard",
           "fullFile": "",
           "file": "",
@@ -221,7 +221,7 @@
               "title": "SignIn with Valid Credential",
               "fullTitle": "upload invoice from dashboard SignIn with Valid Credential",
               "timedOut": null,
-              "duration": 6944,
+              "duration": 7210,
               "state": "failed",
               "speed": null,
               "pass": false,
@@ -230,12 +230,12 @@
               "context": null,
               "code": "cy.login(this.user.username, this.user.password);\ncy.intercept({\n  method: 'GET',\n  url: '/credit/client_data'\n}, {\n  status: 200\n}).as('total');\ncy.wait('@total');\nvar signinElements = new _SigninElements[\"default\"]();\nfunction uploadinvoice() {\n  signinElements.customerPage.getcardcotent().then(function ($element) {\n    signinElements.customerPage.getupoadinvoice().attachFile('example.json', {\n      subjectType: 'drag-n-drop'\n    }); //validate error message\n    cy.get('.message').then(function ($m) {\n      expect($m).to.have[\"class\"]('ui icon message error');\n      expect($m).to.have.text('There was an error uploading the file. Please ensure the file is a .pdf, .jpg, .png, or other image file and try again.');\n      expect($m).to.have.css('background-color', 'rgb(255, 232, 230)');\n    }).then(function ($element) {\n      cy.get('button.ui.primary.button.upload.circular').attachFile('testPicture.png', {\n        subjectType: 'drag-n-drop'\n      }); //file has been added\n      cy.contains('testPicture.png'); //this need to be fix\n      signinElements.customerPage.getsuccessmessage();\n    }).then(function ($element) {\n      signinElements.entercustomern('customer1');\n      signinElements.customerPage.clickdropdown(); //input invoice number\n      signinElements.customerPage.getinvoicenumber().type('m1');\n      signinElements.getdatetoinvoicepage();\n      signinElements.netDaysCount(); //input invoice amount\n      signinElements.enterrandomnumber();\n    }).then(function () {\n      signinElements.customerPage.getbuttonuploadinvoice().click({\n        force: true\n      });\n      cy.wait(2000);\n    });\n  });\n  signinElements.customerPage.getinvoicecreated(); //cy.wait('@addinvoice')\n  //signout\n  signinElements.velocitydashboard.getnavbar().click();\n  signinElements.velocitydashboard.gettitle().then(function ($angle) {\n    var ls = $angle.attr('class');\n    cy.wrap($angle).click().should('have.class', 'active');\n    signinElements.velocitydashboard.contentbutton().click();\n  });\n}\nsigninElements.velocitydashboard.getallctioncard().then(function (body) {\n  if (body.find('.ft-action-card-strip').length > 3) {\n    cy.get('.slick-current > :nth-child(1)').click();\n    uploadinvoice();\n  } else {\n    cy.get('.AddInvoiceButton_uploadButton__2Wner').should('be.visible').click();\n    uploadinvoice();\n  }\n});",
               "err": {
-                "message": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `.action-card-carousel-spacing`, but never found it.",
-                "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `.action-card-carousel-spacing`, but never found it.\n    at Object.getallctioncard (https://nebula-client.fundthrough.com/__cypress/tests?p=cypress/integration/nebula/TC03_Upload.invoice.js:504:19)\n    at Context.test (https://nebula-client.fundthrough.com/__cypress/tests?p=cypress/integration/nebula/TC03_Upload.invoice.js:260:38)",
+                "message": "CypressError: Timed out retrying after 5000ms: `cy.wait()` timed out waiting `5000ms` for the 1st request to the route: `total`. No request ever occurred.\n\nhttps://on.cypress.io/wait",
+                "estack": "CypressError: Timed out retrying after 5000ms: `cy.wait()` timed out waiting `5000ms` for the 1st request to the route: `total`. No request ever occurred.\n\nhttps://on.cypress.io/wait\n    at cypressErr (https://nebula-qa1.fundthrough.com/__cypress/runner/cypress_runner.js:174213:18)\n    at Object.errByPath (https://nebula-qa1.fundthrough.com/__cypress/runner/cypress_runner.js:174264:10)\n    at checkForXhr (https://nebula-qa1.fundthrough.com/__cypress/runner/cypress_runner.js:161288:33)\n    at https://nebula-qa1.fundthrough.com/__cypress/runner/cypress_runner.js:161311:28\n    at tryCatcher (https://nebula-qa1.fundthrough.com/__cypress/runner/cypress_runner.js:10765:23)\n    at Function.Promise.attempt.Promise.try (https://nebula-qa1.fundthrough.com/__cypress/runner/cypress_runner.js:8039:29)\n    at tryFn (https://nebula-qa1.fundthrough.com/__cypress/runner/cypress_runner.js:167065:21)\n    at whenStable (https://nebula-qa1.fundthrough.com/__cypress/runner/cypress_runner.js:167103:12)\n    at https://nebula-qa1.fundthrough.com/__cypress/runner/cypress_runner.js:166598:16\n    at tryCatcher (https://nebula-qa1.fundthrough.com/__cypress/runner/cypress_runner.js:10765:23)\n    at Promise._settlePromiseFromHandler (https://nebula-qa1.fundthrough.com/__cypress/runner/cypress_runner.js:8700:31)\n    at Promise._settlePromise (https://nebula-qa1.fundthrough.com/__cypress/runner/cypress_runner.js:8757:18)\n    at Promise._settlePromise0 (https://nebula-qa1.fundthrough.com/__cypress/runner/cypress_runner.js:8802:10)\n    at Promise._settlePromises (https://nebula-qa1.fundthrough.com/__cypress/runner/cypress_runner.js:8882:18)\n    at Promise._fulfill (https://nebula-qa1.fundthrough.com/__cypress/runner/cypress_runner.js:8826:18)\n    at https://nebula-qa1.fundthrough.com/__cypress/runner/cypress_runner.js:10440:46\nFrom Your Spec Code:\n    at Context.test (https://nebula-qa1.fundthrough.com/__cypress/tests?p=cypress/integration/nebula/TC03_Upload.invoice.js:212:8)",
                 "diff": null
               },
-              "uuid": "7e744470-cfa6-4d89-a785-f5ecf677dec3",
-              "parentUUID": "81d848c5-cf07-436d-8bf9-fcc16c392638",
+              "uuid": "2a65d5a9-2f3a-45ac-8891-9c5559174ec1",
+              "parentUUID": "805e2939-7e81-4591-8f18-4f27d747adf2",
               "isHook": false,
               "skipped": false
             }
@@ -243,11 +243,11 @@
           "suites": [],
           "passes": [],
           "failures": [
-            "7e744470-cfa6-4d89-a785-f5ecf677dec3"
+            "2a65d5a9-2f3a-45ac-8891-9c5559174ec1"
           ],
           "pending": [],
           "skipped": [],
-          "duration": 6944,
+          "duration": 7210,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
@@ -263,7 +263,7 @@
       "_timeout": 2000
     },
     {
-      "uuid": "340115b1-f87b-4a42-9be7-caa0b80b13df",
+      "uuid": "75ba49ee-6920-491a-a690-568a2004c017",
       "title": "",
       "fullFile": "cypress/integration/nebula/TC04_Signin.Page.Elements.js",
       "file": "cypress/integration/nebula/TC04_Signin.Page.Elements.js",
@@ -272,7 +272,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "c1e51be6-f633-4805-b027-fc2f32cb90dd",
+          "uuid": "3fff6fc8-1f08-4d27-97dd-7d7b8be530eb",
           "title": "Velocity Signin Page",
           "fullFile": "",
           "file": "",
@@ -283,7 +283,7 @@
               "title": "Visual Test on Sign In Page",
               "fullTitle": "Velocity Signin Page Visual Test on Sign In Page",
               "timedOut": null,
-              "duration": 4386,
+              "duration": 4238,
               "state": "passed",
               "speed": "slow",
               "pass": true,
@@ -292,8 +292,8 @@
               "context": null,
               "code": "//check url\ncy.url().should('include', '/signin'); //check heading\ncy.get('h4').should('contain', 'Sign In'); //check label on sign page\ncy.contains('.input-label', 'Business Email').should('have.css', 'color', 'rgb(17, 75, 95)').and('have.css', 'font-weight', '700');\ncy.contains('.input-label', 'Password').should('have.css', 'color', 'rgb(17, 75, 95)').and('have.css', 'font-weight', '700'); //validate intuit sso image on signin page\ncy.get('button').should(function ($button) {\n  expect($button).to.have.length(1); //validate class\n  var classes = $button.map(function (i, button) {\n    return Cypress.$(button).attr('class');\n  });\n  expect(classes.get()).to.deep.eq(['ui circular button sc-EHOje gaSqon forward']); //validate text \n  var innerText = $button.map(function (i, button) {\n    return Cypress.$(button).text();\n  });\n  expect(innerText.get()).to.deep.eq([\"Sign In\"]);\n}); //validate links on signin page\nsigninElements.elementsui.getsignuphyperlink().children().should('have.attr', 'href');\nsigninElements.elementsui.getsignuphyperlink().should(function ($p) {\n  expect($p).to.have.length(1);\n  expect($p).to.contain(\"Don't have an account?\");\n  expect($p).to.contain('Sign Up');\n}).find('a').then(function ($a) {\n  cy.wrap($a).click({\n    force: true\n  });\n}).then(function () {\n  cy.url().should('include', '/signup');\n});",
               "err": {},
-              "uuid": "4ef9ce28-390a-4819-a5d5-259fca694437",
-              "parentUUID": "c1e51be6-f633-4805-b027-fc2f32cb90dd",
+              "uuid": "fed4ca5e-69c4-4844-841e-e30f55ea3f4f",
+              "parentUUID": "3fff6fc8-1f08-4d27-97dd-7d7b8be530eb",
               "isHook": false,
               "skipped": false
             },
@@ -301,92 +301,30 @@
               "title": "validate elements on forgot password page",
               "fullTitle": "Velocity Signin Page validate elements on forgot password page",
               "timedOut": null,
-              "duration": 2289,
+              "duration": 2252,
               "state": "passed",
               "speed": "slow",
               "pass": true,
               "fail": false,
               "pending": false,
               "context": null,
-              "code": "cy.visit('https://nebula-client.fundthrough.com/signin');\nsigninElements.elementsui.forgotpasswordlink().click();\ncy.url().should('include', '/forgot-password');\nsigninElements.elementsui.cardcontent().should(function ($div) {\n  expect($div).to.contain(\"Reset your password\");\n  expect($div).to.contain(\"Email\");\n  expect($div).to.contain(\"BACK\");\n}).then(function ($input) {\n  cy.url().should('include', '/forgot-password');\n});\nsigninElements.usercredential.getusername().type('manpreet@fundthrough.com');\ncy.get('button').click();\nsigninElements.elementsui.cardcontent().children().find('h4').should(function ($e1) {\n  expect($e1).contain(\"Enter the verification code we sent to your email address\");\n  expect($e1).to.have.css('color', 'rgb(92, 93, 93)');\n  expect($e1).to.have.css('font-weight', '400');\n});",
+              "code": "cy.visit('https://nebula-qa1.fundthrough.com/signin');\nsigninElements.elementsui.forgotpasswordlink().click();\ncy.url().should('include', '/forgot-password');\nsigninElements.elementsui.cardcontent().should(function ($div) {\n  expect($div).to.contain(\"Reset your password\");\n  expect($div).to.contain(\"Email\");\n  expect($div).to.contain(\"BACK\");\n}).then(function ($input) {\n  cy.url().should('include', '/forgot-password');\n});\nsigninElements.usercredential.getusername().type('manpreet@fundthrough.com');\ncy.get('button').click();\nsigninElements.elementsui.cardcontent().children().find('h4').should(function ($e1) {\n  expect($e1).contain(\"Enter the verification code we sent to your email address\");\n  expect($e1).to.have.css('color', 'rgb(92, 93, 93)');\n  expect($e1).to.have.css('font-weight', '400');\n});",
               "err": {},
-              "uuid": "f9db7bd1-bb92-45e4-92c0-9b7e027ff655",
-              "parentUUID": "c1e51be6-f633-4805-b027-fc2f32cb90dd",
+              "uuid": "f2123420-9aea-4178-aca4-62f45aabb752",
+              "parentUUID": "3fff6fc8-1f08-4d27-97dd-7d7b8be530eb",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "4ef9ce28-390a-4819-a5d5-259fca694437",
-            "f9db7bd1-bb92-45e4-92c0-9b7e027ff655"
+            "fed4ca5e-69c4-4844-841e-e30f55ea3f4f",
+            "f2123420-9aea-4178-aca4-62f45aabb752"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 6675,
-          "root": false,
-          "rootEmpty": false,
-          "_timeout": 2000
-        }
-      ],
-      "passes": [],
-      "failures": [],
-      "pending": [],
-      "skipped": [],
-      "duration": 0,
-      "root": true,
-      "rootEmpty": true,
-      "_timeout": 2000
-    },
-    {
-      "uuid": "1cf83e4b-61de-466a-a3f0-09c594125d26",
-      "title": "",
-      "fullFile": "cypress/integration/nebula/TC05_start.business.js",
-      "file": "cypress/integration/nebula/TC05_start.business.js",
-      "beforeHooks": [],
-      "afterHooks": [],
-      "tests": [],
-      "suites": [
-        {
-          "uuid": "94e7b87e-14af-4a64-9057-13b4ec52713c",
-          "title": "Tell us about your business",
-          "fullFile": "",
-          "file": "",
-          "beforeHooks": [],
-          "afterHooks": [],
-          "tests": [
-            {
-              "title": "Validate the start business process",
-              "fullTitle": "Tell us about your business Validate the start business process",
-              "timedOut": null,
-              "duration": 4357,
-              "state": "failed",
-              "speed": null,
-              "pass": false,
-              "fail": true,
-              "pending": false,
-              "context": null,
-              "code": "//cy.login(this.user.username, this.user.password)\nvar signinElements = new _SigninElements[\"default\"]();\nfunction uploadBusinessFiles() {\n  signinElements.customerPage.getforwardbutton().click();\n  signinElements.customerPage.uploadfiles().attachFile('example.json', {\n    subjectType: 'drag-n-drop'\n  }); //Validate Error Message\n  cy.get('.message').then(function ($m) {\n    expect($m).to.have[\"class\"]('ui icon message error');\n    expect($m).to.have.text('There was an error uploading the file. Please ensure the file is a .pdf, .jpg, .png, or other image file and try again.');\n    expect($m).to.have.css('background-color', 'rgb(255, 232, 230)');\n  }).then(function ($el) {\n    signinElements.customerPage.uploadfiles().attachFile('testPicture.png', {\n      subjectType: 'drag-n-drop'\n    }); //Validate Success Message\n    cy.waitUntil(function () {\n      return signinElements.customerPage.getsuccessmessage().invoke('text').then(function (text) {\n        expect(text).to.equals('Got it!');\n      });\n    });\n    signinElements.customerPage.getforwardbutton().click().then(function ($el) {\n      signinElements.customerPage.uploadfiles().attachFile('example.json', {\n        subjectType: 'drag-n-drop'\n      }); //Validate error message\n      cy.get('.message').then(function ($m) {\n        expect($m).to.have[\"class\"]('ui icon message error');\n        expect($m).to.have.text('There was an error uploading the file. Please ensure the file is a .pdf, .jpg, .png, or other image file and try again.');\n        expect($m).to.have.css('background-color', 'rgb(255, 232, 230)');\n      }).then(function ($el) {\n        signinElements.customerPage.uploadfiles().attachFile('testPicture.png', {\n          subjectType: 'drag-n-drop'\n        }); //Validate Success Message\n        signinElements.customerPage.getsuccessmessage().invoke('text').then(function (text) {\n          expect(text).to.equals('Got it!');\n        });\n        signinElements.customerPage.getforwardbutton().click().then(function ($el) {\n          signinElements.customerPage.uploadfiles().attachFile('example.json', {\n            subjectType: 'drag-n-drop'\n          }); //Validate error message\n          cy.get('.message').then(function ($m) {\n            expect($m).to.have[\"class\"]('ui icon message error');\n            expect($m).to.have.text('There was an error uploading the file. Please ensure the file is a .pdf, .jpg, .png, or other image file and try again.');\n            expect($m).to.have.css('background-color', 'rgb(255, 232, 230)');\n          }).then(function ($el) {\n            signinElements.customerPage.uploadfiles().attachFile('testPicture.png', {\n              subjectType: 'drag-n-drop'\n            }); //Validate Success Message\n            signinElements.customerPage.getsuccessmessage().invoke('text').then(function (text) {\n              expect(text).to.equals('Got it!');\n            });\n            signinElements.customerPage.getforwardbutton().click();\n            cy.url().should('include', '/legal');\n          });\n        });\n      });\n    });\n  });\n}\nsigninElements.velocitydashboard.getallctioncard().then(function (body) {\n  if (body.find('.ft-action-card-strip').length > 3) {\n    console.log(cy.get('.slick-list'));\n    cy.get('.slick-slide').eq(1).click();\n    uploadBusinessFiles();\n  } else {\n    cy.log('The `About your Business` step is completed');\n  }\n});",
-              "err": {
-                "message": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `.action-card-carousel-spacing`, but never found it.",
-                "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `.action-card-carousel-spacing`, but never found it.\n    at Object.getallctioncard (https://nebula-client.fundthrough.com/__cypress/tests?p=cypress/integration/nebula/TC05_start.business.js:513:19)\n    at Context.eval (https://nebula-client.fundthrough.com/__cypress/tests?p=cypress/integration/nebula/TC05_start.business.js:272:38)",
-                "diff": null
-              },
-              "uuid": "72f49ae3-a37e-404e-8f00-c2d70611697a",
-              "parentUUID": "94e7b87e-14af-4a64-9057-13b4ec52713c",
-              "isHook": false,
-              "skipped": false
-            }
-          ],
-          "suites": [],
-          "passes": [],
-          "failures": [
-            "72f49ae3-a37e-404e-8f00-c2d70611697a"
-          ],
-          "pending": [],
-          "skipped": [],
-          "duration": 4357,
+          "duration": 6490,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000

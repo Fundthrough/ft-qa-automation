@@ -4,7 +4,7 @@ import 'cypress-file-upload';
 describe('upload invoice from dashboard', () => {
 
         beforeEach(() => {
-        cy.visit('https://nebula-client.fundthrough.com/signin')
+        cy.visit('https://nebula-qa1.fundthrough.com/signin')
         cy.clearLocalStorage()
         cy.fixture('profile').then(function(user)
         {this.user=user;
