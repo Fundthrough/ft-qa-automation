@@ -17,4 +17,10 @@
       "nebula/invoicePanel.spec.js"
     ],
     "retries" : 2
+    ,
+   "env" :
+
+   {
+       "url":"https://nebula-client.fundthrough.com/signup/"
+   }
 }
