@@ -57,7 +57,7 @@ export const signUpTexts = {
 export class SignUpPage {
 
     visit() {
-        cy.visit('/')
+        cy.visit('/signup')
         cy.url().should('include', 'signup')
 
         return this;
