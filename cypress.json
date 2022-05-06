@@ -1,16 +1,24 @@
 {
-    "projectId": "ekqhck",
-    "baseUrl": "https://nebula-qa1.fundthrough.com",
-    "ignoreTestFiles": "**/examples/*",
-    "defaultCommandTimeout": 60000,
-    "viewportWidth": 1920,
-    "viewportHeight": 1080,
-    "watchForFileChanges": false,
-    "testFiles":[
-     "nebula/TC01_signUp.spec.js",
-     "nebula/TC02_SignIn.validation.js",
-     "nebula/TC03_upload.invoice.js",
-     "nebula/TC04_Signin.Page.Elements.js"
-    ],
-    "retries" : 2
+  "projectId": "ekqhck",
+  "baseUrl": "https://nebula-qa1.fundthrough.com",
+  "ignoreTestFiles": "**/examples/*",
+  "defaultCommandTimeout": 60000,
+  "viewportWidth": 1920,
+  "viewportHeight": 1080,
+  "watchForFileChanges": false,
+  "testFiles": [
+    "nebula/TC01_signUp.spec.js",
+    "nebula/TC02_SignIn.validation.js",
+    "nebula/TC03_upload.invoice.js",
+    "nebula/TC04_Signin.Page.Elements.js",
+    "nebula/TC05_dbValidation.js"
+  ],
+  "retries": 2,
+  "db": {
+    "user": "orbit",
+    "host": "qrhs7dkav0zp2y.cza0y6drjtcu.us-east-1.rds.amazonaws.com",
+    "database": "fundthrough",
+    "password": "3000foodAndFun260",
+    "port": 5432
+  }
 }

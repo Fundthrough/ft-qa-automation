@@ -26,3 +26,10 @@ module.exports = (on, config) => {
     
   return config
 }
+
+//adding a new cypress task for Database
+module.exports = on => {
+  on("task", {
+    orbit: (query) => require("cypress-postgres")(query.query, query.connection)
+  });
+};
