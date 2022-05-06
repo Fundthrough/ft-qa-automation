@@ -1,10 +1,8 @@
 import SigninElements from '../../support/Page_Objects/SigninElements.js';
-import { getAccount } from "../../support/Page_Objects/signUpPage.js";
-
 
 describe('Signin Validation', () => {
     beforeEach(function () {
-        cy.visit('https://nebula-client.fundthrough.com/signin')
+        cy.visit('/signin')
         cy.clearLocalStorage()
         cy.fixture('profile').then(function (user) {
             this.user = user;
@@ -23,7 +21,7 @@ describe('Signin Validation', () => {
     const PasswordInvalid = emails(9)
     const InvalidTextPassword = emails(4)
     const signinElements = new SigninElements();
-    const getaccountpage = new getAccount();
+
     it('SignIn with Valid Credential', function () {
         cy.login(this.user.username, this.user.password)
         signinElements.usercredential.getskipcontainer().click({ force: true })
