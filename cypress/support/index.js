@@ -22,6 +22,11 @@ Cypress.on('uncaught:exception',(err,runnable) => {
     return false
 })
 
+
+import postgreSQL from 'cypress-postgresql';
+postgreSQL.loadDBCommands();
+
+
 //Hide XHR calls
 // const app = window.top;
 

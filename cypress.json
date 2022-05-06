@@ -17,20 +17,24 @@
             "json": true
         }
     },
-    
-    "testFiles":[
-   "nebula/TC01_SignUp.spec.js",    
-   "nebula/TC02_SignIn.validation.js",
-   "nebula/TC03_Upload.invoice.js",
-   "nebula/TC04_Signin.Page.Elements.js",
-   "nebula/TC05_start.business.js",
-   "nebula/TC06_funding.flow.spec.js"
+    "testFiles": [
+        "nebula/TC01_SignUp.spec.js",
+        "nebula/TC02_SignIn.validation.js",
+        "nebula/TC03_Upload.invoice.js",
+        "nebula/TC04_Signin.Page.Elements.js",
+        "nebula/TC05_start.business.js",
+        "nebula/TC06_funding.flow.spec.js",
+        "nebula/TC07_dbconnection.js"
     ],
-    "retries" : 2
-    ,
-   "env" :
-
-   {
-       "url":"https://nebula-client.fundthrough.com/signup/"
-   }
+    "retries": 2,
+    "env": {
+        "url": "https://nebula-qa1.fundthrough.com/signup/"
+    },
+    "db": {
+        "user": "orbit",
+        "host": "qrhs7dkav0zp2y.cza0y6drjtcu.us-east-1.rds.amazonaws.com",
+        "database": "fundthrough",
+        "password": "3000foodAndFun260",
+        "port": 5432
+    }
 }
