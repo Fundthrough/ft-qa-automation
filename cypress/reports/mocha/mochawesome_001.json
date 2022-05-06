@@ -1,0 +1,150 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 3,
+    "passes": 2,
+    "pending": 0,
+    "failures": 1,
+    "start": "2022-04-18T19:32:44.118Z",
+    "end": "2022-04-18T19:33:15.586Z",
+    "duration": 31468,
+    "testsRegistered": 3,
+    "passPercent": 66.66666666666666,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "f6338494-0d0d-4c15-9e22-8bad9163544a",
+      "title": "",
+      "fullFile": "cypress/integration/nebula/TC02_SignIn.validation.js",
+      "file": "cypress/integration/nebula/TC02_SignIn.validation.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "a778a4d0-39d1-4c8a-9a19-778629ea7023",
+          "title": "Signin Validation",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "SignIn with Valid Credential",
+              "fullTitle": "Signin Validation SignIn with Valid Credential",
+              "timedOut": null,
+              "duration": 8506,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.login(this.user.username, this.user.password);\nsigninElements.usercredential.getskipcontainer().click({\n  force: true\n});\ncy.intercept('POST', '/v1/t', {}).as('userSignin'); //cy.intercept('POST', '/v1/p', {}).as('addinvoice')\ncy.wait('@userSignin', {\n  timeout: 20000\n}).then(function ($div) {\n  signinElements.velocitydashboard.getyellowactioncard();\n  signinElements.velocitydashboard.getallctioncard().should(function ($i) {\n    //expect($i).to.have.length(4)\n    //expect($i).to.contain('Add your first invoice')\n    expect($i).to.contain('Tell us about your business');\n    expect($i).to.contain('Review the funding agreement');\n    expect($i).to.contain('Add your bank');\n  });\n});",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `.ExpressAndVelocity_wrapper__JTgiJ`, but never found it.",
+                "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `.ExpressAndVelocity_wrapper__JTgiJ`, but never found it.\n    at Object.getyellowactioncard (https://nebula-client.fundthrough.com/__cypress/tests?p=cypress/integration/nebula/TC02_SignIn.validation.js:505:19)\n    at Context.eval (https://nebula-client.fundthrough.com/__cypress/tests?p=cypress/integration/nebula/TC02_SignIn.validation.js:231:40)",
+                "diff": null
+              },
+              "uuid": "4851e881-d171-489a-af45-6040168433cb",
+              "parentUUID": "a778a4d0-39d1-4c8a-9a19-778629ea7023",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Sign In with invalid Credentials",
+              "fullTitle": "Signin Validation Sign In with invalid Credentials",
+              "timedOut": null,
+              "duration": 1753,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "signinElements.usercredential.getusername().type(this.user.username);\nsigninElements.usercredential.getpassword().type(PasswordInvalid);\nsigninElements.usercredential.getskipcontainer().click({\n  force: true\n}); //give element 10 seconds to appear\ncy.get('[data-test=authenticator-error] > span', {\n  timeout: 10000\n}).should('be.visible'); //signin with invalid data\ncy.request({\n  url: 'https://cognito-idp.us-east-1.amazonaws.com/',\n  failOnStatusCode: false,\n  method: 'POST'\n}).then(function (resp) {\n  expect(resp.status).to.eq(400);\n});",
+              "err": {},
+              "uuid": "d2f5070a-5f2e-4703-a535-5f8a67a6316d",
+              "parentUUID": "a778a4d0-39d1-4c8a-9a19-778629ea7023",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Input invalid Data on username and password",
+              "fullTitle": "Signin Validation Input invalid Data on username and password",
+              "timedOut": null,
+              "duration": 1079,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "signinElements.usercredential.getusername().type(TestEmail);\nsigninElements.usercredential.getpassword().type(InvalidTextPassword);\nsigninElements.usercredential.getskipcontainer().click({\n  force: true\n});\ncy.get('input').then(function ($input) {\n  if ($input.hasClass('bordered__error')) {\n    signinElements.usercredential.fieldlevelerror().should('be.visible');\n  } else {\n    signinElements.usercredential.fieldlevelerror().should('not.be.visible');\n  }\n});",
+              "err": {},
+              "uuid": "2f8a992c-a1a4-41cf-9600-8ecb989ed156",
+              "parentUUID": "a778a4d0-39d1-4c8a-9a19-778629ea7023",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "d2f5070a-5f2e-4703-a535-5f8a67a6316d",
+            "2f8a992c-a1a4-41cf-9600-8ecb989ed156"
+          ],
+          "failures": [
+            "4851e881-d171-489a-af45-6040168433cb"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 11338,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/reports/mocha",
+        "quite": true,
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}

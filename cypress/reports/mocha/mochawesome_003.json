@@ -1,0 +1,126 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 2,
+    "passes": 2,
+    "pending": 0,
+    "failures": 0,
+    "start": "2022-04-18T19:33:51.012Z",
+    "end": "2022-04-18T19:33:57.809Z",
+    "duration": 6797,
+    "testsRegistered": 2,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "340115b1-f87b-4a42-9be7-caa0b80b13df",
+      "title": "",
+      "fullFile": "cypress/integration/nebula/TC04_Signin.Page.Elements.js",
+      "file": "cypress/integration/nebula/TC04_Signin.Page.Elements.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "c1e51be6-f633-4805-b027-fc2f32cb90dd",
+          "title": "Velocity Signin Page",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Visual Test on Sign In Page",
+              "fullTitle": "Velocity Signin Page Visual Test on Sign In Page",
+              "timedOut": null,
+              "duration": 4386,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "//check url\ncy.url().should('include', '/signin'); //check heading\ncy.get('h4').should('contain', 'Sign In'); //check label on sign page\ncy.contains('.input-label', 'Business Email').should('have.css', 'color', 'rgb(17, 75, 95)').and('have.css', 'font-weight', '700');\ncy.contains('.input-label', 'Password').should('have.css', 'color', 'rgb(17, 75, 95)').and('have.css', 'font-weight', '700'); //validate intuit sso image on signin page\ncy.get('button').should(function ($button) {\n  expect($button).to.have.length(1); //validate class\n  var classes = $button.map(function (i, button) {\n    return Cypress.$(button).attr('class');\n  });\n  expect(classes.get()).to.deep.eq(['ui circular button sc-EHOje gaSqon forward']); //validate text \n  var innerText = $button.map(function (i, button) {\n    return Cypress.$(button).text();\n  });\n  expect(innerText.get()).to.deep.eq([\"Sign In\"]);\n}); //validate links on signin page\nsigninElements.elementsui.getsignuphyperlink().children().should('have.attr', 'href');\nsigninElements.elementsui.getsignuphyperlink().should(function ($p) {\n  expect($p).to.have.length(1);\n  expect($p).to.contain(\"Don't have an account?\");\n  expect($p).to.contain('Sign Up');\n}).find('a').then(function ($a) {\n  cy.wrap($a).click({\n    force: true\n  });\n}).then(function () {\n  cy.url().should('include', '/signup');\n});",
+              "err": {},
+              "uuid": "4ef9ce28-390a-4819-a5d5-259fca694437",
+              "parentUUID": "c1e51be6-f633-4805-b027-fc2f32cb90dd",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "validate elements on forgot password page",
+              "fullTitle": "Velocity Signin Page validate elements on forgot password page",
+              "timedOut": null,
+              "duration": 2289,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit('https://nebula-client.fundthrough.com/signin');\nsigninElements.elementsui.forgotpasswordlink().click();\ncy.url().should('include', '/forgot-password');\nsigninElements.elementsui.cardcontent().should(function ($div) {\n  expect($div).to.contain(\"Reset your password\");\n  expect($div).to.contain(\"Email\");\n  expect($div).to.contain(\"BACK\");\n}).then(function ($input) {\n  cy.url().should('include', '/forgot-password');\n});\nsigninElements.usercredential.getusername().type('manpreet@fundthrough.com');\ncy.get('button').click();\nsigninElements.elementsui.cardcontent().children().find('h4').should(function ($e1) {\n  expect($e1).contain(\"Enter the verification code we sent to your email address\");\n  expect($e1).to.have.css('color', 'rgb(92, 93, 93)');\n  expect($e1).to.have.css('font-weight', '400');\n});",
+              "err": {},
+              "uuid": "f9db7bd1-bb92-45e4-92c0-9b7e027ff655",
+              "parentUUID": "c1e51be6-f633-4805-b027-fc2f32cb90dd",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "4ef9ce28-390a-4819-a5d5-259fca694437",
+            "f9db7bd1-bb92-45e4-92c0-9b7e027ff655"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 6675,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/reports/mocha",
+        "quite": true,
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}

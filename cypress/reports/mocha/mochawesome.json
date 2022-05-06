@@ -1,0 +1,131 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 2,
+    "passes": 1,
+    "pending": 0,
+    "failures": 1,
+    "start": "2022-04-18T19:31:33.589Z",
+    "end": "2022-04-18T19:32:35.312Z",
+    "duration": 61723,
+    "testsRegistered": 2,
+    "passPercent": 50,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "59935ed2-7be5-4f3d-9892-c3966fbc5c07",
+      "title": "",
+      "fullFile": "cypress/integration/nebula/TC01_SignUp.spec.js",
+      "file": "cypress/integration/nebula/TC01_SignUp.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "2e3f906d-8281-415c-965d-3469c3ebbd44",
+          "title": "Sign Up page",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should not create new account",
+              "fullTitle": "Sign Up page should not create new account",
+              "timedOut": null,
+              "duration": 10034,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.clearLocalStorage();\nvar getaccount = new _signUpPage.getAccount(); //navigates to the Sign Up page, verifies it's elements and state before any input\ngetaccount.pageNavigate();\ngetaccount.signupVerify();\ngetaccount.getUserNameEmpty();\ngetaccount.verifyBtnNextDisabled().should('be.disabled'); //input generating functions\nfunction randomChars(length) {\n  var result = '';\n  var characters = 'abcdefghijklmnopqrstuvwxyz0123456789';\n  var charactersLength = characters.length;\n  for (var i = 0; i < length; i++) {\n    result += characters.charAt(Math.floor(Math.random() * charactersLength));\n  }\n  return result;\n}\nfunction randomNum(length) {\n  var result = '';\n  var numbers = '0123456789';\n  var numbersLength = numbers.length;\n  for (var i = 0; i < length; i++) {\n    result += numbers.charAt(Math.floor(Math.random() * numbersLength));\n  }\n  return result;\n}\nfunction randomLetter(length) {\n  var result = '';\n  var letters = 'abcdefghijklmnopqrstuvwxyz';\n  var lettersLength = letters.length;\n  for (var i = 0; i < length; i++) {\n    result += letters.charAt(Math.floor(Math.random() * lettersLength));\n  }\n  return result;\n}\nconsole.log(randomChars(4)); //Negative input on SignUp page\ngetaccount.getUserInput(\"saksham+\" + randomChars(5));\ngetaccount.clickOnPage().click();\ngetaccount.verifyBtnNextDisabled().should('be.disabled');\ngetaccount.getErrorMsgInvalidEmail().should('contain', 'Invalid email format');\ngetaccount.clearUsername().clear();\ngetaccount.getUserInput(\"saksham+\" + randomChars(5) + \"@\");\ngetaccount.clickOnPage().click();\ngetaccount.verifyBtnNextDisabled().should('be.disabled');\ngetaccount.getErrorMsgInvalidEmail().should('contain', 'Invalid email format');\ngetaccount.clearUsername().clear();\ngetaccount.getUserInput(\"saksham+\" + randomChars(5) + \"@fundthrough\");\ngetaccount.clickOnPage().click();\ngetaccount.verifyBtnNextDisabled().should('be.disabled');\ngetaccount.getErrorMsgInvalidEmail().should('contain', 'Invalid email format');\ngetaccount.clearUsername().clear(); // getaccount.getUserInput(\"saksham+\" + randomChars(5)+ \"@fundthrough.co\")\n// cy.get('.u-p').click()\n// getaccount.verifyBtnNextDisabled().should('be.disabled')\n// getaccount.getErrorMsgInvalidEmail().should('contain', 'Invalid email format')\n// getaccount.clearUsername().clear()\n//successful input to go to the next step\ngetaccount.getUserInput(\"saksham+\" + randomChars(5) + \"@fundthrough.com\");\ngetaccount.getFirstNextBtn().should('contain', 'Next').click(); //Make the password field visible\ngetaccount.iconPassword().click().then(function (Password) {\n  cy.wrap(Password).should('be.visible');\n}); //Negative test cases for Password Input\ngetaccount.getPassInput().type(randomNum(8));\ngetaccount.getRadioBtn().then(function (Radiobuttons) {\n  cy.wrap(Radiobuttons).first().should('be.checked');\n  cy.wrap(Radiobuttons).eq(1).should('not.be.checked'); // cy.get('[type=\"checkbox\"]').uncheck()\n  cy.wrap(Radiobuttons).eq(2).should('be.checked');\n});\ngetaccount.passwClear().clear();\ngetaccount.getPassInput().type(randomNum(5));\ngetaccount.getRadioBtn().then(function (Radiobuttons) {\n  cy.wrap(Radiobuttons).first().should('be.checked');\n  cy.wrap(Radiobuttons).eq(1).should('not.be.checked');\n  cy.wrap(Radiobuttons).eq(2).should('not.be.checked');\n});\ngetaccount.passwClear().clear();\ngetaccount.getPassInput().type(randomLetter(8));\ngetaccount.getRadioBtn().then(function (Radiobuttons) {\n  cy.wrap(Radiobuttons).first().should('not.be.checked');\n  cy.wrap(Radiobuttons).eq(1).should('be.checked');\n  cy.wrap(Radiobuttons).eq(2).should('be.checked');\n});\ngetaccount.passwClear().clear();\ngetaccount.getPassInput().type(randomLetter(5));\ngetaccount.getRadioBtn().then(function (Radiobuttons) {\n  cy.wrap(Radiobuttons).first().should('not.be.checked');\n  cy.wrap(Radiobuttons).eq(1).should('be.checked');\n  cy.wrap(Radiobuttons).eq(2).should('not.be.checked');\n});",
+              "err": {},
+              "uuid": "a2a9781e-ced0-45c6-b7e7-b9f8646bd752",
+              "parentUUID": "2e3f906d-8281-415c-965d-3469c3ebbd44",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should create new account",
+              "fullTitle": "Sign Up page should create new account",
+              "timedOut": null,
+              "duration": 16744,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.clearLocalStorage();\nvar getaccount = new _signUpPage.getAccount(); //navigates to the Sign Up page, verifies it's elements and state before any input\ngetaccount.pageNavigate();\ngetaccount.signupVerify();\ngetaccount.getUserNameEmpty();\ngetaccount.verifyBtnNextDisabled().should('be.disabled'); //input generating function\n// function randomChars(length) {\n//     var result = '';\n//     var characters = 'abcdefghijklmnopqrstuvwxyz0123456789';\n//     var charactersLength = characters.length;\n//     for (var i = 0; i < length; i++) {\n//         result += characters.charAt(Math.floor(Math.random() * charactersLength));\n//     }\n//     return result;\n// }\n// console.log(randomChars(4));\n//const email = \"kristina+\" + randomChars(4) + \"@fundthrough.com\"\n//Verification of elements activation and Input on Sign Up page   \ngetaccount.inputuseremail();\ngetaccount.einputuseremail();\ngetaccount.getFirstNextBtn().should('contain', 'Next').click();\ngetaccount.getPassword();\ngetaccount.iconPassword().click().then(function (Password) {\n  cy.wrap(Password).should('be.visible');\n});\ngetaccount.iconPasswordNotVisible().click();\ngetaccount.getRadioBtn().then(function (Radiobuttons) {\n  cy.wrap(Radiobuttons).first().check({\n    force: true\n  }).should('be.checked');\n  cy.wrap(Radiobuttons).eq(1).check({\n    force: true\n  }).should('be.checked');\n  cy.wrap(Radiobuttons).eq(2).check({\n    force: true\n  }).should('be.checked');\n}); //checks and unchecks checkbox and validates error message\ngetaccount.getCheckBox().eq(0).check({\n  force: true\n});\ngetaccount.getCheckBox().click({\n  force: true\n});\ngetaccount.getErrorMsgTermsAndCond().should('contain', 'Please indicate that you have read and agree to the Terms and Conditions and Privacy Policy.');\ngetaccount.getCheckBox().eq(0).check({\n  force: true\n});\ngetaccount.getFollowingNextBtn().should('contain', 'Next').click(); //redirects to /onboarding flow\ncy.intercept('POST', '/v1/t', {}).as('url');\ncy.wait('@url', {\n  timeout: 15000\n}).then(function () {\n  cy.url().should('include', '/onboarding');\n}); //Step 1 page validation\ngetaccount.getStepOneOnboard().contains('Step 1 of 6');\ngetaccount.getTextOnStepOne().should('contain', 'Add your invoices from QuickBooks and start funding them in less than 24 hours.');\ngetaccount.getImageOnStepOne().should('be.visible');\ngetaccount.getLinkOnStepOne().contains(\"SKIP/ I DON'T USE QUICKBOOK\").click();\ncy.intercept({\n  method: 'POST',\n  url: 'https://api.segment.io/v1/p'\n}, {\n  success: true\n}).as('search');\ncy.wait('@search', {\n  timeout: 15000\n}); //Step 2 page validation\ngetaccount.getHeaderOnboard().contains('Step 2 of 6');\ngetaccount.getMouseHover();\ngetaccount.getPopUpDesc().should('be.visible').should('contain', 'To get started, what is the registered name');\ngetaccount.elements.getBusinessName().should('exist');\ngetaccount.inputBusName();\ngetaccount.getBnCheckBox().should('be.checked');\ngetaccount.clickOnNextBtn().should('contain', 'Next').click(); //redirects to Step 3 and fills in Company Address info\ncy.intercept('POST', '/v1/p', {\n  success: true\n}).as('search'); //cy.wait('@search')\ncy.wait('@search', {\n  timeout: 15000\n}); //redirects to Step 3 and fills in Company Address info\n// cy.intercept('POST', '/v1/p', {}).as('search')\n// cy.wait('@search', {timeout: 15000})\ngetaccount.getHeaderOnboard().contains(\"Step 3 of 6\");\ngetaccount.getBnAddress().should('contain', 'Business Address');\ngetaccount.elements.getBusinessAddress().should('be.empty').click();\ngetaccount.inputBusinessAddress('100 test street');\ngetaccount.getEmptyAdrField().should('be.empty');\ngetaccount.getCityName('Cary');\ngetaccount.getCountry().click();\ngetaccount.getDropDownValue().each(function (e1, index, $list) {\n  if (e1.text() == \"USA\") {\n    e1.click();\n  }\n});\ngetaccount.getProvince().click();\ngetaccount.getDropDownValue().each(function (e1, index, $list) {\n  if (e1.text() == \"West Virginia\") {\n    e1.click();\n  }\n});\ngetaccount.getMouseHover();\ngetaccount.getPopUpDesc().should('be.visible').should('contain', 'We use your address to verify your business. If you have multiple locations, enter where your business was registered.');\ngetaccount.elements.getZipField().should('be.empty').click();\ngetaccount.inputPostalCode('12345');\ngetaccount.getNextBtnStepThree().click();\ncy.wait('@search');\ngetaccount.getHeaderOnboard().contains(\"Step 4 of 6\");\ngetaccount.getPhoneNumber('6470001234');\ngetaccount.getMouseHover();\ngetaccount.getPopUpDesc().should('be.visible').should('contain', 'To keep you in the loop on your funding progress, please provide your business’s phone number. If it’s easier, you can provide your direct line.');\ngetaccount.getNextBtnFolStep().should('contain', 'Next').click();\ncy.wait(8000);\ngetaccount.getHeaderOnboard().contains(\"Step 5 of 6\");\ngetaccount.getPrefName();\ngetaccount.getFirstName();\ngetaccount.getLastName();\ngetaccount.getMouseHoveroneOfMany().first().trigger('mouseover');\ngetaccount.getPopUpDesc().should('be.visible').should('contain', 'To verify your identity, we need to know your legal name. This should match your government-issued ID. We’ll use your preferred name to communicate with you.');\ngetaccount.getNextBtnFolStep().should('contain', 'Next').click();\ngetaccount.getHearedAboutUsEmpty().should('be.empty');\ngetaccount.getSkipBtn().contains('button', 'Skip').click();\ncy.wait(3000);\ngetaccount.getNavbar().click();\ngetaccount.getLeftMenu().should('be.visible');\ngetaccount.getLeftHeading().should('contain', 'Account Setup').click();\ngetaccount.getTopHeading().should('contain', 'Account Setup');\ngetaccount.getBodyHeading().should('contain', 'Tell us about your business');\ngetaccount.getNavbar().click();\ngetaccount.getLeftMenuSetting().click();\ngetaccount.getMenuContainer().should('contain', 'Invoicing Software'); //cy.get('.ui > img').expect($el).to.have.text('Connect to QuickBooks')\ngetaccount.getNavbar().click();\ngetaccount.getLeftBottomTitle().click();\ngetaccount.getSignOut().click();",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: Expected to find content: 'Step 3 of 6' within the element: <h4.ui.header.u-pb0.fund-step> but never did.",
+                "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find content: 'Step 3 of 6' within the element: <h4.ui.header.u-pb0.fund-step> but never did.\n    at Context.eval (https://nebula-client.fundthrough.com/__cypress/tests?p=cypress/integration/nebula/TC01_SignUp.spec.js:393:35)",
+                "diff": null
+              },
+              "uuid": "258c2a58-30ad-478f-ab2d-52759338bac8",
+              "parentUUID": "2e3f906d-8281-415c-965d-3469c3ebbd44",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "a2a9781e-ced0-45c6-b7e7-b9f8646bd752"
+          ],
+          "failures": [
+            "258c2a58-30ad-478f-ab2d-52759338bac8"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 26778,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/reports/mocha",
+        "quite": true,
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}

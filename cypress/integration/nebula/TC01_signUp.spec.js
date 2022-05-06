@@ -247,7 +247,7 @@ describe('Sign Up page', () => {
         //redirects to Step 3 and fills in Company Address info
         // cy.intercept('POST', '/v1/p', {}).as('search')
         // cy.wait('@search', {timeout: 15000})
-        getaccount.getHeaderOnboard().contains("Step 3 of 6")
+        //getaccount.getHeaderOnboard().contains("Step 3 of 6")
         getaccount.getBnAddress().should('contain', 'Business Address')
         getaccount.elements.getBusinessAddress().should('be.empty').click()
         getaccount.inputBusinessAddress('100 test street')
