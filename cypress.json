@@ -1,26 +1,21 @@
 {
-    "projectId": "ekqhck",
-    "baseUrl": "https://nebula-client.fundthrough.com",
-    "ignoreTestFiles": "**/examples/*",
-    "defaultCommandTimeout": 60000,
-    "responseTimeout": 60000,
-    "viewportWidth": 1920,
-    "viewportHeight": 1080,
-    "watchForFileChanges": false,
-    "chromeWebSecurity": false,
-  "testFiles":[
-      "nebula/TC01_signUp.spec.js",
-      "nebula/TC02_signIn.spec.js",
-      "nebula/TC03_uploadInvoice.spec.js",
-      "nebula/fundingAgreement.spec.js",
-      "nebula/bankingFlow.spec.js",
-      "nebula/invoicePanel.spec.js"
-    ],
-    "retries" : 2
-    ,
-   "env" :
-
-   {
-       "url":"https://nebula-client.fundthrough.com/signup/"
-   }
+  "projectId": "ekqhck",
+  "baseUrl": "https://nebula-client.fundthrough.com",
+  "ignoreTestFiles": "**/examples/*",
+  "defaultCommandTimeout": 60000,
+  "responseTimeout": 60000,
+  "viewportWidth": 1920,
+  "viewportHeight": 1080,
+  "watchForFileChanges": false,
+  "chromeWebSecurity": false,
+  "testFiles": [
+    "nebula/TC01_signUp.spec.js",
+    "nebula/TC02_signIn.spec.js",
+    "nebula/TC03_uploadInvoice.spec.js",
+    "nebula/fundingAgreement.spec.js",
+    "nebula/bankingFlow.spec.js",
+    "nebula/invoicePanel.spec.js"
+  ],
+  "retries": 2
 }
+
