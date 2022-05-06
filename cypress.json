@@ -2,13 +2,14 @@
     "projectId": "ekqhck",
     "baseUrl": "https://nebula-qa1.fundthrough.com",
     "ignoreTestFiles": "**/examples/*",
-    "viewportHeight": 1080,
+    "defaultCommandTimeout": 60000,
     "viewportWidth": 1920,
+    "viewportHeight": 1080,
     "watchForFileChanges": false,
     "testFiles":[
-      "nebula/TC01_SignUp.spec.js",
+      "nebula/TC01_signUp.spec.js",
       "nebula/TC02_SignIn.validation.js",
-      "nebula/TC03_Upload.invoice.js",
+      "nebula/TC03_upload.invoice.js",
       "nebula/TC04_Signin.Page.Elements.js",
       "nebula/fundingAgreement.spec.js"
     ],

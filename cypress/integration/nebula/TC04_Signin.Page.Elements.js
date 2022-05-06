@@ -5,7 +5,7 @@ import { getAccount } from "../../support/Page_Objects/signUpPage.js";
 describe('Velocity Signin Page', () => 
 {
 before(function() {
-cy.visit('https://nebula-client.fundthrough.com/signin')
+cy.visit('/signin')
 cy.clearLocalStorage()
 
 cy.fixture('profile').then(function(user)

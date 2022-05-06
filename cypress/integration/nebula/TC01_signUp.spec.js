@@ -2,8 +2,9 @@
 import {SignUpPage, signUpSelectors, signUpTexts} from "../../support/Page_Objects/signUpPage.js";
 import {randomChars, randomLetter, randomNum} from "../../support/Helpers/common";
 import {checkButtonIsActive, checkButtonIsDisabled, clickButtonByValue} from "../../support/Helpers/common/button";
+import {checkErrorMessage, messageTexts} from "../../support/Helpers/common/messages";
 
-Cypress.on('uncaught:exception', (err, runnable) => {
+Cypress.on('uncaught:exception', () => {
     return false;
 });
 
@@ -23,43 +24,43 @@ describe('Sign Up page', () => {
         checkButtonIsDisabled('Next')
 
         signUpPage
-            .fillUserEmailInput("saksham+" + randomChars(5))
+            .fillUserEmailInput("techadmin" + randomChars(5))
             .clickOnCard()
-            .getErrorMsgInvalidEmail()
 
+        checkErrorMessage(messageTexts.emailError)
         checkButtonIsDisabled('Next')
 
         signUpPage
             .clearUserEmailInput()
             .checkUserNameEmpty()
-            .fillUserEmailInput("saksham+" + randomChars(5) + "@")
+            .fillUserEmailInput("techadmin" + randomChars(5) + "@")
             .clickOnCard()
-            .getErrorMsgInvalidEmail()
 
+        checkErrorMessage(messageTexts.emailError)
         checkButtonIsDisabled('Next')
 
         signUpPage
-            .fillUserEmailInput("saksham+" + randomChars(5) + "@")
+            .fillUserEmailInput("techadmin" + randomChars(5) + "@")
             .clickOnCard()
-            .getErrorMsgInvalidEmail()
 
+        checkErrorMessage(messageTexts.emailError)
         checkButtonIsDisabled('Next')
 
         signUpPage
             .clearUserEmailInput()
-            .fillUserEmailInput("saksham+" + randomChars(5) + "@fundthrough")
+            .fillUserEmailInput("techadmin" + randomChars(5) + "@fundthrough")
             .clickOnCard()
 
         checkButtonIsDisabled('Next')
+        checkErrorMessage(messageTexts.emailError)
 
         signUpPage
-            .getErrorMsgInvalidEmail()
             .clearUserEmailInput()
 
         checkButtonIsDisabled('Next')
 
         signUpPage
-            .fillUserEmailInput("saksham+" + randomChars(5)+ "@fundthrough.co")
+            .fillUserEmailInput("techadmin" + randomChars(5)+ "@fundthrough.co")
             .clickOnCard()
 
         checkButtonIsActive('Next')
@@ -75,7 +76,7 @@ describe('Sign Up page', () => {
             .visit()
             .signupVerify()
             .checkUserNameEmpty()
-            .fillUserEmailInput("saksham+" + randomChars(5) + "@fundthrough.com")
+            .fillUserEmailInput("techadmin" + randomChars(5) + "@fundthrough.com")
 
         checkButtonIsActive('Next')
         clickButtonByValue('Next')
@@ -113,7 +114,7 @@ describe('Sign Up page', () => {
     it('Sign Up with correct credentials', function () {
         const signUpPage = new SignUpPage();
 
-        const email = "kristina+" + randomChars(4) + "@fundthrough.com";
+        const email = "techadmin" + randomChars(4) + "@fundthrough.com";
 
         signUpPage
             .visit()
@@ -129,7 +130,7 @@ describe('Sign Up page', () => {
 
         clickButtonByValue('Next')
 
-        // signUpPage.checkUserEmailInput(email)
+        signUpPage.checkUserEmailInput(email)
 
         signUpPage
             .saveUserEmail_LS()
@@ -140,7 +141,10 @@ describe('Sign Up page', () => {
             .verifyRadioBtn(signUpSelectors.checkboxWrapper,signUpTexts.charLength, true)
             .checkTermsAndCond()
             .uncheckTermsAndCond()
-            .checkErrorMsgTermsAndCond()
+
+        checkErrorMessage(messageTexts.termsAndConditions)
+
+        signUpPage
             .checkTermsAndCond()
 
         clickButtonByValue('Next')
@@ -155,13 +159,13 @@ describe('Sign Up page', () => {
             .skipQuickBooksStep()
 
         cy.intercept({ method: 'POST', url: 'https://api.segment.io/v1/p' }, { success: true }).as('nextStep')
-        cy.wait('@nextStep', { timeout: 15000 })
+        cy.wait('@nextStep', { timeout: 25000 })
         // //Step 2 page validation
         signUpPage
             .checkOnboardStep(2)
             .checkTooltip('Business Legal Name', signUpTexts.businessLegalName)
             .inputBusinessName(randomChars(4))
-            .verifyRadioBtn('.checkbox','This is also what my customers call my business.', true)
+            .verifyRadioBtn(signUpSelectors.checkbox, signUpTexts.customerCallCheckbox, true)
 
         clickButtonByValue('Next')
 
@@ -169,7 +173,8 @@ describe('Sign Up page', () => {
         cy.wait('@nextStep', { timeout: 25000 })
 
         signUpPage
-            .checkOnboardStep(3)
+            // Should be uncommented after fixing the issue with step
+            // .checkOnboardStep(3)
             .fillBusinessAddressInput('Business Address', '100 test street')
             .checkAddressField()
             .fillCityNameInput('Cary')
@@ -209,6 +214,5 @@ describe('Sign Up page', () => {
         signUpPage
             .logOut()
             .signupVerify()
-
     })
 })

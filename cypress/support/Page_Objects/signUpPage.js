@@ -1,7 +1,6 @@
 export const signUpSelectors = {
     signUpPage: '.sign-up-value-flow',
     checkboxWrapper: '[class="inline fields"]',
-    error: '.error',
     signUpCard: '[id="card-page-content"]',
     userEmail: '#username',
     userPassword: '#password',
