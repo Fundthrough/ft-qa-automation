@@ -32,4 +32,5 @@ module.exports = on => {
   on("task", {
     orbit: (query) => require("cypress-postgres")(query.query, query.connection)
   });
+  return null
 };
