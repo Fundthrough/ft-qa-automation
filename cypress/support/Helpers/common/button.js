@@ -1,5 +1,5 @@
 export const clickButtonByValue = (value) => {
-    cy.get('button').contains(value).parent().click()
+    cy.get('button').contains(value).parent().click({force: true})
 }
 
 export const checkButtonIsDisabled = (buttonName) => {

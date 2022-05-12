@@ -1,4 +1,4 @@
-import SigninElements from '../../support/Page_Objects/SigninElements.js';
+import SigninElements from '../../support/Page_Objects/SigninElement.js';
 import 'cypress-file-upload';
 
 describe('upload invoice from dashboard', () => {
