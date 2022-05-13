@@ -8,9 +8,9 @@
   "viewportHeight": 1080,
   "watchForFileChanges": false,
   "testFiles": [
-    "nebula/signUp.spec.js",
-    "nebula/signIn.spec.js",
-    "nebula/upload.invoice.js",
+    "nebula/TC01_signUp.spec.js",
+    "nebula/TC02_signIn.spec.js",
+    "nebula/TC03_upload.invoice.js",
     "nebula/TC04_Signin.validation.js",
     "nebula/TC05_dbValidation.js"
   ],

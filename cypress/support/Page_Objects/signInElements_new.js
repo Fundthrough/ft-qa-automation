@@ -1,5 +1,6 @@
 export const signInSelectors = {
   font: ".font",
+  image: ".image",
   label: ".input-label",
   forgotPwd: ".forgot-password",
   signUp: ".signup_prompt_parent > p",
@@ -43,13 +44,13 @@ export class SignInPage {
   }
 
   verifyImageText(num, name) {
-    cy.get(".image").eq(num).should("have.attr", "src").and("contain", name);
+    cy.get(signInSelectors.image).eq(num).should("have.attr", "src").and("contain", name);
 
     return this;
   }
 
   verifyRedirects(num, name) {
-    cy.get(".image").eq(num).click().title().should("contain", name);
+    cy.get(signInSelectors.image).eq(num).click().title().should("contain", name);
 
     return this;
   }

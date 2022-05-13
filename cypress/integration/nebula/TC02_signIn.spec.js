@@ -1,5 +1,5 @@
 //<reference types="cypress" />
-import { SignInPage } from "../../support/Page_Objects/signInElements.js";
+import { SignInPage } from "../../support/Page_Objects/signInElements_new.js";
 import { checkButtonIsActive, checkButtonIsDisabled, clickButtonByValue } from "../../support/Helpers/common/button";
 import { checkErrorMessage, messageTexts } from "../../support/Helpers/common/messages";
 import { randomChars } from "../../support/Helpers/common.js";
@@ -11,7 +11,7 @@ describe("Sign In Page", function test() {
     cy.fixture("profile.json").then(function (user) {
       this.user = user;
     });
-    
+
   });
 
   it("Sign In page format", function () {
@@ -164,6 +164,17 @@ describe("Sign In Page", function test() {
 
     signInPage
       .authenticationError("Incorrect username or password");
+
+    signInPage
+      .clearEmailInput()
+      .clearPasswordInput()
+      .enterEmailInput("techadmin" + randomChars(4) + "@fundthrough.com")
+      .enterPasswordInput(password);
+
+    clickButtonByValue("Sign In");
+
+    signInPage
+      .authenticationError("Invalid credentials.");
 
     signInPage
       .clearEmailInput()
