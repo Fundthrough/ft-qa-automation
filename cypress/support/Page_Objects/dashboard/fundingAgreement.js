@@ -5,23 +5,17 @@ export const fundingAgreementSelectors = {
     updateBusinessName: '#updatingBusinessName',
     businessName: '#businessName',
     updateJobTitle: '#updatingJobTitle',
+    addJobTitle: '#addingJobTitle',
     jobTitle: '#jobTitle',
-    updateTaxYear: '#updateTaxyear',
     taxYear: '#firstBusinessTaxYear',
+    updateTaxYear: '#addingFirstBusinessTaxYear',
     updatePhoneNumber: '#updatePhoneNumber',
     phoneNumber: '#phoneNumber',
     updateOfficeAddress: '#officeAddress',
     officeAddress: '#address',
-
-
-
-
-
-
-
-
-
-
+    addingBusinessNumber: '#addingBusinessNumber',
+    businessNumber: '#businessNumber',
+    updateLegalName: '#legalName'
 };
 
 export const fundingAgreementTexts = {
@@ -61,8 +55,8 @@ export class FundingAgreementPage {
         return this;
     }
 
-    updateField(fieldName, updateBtn, title) {
-        cy.get(updateBtn).click()
+    updateField(fieldName, Btn, title) {
+        cy.get(Btn).click()
         cy.get(fieldName)
             .clear()
             .type(title)
@@ -78,6 +72,19 @@ export class FundingAgreementPage {
             .type(title)
             .type('{enter}')
 
+
+        return this;
+    }
+
+    clearField(fieldName) {
+        cy.get(fieldName)
+            .clear()
+
+        return this;
+    }
+
+    verifyFundingTerms() {
+        cy.get('.u-m').should('exist').scrollTo('bottom')
 
         return this;
     }
