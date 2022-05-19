@@ -1,26 +1,19 @@
+import {inputSelectors} from "../Helpers/common/input";
+
 export const signUpSelectors = {
     signUpPage: '.sign-up-value-flow',
     checkboxWrapper: '[class="inline fields"]',
     signUpCard: '[id="card-page-content"]',
-    userEmail: '#username',
-    userPassword: '#password',
     eyeIcon: '.icon-b-preview-16',
     termsAndConditions: '[name="termsAndConditions"]',
     stepContainer: '#ft-card-next-gen',
     currentStep: '.fund-step',
     imageQuickBooks: '.ui > img',
     quickBooksSkip: '[class="skip-container u-mb0"]',
-    tooltipIcon: '.question',
     tooltipDescription: '.description',
-    businessName: '#businessName',
     locationForm: '#locationForm',
-    mainAddress: '#address',
-    secondAddress: '#addressTwo',
-    city: '#city',
     country: '#country',
     province: '#province',
-    postalCode: '#postalCode',
-    phoneNumber: '#phoneNumber',
     dropdown: '.dropdown',
     navbar: '.bars',
     navHeader: '.flex-left > .ui',
@@ -31,9 +24,6 @@ export const signUpSelectors = {
     companyName: '.accordion__company-name',
     logOut: '.accordion__content_button',
     heardAboutUs: '#howYouHeardAboutUs',
-    firstName: '#firstName',
-    lastName: '#lastName',
-    preferredName: '#preferredName',
     checkbox: '.checkbox'
 };
 
@@ -43,10 +33,6 @@ export const signUpTexts = {
     charLength: 'be 8 or more characters long',
     termsAndConditions: 'Please indicate that you have read and agree to the Terms and Conditions and Privacy Policy.',
     quickBooksHeader: 'Add your invoices from QuickBooks and start funding them in less than 24 hours.',
-    businessLegalName: 'To get started, what is the registered name of your business? This is the name that you use on government documents and tax filings.',
-    businessAddress: 'We use your address to verify your business. If you have multiple locations, enter where your business was registered.',
-    contactPhone: 'To keep you in the loop on your funding progress, please provide your business’s phone number. If it’s easier, you can provide your direct line.',
-    firstName: 'To verify your identity, we need to know your legal name. This should match your government-issued ID. We’ll use your preferred name to communicate with you.',
     skipQuickBooks: "SKIP/ I DON'T USE QUICKBOOK",
     accountSetupBusiness: 'Tell us about your business',
     accountSetupFunding: 'Review the funding agreement',
@@ -69,36 +55,8 @@ export class SignUpPage {
         return this;
     }
 
-    checkUserNameEmpty() {
-        cy.get(signUpSelectors.userEmail)
-            .find('[value]')
-            .should(($el) => {
-                expect($el.text().trim()).equal('')
-        })
-
-        return this;
-    }
-
     clickOnCard() {
         cy.get(signUpSelectors.signUpCard).click()
-
-        return this;
-    }
-
-    fillUserEmailInput(email) {
-        cy.get(signUpSelectors.userEmail).type(email)
-
-        return this;
-    }
-
-    checkUserEmailInput(email) {
-        cy.get(signUpSelectors.userEmail).should('have.value', email)
-
-        return this;
-    }
-
-    clearUserEmailInput() {
-        cy.get(signUpSelectors.userEmail).clear()
 
         return this;
     }
@@ -108,48 +66,19 @@ export class SignUpPage {
             cy.wrap(Password)
                 .should(reveal ? 'be.visible' : 'not.be.visible')
             })
-        cy.get(signUpSelectors.userPassword)
+        cy.get(inputSelectors.password)
             .invoke('attr', 'type')
             .should('eq', 'text')
 
         return this;
     }
-
-    fillPasswordInput(password) {
-        cy.get(signUpSelectors.userPassword)
-            .should('be.visible')
-            .type(password)
-
-        return this;
-    }
-
-    clearPasswordInput() {
-        cy.get(signUpSelectors.userPassword)
-            .should('be.visible')
-            .clear()
-
-        return this;
-    }
  
     saveUserEmail_LS(){
-        cy.get(signUpSelectors.userEmail).then(elem => {
+        cy.get(inputSelectors.email).then(elem => {
             const emailInputValue = Cypress.$(elem).val()
             cy.writeFile('./cypress/fixtures/profile.json', { username: emailInputValue, password: '1Password' })
         });
     return this;
-    }
-
-    verifyRadioBtn(checkbox, checkboxTitle, checked = false) {
-        cy.get(checkbox)
-            .find('label')
-            .then(radioButtons => {
-                cy.wrap(radioButtons)
-                    .contains(checkboxTitle)
-                    .siblings()
-                    .should(checked ? 'be.checked' : 'not.be.checked')
-        })
-
-        return this;
     }
 
     checkTermsAndCond() {
@@ -193,60 +122,10 @@ export class SignUpPage {
         return this;
     }
 
-
     skipQuickBooksStep() {
         cy.get(signUpSelectors.quickBooksSkip)
             .contains(signUpTexts.skipQuickBooks)
             .click()
-
-        return this;
-    }
-
-    checkTooltip(tooltipLabel, tooltipMessage) {
-        cy.get('.input-label')
-            .contains(tooltipLabel)
-            .within(() => {
-                cy.get(signUpSelectors.tooltipIcon).trigger('mouseover')
-        })
-        cy.get(signUpSelectors.tooltipDescription)
-            .invoke('show')
-            .should('be.visible')
-            .should('contain', tooltipMessage)
-
-        return this;
-    }
-
-    inputBusinessName(value) {
-        cy.get(signUpSelectors.businessName)
-            .should('exist')
-            .type(value)
-
-        return this;
-    }
-
-    fillBusinessAddressInput(labelText, value) {
-        cy.get(signUpSelectors.locationForm)
-            .find('.input-label')
-            .should('contain', labelText)
-        cy.get('.left')
-            .find(signUpSelectors.mainAddress)
-            .should('be.empty')
-            .click()
-            .type(value)
-
-        return this;
-    }
-
-    checkAddressField() {
-        cy.get(signUpSelectors.secondAddress)
-            .should('exist')
-            .and('be.empty')
-
-        return this;
-    }
-
-    fillCityNameInput(city) {
-        cy.get(signUpSelectors.city).type(city)
 
         return this;
     }
@@ -269,39 +148,6 @@ export class SignUpPage {
                 e1.click()
             }
         })
-
-        return this;
-    }
-
-    selectPostalCode(postalCode) {
-        cy.get(signUpSelectors.postalCode)
-            .should('be.empty')
-            .click()
-            .type(postalCode)
-
-        return this;
-    }
-
-    fillPhoneNumber(numberDigits) {
-        cy.get(signUpSelectors.phoneNumber).type(numberDigits)
-
-        return this;
-    }
-
-    fillPrefName(name) {
-        cy.get(signUpSelectors.preferredName).type('test' + name)
-
-        return this;
-    }
-
-    fillFirstName(firstName) {
-        cy.get(signUpSelectors.firstName).type('test' + firstName)
-
-        return this;
-    }
-
-    fillLastName(surname) {
-        cy.get(signUpSelectors.lastName).type('test' + surname)
 
         return this;
     }
