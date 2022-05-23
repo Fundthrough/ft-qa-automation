@@ -7,7 +7,6 @@ export const reload = () => {
     cy.reload()
 }
 
-//custom commands
 export const visit = (endPoint) => {
     cy.visit(endPoint)
 }

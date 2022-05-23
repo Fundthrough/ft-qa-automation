@@ -16,6 +16,8 @@ import {
     fillInputWithValue,
     inputSelectors
 } from "../../support/Helpers/common/input";
+import {checkProgressAndHeader} from "../../support/Helpers/common/title";
+import {navigateBack, verifyNavigation, verifyRedirection, visit} from "../../support/Helpers/common/navigation";
 
 Cypress.on('uncaught:exception', () => {
     return false;
@@ -29,10 +31,11 @@ describe('Sign Up page', () => {
     it('Sign Up with incorrect email formats', function () {
         const signUpPage = new SignUpPage();
 
-        signUpPage
-            .visit()
-            .signupVerify()
-
+        visit('/signup')
+        verifyNavigation('signup')
+        verifyRedirection(0, 'FundThrough')
+        verifyRedirection(4, 'Intuit Accounts - Sign In')
+        navigateBack()
         checkEmptyInput(inputSelectors.email)
         checkButtonIsDisabled('Next')
 
@@ -85,10 +88,8 @@ describe('Sign Up page', () => {
     it('Sign up with incorrect passwords', function () {
         const signUpPage = new SignUpPage();
 
-        signUpPage
-            .visit()
-            .signupVerify()
-
+        visit('/signup')
+        verifyNavigation('signup')
         checkEmptyInput(inputSelectors.email)
         fillInputWithValue(inputSelectors.email, "techadmin" + randomChars(5) + "@fundthrough.com")
         checkButtonIsActive('Next')
@@ -124,10 +125,8 @@ describe('Sign Up page', () => {
 
         const email = "techadmin" + randomChars(4) + "@fundthrough.com";
 
-        signUpPage
-            .visit()
-            .signupVerify()
-
+        visit('/signup')
+        verifyNavigation('signup')
         checkEmptyInput(inputSelectors.email)
         checkButtonIsDisabled('Next')
         fillInputWithValue(inputSelectors.email, email)
@@ -159,30 +158,28 @@ describe('Sign Up page', () => {
 
         signUpPage
             .checkOnboardingDirectionUrl()
+
+        checkProgressAndHeader('Connect to your invoicing software', 1, 6)
         //Step 1 page validation
-            .checkOnboardStep(1)
+        signUpPage
             .checkQuickBooksHeader()
             .checkImage()
             .skipQuickBooksStep()
 
         cy.intercept({ method: 'POST', url: 'https://api.segment.io/v1/p' }, { success: true }).as('nextStep')
-        cy.wait('@nextStep', { timeout: 25000 })
+        cy.wait('@nextStep', { timeout: 60000 })
         // //Step 2 page validation
-        signUpPage
-            .checkOnboardStep(2)
-
+        checkProgressAndHeader("What is your business’s legal name?", 2, 6)
         fillInputWithValue(inputSelectors.businessName, randomChars(4))
         verifyCheckbox(signUpSelectors.checkbox, signUpTexts.customerCallCheckbox, true)
         checkTooltip('Business Legal Name', tooltipTexts.businessLegalName)
-
         clickButtonByValue('Next')
 
         //redirects to Step 3 and fills in Company Address info
-        cy.wait('@nextStep', { timeout: 25000 })
+        cy.wait('@nextStep', { timeout: 60000 })
 
         // Should be uncommented after fixing the issue with step
-        // signUpPage
-            // .checkOnboardStep(3)
+        // checkProgressAndHeader('Where is your business located?', 3, 6)
 
         fillInputWithValue(inputSelectors.mainAddress, '100 test street')
         checkEmptyInput(inputSelectors.secondAddress)
@@ -193,24 +190,20 @@ describe('Sign Up page', () => {
             .selectCountry("USA")
             .selectProvince('West Virginia')
 
-
         checkTooltip('Business Address', tooltipTexts.businessAddress)
 
         clickButtonByValue('Next')
 
+        cy.wait('@nextStep', { timeout: 60000 })
 
-        cy.wait('@nextStep', { timeout: 25000 })
-        signUpPage
-            .checkOnboardStep(4)
-
+        checkProgressAndHeader('How can we reach you?', 4, 6)
         fillInputWithValue(inputSelectors.phoneNumber, '6470001234')
         checkTooltip('Contact Phone',tooltipTexts.contactPhone)
         clickButtonByValue('Next')
 
-        cy.wait('@nextStep', { timeout: 25000 })
-        signUpPage
-            .checkOnboardStep(5)
+        cy.wait('@nextStep', { timeout: 60000 })
 
+        checkProgressAndHeader("What's your name?", 5, 6)
         fillInputWithValue(inputSelectors.preferredName, randomChars(4))
         fillInputWithValue(inputSelectors.firstName, randomChars(4))
         fillInputWithValue(inputSelectors.lastName, randomChars(4))
@@ -221,11 +214,15 @@ describe('Sign Up page', () => {
         signUpPage
             .checkHeardAboutUsInput()
 
+        checkProgressAndHeader("How did you hear about us? (Optional)", 6, 6)
+
         clickButtonByValue('Skip')
-        cy.wait('@nextStep', { timeout: 25000 })
+        cy.wait('@nextStep', { timeout: 60000 })
 
         signUpPage
             .logOut()
-            .signupVerify()
+
+    verifyNavigation('signin')
+
     })
 })

@@ -42,19 +42,6 @@ export const signUpTexts = {
 
 export class SignUpPage {
 
-    visit() {
-        cy.visit('/signup')
-        cy.url().should('include', 'signup')
-
-        return this;
-    }
-
-    signupVerify() {
-        cy.get(signUpSelectors.signUpCard).should('exist')
-
-        return this;
-    }
-
     clickOnCard() {
         cy.get(signUpSelectors.signUpCard).click()
 
@@ -95,17 +82,9 @@ export class SignUpPage {
 
     checkOnboardingDirectionUrl() {
         cy.intercept('POST', '/v1/t', {}).as('url')
-        cy.wait('@url', { timeout: 15000 }).then(() => {
+        cy.wait('@url', { timeout: 60000 }).then(() => {
             cy.url().should('include', '/onboarding')
         })
-
-        return this;
-    }
-
-    checkOnboardStep(currentStep) {
-        cy.get(signUpSelectors.stepContainer)
-            .find(signUpSelectors.currentStep)
-            .should('contain', `Step ${currentStep} of 6`)
 
         return this;
     }
