@@ -9,3 +9,11 @@ export const checkButtonIsDisabled = (buttonName) => {
 export const checkButtonIsActive = (buttonName) => {
     cy.get('button').contains(buttonName).parent().should('not.be.disabled')
 }
+
+export const clickBackButtonByValue = (value) => {
+    cy.get(".left.arrow").contains(value).click()
+}
+
+export const clickBackButtonByUrl = (url) => {
+        cy.get(".reverse").should("have.attr", "href", url).click();
+}

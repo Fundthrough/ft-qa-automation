@@ -1,19 +1,15 @@
 export const signInSelectors = {
-  font: ".font",
   image: ".image",
   label: ".input-label",
   forgotPwd: ".forgot-password",
   signUp: ".signup_prompt_parent > p",
-  email: "[type='email']",
-  button: "button",
-  password: "[type='password']",
   authenticate: "[data-test=authenticator-error]",
+  button: "button",
   backbutton: ".green-text",
   content: ".content",
 };
 
 export const signInTexts = {
-  title: "Sign In",
   intuit: "Sign in with Intuit",
   openInvoice: "Sign in with OpenInvoice",
   email: "Business Email",
@@ -30,13 +26,7 @@ export const signInTexts = {
 };
 
 export class SignInPage {
-  visit() {
-    cy.visit("/signin");
-    cy.url().should("include", "signin");
-
-    return this;
-  }
-
+  
   verifySignIn() {
     cy.get(".u-p").should("be.visible");
 
@@ -45,18 +35,6 @@ export class SignInPage {
 
   verifyImageText(num, name) {
     cy.get(signInSelectors.image).eq(num).should("have.attr", "src").and("contain", name);
-
-    return this;
-  }
-
-  verifyRedirects(num, name) {
-    cy.get(signInSelectors.image).eq(num).click().title().should("contain", name);
-
-    return this;
-  }
-
-  verifySignInText() {
-    cy.get(signInSelectors.font).should("have.text", signInTexts.title);
 
     return this;
   }
@@ -91,17 +69,13 @@ export class SignInPage {
     return this;
   }
 
-  verifyForgotPwdPage() {
+  clickForgotPwd() {
     cy.get(signInSelectors.forgotPwd)
       .click()
-      .url()
-      .should("include", signInTexts.forgotPasswordUrlText);
-    cy.get(signInSelectors.font).should("contain", signInTexts.resetPwd);
     cy.get(signInSelectors.label).should("contain", signInTexts.emailText);
     cy.get(signInSelectors.button)
       .should("be.disabled")
       .and("contain", signInTexts.code);
-    cy.get(signInSelectors.backbutton).should("contain", "BACK");
 
     return this;
   }
@@ -112,19 +86,6 @@ export class SignInPage {
       .then((text) => {
         expect(text).to.equal(signInTexts.resetText);
       });
-  }
-
-  goBack() {
-    cy.go("back");
-
-    return this;
-  }
-
-  reverse() {
-    cy.get(".reverse").should("have.attr", "href", "/signin").click();
-    cy.url().should("include", "/signin");
-
-    return this;
   }
 
   verifySignUpPage() {
@@ -142,48 +103,13 @@ export class SignInPage {
     return this;
   }
 
-  enterEmailInput(email) {
-    cy.get(signInSelectors.email).should("be.visible").type(email);
+  authenticationError() {
+    cy.get(signInSelectors.authenticate).invoke('text').then(text => {
+      expect(text).to.be.oneOf(["Invalid credentials.","Incorrect username or password","Please reach out to support to log in"])
+    })
 
     return this;
   }
 
-  clearEmailInput() {
-    cy.get(signInSelectors.email).should("be.visible").clear();
-
-    return this;
-  }
-
-  enterPasswordInput(password) {
-    cy.get(signInSelectors.password).should("be.visible").type(password);
-
-    return this;
-  }
-
-  clearPasswordInput() {
-    cy.get(signInSelectors.password).should("be.visible").clear();
-
-    return this;
-  }
-
-  revealPassword(reveal = false) {
-    cy.get(signInSelectors.eyeIcon)
-      .should("be.visible")
-      .click()
-      .then((Password) => {
-        cy.wrap(Password).should(reveal ? "be.visible" : "not.be.visible");
-      });
-
-    return this;
-  }
-
-  authenticationError(error) {
-    cy.get(signInSelectors.authenticate).should("contain", error);
-
-    return this;
-  }
-
-  verifyLogin(url) {
-    cy.url().should("include", url);
-  }
+  
 }

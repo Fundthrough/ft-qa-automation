@@ -1,6 +1,6 @@
 {
   "projectId": "ekqhck",
-  "baseUrl": "https://nebula-qa1.fundthrough.com",
+  "baseUrl": "https://nebula-client.fundthrough.com",
   "chromeWebSecurity": false,
   "ignoreTestFiles": "**/examples/*",
   "defaultCommandTimeout": 60000,
