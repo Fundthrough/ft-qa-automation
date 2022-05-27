@@ -1,7 +1,7 @@
 //<reference types="cypress" />
 import { SignInPage } from "../../support/Page_Objects/signInElements_new.js";
 import { visit, navigateBack, verifyRedirection, verifyNavigation, clickBackArrow, reload } from "../../support/Helpers/common/navigation"
-import { verifyTitle} from "../../support/Helpers/common/title"
+import { checkInputLabels, checkInputTitle, title, verifyTitle} from "../../support/Helpers/common/title"
 import { clearInputValue, fillInputWithValue, inputSelectors } from "../../support/Helpers/common/input";
 import { checkButtonIsActive, checkButtonIsDisabled, clickButtonByValue } from "../../support/Helpers/common/button";
 import { checkErrorMessage, messageTexts } from "../../support/Helpers/common/messages";
@@ -24,21 +24,13 @@ describe("Sign In Page", function test() {
 
     signInPage
       .verifySignIn()
-      .verifyImageText("0", "product-logo")
+      .verifyImage()
     verifyTitle("Sign In")
+    //verifyRedirection()
+    checkInputLabels()
 
     signInPage
-      .verifyImageText("1", "signin-intuit")
-      .verifyImageText("2", "signin-openinvoice")
-    verifyRedirection("1", "Intuit")
-    navigateBack()
-    //verifyRedirection("2", "OpenInvoice")
-    //navigateBack()
-
-    signInPage
-      .verifyEmailLabel()
       .verifyStyling("Email")
-      .verifyPasswordLabel()
       .verifyStyling("Password")
       .verifyForgotPwdText()
       .clickForgotPwd()

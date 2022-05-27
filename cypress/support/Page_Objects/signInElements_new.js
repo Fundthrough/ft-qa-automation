@@ -1,5 +1,5 @@
 export const signInSelectors = {
-  image: ".image",
+  image: ".ui.image",
   label: ".input-label",
   forgotPwd: ".forgot-password",
   signUp: ".signup_prompt_parent > p",
@@ -10,8 +10,6 @@ export const signInSelectors = {
 };
 
 export const signInTexts = {
-  intuit: "Sign in with Intuit",
-  openInvoice: "Sign in with OpenInvoice",
   email: "Business Email",
   password: "Password",
   forgotPassword: "Forgot your password?",
@@ -33,21 +31,11 @@ export class SignInPage {
     return this;
   }
 
-  verifyImageText(num, name) {
-    cy.get(signInSelectors.image).eq(num).should("have.attr", "src").and("contain", name);
-
-    return this;
-  }
-
-  verifyEmailLabel() {
-    cy.get(signInSelectors.label).eq(0).should("contain", signInTexts.email);
-
-    return this;
-  }
-
-  verifyPasswordLabel() {
-    cy.get(signInSelectors.label).eq(1).should("contain", signInTexts.password);
-
+  verifyImage(){
+    cy.get(signInSelectors.image).each(image => { 
+      cy.wrap(image).should("be.visible")
+    })
+      
     return this;
   }
 
