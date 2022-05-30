@@ -4,11 +4,10 @@ export const verifyTitle = (title) => {
     cy.get(".normal-text").should("have.text", title)
 }
 
-export const checkInputLabels = () => {
-    cy.get('.input-label').each((label, index) => {
-      cy.wrap(label).should('contain.text', signInLabels[index])
-
-    })
+export const verifyInputLabels = (labels) => {
+  cy.get('.input-label').each((label, index) => {
+    cy.wrap(label).should('contain.text', labels[index])
+  })
 }
 
 

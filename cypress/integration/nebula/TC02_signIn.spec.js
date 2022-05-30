@@ -28,7 +28,7 @@ describe("Sign In Page", function test() {
 
     verifyTitle("Sign In")
     //verifyRedirection()
-    checkInputLabels()
+    verifyInputLabels(signInLabels)
 
     signInPage
       .verifyStyling("Email")
@@ -144,7 +144,7 @@ describe("Sign In Page", function test() {
   });
 
   it("Sign In with valid credentials", function test() {
-    
+
     let username = this.user.username;
     let password = this.user.password;
 
