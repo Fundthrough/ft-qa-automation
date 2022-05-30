@@ -1,6 +1,4 @@
 
-import {signUpSelectors} from "../../Page_Objects/signUpPage";
-
 export const inputSelectors = {
     email: '#username',
     password: '#password',
@@ -13,14 +11,10 @@ export const inputSelectors = {
     phoneNumber: '#phoneNumber',
     firstName: '#firstName',
     lastName: '#lastName',
-    preferredName: '#preferredName',
-    customer: '#customerName',
-    number: '#invoiceNumber',
-    date: '#invoiceDate',
-    due: '#dueDate',
-    payment: '#netDays',
-    total: '#invoiceTotal',
+    preferredName: '#preferredName'
 }
+
+export const invoiceLabels = ["Customer Name", "Invoice Number", "Invoice Date", "Due Date", "Payment Terms (Days)", "Invoice Total"]
 
 export const checkEmptyInput = (inputName) => {
     cy.get(inputName)
@@ -40,4 +34,10 @@ export const checkInputValue = (inputName, value) => {
 
 export const clearInputValue = (inputName) => {
     cy.get(inputName).clear()
+}
+
+export const verifyInputLabels = (labels) => {
+    cy.get('.input-label').each((label, index) => {
+      cy.wrap(label).should('contain.text', labels[index])
+    })
 }

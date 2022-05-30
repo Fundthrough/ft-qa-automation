@@ -1,6 +1,5 @@
-import "cypress-file-upload";
 
-import { InvoiceUpload, title } from "../../support/Page_Objects/invoiceElements";
+import { invoiceSelectors, InvoiceUpload } from "../../support/Page_Objects/invoiceElements";
 import {
   verifyNavigation,
   visit,
@@ -9,12 +8,14 @@ import {
   clearInputValue,
   fillInputWithValue,
   inputSelectors,
+  invoiceLabels,
+  verifyInputLabels
 } from "../../support/Helpers/common/input.js";
 import {
-  clickBackButtonByValue,
   clickButtonByValue,
 } from "../../support/Helpers/common/button";
 import {
+  fundHeaders,
   headers,
   verifyFundHeader,
   verifyHeader,
@@ -25,19 +26,23 @@ import {
   messageTexts,
 } from "../../support/Helpers/common/messages";
 import {randomChars, randomLetter, randomNum} from "../../support/Helpers/common";
+import { checkToolTip, invoiceToolTipTexts } from "../../support/Helpers/common/tooltip";
 
 
 describe("Upload your first invoice", () => {
+  
   beforeEach(() => {
     cy.clearLocalStorage();
     cy.fixture("profile").then(function (user) {
       this.user = user;
     });
+
     cy.visit("https://nebula-client.fundthrough.com/signin");
-    fillInputWithValue(inputSelectors.email, "techadmin1255@fundthrough.com");
-    fillInputWithValue(inputSelectors.password, "1Password");
-    clickButtonByValue("Sign In");
-    verifyNavigation("/invoices");
+      fillInputWithValue(inputSelectors.email, "techadmin300@fundthrough.com");
+      fillInputWithValue(inputSelectors.password, "1Password");
+      clickButtonByValue("Sign In");
+      verifyNavigation("/invoices");
+
     // visit("/signin")
     // fillInputWithValue(inputSelectors.email, this.user.username)
     // fillInputWithValue(inputSelectors.password, this.user.password)
@@ -45,62 +50,82 @@ describe("Upload your first invoice", () => {
     // verifyNavigation("/invoices")
   });
 
-  it("Validate upload invoice", function test() {
+  it("Validate upload invoice", () => {
         const invoiceUpload = new InvoiceUpload();
     
-        invoiceUpload.clickActionCard("0");
+        invoiceUpload
+          .clickActionCard("Add your first invoice");
 
         verifyHeader(headers.invoiceHeader);
-        verifyFundHeader();
-        clickButtonByValue("Upload Files")
-        // .attachFile("example.json", {
-        // subjectType: "drag-n-drop",
-        // });
+        verifyFundHeader(fundHeaders.invoiceFundHeader);
+
+        invoiceUpload
+          .uploadInvalidFile()
+        
         checkMessage(messageSelectors.error, messageTexts.uploadInvoiceError);
         clickButtonByValue("Dashboard");
         verifyNavigation("/invoices");
 
-//     invoiceUpload.clickActionCard("0");
+        invoiceUpload
+          .clickActionCard("Add your first invoice")
+          .uploadFile()
 
-//     clickButtonByValue("Upload Files")
-// //     .attachFile("testPicture.png", {
-// //       subjectType: "drag-n-drop",
-// //     });
-//    // checkMessage(messageSelectors.success, messageTexts.success);
-//     verifyHeader(headers.customerFormHeader)
-//     verifyHeader(headers.invoiceFormHeader)
+        checkMessage(messageSelectors.success, messageTexts.success);
 
-//     invoiceUpload
-//         .checkInputTitle(title.customer)
-//         .checkInputTitle(title.number)
-//         .checkInputTitle(title.date)
-//         .checkInputTitle(title.due)
-//         .checkInputTitle(title.payment)
-//         .checkInputTitle(title.total)
+        invoiceUpload
+          .verifyFormHeaders()
 
-//     clearInputValue(inputSelectors.customer)
-//     invoiceUpload.clickOnForm()
-//     checkMessage(messageSelectors.error, messageTexts.invalidCustomer)
+        verifyInputLabels(invoiceLabels)
+        checkToolTip(invoiceToolTipTexts)
 
-//     clearInputValue(inputSelectors.number)
-//     invoiceUpload.clickOnForm()
-//     checkMessage(messageSelectors.error,messageTexts.invalidInvoice)
+        //validate error of customer name field
+        fillInputWithValue(invoiceSelectors.customer, randomLetter(8))
 
-//     clearInputValue(inputSelectors.total)
-//     invoiceUpload.clickOnForm()
-//     checkMessage(messageSelectors.error, messageTexts.invalidTotal)
+        invoiceUpload
+          .addCustomerName()
+          .clearCustomerName()
 
-//     fillInputWithValue(inputSelectors.customer, randomLetter(8))
-//     invoiceUpload.addCustomerName()
-//     fillInputWithValue(inputSelectors.number, randomChars(6))
-//     fillInputWithValue(inputSelectors.date,"2022-01-01")
-//     checkMessage(messageSelectors.error, messageTexts.dateError)
-//     fillInputWithValue(inputSelectors.date, invoiceUpload.pickDate())
-//     fillInputWithValue(inputSelectors.due, invoiceUpload.pickDueDate())
-//     invoiceUpload.verifyPaymentDays()
-//     fillInputWithValue(inputSelectors.total, randomNum(3))
-//     clickButtonByValue("Finish")
-//     verifyHeader(headers.invoiceCreated)        
-   // invoiceUpload.verifyInvoice(invoiceUpload.customerName())
+        checkMessage(messageSelectors.error, messageTexts.invalidCustomer)
+        //enter customer name
+        fillInputWithValue(invoiceSelectors.customer, randomLetter(8))
+
+        invoiceUpload
+          .addCustomerName()
+
+        //validate error of invoice number
+        fillInputWithValue(invoiceSelectors.number, randomChars(6))
+        clearInputValue(invoiceSelectors.number)
+        checkMessage(messageSelectors.error, messageTexts.invalidNumber)
+        //enter invoice number
+        fillInputWithValue(invoiceSelectors.number, randomChars(6))
+        //validate error of date field
+        fillInputWithValue(invoiceSelectors.date,"2022-01-01")
+        checkMessage(messageSelectors.error, messageTexts.dateError)
+        clearInputValue(invoiceSelectors.date)
+        
+        //enter invoice date
+        invoiceUpload
+          .pickDate()
+        
+        //validate error of due date field
+        fillInputWithValue(invoiceSelectors.due, "2022-01-01")
+        clearInputValue(invoiceSelectors.due)
+        checkMessage(messageSelectors.error, messageTexts.invalidDueDate)
+
+        //enter due date
+        invoiceUpload 
+          .pickDueDate()
+          .verifyPaymentDays()
+        
+        //check error of invoice total
+        fillInputWithValue(invoiceSelectors.total, randomNum(3))
+        clearInputValue(invoiceSelectors.total)
+        checkMessage(messageSelectors.error, messageTexts.invalidTotal)
+        //enter invoice total
+        fillInputWithValue(invoiceSelectors.total, randomNum(3))
+        clickButtonByValue("Finish")
+
+        invoiceUpload
+          .verifyUploadedInvoice()
   });
 });
