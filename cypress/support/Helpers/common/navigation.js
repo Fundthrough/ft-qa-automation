@@ -1,4 +1,3 @@
-//export const signInWith = ["Intuit", "OpenInvoice"]
 
 //cypress controlled commands
 export const navigateBack =  () => {
@@ -18,12 +17,9 @@ export const verifyNavigation = (url) => {
   cy.url().should("include", url)
 }
 
-// export const verifyRedirection = () => {
-//   cy.get(".image").each((image, index) => {
-//     cy.wrap(image).click().title().should("contain", signInWith[index])
-//     cy.go("back")
-//   })
-// }
+export const verifyRedirection = (number , value) => {
+  cy.get(".image").eq(number).click().title().should("contain", value);
+}
 
 export const clickBackArrow = (value) => {
   cy.get(".reverse").should("have.text", value).click()

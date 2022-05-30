@@ -1,6 +1,6 @@
 //<reference types="cypress" />
 import { SignInPage } from "../../support/Page_Objects/signInElements_new.js";
-import { visit, navigateBack, verifyRedirection, verifyNavigation, clickBackArrow, reload } from "../../support/Helpers/common/navigation"
+import { visit, verifyRedirection, verifyNavigation, clickBackArrow, reload } from "../../support/Helpers/common/navigation"
 import { checkInputLabels, checkInputTitle, title, verifyTitle} from "../../support/Helpers/common/title"
 import { clearInputValue, fillInputWithValue, inputSelectors } from "../../support/Helpers/common/input";
 import { checkButtonIsActive, checkButtonIsDisabled, clickButtonByValue } from "../../support/Helpers/common/button";
@@ -25,6 +25,7 @@ describe("Sign In Page", function test() {
     signInPage
       .verifySignIn()
       .verifyImage()
+
     verifyTitle("Sign In")
     //verifyRedirection()
     checkInputLabels()
@@ -34,16 +35,15 @@ describe("Sign In Page", function test() {
       .verifyStyling("Password")
       .verifyForgotPwdText()
       .clickForgotPwd()
+
     verifyNavigation("/forgot-password")
     verifyTitle("Reset your password")
-
     //Invalid email format
     clearInputValue(inputSelectors.email)
     fillInputWithValue(inputSelectors.email, "techadmin" + randomChars(3) + "@fundthrough");
     checkButtonIsDisabled("Send Code");
     clickButtonByValue("Send Code");
     checkErrorMessage(messageTexts.emailError);
-
     //Incorrect email
     clearInputValue(inputSelectors.email)
     fillInputWithValue(inputSelectors.email, "techadmin" + randomChars(4) + "@fundthrough.com");
@@ -67,6 +67,7 @@ describe("Sign In Page", function test() {
   })
 
   it("Sign In with incorrect emails", () => {
+
     visit("/signin")
 
     //attempt one
@@ -90,9 +91,11 @@ describe("Sign In Page", function test() {
     //empty input
     clickButtonByValue("Sign In");
     checkErrorMessage(messageTexts.emailError);
+
   });
 
   it("Sign In with incorrect passwords", () => {
+
     visit("/signin")
 
     //attempt one
@@ -111,9 +114,11 @@ describe("Sign In Page", function test() {
     fillInputWithValue(inputSelectors.password, "1");
     clickButtonByValue("Sign In");
     checkErrorMessage(messageTexts.passwordError);
+
   });
 
   it("Sign In with incorrect credentials", function test() {
+
     const signInPage = new SignInPage();
     let username = this.user.username;
     let password = this.user.password;
@@ -123,6 +128,7 @@ describe("Sign In Page", function test() {
     fillInputWithValue(inputSelectors.email, "techadmin" + randomChars(4) + "@fundthrough.com")
     fillInputWithValue(inputSelectors.password, password);
     clickButtonByValue("Sign In");
+
     signInPage
       .authenticationError();
 
@@ -134,9 +140,11 @@ describe("Sign In Page", function test() {
       fillInputWithValue(inputSelectors.password, randomChars(10));
       clickButtonByValue("Sign In");
     })  
+
   });
 
   it("Sign In with valid credentials", function test() {
+    
     let username = this.user.username;
     let password = this.user.password;
 
