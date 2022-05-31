@@ -125,12 +125,15 @@ describe('Legal Details', () => {
             clickButtonByValue('OK')
         })
         getIframeBody().find('[data-qa-ref="signature-input"]').click({force: true})
-        getIframeBody().find('#signature-modal-draw__canvas').click({force: true})
+        getIframeBody().find('#signature-modal-draw__canvas').click(10,20).click(20,30)
+       
         getIframeBody().within(() => {
             clickButtonByValue('Insert')
             clickButtonByValue('Continue')
             clickButtonByValue('I agree')
+          
         })
+     
     })
 })
 
