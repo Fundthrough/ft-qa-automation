@@ -2,7 +2,7 @@
 export const invoiceTexts = {
     customerFormHeader: "Who is this invoice for?",
     invoiceFormHeader: "What's on the invoice?",
-    successMessage: "Step Completed Thank you for uploading your invoice."
+    successMessage: "Invoice CreatedClick Fund to start Funding! "
 }
 
 export const invoiceSelectors = {
