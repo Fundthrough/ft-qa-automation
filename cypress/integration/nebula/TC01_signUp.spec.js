@@ -2,7 +2,7 @@
 import {SignUpPage, signUpSelectors, signUpTexts} from "../../support/Page_Objects/signUpPage.js";
 import {randomChars, randomLetter, randomNum} from "../../support/Helpers/common";
 import {checkButtonIsActive, checkButtonIsDisabled, clickButtonByValue} from "../../support/Helpers/common/button";
-import {checkErrorMessage, messageTexts} from "../../support/Helpers/common/messages";
+import {checkMessage, messageSelectors, messageTexts} from "../../support/Helpers/common/messages";
 
 Cypress.on('uncaught:exception', () => {
     return false;
@@ -27,7 +27,7 @@ describe('Sign Up page', () => {
             .fillUserEmailInput("techadmin" + randomChars(5))
             .clickOnCard()
 
-        checkErrorMessage(messageTexts.emailError)
+        checkMessage(messageSelectors.error, messageTexts.emailError)
         checkButtonIsDisabled('Next')
 
         signUpPage
@@ -36,14 +36,14 @@ describe('Sign Up page', () => {
             .fillUserEmailInput("techadmin" + randomChars(5) + "@")
             .clickOnCard()
 
-        checkErrorMessage(messageTexts.emailError)
+        checkMessage(messageSelectors.error, messageTexts.emailError)
         checkButtonIsDisabled('Next')
 
         signUpPage
             .fillUserEmailInput("techadmin" + randomChars(5) + "@")
             .clickOnCard()
 
-        checkErrorMessage(messageTexts.emailError)
+        checkMessage(messageSelectors.error, messageTexts.emailError)
         checkButtonIsDisabled('Next')
 
         signUpPage
@@ -52,7 +52,7 @@ describe('Sign Up page', () => {
             .clickOnCard()
 
         checkButtonIsDisabled('Next')
-        checkErrorMessage(messageTexts.emailError)
+        checkMessage(messageSelectors.error, messageTexts.emailError)
 
         signUpPage
             .clearUserEmailInput()
@@ -142,7 +142,7 @@ describe('Sign Up page', () => {
             .checkTermsAndCond()
             .uncheckTermsAndCond()
 
-        checkErrorMessage(messageTexts.termsAndConditions)
+        checkMessage(messageSelectors.error, messageTexts.termsAndConditions)
 
         signUpPage
             .checkTermsAndCond()

@@ -1,7 +1,7 @@
 //<reference types="cypress" />
 import { SignInPage } from "../../support/Page_Objects/signInElements_new.js";
 import { checkButtonIsActive, checkButtonIsDisabled, clickButtonByValue } from "../../support/Helpers/common/button";
-import { checkErrorMessage, messageTexts } from "../../support/Helpers/common/messages";
+import { checkMessage, messageSelectors, messageTexts } from "../../support/Helpers/common/messages";
 import { randomChars } from "../../support/Helpers/common.js";
 
 describe("Sign In Page", function test() {
@@ -26,8 +26,6 @@ describe("Sign In Page", function test() {
       .verifyImageText("2", "signin-openinvoice")
       .verifyRedirects("1", "Intuit")
       .goBack()
-      .verifyRedirects("2", "OpenInvoice")
-      .goBack()
       .verifyEmailLabel()
       .verifyStyling("Email")
       .verifyPasswordLabel()
@@ -44,7 +42,7 @@ describe("Sign In Page", function test() {
 
     checkButtonIsDisabled("Send Code");
     clickButtonByValue("Send Code");
-    checkErrorMessage(messageTexts.emailError);
+    checkMessage(messageSelectors.error, messageTexts.emailError);
 
     //Incorrect email
     signInPage
@@ -80,26 +78,26 @@ describe("Sign In Page", function test() {
       .enterEmailInput("techadmin" + randomChars(5) + "fundthrough");
 
     clickButtonByValue("Sign In");
-    checkErrorMessage(messageTexts.emailError);
+    checkMessage(messageSelectors.error, messageTexts.emailError);
 
     signInPage
       .clearEmailInput()
       .enterEmailInput("techadmin" + randomChars(3) + "@com");
 
     clickButtonByValue("Sign In");
-    checkErrorMessage(messageTexts.emailError);
+    checkMessage(messageSelectors.error, messageTexts.emailError);
 
     signInPage
       .clearEmailInput()
       .enterEmailInput("techadmin" + randomChars(2) + "@fundthrough");
 
     clickButtonByValue("Sign In");
-    checkErrorMessage(messageTexts.emailError);
+    checkMessage(messageSelectors.error, messageTexts.emailError);
 
     signInPage.clearEmailInput();
 
     clickButtonByValue("Sign In");
-    checkErrorMessage(messageTexts.emailError);
+    checkMessage(messageSelectors.error, messageTexts.emailError);
   });
 
   it("Sign In with incorrect passwords", () => {
@@ -110,7 +108,7 @@ describe("Sign In Page", function test() {
       .enterPasswordInput(randomChars(4));
 
     clickButtonByValue("Sign In");
-    checkErrorMessage(messageTexts.passwordError);
+    checkMessage(messageSelectors.error, messageTexts.passwordError);
 
     signInPage
       .visit()
@@ -118,14 +116,14 @@ describe("Sign In Page", function test() {
       .enterPasswordInput(randomChars(7));
 
     clickButtonByValue("Sign In");
-    checkErrorMessage(messageTexts.passwordError);
+    checkMessage(messageSelectors.error, messageTexts.passwordError);
 
     signInPage
       .clearPasswordInput()
       .enterPasswordInput("1");
 
     clickButtonByValue("Sign In");
-    checkErrorMessage(messageTexts.passwordError);
+    checkMessage(messageSelectors.error, messageTexts.passwordError);
   });
 
   it("Sign In with incorrect credentials", function test() {
