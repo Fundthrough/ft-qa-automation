@@ -1,8 +1,8 @@
 import SigninElements from '../../support/Page_Objects/SigninElements.js';
+import {visit} from "../../support/Helpers/common/navigation";
 
 describe('Signin Validation', () => {
     beforeEach(function () {
-        cy.visit('/signin')
         cy.clearLocalStorage()
         cy.fixture('profile').then(function (user) {
             this.user = user;
@@ -24,11 +24,7 @@ describe('Signin Validation', () => {
 
     it('SignIn with Valid Credential', function () {
         cy.login(this.user.username, this.user.password)
-        signinElements.usercredential.getskipcontainer().click({ force: true })
-        cy.intercept('POST', '/v1/t', {}).as('userSignin')
-        //cy.intercept('POST', '/v1/p', {}).as('addinvoice')
-        cy.wait('@userSignin', { timeout: 20000 })
-            .then(($div) => {
+
                 signinElements.velocitydashboard.getyellowactioncard()
 
 
@@ -39,11 +35,12 @@ describe('Signin Validation', () => {
                     expect($i).to.contain('Review the funding agreement')
                     expect($i).to.contain('Add your bank')
                 })
-            })
+
     })
 
 
     it("Sign In with invalid Credentials", function () {
+        visit('/login')
         signinElements.usercredential.getusername().type(this.user.username)
         signinElements.usercredential.getpassword().type(PasswordInvalid)
         signinElements.usercredential.getskipcontainer().click({ force: true })
@@ -63,6 +60,7 @@ describe('Signin Validation', () => {
     })
 
     it("Input invalid Data on username and password", function () {
+        visit('/login')
         signinElements.usercredential.getusername().type(TestEmail)
         signinElements.usercredential.getpassword().type(InvalidTextPassword)
         signinElements.usercredential.getskipcontainer().click({ force: true })
