@@ -20,6 +20,7 @@ import {
 } from "../../support/Helpers/common/input";
 import {checkProgressAndHeader} from "../../support/Helpers/common/title";
 import {navigateBack, verifyNavigation, verifyRedirection, visit} from "../../support/Helpers/common/navigation";
+import {loadingSelectors, waitForLoader} from "../../support/Helpers/common/iframe";
 
 Cypress.on('uncaught:exception', () => {
     return false;
@@ -220,6 +221,8 @@ describe('Sign Up page', () => {
 
         clickButtonByValue('Skip')
         cy.wait('@nextStep', { timeout: 60000 })
+
+        waitForLoader(loadingSelectors.loaderDefault)
 
         signUpPage
             .logOut()

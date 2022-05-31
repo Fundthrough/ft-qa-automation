@@ -1,6 +1,7 @@
 export const messageSelectors = {
     error: '.error',
-    agreementError: '.card__agreement__span_error'
+    agreementError: '.card__agreement__span_error',
+    notificationDashboard: '.notification-container',
     success: '.green-text'
 }
 

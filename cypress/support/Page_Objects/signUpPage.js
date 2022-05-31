@@ -28,6 +28,7 @@ export const signUpSelectors = {
     navHeader: '.flex-left > .ui',
     navSettings: '[href="/settings"]',
     navContent: '[href="/account"] > div',
+    navItems: '.nav__menu__items',
     cardContentHeader: '.card-content-left',
     menuContainerInvoice: '.menu-container',
     companyName: '.accordion__company-name',
@@ -149,9 +150,12 @@ export class SignUpPage {
         return this;
     }
 
-    checkDashboardIsLoaded() {
-        cy.get('.loader').should('exist')
-        cy.get('.loader').should('not.exist')
+    selectItemFromNavbar(itemName) {
+        cy.get(signUpSelectors.navbar).click()
+        cy.get(signUpSelectors.navItems)
+            .should('be.visible')
+            .contains(itemName)
+            .click({force: true})
 
         return this;
     }
