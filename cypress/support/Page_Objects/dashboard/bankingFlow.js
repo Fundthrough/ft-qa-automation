@@ -30,4 +30,13 @@ export class BankingFlowPage {
 
         return this;
     }
+    // Plaid Checking
+    selectBusinessBank(accountType) {
+        cy.get('.link-bank').find('b').contains(accountType).parents('.left-float').siblings().then(() => {
+            clickButtonByValue('Select')
+            cy.get('button').contains('Select').should('not.exist')
+        })
+
+        return this;
+    }
 }

@@ -1,6 +1,7 @@
 export const messageSelectors = {
     error: '.error',
-    agreementError: '.card__agreement__span_error'
+    agreementError: '.card__agreement__span_error',
+    notificationDashboard: '.notification-container'
 }
 
 export const messageTexts = {
@@ -23,4 +24,8 @@ export const checkErrorMessage = (message) => {
 
 export const agreementError = (message) => {
     cy.get(messageSelectors.agreementError).should('contain', message)
+}
+
+export const checkNotification = (message) => {
+    cy.get(messageSelectors.notificationDashboard).contains(message).should('exist')
 }
