@@ -1,7 +1,7 @@
 //<reference types="cypress" />
 import { SignInPage } from "../../support/Page_Objects/signInElements_new.js";
 import { visit, verifyRedirection, verifyNavigation, clickBackArrow, reload } from "../../support/Helpers/common/navigation"
-import { checkInputLabels, checkInputTitle, title, verifyTitle} from "../../support/Helpers/common/title"
+import { signInLabels, verifyInputLabels, verifyTitle} from "../../support/Helpers/common/title"
 import { clearInputValue, fillInputWithValue, inputSelectors } from "../../support/Helpers/common/input";
 import { checkButtonIsActive, checkButtonIsDisabled, clickButtonByValue } from "../../support/Helpers/common/button";
 import { checkErrorMessage, messageTexts } from "../../support/Helpers/common/messages";
