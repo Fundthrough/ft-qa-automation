@@ -74,10 +74,7 @@ describe('Sign Up page', () => {
 
         checkButtonIsDisabled('Next')
         checkMessage(messageSelectors.error, messageTexts.emailError)
-
-        signUpPage
-            .clearUserEmailInput()
-
+        clearInputValue(inputSelectors.email)
         checkButtonIsDisabled('Next')
         fillInputWithValue(inputSelectors.email, "techadmin" + randomChars(5)+ "@fundthrough.co")
 
