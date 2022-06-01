@@ -3,16 +3,17 @@
     "baseUrl": "https://nebula-client.fundthrough.com",
     "ignoreTestFiles": "**/examples/*",
     "defaultCommandTimeout": 60000,
+    "responseTimeout": 60000,
     "viewportWidth": 1920,
     "viewportHeight": 1080,
+  "chromeWebSecurity": false,
     "watchForFileChanges": false,
-    "chromeWebSecurity": false,
-  "testFiles":[
-      "nebula/TC01_signUp.spec.js",
-      "nebula/TC02_SignIn.validation.js",
-      "nebula/TC03_upload.invoice.js",
-      "nebula/TC04_Signin.Page.Elements.js",
-      "nebula/fundingAgreement.spec.js"
+    "testFiles":[
+     "nebula/TC01_signUp.spec.js",
+     "nebula/TC02_SignIn.validation.js",
+     "nebula/TC03_upload.invoice.js",
+     "nebula/TC04_Signin.Page.Elements.js",
+     "nebula/fundingAgreement.spec.js"
     ],
     "retries" : 2
 }

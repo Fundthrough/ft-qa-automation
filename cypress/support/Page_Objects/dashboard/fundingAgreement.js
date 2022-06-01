@@ -36,6 +36,15 @@ export class FundingAgreementPage {
         return this;
     }
 
+    checkCard(cardTitle, exists = true) {
+        cy.get('.action-card-carousel').within(() => {
+            cy.get('.ft-action-card-content-container')
+                .contains(cardTitle).should(exists ? 'exist' : 'not.exist')
+        })
+
+        return this;
+    }
+
     checkProgress(section, currentStep, lastStep) {
         cy.get(signUpSelectors.stepContainer)
             .find(signUpSelectors.currentStep)

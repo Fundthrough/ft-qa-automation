@@ -1,14 +1,26 @@
-import { signUpSelectors} from "../../support/Page_Objects/signUpPage";
-import {checkButtonIsActive, clickButtonByValue} from "../../support/Helpers/common/button";
+import {SignUpPage} from "../../support/Page_Objects/signUpPage";
+import {
+    checkButtonIsActive,
+    checkTheCheckbox,
+    clickButton,
+    clickButtonByValue,
+    verifyCheckbox
+} from "../../support/Helpers/common/button";
 
 import {
     FundingAgreementPage,
     fundingAgreementSelectors,
     fundingAgreementTexts
 } from "../../support/Page_Objects/dashboard/fundingAgreement";
-import {agreementError, checkErrorMessage, messageTexts} from "../../support/Helpers/common/messages";
-import {checkTheCheckbox, verifyCheckbox} from "../../support/Helpers/common/checkbox";
-import {checkTooltip, tooltipTexts} from "../../support/Helpers/common/tooltip";
+import {
+    agreementError,
+    checkErrorMessage,
+    checkNotification,
+    messageTexts
+} from "../../support/Helpers/common/messages";
+import {checkTooltip, tooltipSelectors, tooltipTexts} from "../../support/Helpers/common/tooltip";
+import {inputSelectors} from "../../support/Helpers/common/input";
+import {getIframeBody, iframeSelectors} from "../../support/Helpers/common/iframe";
 
 describe('Legal Details', () => {
     beforeEach(() => {
@@ -56,8 +68,8 @@ describe('Legal Details', () => {
         checkErrorMessage(messageTexts.identificationNumber)
 
         fundingAgreementPage
-            .updateField(signUpSelectors.firstName, fundingAgreementSelectors.updateLegalName,'1')
-            .typeInField(signUpSelectors.lastName, '1')
+            .updateField(inputSelectors.firstName, fundingAgreementSelectors.updateLegalName,'1')
+            .typeInField(inputSelectors.lastName, '1')
 
         checkErrorMessage(messageTexts.invalidName)
         checkErrorMessage(messageTexts.invalidSurname)
@@ -65,6 +77,7 @@ describe('Legal Details', () => {
 
     it('Valid Legal Details form submission', function () {
         const fundingAgreementPage = new FundingAgreementPage();
+        const signUpPage = new SignUpPage();
 
         cy.login(this.user.username, this.user.password)
 
@@ -87,9 +100,9 @@ describe('Legal Details', () => {
 
         verifyCheckbox('.checkbox','Same as business address', false)
         checkTheCheckbox('.checkbox', 'Same as business address')
-        checkTooltip('First Business Tax Year',tooltipTexts.taxYear)
-        checkTooltip('Your Personal Address',tooltipTexts.personalAddress)
-        checkTooltip('Employer Identification Number (EIN)',tooltipTexts.identificationNumber)
+        checkTooltip(tooltipSelectors.header, 'First Business Tax Year',tooltipTexts.taxYear)
+        checkTooltip(tooltipSelectors.header, 'Your Personal Address',tooltipTexts.personalAddress)
+        checkTooltip(tooltipSelectors.header, 'Employer Identification Number (EIN)',tooltipTexts.identificationNumber)
         verifyCheckbox('.checkbox','Same as business address', true)
         clickButtonByValue('Looks Correct')
 
@@ -106,34 +119,29 @@ describe('Legal Details', () => {
         checkTheCheckbox('.checkbox', 'accept the Master Purchase and Sale Agreement and have the authority to bind the Corporation.')
         checkTheCheckbox('.checkbox', 'accept the Personal Guarantee.')
         clickButtonByValue('I Agree')
-
-        const getIframeDocument = () => {
-            return cy
-                .get('iframe.x-hellosign-embedded__iframe')
-                .its('0.contentDocument').should('exist')
-        }
-
-        const getIframeBody = () => {
-            // get the document
-            return getIframeDocument()
-                .its('body').should('not.be.undefined')
-                .then(cy.wrap)
-        }
-
-        getIframeBody().wait(9000)
-        getIframeBody().find('.m-signature-request-preview--test-warning--content').within(() => {
+        getIframeBody(iframeSelectors.signingDocIframe).wait(9000)
+        getIframeBody(iframeSelectors.signingDocIframe).find(iframeSelectors.signatureContentIframe).within(() => {
             clickButtonByValue('OK')
         })
-        getIframeBody().find('[data-qa-ref="signature-input"]').click({force: true})
-        getIframeBody().find('#signature-modal-draw__canvas').click(10,20).click(20,30)
+        getIframeBody(iframeSelectors.signingDocIframe).find(iframeSelectors.signatureInput).click({force: true})
+        getIframeBody(iframeSelectors.signingDocIframe).find(iframeSelectors.signatureCanvasIframe).click(10,20).click(20,30)
        
-        getIframeBody().within(() => {
-            clickButtonByValue('Insert')
+        getIframeBody(iframeSelectors.signingDocIframe).within(() => {
+            clickButton('Insert')
             clickButtonByValue('Continue')
             clickButtonByValue('I agree')
+            clickButtonByValue('Close')
           
         })
-     
+
+        signUpPage
+            .selectItemFromNavbar('Invoices')
+
+        checkNotification('Step completed')
+        checkNotification('Thank you for reviewing the funding agreement.')
+
+        fundingAgreementPage
+            .checkCard('Review the funding agreement', false)
     })
 })
 
