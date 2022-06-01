@@ -14,3 +14,5 @@ Cypress.Commands.add('login' , (username, password) => {
 })
 
 Cypress.Commands.add('checkCard', checkCard)
+
+
