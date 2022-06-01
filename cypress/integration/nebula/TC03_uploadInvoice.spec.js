@@ -44,9 +44,9 @@ describe("Upload your first invoice", () => {
         const invoiceUpload = new InvoiceUpload();
 
         visit("/signin")
-        fillInputWithValue(inputSelectors.email, this.user.username)
-        fillInputWithValue(inputSelectors.password, this.user.password)
-        clickButtonByValue("Sign In")
+
+        cy.login(this.user.username, this.user.password)
+
         verifyNavigation("/invoices")
     
         invoiceUpload

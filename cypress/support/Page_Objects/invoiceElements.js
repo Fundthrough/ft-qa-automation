@@ -27,26 +27,39 @@ let currentDate = day.getDate()
 export class InvoiceUpload {
 
     clickActionCard(value) {
-        cy.get(invoiceSelectors.slide).contains(value).click()
+        cy
+            .get(invoiceSelectors.slide)
+            .contains(value)
+            .click()
 
         return this;
     }
 
     uploadInvalidFile() {
-        cy.get(invoiceSelectors.uploadIcon).attachFile("example.json", {subjectType: "drag-n-drop",});
+        cy
+            .get(invoiceSelectors.uploadIcon)
+            .attachFile("example.json", {subjectType: "drag-n-drop",});
 
         return this;
     }
 
     uploadFile() {
-        cy.get(invoiceSelectors.uploadIcon).attachFile("testPicture.png", {subjectType: "drag-n-drop",});
+        cy
+            .get(invoiceSelectors.uploadIcon)
+            .attachFile("testPicture.png", {subjectType: "drag-n-drop",});
 
         return this;
     }
 
     verifyFormHeaders() {
-        cy.get(invoiceSelectors.form).parent().should("contain", invoiceTexts.customerFormHeader)
-        cy.get(invoiceSelectors.form).find('h4').contains(invoiceTexts.invoiceFormHeader)
+        cy
+            .get(invoiceSelectors.form)
+            .parent()
+            .should("contain", invoiceTexts.customerFormHeader)
+        cy
+            .get(invoiceSelectors.form)
+            .find('h4')
+            .contains(invoiceTexts.invoiceFormHeader)
 
         return this;
     }
@@ -64,24 +77,58 @@ export class InvoiceUpload {
     }
 
     pickDate() {
-        cy.get(invoiceSelectors.date).click()
-        cy.get("table > tbody > tr").contains(currentDate).click()
+        cy
+            .get(invoiceSelectors.date)
+            .click()
+        cy
+            .get('td:not(.disabled)')
+            .each($el => {
+                if($el.text() == currentDate) {
+                    cy
+                        .wrap($el)
+                        .should('exist')
+                        .click()
+                }
+            })
 
         return this;
     }
 
     pickDueDate() {
-        const tomorrow = new Date(day.setDate(day.getDate() + 7));
-        const dueDate = tomorrow.getDate() 
-        cy.get(invoiceSelectors.due).click()
+        const nextWeek = new Date(day.setDate(day.getDate() + 7));
+        const dueDate = nextWeek.getDate() 
+
+        cy
+            .get(invoiceSelectors.due)
+            .click()
 
         if(currentDate >= 24 ) {
-            cy.get('.chevron.right').click()
-            cy.get("table > tbody > tr").contains(dueDate).click()
+            cy
+                .get('.chevron.right')
+                .click()
+            cy
+                .get('td:not(.disabled)')
+                .each($el => {
+                    if($el.text() == dueDate) {
+                        cy
+                            .wrap($el)
+                            .should('exist')
+                            .click()
+                    }
+                })
         }  else {
-            cy.get("table > tbody > tr").contains(dueDate).click()
-        }   
-        
+            cy
+                .get('td:not(.disabled)')
+                .each($el => {
+                    if($el.text() == dueDate) {
+                        cy
+                            .wrap($el)
+                            .should('exist')
+                            .click()
+                    }
+                })
+            }
+
         return this;
     }
 
