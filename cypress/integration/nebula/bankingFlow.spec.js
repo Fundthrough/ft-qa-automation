@@ -8,7 +8,7 @@ import {
 } from "../../support/Helpers/common/button";
 import {getIframeBody, iframeSelectors, loadingSelectors, waitForLoader} from "../../support/Helpers/common/iframe";
 import {checkEmptyInput, checkInputValue, fillInputWithValue, inputSelectors} from "../../support/Helpers/common/input";
-import {SignUpPage, signUpSelectors, signUpTexts} from "../../support/Page_Objects/signUpPage";
+import {SignUpPage, signUpSelectors, signUpTexts} from "../../support/Page_Objects/registration/signUpPage";
 import {randomChars} from "../../support/Helpers/common";
 import {verifyNavigation, visit} from "../../support/Helpers/common/navigation";
 import {checkErrorMessage, checkNotification, messageTexts} from "../../support/Helpers/common/messages";

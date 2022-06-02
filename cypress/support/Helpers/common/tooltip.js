@@ -1,4 +1,4 @@
-import {signUpSelectors} from "../../Page_Objects/signUpPage";
+import {signUpSelectors} from "../../Page_Objects/registration/signUpPage";
 
 export const tooltipSelectors = {
     inputLabel: '.input-label',

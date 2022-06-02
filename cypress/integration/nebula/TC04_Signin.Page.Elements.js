@@ -1,6 +1,6 @@
 //<reference types="cypress" />
-import SigninElements from '../../support/Page_Objects/SigninElements.js';
-import { getAccount } from "../../support/Page_Objects/signUpPage.js";
+import SigninElements from '../../support/Page_Objects/registration/SigninElements.js';
+import { getAccount } from "../../support/Page_Objects/registration/signUpPage.js";
 
 describe('Velocity Signin Page', () => 
 {

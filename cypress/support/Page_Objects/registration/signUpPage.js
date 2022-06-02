@@ -1,4 +1,4 @@
-import {inputSelectors} from "../Helpers/common/input";
+import {inputSelectors} from "../../Helpers/common/input";
 
 export const signUpSelectors = {
     signUpPage: '.sign-up-value-flow',

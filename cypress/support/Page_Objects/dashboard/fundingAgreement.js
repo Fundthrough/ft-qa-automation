@@ -1,5 +1,6 @@
 import {clickButtonByValue} from "../../Helpers/common/button";
-import {signUpSelectors} from "../signUpPage";
+import {signUpSelectors} from "../registration/signUpPage";
+import {DashboardBasePage} from "./dashboardBase";
 
 export const fundingAgreementSelectors = {
     updateBusinessName: '#updatingBusinessName',
@@ -25,16 +26,7 @@ export const fundingAgreementTexts = {
     taxAuth: 'Provide tax authorization'
 };
 
-export class FundingAgreementPage {
-
-    selectCard(cardTitle, buttonTitle) {
-        cy.get('.action-card-carousel').within(() => {
-            cy.get('.ft-action-card-content-container').contains(cardTitle).should('be.visible')
-            clickButtonByValue(buttonTitle)
-        })
-
-        return this;
-    }
+export class FundingAgreementPage extends DashboardBasePage{
 
     checkProgress(section, currentStep, lastStep) {
         cy.get(signUpSelectors.stepContainer)

@@ -1,4 +1,4 @@
-import SigninElements from '../../support/Page_Objects/SigninElements.js';
+import SigninElements from '../../support/Page_Objects/registration/SigninElements.js';
 import {visit} from "../../support/Helpers/common/navigation";
 
 describe('Signin Validation', () => {

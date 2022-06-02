@@ -1,5 +1,5 @@
 // <reference types="cypress" />
-import {SignUpPage, signUpSelectors, signUpTexts} from "../../support/Page_Objects/signUpPage.js";
+import {SignUpPage, signUpSelectors, signUpTexts} from "../../support/Page_Objects/registration/signUpPage.js";
 import {randomChars, randomLetter, randomNum} from "../../support/Helpers/common";
 import {
     checkButtonIsActive,
