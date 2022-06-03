@@ -1,5 +1,6 @@
 import SigninElements from '../../support/Page_Objects/SigninElements.js';
 import 'cypress-file-upload';
+import {iframeSelectors, loadingSelectors, waitForLoader} from "../../support/Helpers/common/iframe";
 
 describe('upload invoice from dashboard', () => {
 
@@ -47,9 +48,10 @@ it('SignIn with Valid Credential', function test() {
                                 signinElements.enterrandomnumber()
                         }).then(() => {
                                 signinElements.customerPage.getbuttonuploadinvoice().click({ force: true })
-                                cy.wait(2000)
                         })
                 })
+
+                waitForLoader(loadingSelectors.loaderDefault)
                 signinElements.customerPage.getinvoicecreated()
                 //cy.wait('@addinvoice')
                 //signout
