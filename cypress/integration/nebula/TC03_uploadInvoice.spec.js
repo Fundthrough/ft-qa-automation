@@ -31,20 +31,11 @@ import { checkToolTip, invoiceToolTipTexts } from "../../support/Helpers/common/
 describe("Upload your first invoice", () => {
   
   beforeEach(() => {
-    cy
-      .clearLocalStorage();
-    cy
-      .fixture("profile").then(function (user) {
-      this.user = user;
-    });
+    cy.login()
   });
 
   it("Validate upload invoice", function test() {
         const invoiceUpload = new InvoiceUpload();
-
-        visit("/signin")
-
-        cy.login(this.user.username, this.user.password)
 
         verifyNavigation("/invoices")
     

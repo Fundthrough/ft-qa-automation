@@ -1,5 +1,4 @@
-import { visit } from "../../support/Helpers/common/navigation";
-import { InvoiceDetails, customerName } from "../../support/Page_Objects/invoiceDetails";
+import { InvoiceDetails } from "../../support/Page_Objects/invoicePanelElements";
 
 describe('Invoice Details Grid', () => {
     beforeEach(() => {
