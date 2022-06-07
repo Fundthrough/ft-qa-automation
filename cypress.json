@@ -12,7 +12,8 @@
     "nebula/TC02_signIn.spec.js",
     "nebula/TC03_uploadInvoice.spec.js",
     "nebula/TC04_Signin.validation.js",
-    "nebula/TC05_dbValidation.js"
+    "nebula/invoicePanel.spec.js"
+    
   ],
   "retries": 2,
   "db": {

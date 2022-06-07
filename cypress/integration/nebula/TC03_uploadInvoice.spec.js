@@ -7,7 +7,6 @@ import {
 import {
   clearInputValue,
   fillInputWithValue,
-  inputSelectors,
   invoiceLabels,
   verifyInputLabels
 } from "../../support/Helpers/common/input.js";
