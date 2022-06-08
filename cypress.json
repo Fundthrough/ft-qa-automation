@@ -15,12 +15,5 @@
     "nebula/invoicePanel.spec.js"
     
   ],
-  "retries": 2,
-  "db": {
-    "user": "orbit",
-    "host": "qrhs7dkav0zp2y.cza0y6drjtcu.us-east-1.rds.amazonaws.com",
-    "database": "fundthrough",
-    "password": "3000foodAndFun260",
-    "port": 5432
-  }
+  "retries": 2
 }

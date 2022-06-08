@@ -1,3 +1,4 @@
+import {clickButtonByValue} from "../Helpers/common/button";
 
 export const invoiceTexts = {
     customerFormHeader: "Who is this invoice for?",
@@ -26,11 +27,11 @@ let currentDate = day.getDate()
 
 export class InvoiceUpload {
 
-    clickActionCard(value) {
-        cy
-            .get(invoiceSelectors.slide)
-            .contains(value)
-            .click()
+    selectCard(cardTitle, buttonTitle) {
+        cy.get('.action-card-carousel').within(() => {
+            cy.get('.ft-action-card-content-container').contains(cardTitle).should('be.visible')
+            clickButtonByValue(buttonTitle)
+        })
 
         return this;
     }

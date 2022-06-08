@@ -1,14 +1,8 @@
 
-import profile from '../fixtures/profile.json';
-
-Cypress.Commands.add('login' , () => {
+Cypress.Commands.add('login' , (username, password) => {
     cy.clearLocalStorage()
     cy.visit("/signin")
-    cy.get('#username').type(profile.username)
-    cy.get('#password').type(profile.password)
+    cy.get('#username').type(username)
+    cy.get('#password').type(password)
     cy.get('.forward').click()
-})
-
-Cypress.Commands.add('clearStorage',() => {
-    cy.clearLocalStorage()
 })

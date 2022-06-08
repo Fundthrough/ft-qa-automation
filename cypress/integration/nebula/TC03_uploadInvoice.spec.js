@@ -1,15 +1,13 @@
-
 import { invoiceSelectors, InvoiceUpload } from "../../support/Page_Objects/invoiceElements";
 import {
-  verifyNavigation,
-  visit,
-} from "../../support/Helpers/common/navigation.js";
+  verifyNavigation
+} from "../../support/Helpers/common/navigation";
 import {
   clearInputValue,
   fillInputWithValue,
   invoiceLabels,
   verifyInputLabels
-} from "../../support/Helpers/common/input.js";
+} from "../../support/Helpers/common/input";
 import {
   clickButtonByValue,
 } from "../../support/Helpers/common/button";
@@ -24,23 +22,27 @@ import {
   messageSelectors,
   messageTexts,
 } from "../../support/Helpers/common/messages";
+import { checkTooltip, tooltipTexts } from "../../support/Helpers/common/tooltip";
 import {randomChars, randomLetter, randomNum} from "../../support/Helpers/common";
-import { checkToolTip, invoiceToolTipTexts } from "../../support/Helpers/common/tooltip";
 
 
 describe("Upload your first invoice", () => {
   
   beforeEach(() => {
-    cy.login()
+    cy.fixture("profile.json").then(function (user) {
+      this.user = user;
+    });
   });
 
-  it("Validate upload invoice", function test() {
+  it("Validate upload invoice", function () {
         const invoiceUpload = new InvoiceUpload();
+
+        cy.login(this.user.username, this.user.password)
 
         verifyNavigation("/invoices")
     
         invoiceUpload
-          .clickActionCard("Add your first invoice");
+          .selectCard("Add your first invoice", "Add");
 
         verifyHeader(headers.invoiceHeader);
         verifyFundHeader(fundHeaders.invoiceFundHeader);
@@ -53,7 +55,7 @@ describe("Upload your first invoice", () => {
         verifyNavigation("/invoices");
 
         invoiceUpload
-          .clickActionCard("Add your first invoice")
+          .selectCard("Add your first invoice", "Add")
           .uploadFile()
 
         checkMessage(messageSelectors.success, messageTexts.success);
@@ -62,7 +64,8 @@ describe("Upload your first invoice", () => {
           .verifyFormHeaders()
 
         verifyInputLabels(invoiceLabels)
-        checkToolTip(invoiceToolTipTexts)
+        checkTooltip('Invoice Number', tooltipTexts.invoiceNumber)
+        checkTooltip('Invoice Date', tooltipTexts.invoiceDate)
 
         //validate error of customer name field
         fillInputWithValue(invoiceSelectors.customer, randomLetter(8))
