@@ -37,9 +37,9 @@ describe("Upload your first invoice", () => {
   it("Validate upload invoice", function () {
         const invoiceUpload = new InvoiceUpload();
 
-        verifyNavigation("/invoices")
-
         cy.login(this.user.username, this.user.password)
+
+        verifyNavigation("/invoices")
     
         invoiceUpload
           .selectCard("Add your first invoice", "Add");
