@@ -1,4 +1,3 @@
-
 export const inputSelectors = {
     email: '#username',
     password: '#password',
@@ -15,6 +14,7 @@ export const inputSelectors = {
 }
 
 export const invoiceLabels = ["Customer Name", "Invoice Number", "Invoice Date", "Due Date", "Payment Terms (Days)", "Invoice Total"]
+export const signInLabels = ["Business Email", "Password"]
 
 export const checkEmptyInput = (inputName) => {
     cy.get(inputName)

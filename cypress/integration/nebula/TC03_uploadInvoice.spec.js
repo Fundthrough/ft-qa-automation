@@ -1,6 +1,6 @@
 import { invoiceSelectors, InvoiceUpload } from "../../support/Page_Objects/invoiceElements";
 import {
-  verifyNavigation,
+  verifyNavigation, visit,
 } from "../../support/Helpers/common/navigation";
 import {
   clearInputValue,
@@ -29,13 +29,17 @@ import {randomChars, randomLetter, randomNum} from "../../support/Helpers/common
 describe("Upload your first invoice", () => {
   
   beforeEach(() => {
-    cy.login()
+    cy.fixture("profile.json").then(function (user) {
+      this.user = user;
+    });
   });
 
-  it("Validate upload invoice", () => {
+  it("Validate upload invoice", function () {
         const invoiceUpload = new InvoiceUpload();
 
         verifyNavigation("/invoices")
+
+        cy.login(this.user.username, this.user.password)
     
         invoiceUpload
           .selectCard("Add your first invoice", "Add");
