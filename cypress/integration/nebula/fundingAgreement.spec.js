@@ -12,7 +12,13 @@ import {
     fundingAgreementSelectors,
     fundingAgreementTexts
 } from "../../support/Page_Objects/dashboard/fundingAgreement";
-import {agreementError, checkMessage, messageSelectors, messageTexts} from "../../support/Helpers/common/messages";
+import {
+    agreementError,
+    checkMessage,
+    checkNotification,
+    messageSelectors,
+    messageTexts
+} from "../../support/Helpers/common/messages";
 import {checkTooltip, tooltipSelectors, tooltipTexts} from "../../support/Helpers/common/tooltip";
 import {inputSelectors} from "../../support/Helpers/common/input";
 import {getIframeBody, iframeSelectors} from "../../support/Helpers/common/iframe";
