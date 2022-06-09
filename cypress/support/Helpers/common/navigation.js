@@ -1,4 +1,3 @@
-
 //cypress controlled commands
 export const navigateBack =  () => {
     cy.go("back")
