@@ -7,7 +7,7 @@ import {
     clickButtonByValue,
     verifyCheckbox
 } from "../../support/Helpers/common/button";
-import {checkErrorMessage, messageTexts} from "../../support/Helpers/common/messages";
+import {checkMessage, messageTexts} from "../../support/Helpers/common/messages";
 import {checkTooltip, tooltipSelectors, tooltipTexts} from "../../support/Helpers/common/tooltip";
 import {
     checkEmptyInput,
@@ -45,7 +45,7 @@ describe('Sign Up page', () => {
         signUpPage
             .clickOnCard()
 
-        checkErrorMessage(messageTexts.emailError)
+        checkMessage(messageTexts.emailError)
         checkButtonIsDisabled('Next')
         clearInputValue(inputSelectors.email)
         checkEmptyInput(inputSelectors.email)
@@ -54,7 +54,7 @@ describe('Sign Up page', () => {
         signUpPage
             .clickOnCard()
 
-        checkErrorMessage(messageTexts.emailError)
+        checkMessage(messageTexts.emailError)
         checkButtonIsDisabled('Next')
 
         fillInputWithValue(inputSelectors.email, "techadmin" + randomChars(5) + "@")
@@ -62,7 +62,7 @@ describe('Sign Up page', () => {
         signUpPage
             .clickOnCard()
 
-        checkErrorMessage(messageTexts.emailError)
+        checkMessage(messageTexts.emailError)
         checkButtonIsDisabled('Next')
 
         clearInputValue(inputSelectors.email)
@@ -72,7 +72,7 @@ describe('Sign Up page', () => {
             .clickOnCard()
 
         checkButtonIsDisabled('Next')
-        checkErrorMessage(messageTexts.emailError)
+        checkMessage(messageTexts.emailError)
         clearInputValue(inputSelectors.email)
         checkButtonIsDisabled('Next')
         fillInputWithValue(inputSelectors.email, "techadmin" + randomChars(5)+ "@fundthrough.co")
@@ -150,7 +150,7 @@ describe('Sign Up page', () => {
             .checkTermsAndCond()
             .uncheckTermsAndCond()
 
-        checkErrorMessage(messageTexts.termsAndConditions)
+        checkMessage(messageTexts.termsAndConditions)
 
         signUpPage
             .checkTermsAndCond()
