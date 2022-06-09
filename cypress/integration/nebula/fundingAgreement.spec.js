@@ -11,7 +11,7 @@ import {
     fundingAgreementSelectors,
     fundingAgreementTexts
 } from "../../support/Page_Objects/dashboard/fundingAgreement";
-import {agreementError, checkErrorMessage, messageTexts} from "../../support/Helpers/common/messages";
+import {agreementError, checkMessage, messageTexts} from "../../support/Helpers/common/messages";
 import {checkTooltip, tooltipSelectors, tooltipTexts} from "../../support/Helpers/common/tooltip";
 import {getIframeBody, iframeSelectors} from "../../support/Helpers/common/iframe";
 import {randomChars} from "../../support/Helpers/common";
@@ -147,34 +147,34 @@ describe('Legal Details', () => {
             .checkProgress( fundingAgreementTexts.legalInformation,2, 4)
 
         clickButtonByValue('Looks Correct')
-        checkErrorMessage(messageTexts.jobTitleError)
+        checkMessage(messageTexts.jobTitleError)
 
         fundingAgreementPage
             .updateField(fundingAgreementSelectors.businessName, fundingAgreementSelectors.updateBusinessName, '1')
 
-        checkErrorMessage(messageTexts.businessNameError)
+        checkMessage(messageTexts.businessNameError)
 
         fundingAgreementPage
             .updateField(fundingAgreementSelectors.taxYear, fundingAgreementSelectors.updateTaxYear, '1')
 
-        checkErrorMessage(messageTexts.taxYearError)
+        checkMessage(messageTexts.taxYearError)
 
         fundingAgreementPage
             .updateField(fundingAgreementSelectors.phoneNumber, fundingAgreementSelectors.updatePhoneNumber, '1')
 
-        checkErrorMessage(messageTexts.phoneNumberError)
+        checkMessage(messageTexts.phoneNumberError)
 
         fundingAgreementPage
             .updateField(fundingAgreementSelectors.businessNumber, fundingAgreementSelectors.addingBusinessNumber,'1')
 
-        checkErrorMessage(messageTexts.identificationNumber)
+        checkMessage(messageTexts.identificationNumber)
 
         fundingAgreementPage
             .updateField(signUpSelectors.firstName, fundingAgreementSelectors.updateLegalName,'1')
             .typeInField(signUpSelectors.lastName, '1')
 
-        checkErrorMessage(messageTexts.invalidName)
-        checkErrorMessage(messageTexts.invalidSurname)
+        checkMessage(messageTexts.invalidName)
+        checkMessage(messageTexts.invalidSurname)
     })
 
     it('Valid Legal Details form submission', function () {

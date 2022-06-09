@@ -2,17 +2,15 @@ import {BankingFlowPage} from "../../support/Page_Objects/dashboard/bankingFlow"
 import {checkHeaderText, checkProgressAndHeader} from "../../support/Helpers/common/title";
 import {
     checkButtonIsActive,
-    checkButtonIsDisabled, checkTheCheckbox,
+    checkTheCheckbox,
     clickButtonByValue,
     verifyCheckbox
 } from "../../support/Helpers/common/button";
 import {getIframeBody, iframeSelectors, loadingSelectors, waitForLoader} from "../../support/Helpers/common/iframe";
-import {checkEmptyInput, checkInputValue, fillInputWithValue, inputSelectors} from "../../support/Helpers/common/input";
-import {SignUpPage, signUpSelectors, signUpTexts} from "../../support/Page_Objects/signUpPage";
-import {randomChars} from "../../support/Helpers/common";
-import {verifyNavigation, visit} from "../../support/Helpers/common/navigation";
-import {checkErrorMessage, checkNotification, messageTexts} from "../../support/Helpers/common/messages";
-import {checkTooltip, tooltipSelectors, tooltipTexts} from "../../support/Helpers/common/tooltip";
+import {fillInputWithValue} from "../../support/Helpers/common/input";
+import {SignUpPage} from "../../support/Page_Objects/signUpPage";
+import {verifyNavigation} from "../../support/Helpers/common/navigation";
+import {checkNotification} from "../../support/Helpers/common/messages";
 
 describe('Legal Details', () => {
     beforeEach(() => {
@@ -57,6 +55,15 @@ describe('Legal Details', () => {
 
         cy.wait('@nextStep', { timeout: 60000 })
 
+        checkProgressAndHeader('Link your business bank account', 2, 3)
+
+        bankingFlowPage
+            .selectBusinessBank('Plaid Checking')
+
+        checkProgressAndHeader('Confirm your bank account', 3, 3)
+
+        clickButtonByValue("Back");
+        verifyNavigation("/deposit");
         checkProgressAndHeader('Link your business bank account', 2, 3)
 
         bankingFlowPage
