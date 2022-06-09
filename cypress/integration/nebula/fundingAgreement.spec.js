@@ -14,13 +14,14 @@ import {
 } from "../../support/Page_Objects/dashboard/fundingAgreement";
 import {
     agreementError,
-    checkErrorMessage,
+    checkMessage,
     checkNotification,
     messageTexts
 } from "../../support/Helpers/common/messages";
 import {checkTooltip, tooltipSelectors, tooltipTexts} from "../../support/Helpers/common/tooltip";
 import {inputSelectors} from "../../support/Helpers/common/input";
 import {getIframeBody, iframeSelectors} from "../../support/Helpers/common/iframe";
+import {verifyNavigation} from "../../support/Helpers/common/navigation";
 
 describe('Legal Details', () => {
     beforeEach(() => {
@@ -45,34 +46,34 @@ describe('Legal Details', () => {
             .checkProgress( fundingAgreementTexts.legalInformation,2, 4)
 
         clickButtonByValue('Looks Correct')
-        checkErrorMessage(messageTexts.jobTitleError)
+        checkMessage(messageTexts.jobTitleError)
 
         fundingAgreementPage
             .updateField(fundingAgreementSelectors.businessName, fundingAgreementSelectors.updateBusinessName, '1')
 
-        checkErrorMessage(messageTexts.businessNameError)
+        checkMessage(messageTexts.businessNameError)
 
         fundingAgreementPage
             .updateField(fundingAgreementSelectors.taxYear, fundingAgreementSelectors.updateTaxYear, '1')
 
-        checkErrorMessage(messageTexts.taxYearError)
+        checkMessage(messageTexts.taxYearError)
 
         fundingAgreementPage
             .updateField(fundingAgreementSelectors.phoneNumber, fundingAgreementSelectors.updatePhoneNumber, '1')
 
-        checkErrorMessage(messageTexts.phoneNumberError)
+        checkMessage(messageTexts.phoneNumberError)
 
         fundingAgreementPage
             .updateField(fundingAgreementSelectors.businessNumber, fundingAgreementSelectors.addingBusinessNumber,'1')
 
-        checkErrorMessage(messageTexts.identificationNumber)
+        checkMessage(messageTexts.identificationNumber)
 
         fundingAgreementPage
             .updateField(inputSelectors.firstName, fundingAgreementSelectors.updateLegalName,'1')
             .typeInField(inputSelectors.lastName, '1')
 
-        checkErrorMessage(messageTexts.invalidName)
-        checkErrorMessage(messageTexts.invalidSurname)
+        checkMessage(messageTexts.invalidName)
+        checkMessage(messageTexts.invalidSurname)
     })
 
     it('Valid Legal Details form submission', function () {
@@ -91,6 +92,18 @@ describe('Legal Details', () => {
 
         fundingAgreementPage
             .checkProgress( fundingAgreementTexts.legalInformation,2, 4)
+
+
+        clickButtonByValue("Back");
+        verifyNavigation("/legal");
+
+        fundingAgreementPage
+            .checkProgress( 'Legal Stuff',1, 4)
+
+        clickButtonByValue('Get Started')
+
+        fundingAgreementPage
+            .checkProgress( fundingAgreementTexts.legalInformation,2, 4)
             .updateField(fundingAgreementSelectors.businessName, fundingAgreementSelectors.updateBusinessName, 'Test Business')
             .updateField(fundingAgreementSelectors.jobTitle, fundingAgreementSelectors.addJobTitle, 'Test Job Title')
             .updateField(fundingAgreementSelectors.taxYear, fundingAgreementSelectors.updateTaxYear, '2000')
@@ -104,6 +117,7 @@ describe('Legal Details', () => {
         checkTooltip(tooltipSelectors.header, 'Your Personal Address',tooltipTexts.personalAddress)
         checkTooltip(tooltipSelectors.header, 'Employer Identification Number (EIN)',tooltipTexts.identificationNumber)
         verifyCheckbox('.checkbox','Same as business address', true)
+
         clickButtonByValue('Looks Correct')
 
         fundingAgreementPage
