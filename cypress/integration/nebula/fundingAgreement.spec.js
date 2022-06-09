@@ -12,12 +12,7 @@ import {
     fundingAgreementSelectors,
     fundingAgreementTexts
 } from "../../support/Page_Objects/dashboard/fundingAgreement";
-import {
-    agreementError,
-    checkMessage,
-    checkNotification,
-    messageTexts
-} from "../../support/Helpers/common/messages";
+import {agreementError, checkMessage, messageSelectors, messageTexts} from "../../support/Helpers/common/messages";
 import {checkTooltip, tooltipSelectors, tooltipTexts} from "../../support/Helpers/common/tooltip";
 import {inputSelectors} from "../../support/Helpers/common/input";
 import {getIframeBody, iframeSelectors} from "../../support/Helpers/common/iframe";
@@ -46,34 +41,34 @@ describe('Legal Details', () => {
             .checkProgress( fundingAgreementTexts.legalInformation,2, 4)
 
         clickButtonByValue('Looks Correct')
-        checkMessage(messageTexts.jobTitleError)
+        checkMessage(messageSelectors.error, messageTexts.jobTitleError)
 
         fundingAgreementPage
             .updateField(fundingAgreementSelectors.businessName, fundingAgreementSelectors.updateBusinessName, '1')
 
-        checkMessage(messageTexts.businessNameError)
+        checkMessage(messageSelectors.error, messageTexts.businessNameError)
 
         fundingAgreementPage
             .updateField(fundingAgreementSelectors.taxYear, fundingAgreementSelectors.updateTaxYear, '1')
 
-        checkMessage(messageTexts.taxYearError)
+        checkMessage(messageSelectors.error, messageTexts.taxYearError)
 
         fundingAgreementPage
             .updateField(fundingAgreementSelectors.phoneNumber, fundingAgreementSelectors.updatePhoneNumber, '1')
 
-        checkMessage(messageTexts.phoneNumberError)
+        checkMessage(messageSelectors.error, messageTexts.phoneNumberError)
 
         fundingAgreementPage
             .updateField(fundingAgreementSelectors.businessNumber, fundingAgreementSelectors.addingBusinessNumber,'1')
 
-        checkMessage(messageTexts.identificationNumber)
+        checkMessage(messageSelectors.error, messageTexts.identificationNumber)
 
         fundingAgreementPage
             .updateField(inputSelectors.firstName, fundingAgreementSelectors.updateLegalName,'1')
             .typeInField(inputSelectors.lastName, '1')
 
-        checkMessage(messageTexts.invalidName)
-        checkMessage(messageTexts.invalidSurname)
+        checkMessage(messageSelectors.error, messageTexts.invalidName)
+        checkMessage(messageSelectors.error, messageTexts.invalidSurname)
     })
 
     it('Valid Legal Details form submission', function () {

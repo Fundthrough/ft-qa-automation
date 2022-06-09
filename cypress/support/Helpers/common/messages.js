@@ -18,8 +18,8 @@ export const messageTexts = {
     agreementCard: 'Please tick all checkboxes to Agree.',
 }
 
-export const checkMessage = (message) => {
-    cy.get(messageSelectors.error).should('contain', message)
+export const checkMessage = (selector, message) => {
+    cy.get(selector).should('contain', message)
 }
 
 export const agreementError = (message) => {
