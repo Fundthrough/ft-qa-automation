@@ -34,12 +34,3 @@ export const checkInputValue = (inputName, value) => {
 export const clearInputValue = (inputName) => {
     cy.get(inputName).clear()
 }
-
-
-
-
-
-
-
-
-

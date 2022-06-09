@@ -4,6 +4,7 @@ export const messageSelectors = {
 
 export const messageTexts = {
     emailError: 'Invalid email format',
+    passwordError: 'Invalid password',
     termsAndConditions: 'Please indicate that you have read and agree to the Terms and Conditions and Privacy Policy.',
 }
 
