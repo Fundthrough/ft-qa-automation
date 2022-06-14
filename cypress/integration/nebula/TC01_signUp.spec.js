@@ -1,12 +1,28 @@
 // <reference types="cypress" />
-import {SignUpPage, signUpSelectors, signUpTexts} from "../../support/Page_Objects/signUpPage.js";
-import {randomChars, randomLetter, randomNum} from "../../support/Helpers/common";
-import {checkButtonIsActive, checkButtonIsDisabled, clickButtonByValue} from "../../support/Helpers/common/button";
-import {checkMessage, messageSelectors, messageTexts} from "../../support/Helpers/common/messages";
+import {
+    SignUpPage,
+    signUpSelectors,
+    signUpTexts,
+} from '../../support/Page_Objects/signUpPage.js'
+import {
+    randomChars,
+    randomLetter,
+    randomNum,
+} from '../../support/Helpers/common'
+import {
+    checkButtonIsActive,
+    checkButtonIsDisabled,
+    clickButtonByValue,
+} from '../../support/Helpers/common/button'
+import {
+    checkMessage,
+    messageSelectors,
+    messageTexts,
+} from '../../support/Helpers/common/messages'
 
 Cypress.on('uncaught:exception', () => {
-    return false;
-});
+    return false
+})
 
 describe('Sign Up page', () => {
     beforeEach(() => {
@@ -14,17 +30,14 @@ describe('Sign Up page', () => {
     })
 
     it('Sign Up with incorrect email formats', function () {
-        const signUpPage = new SignUpPage();
+        const signUpPage = new SignUpPage()
 
-        signUpPage
-            .visit()
-            .signupVerify()
-            .checkUserNameEmpty()
+        signUpPage.visit().signupVerify().checkUserNameEmpty()
 
         checkButtonIsDisabled('Next')
 
         signUpPage
-            .fillUserEmailInput("techadmin" + randomChars(5))
+            .fillUserEmailInput('techadmin' + randomChars(5))
             .clickOnCard()
 
         checkMessage(messageSelectors.error, messageTexts.emailError)
@@ -33,14 +46,14 @@ describe('Sign Up page', () => {
         signUpPage
             .clearUserEmailInput()
             .checkUserNameEmpty()
-            .fillUserEmailInput("techadmin" + randomChars(5) + "@")
+            .fillUserEmailInput('techadmin' + randomChars(5) + '@')
             .clickOnCard()
 
         checkMessage(messageSelectors.error, messageTexts.emailError)
         checkButtonIsDisabled('Next')
 
         signUpPage
-            .fillUserEmailInput("techadmin" + randomChars(5) + "@")
+            .fillUserEmailInput('techadmin' + randomChars(5) + '@')
             .clickOnCard()
 
         checkMessage(messageSelectors.error, messageTexts.emailError)
@@ -48,35 +61,37 @@ describe('Sign Up page', () => {
 
         signUpPage
             .clearUserEmailInput()
-            .fillUserEmailInput("techadmin" + randomChars(5) + "@fundthrough")
+            .fillUserEmailInput('techadmin' + randomChars(5) + '@fundthrough')
             .clickOnCard()
 
         checkButtonIsDisabled('Next')
         checkMessage(messageSelectors.error, messageTexts.emailError)
 
-        signUpPage
-            .clearUserEmailInput()
+        signUpPage.clearUserEmailInput()
 
         checkButtonIsDisabled('Next')
 
         signUpPage
-            .fillUserEmailInput("techadmin" + randomChars(5)+ "@fundthrough.co")
+            .fillUserEmailInput(
+                'techadmin' + randomChars(5) + '@fundthrough.co'
+            )
             .clickOnCard()
 
         checkButtonIsActive('Next')
 
         signUpPage.clearUserEmailInput()
-
     })
 
     it('Sign up with incorrect passwords', function () {
-        const signUpPage = new SignUpPage();
+        const signUpPage = new SignUpPage()
 
         signUpPage
             .visit()
             .signupVerify()
             .checkUserNameEmpty()
-            .fillUserEmailInput("techadmin" + randomChars(5) + "@fundthrough.com")
+            .fillUserEmailInput(
+                'techadmin' + randomChars(5) + '@fundthrough.com'
+            )
 
         checkButtonIsActive('Next')
         clickButtonByValue('Next')
@@ -84,49 +99,92 @@ describe('Sign Up page', () => {
         signUpPage
             .fillPasswordInput(randomNum(8))
             .revealPassword(true)
-            .verifyRadioBtn(signUpSelectors.checkboxWrapper, signUpTexts.oneNumber, true)
-            .verifyRadioBtn(signUpSelectors.checkboxWrapper, signUpTexts.oneLetter, false)
-            .verifyRadioBtn(signUpSelectors.checkboxWrapper, signUpTexts.charLength, true)
+            .verifyRadioBtn(
+                signUpSelectors.checkboxWrapper,
+                signUpTexts.oneNumber,
+                true
+            )
+            .verifyRadioBtn(
+                signUpSelectors.checkboxWrapper,
+                signUpTexts.oneLetter,
+                false
+            )
+            .verifyRadioBtn(
+                signUpSelectors.checkboxWrapper,
+                signUpTexts.charLength,
+                true
+            )
             .clearPasswordInput()
 
         signUpPage
             .fillPasswordInput(randomNum(5))
-            .verifyRadioBtn(signUpSelectors.checkboxWrapper,signUpTexts.oneNumber, true)
-            .verifyRadioBtn(signUpSelectors.checkboxWrapper,signUpTexts.oneLetter, false)
-            .verifyRadioBtn(signUpSelectors.checkboxWrapper,signUpTexts.charLength, false)
+            .verifyRadioBtn(
+                signUpSelectors.checkboxWrapper,
+                signUpTexts.oneNumber,
+                true
+            )
+            .verifyRadioBtn(
+                signUpSelectors.checkboxWrapper,
+                signUpTexts.oneLetter,
+                false
+            )
+            .verifyRadioBtn(
+                signUpSelectors.checkboxWrapper,
+                signUpTexts.charLength,
+                false
+            )
             .clearPasswordInput()
 
         signUpPage
             .fillPasswordInput(randomLetter(8))
-            .verifyRadioBtn(signUpSelectors.checkboxWrapper,signUpTexts.oneNumber, false)
-            .verifyRadioBtn(signUpSelectors.checkboxWrapper,signUpTexts.oneLetter, true)
-            .verifyRadioBtn(signUpSelectors.checkboxWrapper,signUpTexts.charLength, true)
+            .verifyRadioBtn(
+                signUpSelectors.checkboxWrapper,
+                signUpTexts.oneNumber,
+                false
+            )
+            .verifyRadioBtn(
+                signUpSelectors.checkboxWrapper,
+                signUpTexts.oneLetter,
+                true
+            )
+            .verifyRadioBtn(
+                signUpSelectors.checkboxWrapper,
+                signUpTexts.charLength,
+                true
+            )
             .clearPasswordInput()
 
         signUpPage
             .fillPasswordInput(randomLetter(5))
-            .verifyRadioBtn(signUpSelectors.checkboxWrapper,signUpTexts.oneNumber, false)
-            .verifyRadioBtn(signUpSelectors.checkboxWrapper,signUpTexts.oneLetter, true)
-            .verifyRadioBtn(signUpSelectors.checkboxWrapper,signUpTexts.charLength, false)
+            .verifyRadioBtn(
+                signUpSelectors.checkboxWrapper,
+                signUpTexts.oneNumber,
+                false
+            )
+            .verifyRadioBtn(
+                signUpSelectors.checkboxWrapper,
+                signUpTexts.oneLetter,
+                true
+            )
+            .verifyRadioBtn(
+                signUpSelectors.checkboxWrapper,
+                signUpTexts.charLength,
+                false
+            )
             .clearPasswordInput()
     })
 
     it('Sign Up with correct credentials', function () {
-        const signUpPage = new SignUpPage();
+        const signUpPage = new SignUpPage()
 
-        const email = "techadmin" + randomChars(4) + "@fundthrough.com";
+        const email = 'techadmin' + randomChars(4) + '@fundthrough.com'
 
-        signUpPage
-            .visit()
-            .signupVerify()
-            .checkUserNameEmpty()
+        signUpPage.visit().signupVerify().checkUserNameEmpty()
 
         checkButtonIsDisabled('Next')
 
-
         //Verification of elements activation and Input on Sign Up page
-        signUpPage
-            .fillUserEmailInput(email)
+        signUpPage.fillUserEmailInput(email)
 
         clickButtonByValue('Next')
 
@@ -136,36 +194,54 @@ describe('Sign Up page', () => {
             .saveUserEmail_LS()
             .fillPasswordInput('1Password')
             .revealPassword(true, '1Password')
-            .verifyRadioBtn(signUpSelectors.checkboxWrapper,signUpTexts.oneNumber, true)
-            .verifyRadioBtn(signUpSelectors.checkboxWrapper,signUpTexts.oneLetter, true)
-            .verifyRadioBtn(signUpSelectors.checkboxWrapper,signUpTexts.charLength, true)
+            .verifyRadioBtn(
+                signUpSelectors.checkboxWrapper,
+                signUpTexts.oneNumber,
+                true
+            )
+            .verifyRadioBtn(
+                signUpSelectors.checkboxWrapper,
+                signUpTexts.oneLetter,
+                true
+            )
+            .verifyRadioBtn(
+                signUpSelectors.checkboxWrapper,
+                signUpTexts.charLength,
+                true
+            )
             .checkTermsAndCond()
             .uncheckTermsAndCond()
 
         checkMessage(messageSelectors.error, messageTexts.termsAndConditions)
 
-        signUpPage
-            .checkTermsAndCond()
+        signUpPage.checkTermsAndCond()
 
         clickButtonByValue('Next')
 
         //redirects to /onboarding flow
         signUpPage
             .checkOnboardingDirectionUrl()
-        //Step 1 page validation
+            //Step 1 page validation
             .checkOnboardStep(1)
             .checkQuickBooksHeader()
             .checkImage()
             .skipQuickBooksStep()
 
-        cy.intercept({ method: 'POST', url: 'https://api.segment.io/v1/p' }, { success: true }).as('nextStep')
+        cy.intercept(
+            { method: 'POST', url: 'https://api.segment.io/v1/p' },
+            { success: true }
+        ).as('nextStep')
         cy.wait('@nextStep', { timeout: 25000 })
         // //Step 2 page validation
         signUpPage
             .checkOnboardStep(2)
             .checkTooltip('Business Legal Name', signUpTexts.businessLegalName)
             .inputBusinessName(randomChars(4))
-            .verifyRadioBtn(signUpSelectors.checkbox, signUpTexts.customerCallCheckbox, true)
+            .verifyRadioBtn(
+                signUpSelectors.checkbox,
+                signUpTexts.customerCallCheckbox,
+                true
+            )
 
         clickButtonByValue('Next')
 
@@ -178,19 +254,18 @@ describe('Sign Up page', () => {
             .fillBusinessAddressInput('Business Address', '100 test street')
             .checkAddressField()
             .fillCityNameInput('Cary')
-            .selectCountry("USA")
+            .selectCountry('USA')
             .selectProvince('West Virginia')
             .checkTooltip('Business Address', signUpTexts.businessAddress)
             .selectPostalCode('12345')
 
         clickButtonByValue('Next')
 
-
         cy.wait('@nextStep', { timeout: 25000 })
         signUpPage
             .checkOnboardStep(4)
             .fillPhoneNumber('6470001234')
-            .checkTooltip('Contact Phone',signUpTexts.contactPhone)
+            .checkTooltip('Contact Phone', signUpTexts.contactPhone)
 
         clickButtonByValue('Next')
 
@@ -205,14 +280,11 @@ describe('Sign Up page', () => {
 
         clickButtonByValue('Next')
 
-        signUpPage
-            .checkHeardAboutUsInput()
+        signUpPage.checkHeardAboutUsInput()
 
         clickButtonByValue('Skip')
         cy.wait('@nextStep', { timeout: 25000 })
 
-        signUpPage
-            .logOut()
-            .signupVerify()
+        signUpPage.logOut().signupVerify()
     })
 })

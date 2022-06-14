@@ -1,5 +1,5 @@
 export const clickButtonByValue = (value) => {
-    cy.get('button').contains(value).parent().click({force: true})
+    cy.get('button').contains(value).parent().click({ force: true })
 }
 
 export const checkButtonIsDisabled = (buttonName) => {
@@ -11,9 +11,9 @@ export const checkButtonIsActive = (buttonName) => {
 }
 
 export const clickBackButtonByValue = (value) => {
-    cy.get(".left.arrow").should('not.be.disabled').contains(value).click()
+    cy.get('.left.arrow').should('not.be.disabled').contains(value).click()
 }
 
 export const clickBackButtonByUrl = (url) => {
-        cy.get(".reverse").should("have.attr", "href", url).click();
+    cy.get('.reverse').should('have.attr', 'href', url).click()
 }
