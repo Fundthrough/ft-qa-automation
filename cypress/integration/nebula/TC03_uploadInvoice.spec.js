@@ -116,5 +116,29 @@ describe("Upload your first invoice", () => {
 
         invoiceUpload
           .verifyUploadedInvoice()
+          .checkCard("Add your first invoice", false)
+          .addInvoiceUsingAddButton()
+          .uploadFile()
+        
+        checkMessage(messageSelectors.success, messageTexts.success);
+        fillInputWithValue(invoiceSelectors.customer, randomLetter(8))
+
+        invoiceUpload
+          .addCustomerName()
+
+        fillInputWithValue(invoiceSelectors.number, randomChars(6))
+
+        invoiceUpload
+          .pickDate()
+          .pickDueDate()
+          .verifyPaymentDays()
+        
+        fillInputWithValue(invoiceSelectors.total, randomNum(3))
+        clickButtonByValue("Finish")
+
+        invoiceUpload
+          .verifyUploadedInvoice()
+
+
   });
 });

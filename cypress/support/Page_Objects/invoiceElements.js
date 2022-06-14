@@ -36,6 +36,15 @@ export class InvoiceUpload {
         return this;
     }
 
+    checkCard(cardTitle, exists = true) {
+        cy.get('.action-card-carousel').within(() => {
+            cy.get('.ft-action-card-content-container')
+                .contains(cardTitle).should(exists ? 'exist' : 'not.exist')
+        })
+
+        return this;
+    }
+
     uploadInvalidFile() {
         cy
             .get(invoiceSelectors.uploadIcon)
@@ -134,8 +143,10 @@ export class InvoiceUpload {
     }
 
     verifyPaymentDays() {
-        cy.get(invoiceSelectors.payment).should('have.value','7')
-
+        cy.get(invoiceSelectors.payment).invoke('val').then(text => {
+            expect(text).to.match(/[0-9]/)
+        })
+    
         return this;
     }
 
@@ -147,4 +158,9 @@ export class InvoiceUpload {
         return this;
     }
 
+    addInvoiceUsingAddButton() {
+        cy.get('.AddInvoiceButton_uploadButton__2Wner').click()
+
+        return this;
+    }
 }
