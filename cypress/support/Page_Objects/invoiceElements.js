@@ -25,21 +25,26 @@ export const invoiceSelectors = {
 let day = new Date()
 let currentDate = day.getDate()
 
+export function checkCard() {
+    let text
+     cy.get('.ft-action-card-content').each($el => {
+        const texts = $el.map((i, el) => Cypress.$(el).text())
+        const text = texts.get()
+     })
+
+     return text
+}
+
 export class InvoiceUpload {
+
+    checkCard() {
+       
+    }
 
     selectCard(cardTitle, buttonTitle) {
         cy.get('.action-card-carousel').within(() => {
             cy.get('.ft-action-card-content-container').contains(cardTitle).should('be.visible')
             clickButtonByValue(buttonTitle)
-        })
-
-        return this;
-    }
-
-    checkCard(cardTitle, exists = true) {
-        cy.get('.action-card-carousel').within(() => {
-            cy.get('.ft-action-card-content-container')
-                .contains(cardTitle).should(exists ? 'exist' : 'not.exist')
         })
 
         return this;

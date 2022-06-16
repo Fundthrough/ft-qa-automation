@@ -1,4 +1,4 @@
-import { invoiceSelectors, InvoiceUpload } from "../../support/Page_Objects/invoiceElements";
+import { checkCard, invoiceSelectors, InvoiceUpload } from "../../support/Page_Objects/invoiceElements";
 import {
   verifyNavigation, visit,
 } from "../../support/Helpers/common/navigation";
@@ -40,8 +40,13 @@ describe("Upload your first invoice", () => {
         cy.login(this.user.username, this.user.password)
 
         verifyNavigation("/invoices")
-    
-        invoiceUpload
+
+        cy.wait(3000)
+
+        cy.checkCard().then(element => {
+          if(element.text().includes('Add your first invoice')) {
+            cy.log("Adding invoice through `ADD YOUR FIRST INVOICE` action card")
+            invoiceUpload
           .selectCard("Add your first invoice", "Add");
 
         verifyHeader(headers.invoiceHeader);
@@ -116,7 +121,10 @@ describe("Upload your first invoice", () => {
 
         invoiceUpload
           .verifyUploadedInvoice()
-          .checkCard("Add your first invoice", false)
+      
+        } else {
+            cy.log("Adding invoice through `ADD INVOICE` button")
+            invoiceUpload
           .addInvoiceUsingAddButton()
           .uploadFile()
         
@@ -138,7 +146,7 @@ describe("Upload your first invoice", () => {
 
         invoiceUpload
           .verifyUploadedInvoice()
-
-
-  });
-});
+          }
+        })
+  })
+})

@@ -1,3 +1,4 @@
+import { checkCard } from "./Page_Objects/invoiceElements"
 
 Cypress.Commands.add('login' , (username, password) => {
     cy.clearLocalStorage()
@@ -6,3 +7,5 @@ Cypress.Commands.add('login' , (username, password) => {
     cy.get('#password').type(password)
     cy.get('.forward').click()
 })
+
+Cypress.Commands.add('checkCard', checkCard)
