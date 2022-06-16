@@ -1,5 +1,12 @@
-Cypress.Commands.add('login' ,(username, password) => {
+
+Cypress.Commands.add('login' , (username, password) => {
+    cy.clearLocalStorage()
+    cy.visit("/signin")
     cy.get('#username').type(username)
     cy.get('#password').type(password)
     cy.get('.forward').click()
+    cy.intercept('POST', '/v1/t', {}).as('userSignin')
+    cy.wait('@userSignin', { timeout: 40000 })
+    cy.get('.loader').should('exist')
+    cy.get('.loader').should('not.exist')
 })

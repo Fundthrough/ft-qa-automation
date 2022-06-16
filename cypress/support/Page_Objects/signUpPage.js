@@ -10,6 +10,7 @@ export const signUpSelectors = {
     currentStep: '.fund-step',
     imageQuickBooks: '.ui > img',
     quickBooksSkip: '[class="skip-container u-mb0"]',
+    tooltipIcon: '.question',
     tooltipDescription: '.description',
     locationForm: '#locationForm',
     country: '#country',

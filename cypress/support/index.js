@@ -16,6 +16,9 @@
 // Import commands.js using ES2015 syntax:
 import './commands'
 
+//import custom command for file upload
+import "cypress-file-upload";
+
 //Handles application exceptions
 Cypress.on('uncaught:exception', () => {
     return false;

@@ -7,8 +7,8 @@ import {
     clickButtonByValue,
     verifyCheckbox
 } from "../../support/Helpers/common/button";
-import {checkErrorMessage, messageTexts} from "../../support/Helpers/common/messages";
-import {checkTooltip, tooltipTexts} from "../../support/Helpers/common/tooltip";
+import {checkMessage, messageSelectors, messageTexts} from "../../support/Helpers/common/messages";
+import {checkTooltip, tooltipSelectors, tooltipTexts} from "../../support/Helpers/common/tooltip";
 import {
     checkEmptyInput,
     checkInputValue,
@@ -18,6 +18,7 @@ import {
 } from "../../support/Helpers/common/input";
 import {checkProgressAndHeader} from "../../support/Helpers/common/title";
 import {navigateBack, verifyNavigation, verifyRedirection, visit} from "../../support/Helpers/common/navigation";
+import {loadingSelectors, waitForLoader} from "../../support/Helpers/common/iframe";
 
 Cypress.on('uncaught:exception', () => {
     return false;
@@ -44,7 +45,7 @@ describe('Sign Up page', () => {
         signUpPage
             .clickOnCard()
 
-        checkErrorMessage(messageTexts.emailError)
+        checkMessage(messageSelectors.error, messageTexts.emailError)
         checkButtonIsDisabled('Next')
         clearInputValue(inputSelectors.email)
         checkEmptyInput(inputSelectors.email)
@@ -53,7 +54,7 @@ describe('Sign Up page', () => {
         signUpPage
             .clickOnCard()
 
-        checkErrorMessage(messageTexts.emailError)
+        checkMessage(messageSelectors.error, messageTexts.emailError)
         checkButtonIsDisabled('Next')
 
         fillInputWithValue(inputSelectors.email, "techadmin" + randomChars(5) + "@")
@@ -61,7 +62,7 @@ describe('Sign Up page', () => {
         signUpPage
             .clickOnCard()
 
-        checkErrorMessage(messageTexts.emailError)
+        checkMessage(messageSelectors.error, messageTexts.emailError)
         checkButtonIsDisabled('Next')
 
         clearInputValue(inputSelectors.email)
@@ -71,7 +72,7 @@ describe('Sign Up page', () => {
             .clickOnCard()
 
         checkButtonIsDisabled('Next')
-        checkErrorMessage(messageTexts.emailError)
+        checkMessage(messageSelectors.error, messageTexts.emailError)
         clearInputValue(inputSelectors.email)
         checkButtonIsDisabled('Next')
         fillInputWithValue(inputSelectors.email, "techadmin" + randomChars(5)+ "@fundthrough.co")
@@ -149,7 +150,7 @@ describe('Sign Up page', () => {
             .checkTermsAndCond()
             .uncheckTermsAndCond()
 
-        checkErrorMessage(messageTexts.termsAndConditions)
+        checkMessage(messageSelectors.error, messageTexts.termsAndConditions)
 
         signUpPage
             .checkTermsAndCond()
@@ -172,7 +173,7 @@ describe('Sign Up page', () => {
         checkProgressAndHeader("What is your business’s legal name?", 2, 6)
         fillInputWithValue(inputSelectors.businessName, randomChars(4))
         verifyCheckbox(signUpSelectors.checkbox, signUpTexts.customerCallCheckbox, true)
-        checkTooltip('Business Legal Name', tooltipTexts.businessLegalName)
+        checkTooltip(tooltipSelectors.inputLabel, 'Business Legal Name', tooltipTexts.businessLegalName)
         clickButtonByValue('Next')
 
         //redirects to Step 3 and fills in Company Address info
@@ -190,7 +191,7 @@ describe('Sign Up page', () => {
             .selectCountry("USA")
             .selectProvince('West Virginia')
 
-        checkTooltip('Business Address', tooltipTexts.businessAddress)
+        checkTooltip(tooltipSelectors.inputLabel,'Business Address', tooltipTexts.businessAddress)
 
         clickButtonByValue('Next')
 
@@ -198,7 +199,7 @@ describe('Sign Up page', () => {
 
         checkProgressAndHeader('How can we reach you?', 4, 6)
         fillInputWithValue(inputSelectors.phoneNumber, '6470001234')
-        checkTooltip('Contact Phone',tooltipTexts.contactPhone)
+        checkTooltip(tooltipSelectors.inputLabel, 'Contact Phone',tooltipTexts.contactPhone)
         clickButtonByValue('Next')
 
         cy.wait('@nextStep', { timeout: 60000 })
@@ -207,8 +208,8 @@ describe('Sign Up page', () => {
         fillInputWithValue(inputSelectors.preferredName, randomChars(4))
         fillInputWithValue(inputSelectors.firstName, randomChars(4))
         fillInputWithValue(inputSelectors.lastName, randomChars(4))
-        checkTooltip('Legal First Name', tooltipTexts.firstName)
-        checkTooltip('Preferred First Name', tooltipTexts.firstName)
+        checkTooltip(tooltipSelectors.inputLabel, 'Legal First Name', tooltipTexts.firstName)
+        checkTooltip(tooltipSelectors.inputLabel, 'Preferred First Name', tooltipTexts.firstName)
         clickButtonByValue('Next')
 
         signUpPage
@@ -218,6 +219,8 @@ describe('Sign Up page', () => {
 
         clickButtonByValue('Skip')
         cy.wait('@nextStep', { timeout: 60000 })
+
+        waitForLoader(loadingSelectors.loaderDefault)
 
         signUpPage
             .logOut()
