@@ -151,7 +151,7 @@ export class InvoiceUpload {
         cy.get(invoiceSelectors.payment).invoke('val').then(text => {
             expect(text).to.match(/[0-9]/)
         })
-    
+
         return this;
     }
 

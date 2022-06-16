@@ -2,8 +2,8 @@ export const messageSelectors = {
     error: '.error',
     agreementError: '.card__agreement__span_error',
     notificationDashboard: '.notification-container',
-    success: '.green-text'
-
+    success: '.green-text',
+    errorInvoice: '.error-bar'
 }
 
 export const messageTexts = {

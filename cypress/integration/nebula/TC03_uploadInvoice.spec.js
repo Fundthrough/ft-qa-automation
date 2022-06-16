@@ -149,4 +149,54 @@ describe("Upload your first invoice", () => {
           }
         })
   })
-})
+      checkNotification('Step completed')
+      checkNotification('Thank you for uploading your invoice.')
+  });
+
+    it("Validate the error message with the same invoice name", function () {
+        const invoiceUpload = new InvoiceUpload();
+
+        cy.login(this.user.username, this.user.password)
+
+        verifyNavigation("/invoices")
+
+        invoiceUpload
+            .addInvoiceFromDashboard()
+
+        verifyHeader(headers.invoiceHeader);
+        verifyFundHeader(fundHeaders.invoiceFundHeader);
+
+        invoiceUpload
+            .uploadFile()
+
+        checkMessage(messageSelectors.success, messageTexts.success);
+
+        invoiceUpload
+            .verifyFormHeaders()
+
+        verifyInputLabels(invoiceLabels)
+        checkTooltip(tooltipSelectors.inputLabel,'Invoice Number', tooltipTexts.invoiceNumber)
+        checkTooltip(tooltipSelectors.inputLabel,'Invoice Date', tooltipTexts.invoiceDate)
+
+        fillInputWithValue(invoiceSelectors.customer, 'customer_1')
+
+        invoiceUpload
+            .addCustomerName()
+
+        //enter invoice number
+        fillInputWithValue(invoiceSelectors.number, 'abc123')
+
+        invoiceUpload
+            .pickDate()
+
+        //enter due date
+        invoiceUpload
+            .pickDueDate()
+            .verifyPaymentDays()
+
+        //enter invoice total
+        fillInputWithValue(invoiceSelectors.total, randomNum(3))
+        clickButtonByValue("Finish")
+        checkMessage(messageSelectors.errorInvoice, 'The Invoice number entered already exists for this Customer')
+    });
+});
