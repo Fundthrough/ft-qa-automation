@@ -45,68 +45,105 @@ describe('Upload your first invoice', () => {
 
         verifyNavigation('/invoices')
 
-        invoiceUpload.selectCard('Add your first invoice', 'Add')
+        cy.wait(3000)
 
-        verifyHeader(headers.invoiceHeader)
-        verifyFundHeader(fundHeaders.invoiceFundHeader)
+        cy.checkCard().then((element) => {
+            if (element.text().includes('Add your first invoice')) {
+                cy.log(
+                    'Adding invoice through `ADD YOUR FIRST INVOICE` action card'
+                )
+                invoiceUpload.selectCard('Add your first invoice', 'Add')
 
-        invoiceUpload.uploadInvalidFile()
+                verifyHeader(headers.invoiceHeader)
+                verifyFundHeader(fundHeaders.invoiceFundHeader)
 
-        checkMessage(messageSelectors.error, messageTexts.uploadInvoiceError)
-        clickButtonByValue('Dashboard')
-        verifyNavigation('/invoices')
+                invoiceUpload.uploadInvalidFile()
 
-        invoiceUpload.selectCard('Add your first invoice', 'Add').uploadFile()
+                checkMessage(
+                    messageSelectors.error,
+                    messageTexts.uploadInvoiceError
+                )
+                clickButtonByValue('Dashboard')
+                verifyNavigation('/invoices')
 
-        checkMessage(messageSelectors.success, messageTexts.success)
+                invoiceUpload
+                    .selectCard('Add your first invoice', 'Add')
+                    .uploadFile()
 
-        invoiceUpload.verifyFormHeaders()
+                checkMessage(messageSelectors.success, messageTexts.success)
 
-        verifyInputLabels(invoiceLabels)
-        checkTooltip('Invoice Number', tooltipTexts.invoiceNumber)
-        checkTooltip('Invoice Date', tooltipTexts.invoiceDate)
+                invoiceUpload.verifyFormHeaders()
 
-        //validate error of customer name field
-        fillInputWithValue(invoiceSelectors.customer, randomLetter(8))
+                verifyInputLabels(invoiceLabels)
+                checkTooltip('Invoice Number', tooltipTexts.invoiceNumber)
+                checkTooltip('Invoice Date', tooltipTexts.invoiceDate)
 
-        invoiceUpload.addCustomerName().clearCustomerName()
+                //validate error of customer name field
+                fillInputWithValue(invoiceSelectors.customer, randomLetter(8))
 
-        checkMessage(messageSelectors.error, messageTexts.invalidCustomer)
-        //enter customer name
-        fillInputWithValue(invoiceSelectors.customer, randomLetter(8))
+                invoiceUpload.addCustomerName().clearCustomerName()
 
-        invoiceUpload.addCustomerName()
+                checkMessage(
+                    messageSelectors.error,
+                    messageTexts.invalidCustomer
+                )
+                //enter customer name
+                fillInputWithValue(invoiceSelectors.customer, randomLetter(8))
 
-        //validate error of invoice number
-        fillInputWithValue(invoiceSelectors.number, randomChars(6))
-        clearInputValue(invoiceSelectors.number)
-        checkMessage(messageSelectors.error, messageTexts.invalidNumber)
-        //enter invoice number
-        fillInputWithValue(invoiceSelectors.number, randomChars(6))
-        //validate error of date field
-        fillInputWithValue(invoiceSelectors.date, '2022-01-01')
-        checkMessage(messageSelectors.error, messageTexts.dateError)
-        clearInputValue(invoiceSelectors.date)
+                invoiceUpload.addCustomerName()
 
-        //enter invoice date
-        invoiceUpload.pickDate()
+                //validate error of invoice number
+                fillInputWithValue(invoiceSelectors.number, randomChars(6))
+                clearInputValue(invoiceSelectors.number)
+                checkMessage(messageSelectors.error, messageTexts.invalidNumber)
+                //enter invoice number
+                fillInputWithValue(invoiceSelectors.number, randomChars(6))
+                //validate error of date field
+                fillInputWithValue(invoiceSelectors.date, '2022-01-01')
+                checkMessage(messageSelectors.error, messageTexts.dateError)
+                clearInputValue(invoiceSelectors.date)
 
-        //validate error of due date field
-        fillInputWithValue(invoiceSelectors.due, '2022-01-01')
-        clearInputValue(invoiceSelectors.due)
-        checkMessage(messageSelectors.error, messageTexts.invalidDueDate)
+                //enter invoice date
+                invoiceUpload.pickDate()
 
-        //enter due date
-        invoiceUpload.pickDueDate().verifyPaymentDays()
+                //validate error of due date field
+                fillInputWithValue(invoiceSelectors.due, '2022-01-01')
+                clearInputValue(invoiceSelectors.due)
+                checkMessage(
+                    messageSelectors.error,
+                    messageTexts.invalidDueDate
+                )
 
-        //check error of invoice total
-        fillInputWithValue(invoiceSelectors.total, randomNum(3))
-        clearInputValue(invoiceSelectors.total)
-        checkMessage(messageSelectors.error, messageTexts.invalidTotal)
-        //enter invoice total
-        fillInputWithValue(invoiceSelectors.total, randomNum(3))
-        clickButtonByValue('Finish')
+                //enter due date
+                invoiceUpload.pickDueDate().verifyPaymentDays()
 
-        invoiceUpload.verifyUploadedInvoice()
+                //check error of invoice total
+                fillInputWithValue(invoiceSelectors.total, randomNum(3))
+                clearInputValue(invoiceSelectors.total)
+                checkMessage(messageSelectors.error, messageTexts.invalidTotal)
+                //enter invoice total
+                fillInputWithValue(invoiceSelectors.total, randomNum(3))
+                clickButtonByValue('Finish')
+
+                invoiceUpload.verifyUploadedInvoice()
+            } else {
+                cy.log('Adding invoice through `ADD INVOICE` button')
+                invoiceUpload.addInvoiceUsingAddButton().uploadFile()
+
+                checkMessage(messageSelectors.success, messageTexts.success)
+                fillInputWithValue(invoiceSelectors.customer, randomLetter(8))
+
+                invoiceUpload.addCustomerName()
+
+                fillInputWithValue(invoiceSelectors.number, randomChars(6))
+
+                invoiceUpload.pickDate().pickDueDate().verifyPaymentDays()
+
+                fillInputWithValue(invoiceSelectors.total, randomNum(3))
+                clickButtonByValue('Finish')
+
+                invoiceUpload.verifyUploadedInvoice()
+            }
+        })
     })
 })

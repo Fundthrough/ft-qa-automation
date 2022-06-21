@@ -24,6 +24,16 @@ export const invoiceSelectors = {
 let day = new Date()
 let currentDate = day.getDate()
 
+export function checkCard() {
+    let text
+    cy.get('.ft-action-card-content').each(($el) => {
+        const texts = $el.map((i, el) => Cypress.$(el).text())
+        const text = texts.get()
+    })
+
+    return text
+}
+
 export class InvoiceUpload {
     selectCard(cardTitle, buttonTitle) {
         cy.get('.action-card-carousel').within(() => {
@@ -111,7 +121,11 @@ export class InvoiceUpload {
     }
 
     verifyPaymentDays() {
-        cy.get(invoiceSelectors.payment).should('have.value', '7')
+        cy.get(invoiceSelectors.payment)
+            .invoke('val')
+            .then((text) => {
+                expect(text).to.match(/[0-9]/)
+            })
 
         return this
     }
@@ -122,6 +136,12 @@ export class InvoiceUpload {
             .then((text) => {
                 expect(text).to.include(invoiceTexts.successMessage)
             })
+
+        return this
+    }
+
+    addInvoiceUsingAddButton() {
+        cy.get('.AddInvoiceButton_uploadButton__2Wner').click()
 
         return this
     }
