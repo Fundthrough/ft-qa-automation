@@ -7,6 +7,22 @@
     "viewportWidth": 1920,
     "viewportHeight": 1080,
   "chromeWebSecurity": false,
+
+  "ignoreTestFiles": "**/examples/*",
+  "defaultCommandTimeout": 60000,
+  "viewportWidth": 1920,
+  "viewportHeight": 1080,
+  "watchForFileChanges": false,
+  "testFiles": [
+    "nebula/TC01_signUp.spec.js",
+    "nebula/TC02_signIn.spec.js",
+    "nebula/TC03_uploadInvoice.spec.js",
+    "nebula/TC04_Signin.validation.js",
+    "nebula/invoicePanel.spec.js"
+    
+  ],
+  "retries": 2
+
     "watchForFileChanges": false,
     "testFiles":[
      "nebula/TC01_signUp.spec.js",
@@ -14,4 +30,5 @@
      "nebula/TC03_uploadInvoice.spec.js"
     ],
     "retries" : 2
+
 }

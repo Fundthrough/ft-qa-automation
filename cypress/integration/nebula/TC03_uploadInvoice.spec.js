@@ -1,6 +1,6 @@
 import { checkCard, invoiceSelectors, InvoiceUpload } from "../../support/Page_Objects/invoiceElements";
 import {
-  verifyNavigation, visit,
+  verifyNavigation
 } from "../../support/Helpers/common/navigation";
 import {
   clearInputValue,
