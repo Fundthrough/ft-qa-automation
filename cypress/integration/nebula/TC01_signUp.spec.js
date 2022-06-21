@@ -1,13 +1,15 @@
 // <reference types="cypress" />
 import {SignUpPage, signUpSelectors, signUpTexts} from "../../support/Page_Objects/signUpPage.js";
 import {randomChars, randomLetter, randomNum} from "../../support/Helpers/common";
+
+import {checkMessage, messageSelectors, messageTexts} from "../../support/Helpers/common/messages";
 import {
     checkButtonIsActive,
     checkButtonIsDisabled,
     clickButtonByValue,
     verifyCheckbox
 } from "../../support/Helpers/common/button";
-import {checkErrorMessage, messageTexts} from "../../support/Helpers/common/messages";
+
 import {checkTooltip, tooltipTexts} from "../../support/Helpers/common/tooltip";
 import {
     checkEmptyInput,
@@ -44,7 +46,7 @@ describe('Sign Up page', () => {
         signUpPage
             .clickOnCard()
 
-        checkErrorMessage(messageTexts.emailError)
+        checkMessage(messageSelectors.error, messageTexts.emailError)
         checkButtonIsDisabled('Next')
         clearInputValue(inputSelectors.email)
         checkEmptyInput(inputSelectors.email)
@@ -53,7 +55,7 @@ describe('Sign Up page', () => {
         signUpPage
             .clickOnCard()
 
-        checkErrorMessage(messageTexts.emailError)
+        checkMessage(messageSelectors.error, messageTexts.emailError)
         checkButtonIsDisabled('Next')
 
         fillInputWithValue(inputSelectors.email, "techadmin" + randomChars(5) + "@")
@@ -61,7 +63,7 @@ describe('Sign Up page', () => {
         signUpPage
             .clickOnCard()
 
-        checkErrorMessage(messageTexts.emailError)
+        checkMessage(messageSelectors.error, messageTexts.emailError)
         checkButtonIsDisabled('Next')
 
         clearInputValue(inputSelectors.email)
@@ -71,8 +73,11 @@ describe('Sign Up page', () => {
             .clickOnCard()
 
         checkButtonIsDisabled('Next')
-        checkErrorMessage(messageTexts.emailError)
-        clearInputValue(inputSelectors.email)
+        checkMessage(messageSelectors.error, messageTexts.emailError)
+
+        signUpPage
+            .clearUserEmailInput()
+
         checkButtonIsDisabled('Next')
         fillInputWithValue(inputSelectors.email, "techadmin" + randomChars(5)+ "@fundthrough.co")
 
@@ -149,7 +154,7 @@ describe('Sign Up page', () => {
             .checkTermsAndCond()
             .uncheckTermsAndCond()
 
-        checkErrorMessage(messageTexts.termsAndConditions)
+        checkMessage(messageSelectors.error, messageTexts.termsAndConditions)
 
         signUpPage
             .checkTermsAndCond()

@@ -9,7 +9,10 @@ export const tooltipTexts = {
     businessAddress: 'We use your address to verify your business. If you have multiple locations, enter where your business was registered.',
     contactPhone: 'To keep you in the loop on your funding progress, please provide your business’s phone number. If it’s easier, you can provide your direct line.',
     firstName: 'To verify your identity, we need to know your legal name. This should match your government-issued ID. We’ll use your preferred name to communicate with you.',
+    invoiceNumber: 'This number should match the number on the uploaded invoice copy',
+    invoiceDate: 'This is the date on which the invoice is issued to your customer'
 }
+
 
 export const checkTooltip = (tooltipLabel, tooltipMessage) => {
     cy.get('.input-label')
@@ -22,11 +25,4 @@ export const checkTooltip = (tooltipLabel, tooltipMessage) => {
         .should('be.visible')
         .should('contain', tooltipMessage)
 }
-
-
-
-
-
-
-
 

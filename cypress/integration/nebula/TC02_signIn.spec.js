@@ -1,16 +1,15 @@
 //<reference types="cypress" />
 import { SignInPage } from "../../support/Page_Objects/signInElements_new.js";
 import { visit, verifyRedirection, verifyNavigation, clickBackArrow, reload } from "../../support/Helpers/common/navigation"
-import { signInLabels, verifyInputLabels, verifyTitle} from "../../support/Helpers/common/title"
-import { clearInputValue, fillInputWithValue, inputSelectors } from "../../support/Helpers/common/input";
+import { verifyTitle} from "../../support/Helpers/common/title"
+import { clearInputValue, fillInputWithValue, inputSelectors, verifyInputLabels, signInLabels } from "../../support/Helpers/common/input";
 import { checkButtonIsActive, checkButtonIsDisabled, clickButtonByValue } from "../../support/Helpers/common/button";
-import { checkErrorMessage, messageTexts } from "../../support/Helpers/common/messages";
+import { checkMessage, messageSelectors, messageTexts } from "../../support/Helpers/common/messages";
 import { randomChars } from "../../support/Helpers/common.js";
 
 describe("Sign In Page", function test() {
 
   beforeEach(() => {
-    cy.clearLocalStorage();
     cy.fixture("profile.json").then(function (user) {
       this.user = user;
     });
@@ -43,7 +42,7 @@ describe("Sign In Page", function test() {
     fillInputWithValue(inputSelectors.email, "techadmin" + randomChars(3) + "@fundthrough");
     checkButtonIsDisabled("Send Code");
     clickButtonByValue("Send Code");
-    checkErrorMessage(messageTexts.emailError);
+    checkMessage(messageSelectors.error, messageTexts.emailError);
     //Incorrect email
     clearInputValue(inputSelectors.email)
     fillInputWithValue(inputSelectors.email, "techadmin" + randomChars(4) + "@fundthrough.com");
@@ -73,24 +72,24 @@ describe("Sign In Page", function test() {
     //attempt one
     fillInputWithValue(inputSelectors.email, "techadmin" + randomChars(5) + "fundthrough");
     clickButtonByValue("Sign In");
-    checkErrorMessage(messageTexts.emailError)
+    checkMessage(messageSelectors.error, messageTexts.emailError)
     clearInputValue(inputSelectors.email)
 
     //attempt two
     fillInputWithValue(inputSelectors.email, "techadmin" + randomChars(3) + "@com")
     clickButtonByValue("Sign In");
-    checkErrorMessage(messageTexts.emailError);
+    checkMessage(messageSelectors.error, messageTexts.emailError)
     clearInputValue(inputSelectors.email)
 
     //attempt three
     fillInputWithValue(inputSelectors.email, "techadmin" + randomChars(2) + "@fundthrough");
     clickButtonByValue("Sign In");
-    checkErrorMessage(messageTexts.emailError);
+    checkMessage(messageSelectors.error, messageTexts.emailError)
     clearInputValue(inputSelectors.email);
 
     //empty input
     clickButtonByValue("Sign In");
-    checkErrorMessage(messageTexts.emailError);
+    checkMessage(messageSelectors.error, messageTexts.emailError)
 
   });
 
@@ -101,32 +100,30 @@ describe("Sign In Page", function test() {
     //attempt one
     fillInputWithValue(inputSelectors.password, randomChars(4));
     clickButtonByValue("Sign In");
-    checkErrorMessage(messageTexts.passwordError);
+    checkMessage(messageSelectors.error, messageTexts.passwordError)
     clearInputValue(inputSelectors.password)
 
     //attempt two
     fillInputWithValue(inputSelectors.password, randomChars(7));
     clickButtonByValue("Sign In");
-    checkErrorMessage(messageTexts.passwordError);
+    checkMessage(messageSelectors.error, messageTexts.passwordError)
     clearInputValue(inputSelectors.password)
 
     //attempt three
     fillInputWithValue(inputSelectors.password, "1");
     clickButtonByValue("Sign In");
-    checkErrorMessage(messageTexts.passwordError);
+    checkMessage(messageSelectors.error, messageTexts.passwordError)
 
   });
 
-  it("Sign In with incorrect credentials", function test() {
+  it("Sign In with incorrect credentials", function () {
 
     const signInPage = new SignInPage();
-    let username = this.user.username;
-    let password = this.user.password;
 
     //incorrect username
     visit("/signin")
     fillInputWithValue(inputSelectors.email, "techadmin" + randomChars(4) + "@fundthrough.com")
-    fillInputWithValue(inputSelectors.password, password);
+    fillInputWithValue(inputSelectors.password, this.user.password);
     clickButtonByValue("Sign In");
 
     signInPage
@@ -136,26 +133,18 @@ describe("Sign In Page", function test() {
     Cypress._.times(5, () => {
       clearInputValue(inputSelectors.email)
       clearInputValue(inputSelectors.password)
-      fillInputWithValue(inputSelectors.email, username)
+      fillInputWithValue(inputSelectors.email, this.user.username)
       fillInputWithValue(inputSelectors.password, randomChars(10));
       clickButtonByValue("Sign In");
     })  
 
   });
 
-  it("Sign In with valid credentials", function test() {
-
-    let username = this.user.username;
-    let password = this.user.password;
+  it("Sign In with valid credentials", function () {
 
     reload()
-    visit("/signin")
-    clearInputValue(inputSelectors.email)
-    fillInputWithValue(inputSelectors.email, username)
-    clearInputValue(inputSelectors.password)
-    fillInputWithValue(inputSelectors.password, password);
-    clickButtonByValue("Sign In");
+    cy.login(this.user.username, this.user.password)
     verifyNavigation("/invoices")
-    
+
   });
 });
