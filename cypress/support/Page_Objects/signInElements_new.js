@@ -24,7 +24,6 @@ export const signInTexts = {
 };
 
 export class SignInPage {
-
   verifySignIn() {
     cy.get(".u-p").should("be.visible");
 
@@ -35,7 +34,6 @@ export class SignInPage {
     cy.get(signInSelectors.image).each(image => { 
       cy.wrap(image).should("be.visible")
     })
-
     return this;
   }
 

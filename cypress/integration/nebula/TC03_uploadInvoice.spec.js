@@ -1,4 +1,4 @@
-import { invoiceSelectors, InvoiceUpload } from "../../support/Page_Objects/invoiceElements";
+import { checkCard, invoiceSelectors, InvoiceUpload } from "../../support/Page_Objects/invoiceElements";
 import {
   verifyNavigation
 } from "../../support/Helpers/common/navigation";
@@ -40,8 +40,13 @@ describe("Upload your first invoice", () => {
         cy.login(this.user.username, this.user.password)
 
         verifyNavigation("/invoices")
-    
-        invoiceUpload
+
+        cy.wait(3000)
+
+        cy.checkCard().then(element => {
+          if(element.text().includes('Add your first invoice')) {
+            cy.log("Adding invoice through `ADD YOUR FIRST INVOICE` action card")
+            invoiceUpload
           .selectCard("Add your first invoice", "Add");
 
         verifyHeader(headers.invoiceHeader);
@@ -116,5 +121,32 @@ describe("Upload your first invoice", () => {
 
         invoiceUpload
           .verifyUploadedInvoice()
-  });
-});
+      
+        } else {
+            cy.log("Adding invoice through `ADD INVOICE` button")
+            invoiceUpload
+          .addInvoiceUsingAddButton()
+          .uploadFile()
+        
+        checkMessage(messageSelectors.success, messageTexts.success);
+        fillInputWithValue(invoiceSelectors.customer, randomLetter(8))
+
+        invoiceUpload
+          .addCustomerName()
+
+        fillInputWithValue(invoiceSelectors.number, randomChars(6))
+
+        invoiceUpload
+          .pickDate()
+          .pickDueDate()
+          .verifyPaymentDays()
+        
+        fillInputWithValue(invoiceSelectors.total, randomNum(3))
+        clickButtonByValue("Finish")
+
+        invoiceUpload
+          .verifyUploadedInvoice()
+          }
+        })
+  })
+})
