@@ -1,0 +1,107 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2022-06-22T19:36:32.630Z",
+    "end": "2022-06-22T19:36:51.171Z",
+    "duration": 18541,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "1446db04-982e-4267-8100-e0777aa8abf8",
+      "title": "",
+      "fullFile": "cypress/integration/nebula/TC03_uploadInvoice.spec.js",
+      "file": "cypress/integration/nebula/TC03_uploadInvoice.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "8243733a-0a42-4dc5-9bfd-27da3f09f68c",
+          "title": "Upload your first invoice",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Validate upload invoice",
+              "fullTitle": "Upload your first invoice Validate upload invoice",
+              "timedOut": null,
+              "duration": 18344,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "var invoiceUpload = new _invoiceElements.InvoiceUpload();\ncy.login(this.user.username, this.user.password);\n(0, _navigation.verifyNavigation)('/invoices');\ncy.wait(3000);\ncy.checkCard().then(function (element) {\n  if (element.text().includes('Add your first invoice')) {\n    cy.log('Adding invoice through `ADD YOUR FIRST INVOICE` action card');\n    invoiceUpload.selectCard('Add your first invoice', 'Add');\n    (0, _title.verifyHeader)(_title.headers.invoiceHeader);\n    (0, _title.verifyFundHeader)(_title.fundHeaders.invoiceFundHeader);\n    invoiceUpload.uploadInvalidFile();\n    (0, _messages.checkMessage)(_messages.messageSelectors.error, _messages.messageTexts.uploadInvoiceError);\n    (0, _button.clickButtonByValue)('Dashboard');\n    (0, _navigation.verifyNavigation)('/invoices');\n    invoiceUpload.selectCard('Add your first invoice', 'Add').uploadFile();\n    (0, _messages.checkMessage)(_messages.messageSelectors.success, _messages.messageTexts.success);\n    invoiceUpload.verifyFormHeaders();\n    (0, _input.verifyInputLabels)(_input.invoiceLabels);\n    (0, _tooltip.checkTooltip)('Invoice Number', _tooltip.tooltipTexts.invoiceNumber);\n    (0, _tooltip.checkTooltip)('Invoice Date', _tooltip.tooltipTexts.invoiceDate); //validate error of customer name field\n    (0, _input.fillInputWithValue)(_invoiceElements.invoiceSelectors.customer, (0, _common.randomLetter)(8));\n    invoiceUpload.addCustomerName().clearCustomerName();\n    (0, _messages.checkMessage)(_messages.messageSelectors.error, _messages.messageTexts.invalidCustomer); //enter customer name\n    (0, _input.fillInputWithValue)(_invoiceElements.invoiceSelectors.customer, (0, _common.randomLetter)(8));\n    invoiceUpload.addCustomerName(); //validate error of invoice number\n    (0, _input.fillInputWithValue)(_invoiceElements.invoiceSelectors.number, (0, _common.randomChars)(6));\n    (0, _input.clearInputValue)(_invoiceElements.invoiceSelectors.number);\n    (0, _messages.checkMessage)(_messages.messageSelectors.error, _messages.messageTexts.invalidNumber); //enter invoice number\n    (0, _input.fillInputWithValue)(_invoiceElements.invoiceSelectors.number, (0, _common.randomChars)(6)); //validate error of date field\n    (0, _input.fillInputWithValue)(_invoiceElements.invoiceSelectors.date, '2022-01-01');\n    (0, _messages.checkMessage)(_messages.messageSelectors.error, _messages.messageTexts.dateError);\n    (0, _input.clearInputValue)(_invoiceElements.invoiceSelectors.date); //enter invoice date\n    invoiceUpload.pickDate(); //validate error of due date field\n    (0, _input.fillInputWithValue)(_invoiceElements.invoiceSelectors.due, '2022-01-01');\n    (0, _input.clearInputValue)(_invoiceElements.invoiceSelectors.due);\n    (0, _messages.checkMessage)(_messages.messageSelectors.error, _messages.messageTexts.invalidDueDate); //enter due date\n    invoiceUpload.pickDueDate().verifyPaymentDays(); //check error of invoice total\n    (0, _input.fillInputWithValue)(_invoiceElements.invoiceSelectors.total, (0, _common.randomNum)(3));\n    (0, _input.clearInputValue)(_invoiceElements.invoiceSelectors.total);\n    (0, _messages.checkMessage)(_messages.messageSelectors.error, _messages.messageTexts.invalidTotal); //enter invoice total\n    (0, _input.fillInputWithValue)(_invoiceElements.invoiceSelectors.total, (0, _common.randomNum)(3));\n    (0, _button.clickButtonByValue)('Finish');\n    invoiceUpload.verifyUploadedInvoice();\n  } else {\n    cy.log('Adding invoice through `ADD INVOICE` button');\n    invoiceUpload.addInvoiceUsingAddButton().uploadFile();\n    (0, _messages.checkMessage)(_messages.messageSelectors.success, _messages.messageTexts.success);\n    (0, _input.fillInputWithValue)(_invoiceElements.invoiceSelectors.customer, (0, _common.randomLetter)(8));\n    invoiceUpload.addCustomerName();\n    (0, _input.fillInputWithValue)(_invoiceElements.invoiceSelectors.number, (0, _common.randomChars)(6));\n    invoiceUpload.pickDate().pickDueDate().verifyPaymentDays();\n    (0, _input.fillInputWithValue)(_invoiceElements.invoiceSelectors.total, (0, _common.randomNum)(3));\n    (0, _button.clickButtonByValue)('Finish');\n    invoiceUpload.verifyUploadedInvoice();\n  }\n});",
+              "err": {},
+              "uuid": "950e039d-6413-4f50-ab8d-7c2d26eb26dc",
+              "parentUUID": "8243733a-0a42-4dc5-9bfd-27da3f09f68c",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "950e039d-6413-4f50-ab8d-7c2d26eb26dc"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 18344,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/reports/mocha",
+        "quite": true,
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}

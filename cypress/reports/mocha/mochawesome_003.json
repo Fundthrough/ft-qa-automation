@@ -1,0 +1,107 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2022-06-22T19:36:56.383Z",
+    "end": "2022-06-22T19:37:05.959Z",
+    "duration": 9576,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "d0ce14cb-671a-4134-bed4-ae173b7bf109",
+      "title": "",
+      "fullFile": "cypress/integration/nebula/invoicePanel.spec.js",
+      "file": "cypress/integration/nebula/invoicePanel.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "e95ff074-52bd-4432-be34-fbcfed291d9e",
+          "title": "Invoice Details Grid",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Validate Invoice Details Grid",
+              "fullTitle": "Invoice Details Grid Validate Invoice Details Grid",
+              "timedOut": null,
+              "duration": 9399,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "var invoiceDetails = new _invoicePanelElements.InvoiceDetails();\ncy.login(this.user.username, this.user.password);\ninvoiceDetails.verifyInvoiceDetails();",
+              "err": {},
+              "uuid": "f8004cd2-9073-432d-a560-268cee9c6191",
+              "parentUUID": "e95ff074-52bd-4432-be34-fbcfed291d9e",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "f8004cd2-9073-432d-a560-268cee9c6191"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 9399,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/reports/mocha",
+        "quite": true,
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}

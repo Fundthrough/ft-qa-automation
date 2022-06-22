@@ -1,0 +1,183 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 5,
+    "passes": 5,
+    "pending": 0,
+    "failures": 0,
+    "start": "2022-06-22T19:35:58.259Z",
+    "end": "2022-06-22T19:36:26.753Z",
+    "duration": 28494,
+    "testsRegistered": 5,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "dea0f01a-6fe2-497f-95f8-560b8256dc78",
+      "title": "",
+      "fullFile": "cypress/integration/nebula/TC02_signIn.spec.js",
+      "file": "cypress/integration/nebula/TC02_signIn.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "6a2b7f90-ef11-48a5-b5a2-532da767597b",
+          "title": "Sign In Page",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Sign In page format",
+              "fullTitle": "Sign In Page Sign In page format",
+              "timedOut": null,
+              "duration": 10745,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "var signInPage = new _signInElements_new.SignInPage();\n(0, _navigation.visit)('/signin');\nsignInPage.verifySignIn().verifyImage();\n(0, _title.verifyTitle)('Sign In'); //verifyRedirection()\n(0, _input.verifyInputLabels)(_input.signInLabels);\nsignInPage.verifyStyling('Email').verifyStyling('Password').verifyForgotPwdText().clickForgotPwd();\n(0, _navigation.verifyNavigation)('/forgot-password');\n(0, _title.verifyTitle)('Reset your password'); //Invalid email format\n(0, _input.clearInputValue)(_input.inputSelectors.email);\n(0, _input.fillInputWithValue)(_input.inputSelectors.email, 'techadmin' + (0, _common.randomChars)(3) + '@fundthrough');\n(0, _button.checkButtonIsDisabled)('Send Code');\n(0, _button.clickButtonByValue)('Send Code');\n(0, _messages.checkMessage)(_messages.messageSelectors.error, _messages.messageTexts.emailError); //Incorrect email\n(0, _input.clearInputValue)(_input.inputSelectors.email);\n(0, _input.fillInputWithValue)(_input.inputSelectors.email, 'techadmin' + (0, _common.randomChars)(4) + '@fundthrough.com');\n(0, _button.clickButtonByValue)('Send Code');\nsignInPage.resetEmailError(); //Send code to the correct email address\n(0, _input.clearInputValue)(_input.inputSelectors.email);\n(0, _input.fillInputWithValue)(_input.inputSelectors.email, this.user.username);\n(0, _button.checkButtonIsActive)('Send Code'); //clickButtonByValue(\"Send Code\");\n//To discuss and setup an email server to validate the email code\n(0, _navigation.clickBackArrow)('BACK');\n(0, _navigation.verifyNavigation)('/signin');\nsignInPage.verifySignIn().verifySignUpPage();",
+              "err": {},
+              "uuid": "634dc9d2-9731-4f2f-9fc4-1da0eee0f1e2",
+              "parentUUID": "6a2b7f90-ef11-48a5-b5a2-532da767597b",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Sign In with incorrect emails",
+              "fullTitle": "Sign In Page Sign In with incorrect emails",
+              "timedOut": null,
+              "duration": 2741,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "(0, _navigation.visit)('/signin'); //attempt one\n(0, _input.fillInputWithValue)(_input.inputSelectors.email, 'techadmin' + (0, _common.randomChars)(5) + 'fundthrough');\n(0, _button.clickButtonByValue)('Sign In');\n(0, _messages.checkMessage)(_messages.messageSelectors.error, _messages.messageTexts.emailError);\n(0, _input.clearInputValue)(_input.inputSelectors.email); //attempt two\n(0, _input.fillInputWithValue)(_input.inputSelectors.email, 'techadmin' + (0, _common.randomChars)(3) + '@com');\n(0, _button.clickButtonByValue)('Sign In');\n(0, _messages.checkMessage)(_messages.messageSelectors.error, _messages.messageTexts.emailError);\n(0, _input.clearInputValue)(_input.inputSelectors.email); //attempt three\n(0, _input.fillInputWithValue)(_input.inputSelectors.email, 'techadmin' + (0, _common.randomChars)(2) + '@fundthrough');\n(0, _button.clickButtonByValue)('Sign In');\n(0, _messages.checkMessage)(_messages.messageSelectors.error, _messages.messageTexts.emailError);\n(0, _input.clearInputValue)(_input.inputSelectors.email); //empty input\n(0, _button.clickButtonByValue)('Sign In');\n(0, _messages.checkMessage)(_messages.messageSelectors.error, _messages.messageTexts.emailError);",
+              "err": {},
+              "uuid": "b976a3ed-f47d-42aa-a1e7-0ecdbbf432cc",
+              "parentUUID": "6a2b7f90-ef11-48a5-b5a2-532da767597b",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Sign In with incorrect passwords",
+              "fullTitle": "Sign In Page Sign In with incorrect passwords",
+              "timedOut": null,
+              "duration": 1684,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "(0, _navigation.visit)('/signin'); //attempt one\n(0, _input.fillInputWithValue)(_input.inputSelectors.password, (0, _common.randomChars)(4));\n(0, _button.clickButtonByValue)('Sign In');\n(0, _messages.checkMessage)(_messages.messageSelectors.error, _messages.messageTexts.passwordError);\n(0, _input.clearInputValue)(_input.inputSelectors.password); //attempt two\n(0, _input.fillInputWithValue)(_input.inputSelectors.password, (0, _common.randomChars)(7));\n(0, _button.clickButtonByValue)('Sign In');\n(0, _messages.checkMessage)(_messages.messageSelectors.error, _messages.messageTexts.passwordError);\n(0, _input.clearInputValue)(_input.inputSelectors.password); //attempt three\n(0, _input.fillInputWithValue)(_input.inputSelectors.password, '1');\n(0, _button.clickButtonByValue)('Sign In');\n(0, _messages.checkMessage)(_messages.messageSelectors.error, _messages.messageTexts.passwordError);",
+              "err": {},
+              "uuid": "637596c7-17f6-411f-b403-ac1f029d34b5",
+              "parentUUID": "6a2b7f90-ef11-48a5-b5a2-532da767597b",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Sign In with incorrect credentials",
+              "fullTitle": "Sign In Page Sign In with incorrect credentials",
+              "timedOut": null,
+              "duration": 9285,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "var _this = this;\nvar signInPage = new _signInElements_new.SignInPage(); //incorrect username\n(0, _navigation.visit)('/signin');\n(0, _input.fillInputWithValue)(_input.inputSelectors.email, 'techadmin' + (0, _common.randomChars)(4) + '@fundthrough.com');\n(0, _input.fillInputWithValue)(_input.inputSelectors.password, this.user.password);\n(0, _button.clickButtonByValue)('Sign In');\nsignInPage.authenticationError(); //incorrect password\nCypress._.times(5, function () {\n  (0, _input.clearInputValue)(_input.inputSelectors.email);\n  (0, _input.clearInputValue)(_input.inputSelectors.password);\n  (0, _input.fillInputWithValue)(_input.inputSelectors.email, _this.user.username);\n  (0, _input.fillInputWithValue)(_input.inputSelectors.password, (0, _common.randomChars)(10));\n  (0, _button.clickButtonByValue)('Sign In');\n});",
+              "err": {},
+              "uuid": "43129ef1-872e-4db9-b429-fbbea07333b2",
+              "parentUUID": "6a2b7f90-ef11-48a5-b5a2-532da767597b",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Sign In with valid credentials",
+              "fullTitle": "Sign In Page Sign In with valid credentials",
+              "timedOut": null,
+              "duration": 3814,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "(0, _navigation.reload)();\ncy.login(this.user.username, this.user.password);\n(0, _navigation.verifyNavigation)('/invoices');",
+              "err": {},
+              "uuid": "5fd77f25-4c5a-4684-889d-598bb041cbeb",
+              "parentUUID": "6a2b7f90-ef11-48a5-b5a2-532da767597b",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "634dc9d2-9731-4f2f-9fc4-1da0eee0f1e2",
+            "b976a3ed-f47d-42aa-a1e7-0ecdbbf432cc",
+            "637596c7-17f6-411f-b403-ac1f029d34b5",
+            "43129ef1-872e-4db9-b429-fbbea07333b2",
+            "5fd77f25-4c5a-4684-889d-598bb041cbeb"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 28269,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/reports/mocha",
+        "quite": true,
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}

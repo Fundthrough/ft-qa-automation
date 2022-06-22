@@ -1,0 +1,453 @@
+{
+  "stats": {
+    "suites": 5,
+    "tests": 11,
+    "passes": 11,
+    "pending": 0,
+    "failures": 0,
+    "start": "2022-06-22T19:35:14.749Z",
+    "end": "2022-06-22T19:37:19.781Z",
+    "duration": 101638,
+    "testsRegistered": 11,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "dde6ec9d-bfca-4837-8c8a-0f4ca6099636",
+      "title": "",
+      "fullFile": "cypress/integration/nebula/TC01_signUp.spec.js",
+      "file": "cypress/integration/nebula/TC01_signUp.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "93e0d9b5-138e-41c5-8269-23b60e986ea9",
+          "title": "Sign Up page",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Sign Up with incorrect email formats",
+              "fullTitle": "Sign Up page Sign Up with incorrect email formats",
+              "timedOut": null,
+              "duration": 8100,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "var signUpPage = new _signUpPage.SignUpPage();\nsignUpPage.visit().signupVerify().checkUserNameEmpty();\n(0, _button.checkButtonIsDisabled)('Next');\nsignUpPage.fillUserEmailInput('techadmin' + (0, _common.randomChars)(5)).clickOnCard();\n(0, _messages.checkMessage)(_messages.messageSelectors.error, _messages.messageTexts.emailError);\n(0, _button.checkButtonIsDisabled)('Next');\nsignUpPage.clearUserEmailInput().checkUserNameEmpty().fillUserEmailInput('techadmin' + (0, _common.randomChars)(5) + '@').clickOnCard();\n(0, _messages.checkMessage)(_messages.messageSelectors.error, _messages.messageTexts.emailError);\n(0, _button.checkButtonIsDisabled)('Next');\nsignUpPage.fillUserEmailInput('techadmin' + (0, _common.randomChars)(5) + '@').clickOnCard();\n(0, _messages.checkMessage)(_messages.messageSelectors.error, _messages.messageTexts.emailError);\n(0, _button.checkButtonIsDisabled)('Next');\nsignUpPage.clearUserEmailInput().fillUserEmailInput('techadmin' + (0, _common.randomChars)(5) + '@fundthrough').clickOnCard();\n(0, _button.checkButtonIsDisabled)('Next');\n(0, _messages.checkMessage)(_messages.messageSelectors.error, _messages.messageTexts.emailError);\nsignUpPage.clearUserEmailInput();\n(0, _button.checkButtonIsDisabled)('Next');\nsignUpPage.fillUserEmailInput('techadmin' + (0, _common.randomChars)(5) + '@fundthrough.co').clickOnCard();\n(0, _button.checkButtonIsActive)('Next');\nsignUpPage.clearUserEmailInput();",
+              "err": {},
+              "uuid": "162cd418-69b6-4804-aefc-1a12fe57883b",
+              "parentUUID": "93e0d9b5-138e-41c5-8269-23b60e986ea9",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Sign up with incorrect passwords",
+              "fullTitle": "Sign Up page Sign up with incorrect passwords",
+              "timedOut": null,
+              "duration": 5846,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "var signUpPage = new _signUpPage.SignUpPage();\nsignUpPage.visit().signupVerify().checkUserNameEmpty().fillUserEmailInput('techadmin' + (0, _common.randomChars)(5) + '@fundthrough.com');\n(0, _button.checkButtonIsActive)('Next');\n(0, _button.clickButtonByValue)('Next');\nsignUpPage.fillPasswordInput((0, _common.randomNum)(8)).revealPassword(true).verifyRadioBtn(_signUpPage.signUpSelectors.checkboxWrapper, _signUpPage.signUpTexts.oneNumber, true).verifyRadioBtn(_signUpPage.signUpSelectors.checkboxWrapper, _signUpPage.signUpTexts.oneLetter, false).verifyRadioBtn(_signUpPage.signUpSelectors.checkboxWrapper, _signUpPage.signUpTexts.charLength, true).clearPasswordInput();\nsignUpPage.fillPasswordInput((0, _common.randomNum)(5)).verifyRadioBtn(_signUpPage.signUpSelectors.checkboxWrapper, _signUpPage.signUpTexts.oneNumber, true).verifyRadioBtn(_signUpPage.signUpSelectors.checkboxWrapper, _signUpPage.signUpTexts.oneLetter, false).verifyRadioBtn(_signUpPage.signUpSelectors.checkboxWrapper, _signUpPage.signUpTexts.charLength, false).clearPasswordInput();\nsignUpPage.fillPasswordInput((0, _common.randomLetter)(8)).verifyRadioBtn(_signUpPage.signUpSelectors.checkboxWrapper, _signUpPage.signUpTexts.oneNumber, false).verifyRadioBtn(_signUpPage.signUpSelectors.checkboxWrapper, _signUpPage.signUpTexts.oneLetter, true).verifyRadioBtn(_signUpPage.signUpSelectors.checkboxWrapper, _signUpPage.signUpTexts.charLength, true).clearPasswordInput();\nsignUpPage.fillPasswordInput((0, _common.randomLetter)(5)).verifyRadioBtn(_signUpPage.signUpSelectors.checkboxWrapper, _signUpPage.signUpTexts.oneNumber, false).verifyRadioBtn(_signUpPage.signUpSelectors.checkboxWrapper, _signUpPage.signUpTexts.oneLetter, true).verifyRadioBtn(_signUpPage.signUpSelectors.checkboxWrapper, _signUpPage.signUpTexts.charLength, false).clearPasswordInput();",
+              "err": {},
+              "uuid": "4db5a8eb-25fb-45b8-836b-413d6cdd6167",
+              "parentUUID": "93e0d9b5-138e-41c5-8269-23b60e986ea9",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Sign Up with correct credentials",
+              "fullTitle": "Sign Up page Sign Up with correct credentials",
+              "timedOut": null,
+              "duration": 22261,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "var signUpPage = new _signUpPage.SignUpPage();\nvar email = 'techadmin' + (0, _common.randomChars)(4) + '@fundthrough.com';\nsignUpPage.visit().signupVerify().checkUserNameEmpty();\n(0, _button.checkButtonIsDisabled)('Next'); //Verification of elements activation and Input on Sign Up page\nsignUpPage.fillUserEmailInput(email);\n(0, _button.clickButtonByValue)('Next');\nsignUpPage.checkUserEmailInput(email);\nsignUpPage.saveUserEmail_LS().fillPasswordInput('1Password').revealPassword(true, '1Password').verifyRadioBtn(_signUpPage.signUpSelectors.checkboxWrapper, _signUpPage.signUpTexts.oneNumber, true).verifyRadioBtn(_signUpPage.signUpSelectors.checkboxWrapper, _signUpPage.signUpTexts.oneLetter, true).verifyRadioBtn(_signUpPage.signUpSelectors.checkboxWrapper, _signUpPage.signUpTexts.charLength, true).checkTermsAndCond().uncheckTermsAndCond();\n(0, _messages.checkMessage)(_messages.messageSelectors.error, _messages.messageTexts.termsAndConditions);\nsignUpPage.checkTermsAndCond();\n(0, _button.clickButtonByValue)('Next'); //redirects to /onboarding flow\nsignUpPage.checkOnboardingDirectionUrl() //Step 1 page validation\n.checkOnboardStep(1).checkQuickBooksHeader().checkImage().skipQuickBooksStep();\ncy.intercept({\n  method: 'POST',\n  url: 'https://api.segment.io/v1/p'\n}, {\n  success: true\n}).as('nextStep');\ncy.wait('@nextStep', {\n  timeout: 25000\n}); // //Step 2 page validation\nsignUpPage.checkOnboardStep(2).checkTooltip('Business Legal Name', _signUpPage.signUpTexts.businessLegalName).inputBusinessName((0, _common.randomChars)(4)).verifyRadioBtn(_signUpPage.signUpSelectors.checkbox, _signUpPage.signUpTexts.customerCallCheckbox, true);\n(0, _button.clickButtonByValue)('Next'); //redirects to Step 3 and fills in Company Address info\ncy.wait('@nextStep', {\n  timeout: 25000\n});\nsignUpPage // Should be uncommented after fixing the issue with step\n// .checkOnboardStep(3)\n.fillBusinessAddressInput('Business Address', '100 test street').checkAddressField().fillCityNameInput('Cary').selectCountry('USA').selectProvince('West Virginia').checkTooltip('Business Address', _signUpPage.signUpTexts.businessAddress).selectPostalCode('12345');\n(0, _button.clickButtonByValue)('Next');\ncy.wait('@nextStep', {\n  timeout: 25000\n});\nsignUpPage.checkOnboardStep(4).fillPhoneNumber('6470001234').checkTooltip('Contact Phone', _signUpPage.signUpTexts.contactPhone);\n(0, _button.clickButtonByValue)('Next');\ncy.wait('@nextStep', {\n  timeout: 25000\n});\nsignUpPage.checkOnboardStep(5).fillPrefName((0, _common.randomChars)(4)).fillFirstName((0, _common.randomChars)(4)).fillLastName((0, _common.randomChars)(4)).checkTooltip('Legal First Name', _signUpPage.signUpTexts.firstName).checkTooltip('Preferred First Name', _signUpPage.signUpTexts.firstName);\n(0, _button.clickButtonByValue)('Next');\nsignUpPage.checkHeardAboutUsInput();\n(0, _button.clickButtonByValue)('Skip');\ncy.wait('@nextStep', {\n  timeout: 25000\n});\nsignUpPage.logOut().signupVerify();",
+              "err": {},
+              "uuid": "02a9ce50-d6c6-4c38-955a-9fae95597a14",
+              "parentUUID": "93e0d9b5-138e-41c5-8269-23b60e986ea9",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "162cd418-69b6-4804-aefc-1a12fe57883b",
+            "4db5a8eb-25fb-45b8-836b-413d6cdd6167",
+            "02a9ce50-d6c6-4c38-955a-9fae95597a14"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 36207,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    },
+    {
+      "uuid": "dea0f01a-6fe2-497f-95f8-560b8256dc78",
+      "title": "",
+      "fullFile": "cypress/integration/nebula/TC02_signIn.spec.js",
+      "file": "cypress/integration/nebula/TC02_signIn.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "6a2b7f90-ef11-48a5-b5a2-532da767597b",
+          "title": "Sign In Page",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Sign In page format",
+              "fullTitle": "Sign In Page Sign In page format",
+              "timedOut": null,
+              "duration": 10745,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "var signInPage = new _signInElements_new.SignInPage();\n(0, _navigation.visit)('/signin');\nsignInPage.verifySignIn().verifyImage();\n(0, _title.verifyTitle)('Sign In'); //verifyRedirection()\n(0, _input.verifyInputLabels)(_input.signInLabels);\nsignInPage.verifyStyling('Email').verifyStyling('Password').verifyForgotPwdText().clickForgotPwd();\n(0, _navigation.verifyNavigation)('/forgot-password');\n(0, _title.verifyTitle)('Reset your password'); //Invalid email format\n(0, _input.clearInputValue)(_input.inputSelectors.email);\n(0, _input.fillInputWithValue)(_input.inputSelectors.email, 'techadmin' + (0, _common.randomChars)(3) + '@fundthrough');\n(0, _button.checkButtonIsDisabled)('Send Code');\n(0, _button.clickButtonByValue)('Send Code');\n(0, _messages.checkMessage)(_messages.messageSelectors.error, _messages.messageTexts.emailError); //Incorrect email\n(0, _input.clearInputValue)(_input.inputSelectors.email);\n(0, _input.fillInputWithValue)(_input.inputSelectors.email, 'techadmin' + (0, _common.randomChars)(4) + '@fundthrough.com');\n(0, _button.clickButtonByValue)('Send Code');\nsignInPage.resetEmailError(); //Send code to the correct email address\n(0, _input.clearInputValue)(_input.inputSelectors.email);\n(0, _input.fillInputWithValue)(_input.inputSelectors.email, this.user.username);\n(0, _button.checkButtonIsActive)('Send Code'); //clickButtonByValue(\"Send Code\");\n//To discuss and setup an email server to validate the email code\n(0, _navigation.clickBackArrow)('BACK');\n(0, _navigation.verifyNavigation)('/signin');\nsignInPage.verifySignIn().verifySignUpPage();",
+              "err": {},
+              "uuid": "634dc9d2-9731-4f2f-9fc4-1da0eee0f1e2",
+              "parentUUID": "6a2b7f90-ef11-48a5-b5a2-532da767597b",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Sign In with incorrect emails",
+              "fullTitle": "Sign In Page Sign In with incorrect emails",
+              "timedOut": null,
+              "duration": 2741,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "(0, _navigation.visit)('/signin'); //attempt one\n(0, _input.fillInputWithValue)(_input.inputSelectors.email, 'techadmin' + (0, _common.randomChars)(5) + 'fundthrough');\n(0, _button.clickButtonByValue)('Sign In');\n(0, _messages.checkMessage)(_messages.messageSelectors.error, _messages.messageTexts.emailError);\n(0, _input.clearInputValue)(_input.inputSelectors.email); //attempt two\n(0, _input.fillInputWithValue)(_input.inputSelectors.email, 'techadmin' + (0, _common.randomChars)(3) + '@com');\n(0, _button.clickButtonByValue)('Sign In');\n(0, _messages.checkMessage)(_messages.messageSelectors.error, _messages.messageTexts.emailError);\n(0, _input.clearInputValue)(_input.inputSelectors.email); //attempt three\n(0, _input.fillInputWithValue)(_input.inputSelectors.email, 'techadmin' + (0, _common.randomChars)(2) + '@fundthrough');\n(0, _button.clickButtonByValue)('Sign In');\n(0, _messages.checkMessage)(_messages.messageSelectors.error, _messages.messageTexts.emailError);\n(0, _input.clearInputValue)(_input.inputSelectors.email); //empty input\n(0, _button.clickButtonByValue)('Sign In');\n(0, _messages.checkMessage)(_messages.messageSelectors.error, _messages.messageTexts.emailError);",
+              "err": {},
+              "uuid": "b976a3ed-f47d-42aa-a1e7-0ecdbbf432cc",
+              "parentUUID": "6a2b7f90-ef11-48a5-b5a2-532da767597b",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Sign In with incorrect passwords",
+              "fullTitle": "Sign In Page Sign In with incorrect passwords",
+              "timedOut": null,
+              "duration": 1684,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "(0, _navigation.visit)('/signin'); //attempt one\n(0, _input.fillInputWithValue)(_input.inputSelectors.password, (0, _common.randomChars)(4));\n(0, _button.clickButtonByValue)('Sign In');\n(0, _messages.checkMessage)(_messages.messageSelectors.error, _messages.messageTexts.passwordError);\n(0, _input.clearInputValue)(_input.inputSelectors.password); //attempt two\n(0, _input.fillInputWithValue)(_input.inputSelectors.password, (0, _common.randomChars)(7));\n(0, _button.clickButtonByValue)('Sign In');\n(0, _messages.checkMessage)(_messages.messageSelectors.error, _messages.messageTexts.passwordError);\n(0, _input.clearInputValue)(_input.inputSelectors.password); //attempt three\n(0, _input.fillInputWithValue)(_input.inputSelectors.password, '1');\n(0, _button.clickButtonByValue)('Sign In');\n(0, _messages.checkMessage)(_messages.messageSelectors.error, _messages.messageTexts.passwordError);",
+              "err": {},
+              "uuid": "637596c7-17f6-411f-b403-ac1f029d34b5",
+              "parentUUID": "6a2b7f90-ef11-48a5-b5a2-532da767597b",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Sign In with incorrect credentials",
+              "fullTitle": "Sign In Page Sign In with incorrect credentials",
+              "timedOut": null,
+              "duration": 9285,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "var _this = this;\nvar signInPage = new _signInElements_new.SignInPage(); //incorrect username\n(0, _navigation.visit)('/signin');\n(0, _input.fillInputWithValue)(_input.inputSelectors.email, 'techadmin' + (0, _common.randomChars)(4) + '@fundthrough.com');\n(0, _input.fillInputWithValue)(_input.inputSelectors.password, this.user.password);\n(0, _button.clickButtonByValue)('Sign In');\nsignInPage.authenticationError(); //incorrect password\nCypress._.times(5, function () {\n  (0, _input.clearInputValue)(_input.inputSelectors.email);\n  (0, _input.clearInputValue)(_input.inputSelectors.password);\n  (0, _input.fillInputWithValue)(_input.inputSelectors.email, _this.user.username);\n  (0, _input.fillInputWithValue)(_input.inputSelectors.password, (0, _common.randomChars)(10));\n  (0, _button.clickButtonByValue)('Sign In');\n});",
+              "err": {},
+              "uuid": "43129ef1-872e-4db9-b429-fbbea07333b2",
+              "parentUUID": "6a2b7f90-ef11-48a5-b5a2-532da767597b",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Sign In with valid credentials",
+              "fullTitle": "Sign In Page Sign In with valid credentials",
+              "timedOut": null,
+              "duration": 3814,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "(0, _navigation.reload)();\ncy.login(this.user.username, this.user.password);\n(0, _navigation.verifyNavigation)('/invoices');",
+              "err": {},
+              "uuid": "5fd77f25-4c5a-4684-889d-598bb041cbeb",
+              "parentUUID": "6a2b7f90-ef11-48a5-b5a2-532da767597b",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "634dc9d2-9731-4f2f-9fc4-1da0eee0f1e2",
+            "b976a3ed-f47d-42aa-a1e7-0ecdbbf432cc",
+            "637596c7-17f6-411f-b403-ac1f029d34b5",
+            "43129ef1-872e-4db9-b429-fbbea07333b2",
+            "5fd77f25-4c5a-4684-889d-598bb041cbeb"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 28269,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    },
+    {
+      "uuid": "1446db04-982e-4267-8100-e0777aa8abf8",
+      "title": "",
+      "fullFile": "cypress/integration/nebula/TC03_uploadInvoice.spec.js",
+      "file": "cypress/integration/nebula/TC03_uploadInvoice.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "8243733a-0a42-4dc5-9bfd-27da3f09f68c",
+          "title": "Upload your first invoice",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Validate upload invoice",
+              "fullTitle": "Upload your first invoice Validate upload invoice",
+              "timedOut": null,
+              "duration": 18344,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "var invoiceUpload = new _invoiceElements.InvoiceUpload();\ncy.login(this.user.username, this.user.password);\n(0, _navigation.verifyNavigation)('/invoices');\ncy.wait(3000);\ncy.checkCard().then(function (element) {\n  if (element.text().includes('Add your first invoice')) {\n    cy.log('Adding invoice through `ADD YOUR FIRST INVOICE` action card');\n    invoiceUpload.selectCard('Add your first invoice', 'Add');\n    (0, _title.verifyHeader)(_title.headers.invoiceHeader);\n    (0, _title.verifyFundHeader)(_title.fundHeaders.invoiceFundHeader);\n    invoiceUpload.uploadInvalidFile();\n    (0, _messages.checkMessage)(_messages.messageSelectors.error, _messages.messageTexts.uploadInvoiceError);\n    (0, _button.clickButtonByValue)('Dashboard');\n    (0, _navigation.verifyNavigation)('/invoices');\n    invoiceUpload.selectCard('Add your first invoice', 'Add').uploadFile();\n    (0, _messages.checkMessage)(_messages.messageSelectors.success, _messages.messageTexts.success);\n    invoiceUpload.verifyFormHeaders();\n    (0, _input.verifyInputLabels)(_input.invoiceLabels);\n    (0, _tooltip.checkTooltip)('Invoice Number', _tooltip.tooltipTexts.invoiceNumber);\n    (0, _tooltip.checkTooltip)('Invoice Date', _tooltip.tooltipTexts.invoiceDate); //validate error of customer name field\n    (0, _input.fillInputWithValue)(_invoiceElements.invoiceSelectors.customer, (0, _common.randomLetter)(8));\n    invoiceUpload.addCustomerName().clearCustomerName();\n    (0, _messages.checkMessage)(_messages.messageSelectors.error, _messages.messageTexts.invalidCustomer); //enter customer name\n    (0, _input.fillInputWithValue)(_invoiceElements.invoiceSelectors.customer, (0, _common.randomLetter)(8));\n    invoiceUpload.addCustomerName(); //validate error of invoice number\n    (0, _input.fillInputWithValue)(_invoiceElements.invoiceSelectors.number, (0, _common.randomChars)(6));\n    (0, _input.clearInputValue)(_invoiceElements.invoiceSelectors.number);\n    (0, _messages.checkMessage)(_messages.messageSelectors.error, _messages.messageTexts.invalidNumber); //enter invoice number\n    (0, _input.fillInputWithValue)(_invoiceElements.invoiceSelectors.number, (0, _common.randomChars)(6)); //validate error of date field\n    (0, _input.fillInputWithValue)(_invoiceElements.invoiceSelectors.date, '2022-01-01');\n    (0, _messages.checkMessage)(_messages.messageSelectors.error, _messages.messageTexts.dateError);\n    (0, _input.clearInputValue)(_invoiceElements.invoiceSelectors.date); //enter invoice date\n    invoiceUpload.pickDate(); //validate error of due date field\n    (0, _input.fillInputWithValue)(_invoiceElements.invoiceSelectors.due, '2022-01-01');\n    (0, _input.clearInputValue)(_invoiceElements.invoiceSelectors.due);\n    (0, _messages.checkMessage)(_messages.messageSelectors.error, _messages.messageTexts.invalidDueDate); //enter due date\n    invoiceUpload.pickDueDate().verifyPaymentDays(); //check error of invoice total\n    (0, _input.fillInputWithValue)(_invoiceElements.invoiceSelectors.total, (0, _common.randomNum)(3));\n    (0, _input.clearInputValue)(_invoiceElements.invoiceSelectors.total);\n    (0, _messages.checkMessage)(_messages.messageSelectors.error, _messages.messageTexts.invalidTotal); //enter invoice total\n    (0, _input.fillInputWithValue)(_invoiceElements.invoiceSelectors.total, (0, _common.randomNum)(3));\n    (0, _button.clickButtonByValue)('Finish');\n    invoiceUpload.verifyUploadedInvoice();\n  } else {\n    cy.log('Adding invoice through `ADD INVOICE` button');\n    invoiceUpload.addInvoiceUsingAddButton().uploadFile();\n    (0, _messages.checkMessage)(_messages.messageSelectors.success, _messages.messageTexts.success);\n    (0, _input.fillInputWithValue)(_invoiceElements.invoiceSelectors.customer, (0, _common.randomLetter)(8));\n    invoiceUpload.addCustomerName();\n    (0, _input.fillInputWithValue)(_invoiceElements.invoiceSelectors.number, (0, _common.randomChars)(6));\n    invoiceUpload.pickDate().pickDueDate().verifyPaymentDays();\n    (0, _input.fillInputWithValue)(_invoiceElements.invoiceSelectors.total, (0, _common.randomNum)(3));\n    (0, _button.clickButtonByValue)('Finish');\n    invoiceUpload.verifyUploadedInvoice();\n  }\n});",
+              "err": {},
+              "uuid": "950e039d-6413-4f50-ab8d-7c2d26eb26dc",
+              "parentUUID": "8243733a-0a42-4dc5-9bfd-27da3f09f68c",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "950e039d-6413-4f50-ab8d-7c2d26eb26dc"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 18344,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    },
+    {
+      "uuid": "d0ce14cb-671a-4134-bed4-ae173b7bf109",
+      "title": "",
+      "fullFile": "cypress/integration/nebula/invoicePanel.spec.js",
+      "file": "cypress/integration/nebula/invoicePanel.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "e95ff074-52bd-4432-be34-fbcfed291d9e",
+          "title": "Invoice Details Grid",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Validate Invoice Details Grid",
+              "fullTitle": "Invoice Details Grid Validate Invoice Details Grid",
+              "timedOut": null,
+              "duration": 9399,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "var invoiceDetails = new _invoicePanelElements.InvoiceDetails();\ncy.login(this.user.username, this.user.password);\ninvoiceDetails.verifyInvoiceDetails();",
+              "err": {},
+              "uuid": "f8004cd2-9073-432d-a560-268cee9c6191",
+              "parentUUID": "e95ff074-52bd-4432-be34-fbcfed291d9e",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "f8004cd2-9073-432d-a560-268cee9c6191"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 9399,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    },
+    {
+      "uuid": "ab10a468-9334-49bb-bda6-5179da1ff4c3",
+      "title": "",
+      "fullFile": "cypress/integration/nebula/yellowCard.spec.js",
+      "file": "cypress/integration/nebula/yellowCard.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "2d2d603a-4922-4bc3-8edb-e3aacc6794d6",
+          "title": "Yellow action card",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Yellow card content validations",
+              "fullTitle": "Yellow action card Yellow card content validations",
+              "timedOut": null,
+              "duration": 9419,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "var cardcontent = new _yellowCard.cardContent();\n(0, _navigation.visit)('/signin');\ncy.login(this.user.username, this.user.password);\n(0, _navigation.verifyNavigation)('/invoices');\ncardcontent.checkCard().verifyTitle().velocityTitle().expressTitle().verifyDesc(_yellowCard.cardTexts.velocity, _yellowCard.cardTexts.velocityDesc).verifyDesc(_yellowCard.cardTexts.express, _yellowCard.cardTexts.expressDesc).clickOnYellowCard().verifyAmount().verifyType(_yellowCard.cardTexts.velocity, _yellowCard.cardTexts.velocityType).verifyType(_yellowCard.cardTexts.express, _yellowCard.cardTexts.expressType).verifySubTitle(_yellowCard.cardTexts.velocity, _yellowCard.cardTexts.velocitySubTitle).verifySubTitle(_yellowCard.cardTexts.express, _yellowCard.cardTexts.expressSubTitle).verifyIcons().verifyTexts().closeIcon();\n(0, _navigation.verifyNavigation)('/invoices');\ncardcontent.clickOnYellowCard();\n(0, _button.clickButtonByValue)('Close');\n(0, _navigation.verifyNavigation)('/invoices');",
+              "err": {},
+              "uuid": "07d90213-a1a6-4776-b198-c874c378a3fd",
+              "parentUUID": "2d2d603a-4922-4bc3-8edb-e3aacc6794d6",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "07d90213-a1a6-4776-b198-c874c378a3fd"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 9419,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/reports/mocha",
+        "quite": true,
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}
