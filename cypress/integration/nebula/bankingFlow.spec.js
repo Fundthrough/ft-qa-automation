@@ -83,13 +83,15 @@ describe('Legal Details', () => {
         checkMessage(messageSelectors.notificationDashboard,'Step completed')
         checkMessage(messageSelectors.notificationDashboard, 'Thank you for confirming your bank account.')
 
-        bankingFlowPage.checkCard('Add your bank', false)
+        // bankingFlowPage.checkCard('Add your bank', false)
 
         cy.checkCard().then(element => {
             if (element.text().includes('Add your bank')) {
                 cy.log("Adding bank through `Add your bank` action card")
                 bankingFlowPage
                     .selectCard("Add your bank", "Link");
+            } else {
+                bankingFlowPage.checkCard('Add your bank', false)
             }
         })
 
