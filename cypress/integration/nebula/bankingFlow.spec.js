@@ -11,6 +11,7 @@ import {fillInputWithValue} from "../../support/Helpers/common/input";
 import {SignUpPage} from "../../support/Page_Objects/signUpPage";
 import {verifyNavigation} from "../../support/Helpers/common/navigation";
 import {checkMessage, messageSelectors} from "../../support/Helpers/common/messages";
+import {checkCard} from "../../support/Page_Objects/invoiceElements";
 
 describe('Legal Details', () => {
     beforeEach(() => {
@@ -83,6 +84,15 @@ describe('Legal Details', () => {
         checkMessage(messageSelectors.notificationDashboard, 'Thank you for confirming your bank account.')
 
         bankingFlowPage.checkCard('Add your bank', false)
+
+        cy.checkCard().then(element => {
+            if (element.text().includes('Add your bank')) {
+                cy.log("Adding bank through `Add your bank` action card")
+                bankingFlowPage
+                    .selectCard("Add your bank", "Link");
+            }
+        })
+
     })
 })
 
