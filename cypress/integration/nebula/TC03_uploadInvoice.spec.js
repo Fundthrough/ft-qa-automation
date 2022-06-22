@@ -22,7 +22,7 @@ import {
   messageSelectors,
   messageTexts,
 } from "../../support/Helpers/common/messages";
-import { checkTooltip, tooltipTexts } from "../../support/Helpers/common/tooltip";
+import {checkTooltip, tooltipSelectors, tooltipTexts} from "../../support/Helpers/common/tooltip";
 import {randomChars, randomLetter, randomNum} from "../../support/Helpers/common";
 
 
@@ -69,8 +69,8 @@ describe("Upload your first invoice", () => {
           .verifyFormHeaders()
 
         verifyInputLabels(invoiceLabels)
-        checkTooltip('Invoice Number', tooltipTexts.invoiceNumber)
-        checkTooltip('Invoice Date', tooltipTexts.invoiceDate)
+        checkTooltip(tooltipSelectors.inputLabel, 'Invoice Number', tooltipTexts.invoiceNumber)
+        checkTooltip(tooltipSelectors.inputLabel, 'Invoice Date', tooltipTexts.invoiceDate)
 
         //validate error of customer name field
         fillInputWithValue(invoiceSelectors.customer, randomLetter(8))
