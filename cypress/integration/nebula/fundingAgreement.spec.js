@@ -109,7 +109,7 @@ describe('Legal Details', () => {
         checkButtonIsActive('Not Now')
         checkButtonIsActive('I Agree')
         clickButtonByValue('I Agree')
-        agreementError(messageTexts.agreementCard)
+        checkMessage(messageSelectors.agreementError, messageTexts.agreementCard)
         verifyCheckbox('.checkbox','accept the Master Purchase and Sale Agreement and have the authority to bind the Corporation.', false)
         verifyCheckbox('.checkbox','accept the Personal Guarantee.', false)
         checkTheCheckbox('.checkbox', 'accept the Master Purchase and Sale Agreement and have the authority to bind the Corporation.')

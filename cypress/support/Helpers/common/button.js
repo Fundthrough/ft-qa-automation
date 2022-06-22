@@ -17,6 +17,7 @@ export const clickBackButtonByValue = (value) => {
 export const clickBackButtonByUrl = (url) => {
         cy.get(".reverse").should("have.attr", "href", url).click();
 }
+
 export const verifyCheckbox = (checkbox, checkboxTitle, checked = false) => {
     cy.get(checkbox)
         .find('label')

@@ -1,6 +1,6 @@
 {
     "projectId": "ekqhck",
-    "baseUrl": "https://nebula-qa1.fundthrough.com",
+    "baseUrl": "https://nebula-client.fundthrough.com",
     "ignoreTestFiles": "**/examples/*",
     "defaultCommandTimeout": 60000,
     "responseTimeout": 60000,
@@ -15,7 +15,8 @@
       "nebula/TC04_Signin.Page.Elements.js",
       "nebula/fundingAgreement.spec.js",
       "nebula/bankingFlow.spec.js",
-      "nebula/invoicePanel.spec.js"
+      "nebula/invoicePanel.spec.js",
+      "nebula/bankingFlow.spec.js"
     ],
     "retries" : 2
 }

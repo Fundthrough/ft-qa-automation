@@ -7,6 +7,11 @@ export const fundHeaders = {
     invoiceFundHeader: 'Choose how you would like to add your invoice'
 }
 
+export const titleSelectors = {
+    stepContainer: '#ft-card-next-gen',
+    currentStep: '.fund-step',
+}
+
 export const verifyTitle = (title) => {
     cy.get(".normal-text").should("have.text", title)
 }
@@ -26,14 +31,6 @@ export const verifyInputLabels = (labels) => {
   })
 }
 
-
-
-
-export const titleSelectors = {
-    stepContainer: '#ft-card-next-gen',
-    currentStep: '.fund-step',
-}
-
 export const checkProgressAndHeader = (section, currentStep, lastStep) => {
     cy.get(titleSelectors.stepContainer)
         .find(titleSelectors.currentStep)
@@ -44,5 +41,5 @@ export const checkProgressAndHeader = (section, currentStep, lastStep) => {
 
 export const checkHeaderText = (text) => {
     cy.get('h4').contains(text).should('be.visible')
-
 }
+
