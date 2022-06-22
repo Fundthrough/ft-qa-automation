@@ -23,12 +23,4 @@
   ],
   "retries": 2
 
-    "watchForFileChanges": false,
-    "testFiles":[
-     "nebula/TC01_signUp.spec.js",
-     "nebula/TC02_signIn.spec.js",
-     "nebula/TC03_uploadInvoice.spec.js"
-    ],
-    "retries" : 2
-
 }
