@@ -1,4 +1,4 @@
-import { checkCard, invoiceSelectors, InvoiceUpload } from "../../support/Page_Objects/invoiceElements";
+import {invoiceSelectors, InvoiceUpload} from "../../support/Page_Objects/invoiceElements";
 import {
   verifyNavigation
 } from "../../support/Helpers/common/navigation";

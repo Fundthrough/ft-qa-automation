@@ -10,7 +10,7 @@ import {getIframeBody, iframeSelectors, loadingSelectors, waitForLoader} from ".
 import {fillInputWithValue} from "../../support/Helpers/common/input";
 import {SignUpPage} from "../../support/Page_Objects/signUpPage";
 import {verifyNavigation} from "../../support/Helpers/common/navigation";
-import {checkNotification} from "../../support/Helpers/common/messages";
+import {checkMessage, messageSelectors} from "../../support/Helpers/common/messages";
 
 describe('Legal Details', () => {
     beforeEach(() => {
@@ -79,13 +79,13 @@ describe('Legal Details', () => {
        signUpPage
            .selectItemFromNavbar('Invoices')
 
-        checkNotification('Step completed')
-        checkNotification('Thank you for confirming your bank account.')
+        checkMessage(messageSelectors.notificationDashboard,'Step completed')
+        checkMessage(messageSelectors.notificationDashboard, 'Thank you for confirming your bank account.')
 
         bankingFlowPage.checkCard('Add your bank', false)
     })
 })
 
-Cypress.on('uncaught:exception', (err, runnable) => {
+Cypress.on('uncaught:exception', () => {
     return false
 })

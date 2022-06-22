@@ -1,6 +1,6 @@
-import {SignUpPage, signUpSelectors, signUpTexts} from "../../support/Page_Objects/signUpPage";
+import {signUpSelectors} from "../../support/Page_Objects/signUpPage";
 import {
-    checkButtonIsActive, checkButtonIsDisabled,
+    checkButtonIsActive,
     checkTheCheckbox,
     clickButtonByValue,
     verifyCheckbox
@@ -11,13 +11,9 @@ import {
     fundingAgreementSelectors,
     fundingAgreementTexts
 } from "../../support/Page_Objects/dashboard/fundingAgreement";
-import {agreementError, checkMessage, messageSelectors, messageTexts} from "../../support/Helpers/common/messages";
+import { checkMessage, messageSelectors, messageTexts} from "../../support/Helpers/common/messages";
 import {checkTooltip, tooltipSelectors, tooltipTexts} from "../../support/Helpers/common/tooltip";
 import {getIframeBody, iframeSelectors} from "../../support/Helpers/common/iframe";
-import {randomChars} from "../../support/Helpers/common";
-import {verifyNavigation, visit} from "../../support/Helpers/common/navigation";
-import {checkEmptyInput, checkInputValue, fillInputWithValue, inputSelectors} from "../../support/Helpers/common/input";
-import {checkProgressAndHeader} from "../../support/Helpers/common/title";
 
 describe('Legal Details', () => {
     beforeEach(() => {
@@ -131,6 +127,6 @@ describe('Legal Details', () => {
     })
 })
 
-Cypress.on('uncaught:exception', (err, runnable) => {
+Cypress.on('uncaught:exception', () => {
     return false
 })
