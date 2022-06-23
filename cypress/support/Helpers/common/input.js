@@ -1,5 +1,3 @@
-import {signUpSelectors} from "../../Page_Objects/signUpPage";
-
 export const inputSelectors = {
     email: '#username',
     password: '#password',
