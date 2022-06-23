@@ -1,3 +1,22 @@
+export const cardSelectors = {
+    title: '#top-title',
+    velocityTitle: '#velocity-amount',
+    expressTitle: '#express-amount',
+    desc: '.ExpressAndVelocity_description__3mLmX',
+    wrapper: '#yellow_card_wrapper',
+    modal: '.spec-modal-content',
+    modalHeader: '.spec-header-title',
+    message: '.message',
+    amount: '.spec-amount',
+    type: '.spec-factoring-type',
+    subTitle: '.FactoringSection_subTitle__1EUod',
+    icon: '.icon > .icons',
+    benefits: '.FactoringSection_benefits__1kTV1',
+    text: '.FactoringSection_layoutCardTop__Zkwtn',
+    disclaimer: '.icon-c-info-secondary',
+    closeIcon: '.close.icon',
+}
+
 export const cardTexts = {
     title: 'Complete setup to see if you qualify for',
     velocity: 'Unlimited',
@@ -28,25 +47,31 @@ export class cardContent {
     }
 
     verifyTitle() {
-        cy.get('#top-title').should('have.text', cardTexts.title)
+        cy.get(cardSelectors.title).should('have.text', cardTexts.title)
 
         return this
     }
 
     velocityTitle() {
-        cy.get('#velocity-amount').should('have.text', cardTexts.velocity)
+        cy.get(cardSelectors.velocityTitle).should(
+            'have.text',
+            cardTexts.velocity
+        )
 
         return this
     }
 
     expressTitle() {
-        cy.get('#express-amount').should('have.text', cardTexts.express)
+        cy.get(cardSelectors.expressTitle).should(
+            'have.text',
+            cardTexts.express
+        )
 
         return this
     }
 
     verifyDesc(text, desc) {
-        cy.get('.ExpressAndVelocity_description__3mLmX')
+        cy.get(cardSelectors.desc)
             .parent()
             .contains(text)
             .next()
@@ -56,31 +81,31 @@ export class cardContent {
     }
 
     clickOnYellowCard() {
-        cy.get('#yellow_card_wrapper').click()
+        cy.get(cardSelectors.wrapper).click()
 
         return this
     }
 
     verifyModal() {
-        cy.get('.spec-modal-content').should('be.visible')
+        cy.get(cardSelectors.modal).should('be.visible')
 
         return this
     }
 
     verifyModalHeader() {
-        cy.get('.spec-header-title').should('have.text', cardTexts.header)
+        cy.get(cardSelectors.modalHeader).should('have.text', cardTexts.header)
 
         return this
     }
 
     verifyMessage() {
-        cy.get('.message').should('have.text', cardTexts.message)
+        cy.get(cardSelectors.message).should('have.text', cardTexts.message)
 
         return this
     }
 
     verifyAmount() {
-        cy.get('.spec-amount').each(($el, index) => {
+        cy.get(cardSelectors.amount).each(($el, index) => {
             const text = $el.text()
             expect(text).to.equals(amount[index])
         })
@@ -89,7 +114,7 @@ export class cardContent {
     }
 
     verifyType(text, type) {
-        cy.get('.spec-factoring-type')
+        cy.get(cardSelectors.type)
             .prev()
             .contains(text)
             .next()
@@ -99,8 +124,8 @@ export class cardContent {
     }
 
     verifySubTitle(text, title) {
-        cy.get('.FactoringSection_subTitle__1EUod')
-            .prevUntil('.spec-amount')
+        cy.get(cardSelectors.subTitle)
+            .prevUntil(cardSelectors.amount)
             .contains(text)
             .parent()
             .siblings()
@@ -110,16 +135,14 @@ export class cardContent {
     }
 
     verifyIcons() {
-        cy.get('.icon > .icons').should('have.css', 'background-image')
+        cy.get(cardSelectors.icon).should('have.css', 'background-image')
 
         return this
     }
 
     verifyTexts() {
-        cy.get('.FactoringSection_benefits__1kTV1').each(($el) => {
-            const compareText = $el
-                .siblings('.FactoringSection_layoutCardTop__Zkwtn')
-                .text()
+        cy.get(cardSelectors.benefits).each(($el) => {
+            const compareText = $el.siblings(cardSelectors.text).text()
             if (compareText.includes(cardTexts.velocity)) {
                 expect($el.text()).to.equals(cardTexts.velocityText)
             } else if (compareText.includes(cardTexts.express)) {
@@ -131,7 +154,7 @@ export class cardContent {
     }
 
     verifyDisclaimer() {
-        cy.get('.icon-c-info-secondary').should(
+        cy.get(cardSelectors.disclaimer).should(
             'have.text',
             cardTexts.disclaimer
         )
@@ -140,6 +163,6 @@ export class cardContent {
     }
 
     closeIcon() {
-        cy.get('.close.icon').should('be.visible').click()
+        cy.get(cardSelectors.closeIcon).should('be.visible').click()
     }
 }
