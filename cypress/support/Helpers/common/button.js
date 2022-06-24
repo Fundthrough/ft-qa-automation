@@ -1,6 +1,5 @@
 export const clickButtonByValue = (value) => {
     cy.get('button').contains(value).should('exist').click({force: true})
-    cy.get('button').contains(value).parent().click({force: true})
 }
 
 export const clickButton = (value) => {
