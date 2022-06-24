@@ -16,4 +16,5 @@ workflows:
                   executor: with-chrome
                   browser: chrome
                   record: true
-                  store_artifacts: true
+                  store_artifacts: 
+                    path: ./cypress/reports/mochareports
