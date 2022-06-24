@@ -5,9 +5,9 @@
     "passes": 3,
     "pending": 0,
     "failures": 0,
-    "start": "2022-06-22T19:35:14.749Z",
-    "end": "2022-06-22T19:35:51.159Z",
-    "duration": 36410,
+    "start": "2022-06-24T17:05:18.275Z",
+    "end": "2022-06-24T17:07:03.426Z",
+    "duration": 105151,
     "testsRegistered": 3,
     "passPercent": 100,
     "pendingPercent": 0,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "dde6ec9d-bfca-4837-8c8a-0f4ca6099636",
+      "uuid": "a4d6f7a0-fc1a-481e-8622-249b4a2bec1f",
       "title": "",
       "fullFile": "cypress/integration/nebula/TC01_signUp.spec.js",
       "file": "cypress/integration/nebula/TC01_signUp.spec.js",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "93e0d9b5-138e-41c5-8269-23b60e986ea9",
+          "uuid": "b756dc3a-cbd4-4b21-8ac3-b052b0f271b6",
           "title": "Sign Up page",
           "fullFile": "",
           "file": "",
@@ -38,7 +38,7 @@
               "title": "Sign Up with incorrect email formats",
               "fullTitle": "Sign Up page Sign Up with incorrect email formats",
               "timedOut": null,
-              "duration": 8100,
+              "duration": 39114,
               "state": "passed",
               "speed": "slow",
               "pass": true,
@@ -47,8 +47,8 @@
               "context": null,
               "code": "var signUpPage = new _signUpPage.SignUpPage();\nsignUpPage.visit().signupVerify().checkUserNameEmpty();\n(0, _button.checkButtonIsDisabled)('Next');\nsignUpPage.fillUserEmailInput('techadmin' + (0, _common.randomChars)(5)).clickOnCard();\n(0, _messages.checkMessage)(_messages.messageSelectors.error, _messages.messageTexts.emailError);\n(0, _button.checkButtonIsDisabled)('Next');\nsignUpPage.clearUserEmailInput().checkUserNameEmpty().fillUserEmailInput('techadmin' + (0, _common.randomChars)(5) + '@').clickOnCard();\n(0, _messages.checkMessage)(_messages.messageSelectors.error, _messages.messageTexts.emailError);\n(0, _button.checkButtonIsDisabled)('Next');\nsignUpPage.fillUserEmailInput('techadmin' + (0, _common.randomChars)(5) + '@').clickOnCard();\n(0, _messages.checkMessage)(_messages.messageSelectors.error, _messages.messageTexts.emailError);\n(0, _button.checkButtonIsDisabled)('Next');\nsignUpPage.clearUserEmailInput().fillUserEmailInput('techadmin' + (0, _common.randomChars)(5) + '@fundthrough').clickOnCard();\n(0, _button.checkButtonIsDisabled)('Next');\n(0, _messages.checkMessage)(_messages.messageSelectors.error, _messages.messageTexts.emailError);\nsignUpPage.clearUserEmailInput();\n(0, _button.checkButtonIsDisabled)('Next');\nsignUpPage.fillUserEmailInput('techadmin' + (0, _common.randomChars)(5) + '@fundthrough.co').clickOnCard();\n(0, _button.checkButtonIsActive)('Next');\nsignUpPage.clearUserEmailInput();",
               "err": {},
-              "uuid": "162cd418-69b6-4804-aefc-1a12fe57883b",
-              "parentUUID": "93e0d9b5-138e-41c5-8269-23b60e986ea9",
+              "uuid": "14e9da59-ccc6-4b41-a655-94057adcbc59",
+              "parentUUID": "b756dc3a-cbd4-4b21-8ac3-b052b0f271b6",
               "isHook": false,
               "skipped": false
             },
@@ -56,7 +56,7 @@
               "title": "Sign up with incorrect passwords",
               "fullTitle": "Sign Up page Sign up with incorrect passwords",
               "timedOut": null,
-              "duration": 5846,
+              "duration": 13741,
               "state": "passed",
               "speed": "slow",
               "pass": true,
@@ -65,8 +65,8 @@
               "context": null,
               "code": "var signUpPage = new _signUpPage.SignUpPage();\nsignUpPage.visit().signupVerify().checkUserNameEmpty().fillUserEmailInput('techadmin' + (0, _common.randomChars)(5) + '@fundthrough.com');\n(0, _button.checkButtonIsActive)('Next');\n(0, _button.clickButtonByValue)('Next');\nsignUpPage.fillPasswordInput((0, _common.randomNum)(8)).revealPassword(true).verifyRadioBtn(_signUpPage.signUpSelectors.checkboxWrapper, _signUpPage.signUpTexts.oneNumber, true).verifyRadioBtn(_signUpPage.signUpSelectors.checkboxWrapper, _signUpPage.signUpTexts.oneLetter, false).verifyRadioBtn(_signUpPage.signUpSelectors.checkboxWrapper, _signUpPage.signUpTexts.charLength, true).clearPasswordInput();\nsignUpPage.fillPasswordInput((0, _common.randomNum)(5)).verifyRadioBtn(_signUpPage.signUpSelectors.checkboxWrapper, _signUpPage.signUpTexts.oneNumber, true).verifyRadioBtn(_signUpPage.signUpSelectors.checkboxWrapper, _signUpPage.signUpTexts.oneLetter, false).verifyRadioBtn(_signUpPage.signUpSelectors.checkboxWrapper, _signUpPage.signUpTexts.charLength, false).clearPasswordInput();\nsignUpPage.fillPasswordInput((0, _common.randomLetter)(8)).verifyRadioBtn(_signUpPage.signUpSelectors.checkboxWrapper, _signUpPage.signUpTexts.oneNumber, false).verifyRadioBtn(_signUpPage.signUpSelectors.checkboxWrapper, _signUpPage.signUpTexts.oneLetter, true).verifyRadioBtn(_signUpPage.signUpSelectors.checkboxWrapper, _signUpPage.signUpTexts.charLength, true).clearPasswordInput();\nsignUpPage.fillPasswordInput((0, _common.randomLetter)(5)).verifyRadioBtn(_signUpPage.signUpSelectors.checkboxWrapper, _signUpPage.signUpTexts.oneNumber, false).verifyRadioBtn(_signUpPage.signUpSelectors.checkboxWrapper, _signUpPage.signUpTexts.oneLetter, true).verifyRadioBtn(_signUpPage.signUpSelectors.checkboxWrapper, _signUpPage.signUpTexts.charLength, false).clearPasswordInput();",
               "err": {},
-              "uuid": "4db5a8eb-25fb-45b8-836b-413d6cdd6167",
-              "parentUUID": "93e0d9b5-138e-41c5-8269-23b60e986ea9",
+              "uuid": "48f51588-6568-454f-84ae-c9ea868a473a",
+              "parentUUID": "b756dc3a-cbd4-4b21-8ac3-b052b0f271b6",
               "isHook": false,
               "skipped": false
             },
@@ -74,7 +74,7 @@
               "title": "Sign Up with correct credentials",
               "fullTitle": "Sign Up page Sign Up with correct credentials",
               "timedOut": null,
-              "duration": 22261,
+              "duration": 51568,
               "state": "passed",
               "speed": "slow",
               "pass": true,
@@ -83,22 +83,22 @@
               "context": null,
               "code": "var signUpPage = new _signUpPage.SignUpPage();\nvar email = 'techadmin' + (0, _common.randomChars)(4) + '@fundthrough.com';\nsignUpPage.visit().signupVerify().checkUserNameEmpty();\n(0, _button.checkButtonIsDisabled)('Next'); //Verification of elements activation and Input on Sign Up page\nsignUpPage.fillUserEmailInput(email);\n(0, _button.clickButtonByValue)('Next');\nsignUpPage.checkUserEmailInput(email);\nsignUpPage.saveUserEmail_LS().fillPasswordInput('1Password').revealPassword(true, '1Password').verifyRadioBtn(_signUpPage.signUpSelectors.checkboxWrapper, _signUpPage.signUpTexts.oneNumber, true).verifyRadioBtn(_signUpPage.signUpSelectors.checkboxWrapper, _signUpPage.signUpTexts.oneLetter, true).verifyRadioBtn(_signUpPage.signUpSelectors.checkboxWrapper, _signUpPage.signUpTexts.charLength, true).checkTermsAndCond().uncheckTermsAndCond();\n(0, _messages.checkMessage)(_messages.messageSelectors.error, _messages.messageTexts.termsAndConditions);\nsignUpPage.checkTermsAndCond();\n(0, _button.clickButtonByValue)('Next'); //redirects to /onboarding flow\nsignUpPage.checkOnboardingDirectionUrl() //Step 1 page validation\n.checkOnboardStep(1).checkQuickBooksHeader().checkImage().skipQuickBooksStep();\ncy.intercept({\n  method: 'POST',\n  url: 'https://api.segment.io/v1/p'\n}, {\n  success: true\n}).as('nextStep');\ncy.wait('@nextStep', {\n  timeout: 25000\n}); // //Step 2 page validation\nsignUpPage.checkOnboardStep(2).checkTooltip('Business Legal Name', _signUpPage.signUpTexts.businessLegalName).inputBusinessName((0, _common.randomChars)(4)).verifyRadioBtn(_signUpPage.signUpSelectors.checkbox, _signUpPage.signUpTexts.customerCallCheckbox, true);\n(0, _button.clickButtonByValue)('Next'); //redirects to Step 3 and fills in Company Address info\ncy.wait('@nextStep', {\n  timeout: 25000\n});\nsignUpPage // Should be uncommented after fixing the issue with step\n// .checkOnboardStep(3)\n.fillBusinessAddressInput('Business Address', '100 test street').checkAddressField().fillCityNameInput('Cary').selectCountry('USA').selectProvince('West Virginia').checkTooltip('Business Address', _signUpPage.signUpTexts.businessAddress).selectPostalCode('12345');\n(0, _button.clickButtonByValue)('Next');\ncy.wait('@nextStep', {\n  timeout: 25000\n});\nsignUpPage.checkOnboardStep(4).fillPhoneNumber('6470001234').checkTooltip('Contact Phone', _signUpPage.signUpTexts.contactPhone);\n(0, _button.clickButtonByValue)('Next');\ncy.wait('@nextStep', {\n  timeout: 25000\n});\nsignUpPage.checkOnboardStep(5).fillPrefName((0, _common.randomChars)(4)).fillFirstName((0, _common.randomChars)(4)).fillLastName((0, _common.randomChars)(4)).checkTooltip('Legal First Name', _signUpPage.signUpTexts.firstName).checkTooltip('Preferred First Name', _signUpPage.signUpTexts.firstName);\n(0, _button.clickButtonByValue)('Next');\nsignUpPage.checkHeardAboutUsInput();\n(0, _button.clickButtonByValue)('Skip');\ncy.wait('@nextStep', {\n  timeout: 25000\n});\nsignUpPage.logOut().signupVerify();",
               "err": {},
-              "uuid": "02a9ce50-d6c6-4c38-955a-9fae95597a14",
-              "parentUUID": "93e0d9b5-138e-41c5-8269-23b60e986ea9",
+              "uuid": "18380653-c492-46d3-bd75-f71922121135",
+              "parentUUID": "b756dc3a-cbd4-4b21-8ac3-b052b0f271b6",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "162cd418-69b6-4804-aefc-1a12fe57883b",
-            "4db5a8eb-25fb-45b8-836b-413d6cdd6167",
-            "02a9ce50-d6c6-4c38-955a-9fae95597a14"
+            "14e9da59-ccc6-4b41-a655-94057adcbc59",
+            "48f51588-6568-454f-84ae-c9ea868a473a",
+            "18380653-c492-46d3-bd75-f71922121135"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 36207,
+          "duration": 104423,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000

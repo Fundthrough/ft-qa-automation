@@ -5,9 +5,9 @@
     "passes": 1,
     "pending": 0,
     "failures": 0,
-    "start": "2022-06-22T19:37:10.294Z",
-    "end": "2022-06-22T19:37:19.781Z",
-    "duration": 9487,
+    "start": "2022-06-24T17:13:52.965Z",
+    "end": "2022-06-24T17:16:09.077Z",
+    "duration": 136112,
     "testsRegistered": 1,
     "passPercent": 100,
     "pendingPercent": 0,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "ab10a468-9334-49bb-bda6-5179da1ff4c3",
+      "uuid": "bf6b4482-8966-4d6a-b2fb-5ff6e021bc77",
       "title": "",
       "fullFile": "cypress/integration/nebula/yellowCard.spec.js",
       "file": "cypress/integration/nebula/yellowCard.spec.js",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "2d2d603a-4922-4bc3-8edb-e3aacc6794d6",
+          "uuid": "9e80a460-0741-4809-a9d0-3c7d06ff2092",
           "title": "Yellow action card",
           "fullFile": "",
           "file": "",
@@ -38,7 +38,7 @@
               "title": "Yellow card content validations",
               "fullTitle": "Yellow action card Yellow card content validations",
               "timedOut": null,
-              "duration": 9419,
+              "duration": 21718,
               "state": "passed",
               "speed": "slow",
               "pass": true,
@@ -47,20 +47,20 @@
               "context": null,
               "code": "var cardcontent = new _yellowCard.cardContent();\n(0, _navigation.visit)('/signin');\ncy.login(this.user.username, this.user.password);\n(0, _navigation.verifyNavigation)('/invoices');\ncardcontent.checkCard().verifyTitle().velocityTitle().expressTitle().verifyDesc(_yellowCard.cardTexts.velocity, _yellowCard.cardTexts.velocityDesc).verifyDesc(_yellowCard.cardTexts.express, _yellowCard.cardTexts.expressDesc).clickOnYellowCard().verifyAmount().verifyType(_yellowCard.cardTexts.velocity, _yellowCard.cardTexts.velocityType).verifyType(_yellowCard.cardTexts.express, _yellowCard.cardTexts.expressType).verifySubTitle(_yellowCard.cardTexts.velocity, _yellowCard.cardTexts.velocitySubTitle).verifySubTitle(_yellowCard.cardTexts.express, _yellowCard.cardTexts.expressSubTitle).verifyIcons().verifyTexts().closeIcon();\n(0, _navigation.verifyNavigation)('/invoices');\ncardcontent.clickOnYellowCard();\n(0, _button.clickButtonByValue)('Close');\n(0, _navigation.verifyNavigation)('/invoices');",
               "err": {},
-              "uuid": "07d90213-a1a6-4776-b198-c874c378a3fd",
-              "parentUUID": "2d2d603a-4922-4bc3-8edb-e3aacc6794d6",
+              "uuid": "8cfd98d2-ce18-450d-95fa-57a92ca8b359",
+              "parentUUID": "9e80a460-0741-4809-a9d0-3c7d06ff2092",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "07d90213-a1a6-4776-b198-c874c378a3fd"
+            "8cfd98d2-ce18-450d-95fa-57a92ca8b359"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 9419,
+          "duration": 21718,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000

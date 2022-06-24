@@ -5,9 +5,9 @@
     "passes": 1,
     "pending": 0,
     "failures": 0,
-    "start": "2022-06-22T19:36:56.383Z",
-    "end": "2022-06-22T19:37:05.959Z",
-    "duration": 9576,
+    "start": "2022-06-24T17:12:32.561Z",
+    "end": "2022-06-24T17:13:18.152Z",
+    "duration": 45591,
     "testsRegistered": 1,
     "passPercent": 100,
     "pendingPercent": 0,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "d0ce14cb-671a-4134-bed4-ae173b7bf109",
+      "uuid": "3b4ccb71-928c-4f98-8348-713971867907",
       "title": "",
       "fullFile": "cypress/integration/nebula/invoicePanel.spec.js",
       "file": "cypress/integration/nebula/invoicePanel.spec.js",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "e95ff074-52bd-4432-be34-fbcfed291d9e",
+          "uuid": "0b8aaa1c-3937-43ed-922f-2f8571e3b8aa",
           "title": "Invoice Details Grid",
           "fullFile": "",
           "file": "",
@@ -38,7 +38,7 @@
               "title": "Validate Invoice Details Grid",
               "fullTitle": "Invoice Details Grid Validate Invoice Details Grid",
               "timedOut": null,
-              "duration": 9399,
+              "duration": 45125,
               "state": "passed",
               "speed": "slow",
               "pass": true,
@@ -47,20 +47,20 @@
               "context": null,
               "code": "var invoiceDetails = new _invoicePanelElements.InvoiceDetails();\ncy.login(this.user.username, this.user.password);\ninvoiceDetails.verifyInvoiceDetails();",
               "err": {},
-              "uuid": "f8004cd2-9073-432d-a560-268cee9c6191",
-              "parentUUID": "e95ff074-52bd-4432-be34-fbcfed291d9e",
+              "uuid": "208f732b-01fc-4047-a097-da306e4e2a03",
+              "parentUUID": "0b8aaa1c-3937-43ed-922f-2f8571e3b8aa",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "f8004cd2-9073-432d-a560-268cee9c6191"
+            "208f732b-01fc-4047-a097-da306e4e2a03"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 9399,
+          "duration": 45125,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
