@@ -112,7 +112,7 @@ describe("Upload your first invoice", () => {
      
           .pickDate()
           cy.wait(3000)
-          verifyPaymentDays()
+          //verifyPaymentDays()
         
         //check error of invoice total
         fillInputWithValue(invoiceSelectors.total, randomNum(3))
