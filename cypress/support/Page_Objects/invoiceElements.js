@@ -122,6 +122,7 @@ export class InvoiceUpload {
                 .get('.chevron.right')
                 .should('be.visible')
                 .click()
+            cy.wait(4000)
             cy
                 .get('td:not(.disabled)')
                 .each($el => {
