@@ -1,7 +1,7 @@
 import {BankingFlowPage} from "../../support/Page_Objects/dashboard/bankingFlow";
 import {checkHeaderText, checkProgressAndHeader} from "../../support/Helpers/common/title";
 import {
-    checkButtonIsActive,
+    checkButtonIsActive, checkButtonIsDisabled, checkButtonNotExists,
     checkTheCheckbox,
     clickButtonByValue,
     verifyCheckbox
@@ -56,6 +56,7 @@ describe('Legal Details', () => {
 
         cy.wait('@nextStep', { timeout: 60000 })
 
+        checkButtonNotExists('Link Bank')
         checkProgressAndHeader('Link your business bank account', 2, 3)
 
         bankingFlowPage
