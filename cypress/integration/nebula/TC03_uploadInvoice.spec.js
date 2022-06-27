@@ -105,12 +105,13 @@ describe("Upload your first invoice", () => {
         fillInputWithValue(invoiceSelectors.due, "2022-01-01")
         clearInputValue(invoiceSelectors.due)
         checkMessage(messageSelectors.error, messageTexts.invalidDueDate)
-
+        cy.wait(3000)
         //enter due date
         invoiceUpload 
 
-        cy.wait(3000)
+     
           .pickDate()
+          cy.wait(3000)
           verifyPaymentDays()
         
         //check error of invoice total
