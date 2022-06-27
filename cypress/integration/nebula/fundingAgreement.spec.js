@@ -13,9 +13,7 @@ import {
     fundingAgreementTexts
 } from "../../support/Page_Objects/dashboard/fundingAgreement";
 import {
-    agreementError,
     checkMessage,
-    checkNotification,
     messageSelectors,
     messageTexts
 } from "../../support/Helpers/common/messages";
@@ -128,7 +126,7 @@ describe('Legal Details', () => {
         checkButtonIsActive('Not Now')
         checkButtonIsActive('I Agree')
         clickButtonByValue('I Agree')
-        agreementError(messageTexts.agreementCard)
+        checkMessage(messageSelectors.agreementError, messageTexts.agreementCard)
         verifyCheckbox('.checkbox','accept the Master Purchase and Sale Agreement and have the authority to bind the Corporation.', false)
         verifyCheckbox('.checkbox','accept the Personal Guarantee.', false)
         checkTheCheckbox('.checkbox', 'accept the Master Purchase and Sale Agreement and have the authority to bind the Corporation.')
@@ -152,14 +150,21 @@ describe('Legal Details', () => {
         signUpPage
             .selectItemFromNavbar('Invoices')
 
-        checkNotification('Step completed')
-        checkNotification('Thank you for reviewing the funding agreement.')
+        checkMessage(messageSelectors.notificationDashboard,'Step completed')
+        checkMessage(messageSelectors.notificationDashboard,'Thank you for reviewing the funding agreement.')
 
-        fundingAgreementPage
-            .checkCard('Review the funding agreement', false)
+        cy.checkCard().then(element => {
+            if (element.text().includes('Review the funding agreement')) {
+                cy.log("Review the funding agreement with action card")
+                fundingAgreementPage
+                    .selectCard(fundingAgreementTexts.fundingAgreement, 'Review');
+            } else {
+                fundingAgreementPage.checkCard('Review the funding agreement', false)
+            }
+        })
     })
 })
 
-Cypress.on('uncaught:exception', (err, runnable) => {
+Cypress.on('uncaught:exception', () => {
     return false
 })
