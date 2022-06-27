@@ -122,9 +122,8 @@ export class InvoiceUpload {
                 .get('.chevron.right')
                 .should('be.visible')
                 .click()
-            cy.wait(4000)
             cy
-                .get('td:not(.disabled)')
+                .get('td:not(.disabled)').wait(4000)
                 .each($el => {
                     if($el.text() == dueDate) {
                         cy
