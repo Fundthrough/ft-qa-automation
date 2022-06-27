@@ -108,6 +108,8 @@ describe("Upload your first invoice", () => {
 
         //enter due date
         invoiceUpload 
+
+        cy.wait(3000)
           .pickDate()
           verifyPaymentDays()
         
