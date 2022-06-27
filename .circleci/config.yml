@@ -16,6 +16,6 @@ workflows:
                   record: true
                   store_artifacts: true 
 
- - aws-s3/sync:
+ aws-s3/sync:
           from: ./cypress/videos
           to: s3://ftautomation-artifacts-storage/$CIRCLE_BRANCH/$CIRCLE_SHA1/videos
