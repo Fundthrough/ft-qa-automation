@@ -101,7 +101,7 @@ export class InvoiceUpload {
                 if($el.text() == currentDate) {
                     cy
                         .wrap($el)
-                        .should('exist')
+                        .should('be.visible')
                         .click()
                 }
             })
@@ -120,14 +120,15 @@ export class InvoiceUpload {
         if(currentDate >= 24 ) {
             cy
                 .get('.chevron.right')
+                .should('be.visible')
                 .click()
             cy
-                .get('td:not(.disabled)')
+                .get('td:not(.disabled)').wait(4000)
                 .each($el => {
                     if($el.text() == dueDate) {
                         cy
                             .wrap($el)
-                            .should('exist')
+                            .should('be.visible')
                             .click()
                     }
                 })
@@ -138,7 +139,7 @@ export class InvoiceUpload {
                     if($el.text() == dueDate) {
                         cy
                             .wrap($el)
-                            .should('exist')
+                            .should('be.visible')
                             .click()
                     }
                 })
