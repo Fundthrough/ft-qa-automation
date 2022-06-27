@@ -97,7 +97,7 @@ describe("Upload your first invoice", () => {
         checkMessage(messageSelectors.error, messageTexts.dateError)
         clearInputValue(invoiceSelectors.date)
         
-        //enter invoice date
+        //enter invoice datet
         invoiceUpload
           .pickDate()
         
@@ -108,8 +108,8 @@ describe("Upload your first invoice", () => {
 
         //enter due date
         invoiceUpload 
-          .pickDueDate()
-          .verifyPaymentDays()
+          .pickDate()
+          verifyPaymentDays()
         
         //check error of invoice total
         fillInputWithValue(invoiceSelectors.total, randomNum(3))
