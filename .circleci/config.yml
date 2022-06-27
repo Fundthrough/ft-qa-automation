@@ -2,9 +2,7 @@ version: 2.1
 orbs:
     cypress: cypress-io/cypress@1
     aws-s3: circleci/aws-s3@3.0.0
-    aws-s3/sync:
-          from: ./cypress/reports/mochareports
-          to: s3://ftautomation-artifacts-storage/$CIRCLE_BRANCH/$CIRCLE_SHA1/reports
+  
 executors:
     with-chrome:
         docker:
@@ -16,5 +14,8 @@ workflows:
                   executor: with-chrome
                   browser: chrome
                   record: true
-                  store_artifacts: 
-                    path: ./cypress/reports/mochareports
+                  store_artifacts: true 
+
+ - aws-s3/sync:
+          from: ./cypress/videos
+          to: s3://ftautomation-artifacts-storage/$CIRCLE_BRANCH/$CIRCLE_SHA1/videos
