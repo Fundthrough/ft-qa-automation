@@ -9,9 +9,13 @@
   "watchForFileChanges": false,
   "chromeWebSecurity": false,
   "testFiles": [
-
-    "nebula/TC03_uploadInvoice.spec.js"
-  
+    "nebula/TC03_uploadInvoice.spec.js",
+    "nebula/TC01_signUp.spec.js",
+    "nebula/TC02_signIn.spec.js",
+   
+    "nebula/fundingAgreement.spec.js",
+    "nebula/bankingFlow.spec.js",
+    "nebula/invoicePanel.spec.js"
   ],
   "retries": 2
 }
