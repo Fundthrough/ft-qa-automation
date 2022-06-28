@@ -103,14 +103,11 @@ describe("Upload your first invoice", () => {
         
         //validate error of due date field
         fillInputWithValue(invoiceSelectors.due, "2022-01-01")
-        clearInputValue(invoiceSelectors.due)
-        checkMessage(messageSelectors.error, messageTexts.invalidDueDate)
+        // clearInputValue(invoiceSelectors.due)
+        // checkMessage(messageSelectors.error, messageTexts.invalidDueDate)
       
         //enter due date
-        invoiceUpload 
-
-     
-          .pickDate()
+        // invoiceUpload.pickDate()
          
           //verifyPaymentDays()
         
