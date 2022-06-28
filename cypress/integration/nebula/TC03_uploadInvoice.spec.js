@@ -94,12 +94,17 @@ describe("Upload your first invoice", () => {
         fillInputWithValue(invoiceSelectors.number, randomChars(6))
         //validate error of date field
         
-        checkMessage(messageSelectors.error, messageTexts.dateError)
-        clearInputValue(invoiceSelectors.date)
-        cy.get('#invoiceDate').click()
-        fillInputWithValue(invoiceSelectors.date,"2022-01-01")
+        //checkMessage(messageSelectors.error, messageTexts.dateError)
+        //clearInputValue(invoiceSelectors.date)
+//         cy.get('#invoiceDate').click()
+//         fillInputWithValue(invoiceSelectors.date,"2022-01-01")
         //enter invoice datet
-     cy.get('#dueDate').click();
+//      cy.get('#dueDate').click();
+            
+             cy.get('#invoiceDate').click().type("2022-01-01")
+        // fillInputWithValue(invoiceSelectors.date,"2022-01-01")
+        //enter invoice datet
+     cy.get('#dueDate').click().type("2022-01-01")
         
         //validate error of due date field
         fillInputWithValue(invoiceSelectors.due, "2022-01-01")
