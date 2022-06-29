@@ -122,19 +122,8 @@ export class InvoiceUpload {
                 .get('.chevron.right')
                 .should('be.visible')
                 .click()
-            cy
-                .get('td:not(.disabled)').wait(4000)
-                .each($el => {
-                    if($el.text() == dueDate) {
-                        cy
-                            .wrap($el)
-                            .should('be.visible')
-                            .click()
-                    }
-                })
-//         }  else {
 //             cy
-//                 .get('td:not(.disabled)')
+//                 .get('td:not(.disabled)').wait(4000)
 //                 .each($el => {
 //                     if($el.text() == dueDate) {
 //                         cy
@@ -143,6 +132,17 @@ export class InvoiceUpload {
 //                             .click()
 //                     }
 //                 })
+//         }  else {
+            cy
+                .get('td:not(.disabled)')
+                .each($el => {
+                    if($el.text() == dueDate) {
+                        cy
+                            .wrap($el)
+                            .should('be.visible')
+                            .click()
+                    }
+                })
             }
 
         return this;
