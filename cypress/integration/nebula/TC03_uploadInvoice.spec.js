@@ -102,7 +102,7 @@ describe("Upload your first invoice", () => {
 //      cy.get('#dueDate').click();
             
 //              cy.get('#invoiceDate').click().type("2022-05-01")
-        fillInputWithValue(invoiceSelectors.date,"2022-01-01")
+        fillInputWithValue(invoiceSelectors.date,"2022-05-01")
         //enter invoice datet
 //      cy.get('#dueDate').click().type("2022-07-01")
         
