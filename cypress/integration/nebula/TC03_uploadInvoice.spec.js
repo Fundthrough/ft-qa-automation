@@ -104,10 +104,10 @@ describe("Upload your first invoice", () => {
              cy.get('#invoiceDate').click().type("2022-05-01")
         // fillInputWithValue(invoiceSelectors.date,"2022-01-01")
         //enter invoice datet
-     cy.get('#dueDate').click().type("2022-01-01")
+     cy.get('#dueDate').click().type("2022-07-01")
         
         //validate error of due date field
-        fillInputWithValue(invoiceSelectors.due, "2022-05-01")
+        //fillInputWithValue(invoiceSelectors.due, "2022-05-01")
         // clearInputValue(invoiceSelectors.due)
         // checkMessage(messageSelectors.error, messageTexts.invalidDueDate)
       
