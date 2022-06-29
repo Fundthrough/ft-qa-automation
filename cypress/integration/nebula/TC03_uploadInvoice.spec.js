@@ -112,7 +112,7 @@ describe("Upload your first invoice", () => {
         checkMessage(messageSelectors.error, messageTexts.invalidDueDate)
       
         //enter due date
-        invoiceUpload.pickDate()
+        invoiceUpload.pickDueDate()
          
           //verifyPaymentDays()
         
