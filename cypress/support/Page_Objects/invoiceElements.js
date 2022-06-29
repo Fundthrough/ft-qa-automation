@@ -132,17 +132,17 @@ export class InvoiceUpload {
                             .click()
                     }
                 })
-        }  else {
-            cy
-                .get('td:not(.disabled)')
-                .each($el => {
-                    if($el.text() == dueDate) {
-                        cy
-                            .wrap($el)
-                            .should('be.visible')
-                            .click()
-                    }
-                })
+//         }  else {
+//             cy
+//                 .get('td:not(.disabled)')
+//                 .each($el => {
+//                     if($el.text() == dueDate) {
+//                         cy
+//                             .wrap($el)
+//                             .should('be.visible')
+//                             .click()
+//                     }
+//                 })
             }
 
         return this;
