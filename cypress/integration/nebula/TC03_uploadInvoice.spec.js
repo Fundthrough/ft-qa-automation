@@ -69,8 +69,8 @@ describe("Upload your first invoice", () => {
           .verifyFormHeaders()
 
         verifyInputLabels(invoiceLabels)
-        checkTooltip('Invoice Number', tooltipTexts.invoiceNumber)
-        checkTooltip('Invoice Date', tooltipTexts.invoiceDate)
+        //checkTooltip('Invoice Number', tooltipTexts.invoiceNumber)
+        //checkTooltip('Invoice Date', tooltipTexts.invoiceDate)
 
         //validate error of customer name field
         fillInputWithValue(invoiceSelectors.customer, randomLetter(8))
