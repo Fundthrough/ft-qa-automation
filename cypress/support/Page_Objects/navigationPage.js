@@ -13,6 +13,7 @@ export const navigationSelectors = {
 
 export class NavigationPage {
     selectItemNavbar(title) {
+        cy.wait(1000)
         cy.get(navigationSelectors.navbar).click()
         cy.get(navigationSelectors.navItems)
             .should('be.visible')
