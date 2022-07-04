@@ -2,12 +2,20 @@ export const clickButtonByValue = (value) => {
     cy.get('button').contains(value).should('exist').click({force: true})
 }
 
+export const clickButton = (value) => {
+    cy.get('button').contains(value).click({force: true})
+}
+
 export const checkButtonIsDisabled = (buttonName) => {
     cy.get('button').contains(buttonName).parent().should('be.disabled')
 }
 
 export const checkButtonIsActive = (buttonName) => {
     cy.get('button').contains(buttonName).parent().should('not.be.disabled')
+}
+
+export const checkButtonNotExists = (buttonName) => {
+    cy.get('button').contains(buttonName).should('not.exist')
 }
 
 export const clickBackButtonByValue = (value) => {
