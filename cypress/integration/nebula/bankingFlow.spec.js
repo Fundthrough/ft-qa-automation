@@ -8,10 +8,9 @@ import {
 } from "../../support/Helpers/common/button";
 import {getIframeBody, iframeSelectors, loadingSelectors, waitForLoader} from "../../support/Helpers/common/iframe";
 import {fillInputWithValue} from "../../support/Helpers/common/input";
-import {SignUpPage} from "../../support/Page_Objects/signUpPage";
 import {verifyNavigation} from "../../support/Helpers/common/navigation";
 import {checkMessage, messageSelectors} from "../../support/Helpers/common/messages";
-import {checkCard} from "../../support/Page_Objects/invoiceElements";
+import {NavigationPage} from "../../support/Page_Objects/navigationPage";
 
 describe('Legal Details', () => {
     beforeEach(() => {
@@ -23,7 +22,7 @@ describe('Legal Details', () => {
 
     it('Valid Banking Flow form submission', function () {
         const bankingFlowPage = new BankingFlowPage();
-        const signUpPage = new SignUpPage();
+        const navigationPage = new NavigationPage();
         cy.login(this.user.username, this.user.password)
 
         bankingFlowPage
@@ -77,13 +76,10 @@ describe('Legal Details', () => {
         checkButtonIsActive('Finish')
         clickButtonByValue('Finish')
 
-       signUpPage
-           .selectItemFromNavbar('Invoices')
+        navigationPage.selectItemNavbar('Invoices')
 
         checkMessage(messageSelectors.notificationDashboard,'Step completed')
         checkMessage(messageSelectors.notificationDashboard, 'Thank you for confirming your bank account.')
-
-        // bankingFlowPage.checkCard('Add your bank', false)
 
         cy.checkCard().then(element => {
             if (element.text().includes('Add your bank')) {

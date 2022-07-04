@@ -24,15 +24,6 @@ export const signUpSelectors = {
     postalCode: '#postalCode',
     phoneNumber: '#phoneNumber',
     dropdown: '.dropdown',
-    navbar: '.bars',
-    navHeader: '.flex-left > .ui',
-    navSettings: '[href="/settings"]',
-    navContent: '[href="/account"] > div',
-    navItems: '.nav__menu__items',
-    cardContentHeader: '.card-content-left',
-    menuContainerInvoice: '.menu-container',
-    companyName: '.accordion__company-name',
-    logOut: '.accordion__content_button',
     heardAboutUs: '#howYouHeardAboutUs',
     firstName: '#firstName',
     lastName: '#lastName',
@@ -146,46 +137,6 @@ export class SignUpPage {
 
     checkHeardAboutUsInput() {
         cy.get(signUpSelectors.heardAboutUs).should('be.empty')
-
-        return this;
-    }
-
-    selectItemFromNavbar(itemName) {
-        cy.get(signUpSelectors.navbar).click()
-        cy.get(signUpSelectors.navItems)
-            .should('be.visible')
-            .contains(itemName)
-            .click({force: true})
-
-        return this;
-    }
-
-    logOut() {
-        cy.get(signUpSelectors.navbar).click()
-        cy.get(signUpSelectors.navContent)
-            .should('be.visible')
-            .contains('Account Setup')
-            .click()
-        cy.get(signUpSelectors.navHeader)
-            .should('contain', 'Account Setup')
-        cy.get(signUpSelectors.cardContentHeader)
-            .find('h4')
-            .contains(signUpTexts.accountSetupBusiness)
-            .should('be.visible')
-        cy.get(signUpSelectors.cardContentHeader)
-            .find('h4')
-            .contains(signUpTexts.accountSetupFunding)
-            .should('be.visible')
-        cy.get(signUpSelectors.cardContentHeader)
-            .find('h4')
-            .contains(signUpTexts.accountSetupDeposit)
-            .should('be.visible')
-        cy.get(signUpSelectors.navbar).click()
-        cy.get(signUpSelectors.navSettings).click()
-        cy.get(signUpSelectors.menuContainerInvoice).should('contain', 'Invoicing Software')
-        cy.get(signUpSelectors.navbar).click()
-        cy.get(signUpSelectors.companyName).click()
-        cy.get(signUpSelectors.logOut).click()
 
         return this;
     }
