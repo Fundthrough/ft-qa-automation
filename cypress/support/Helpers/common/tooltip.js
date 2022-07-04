@@ -2,7 +2,8 @@ import {signUpSelectors} from "../../Page_Objects/signUpPage";
 
 export const tooltipSelectors = {
     inputLabel: '.input-label',
-    header: '.header'
+    header: '.header',
+    popup: '.popup',
 }
 
 export const tooltipTexts = {
@@ -30,6 +31,9 @@ export const checkTooltip = (selector, tooltipLabel, tooltipMessage) => {
         .should('contain', tooltipMessage)
 }
 
+export const checkPopup = (selector, message) => {
+    cy.get(selector).contains(message).should('be.visible')
+}
 
 
 

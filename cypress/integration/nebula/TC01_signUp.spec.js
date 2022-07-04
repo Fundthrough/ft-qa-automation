@@ -19,6 +19,7 @@ import {
 import {checkProgressAndHeader} from "../../support/Helpers/common/title";
 import {checkTooltip, tooltipSelectors, tooltipTexts} from "../../support/Helpers/common/tooltip";
 import {loadingSelectors, waitForLoader} from "../../support/Helpers/common/iframe";
+import {NavigationPage} from "../../support/Page_Objects/navigationPage";
 
 Cypress.on('uncaught:exception', () => {
     return false;
@@ -123,6 +124,7 @@ describe('Sign Up page', () => {
 
     it('Sign Up with correct credentials', function () {
         const signUpPage = new SignUpPage();
+        const navigationPage = new NavigationPage()
 
         const email = "techadmin" + randomChars(4) + "@fundthrough.com";
 
@@ -222,7 +224,7 @@ describe('Sign Up page', () => {
 
         waitForLoader(loadingSelectors.loaderDefault)
 
-        signUpPage
+        navigationPage
             .logOut()
 
     verifyNavigation('signin')

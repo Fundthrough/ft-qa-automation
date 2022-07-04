@@ -14,7 +14,8 @@
       "nebula/TC03_uploadInvoice.spec.js",
       "nebula/fundingAgreement.spec.js",
       "nebula/bankingFlow.spec.js",
-      "nebula/invoicePanel.spec.js"
-    ],
+      "nebula/invoicePanel.spec.js",
+      "nebula/documentation.spec.js"
+  ],
     "retries" : 2
 }
