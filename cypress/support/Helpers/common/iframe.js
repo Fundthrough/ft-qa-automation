@@ -3,6 +3,10 @@ export const iframeSelectors = {
     plaidIframe: 'iframe#plaid-link-iframe-1',
     plaidUsernameInput: '#aut-input-0',
     plaidPasswordInput: '#aut-input-1',
+    signingDocIframe: 'iframe.x-hellosign-embedded__iframe',
+    signatureContentIframe: '.m-signature-request-preview--test-warning--content',
+    signatureInput: '[data-qa-ref="signature-input"]',
+    signatureCanvasIframe: '#signature-modal-draw__canvas'
 }
 
 export const loadingSelectors = {

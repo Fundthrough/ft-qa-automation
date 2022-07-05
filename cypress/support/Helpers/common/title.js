@@ -43,3 +43,4 @@ export const checkHeaderText = (text) => {
     cy.get('h4').contains(text).should('be.visible')
 }
 
+

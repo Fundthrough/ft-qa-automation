@@ -1,7 +1,7 @@
 import {BankingFlowPage} from "../../support/Page_Objects/dashboard/bankingFlow";
 import {checkHeaderText, checkProgressAndHeader} from "../../support/Helpers/common/title";
 import {
-    checkButtonIsActive,
+    checkButtonIsActive, checkButtonIsDisabled, checkButtonNotExists,
     checkTheCheckbox,
     clickButtonByValue,
     verifyCheckbox
@@ -26,9 +26,14 @@ describe('Legal Details', () => {
         const signUpPage = new SignUpPage();
         cy.login(this.user.username, this.user.password)
 
-        bankingFlowPage
-            .checkCard('Add your bank', true)
-            .selectCard('Add your bank', 'Link')
+
+        cy.checkCard().then(element => {
+            if (element.text().includes('Add your bank')) {
+                cy.log("Adding bank through `Add your bank` action card")
+             bankingFlowPage.selectCard("Add your bank", "Link");
+            //     bankingFlowPage
+            // .checkCard('Add your bank', true)
+           // .selectCard('Add your bank', 'Link')
 
         checkProgressAndHeader('Let us know how to pay you', 1, 3)
         checkButtonIsActive('Back')
@@ -56,6 +61,7 @@ describe('Legal Details', () => {
 
         cy.wait('@nextStep', { timeout: 60000 })
 
+        checkButtonNotExists('Link Bank')
         checkProgressAndHeader('Link your business bank account', 2, 3)
 
         bankingFlowPage
@@ -83,17 +89,25 @@ describe('Legal Details', () => {
         checkMessage(messageSelectors.notificationDashboard,'Step completed')
         checkMessage(messageSelectors.notificationDashboard, 'Thank you for confirming your bank account.')
 
-        // bankingFlowPage.checkCard('Add your bank', false)
 
-        cy.checkCard().then(element => {
-            if (element.text().includes('Add your bank')) {
-                cy.log("Adding bank through `Add your bank` action card")
-                bankingFlowPage
-                    .selectCard("Add your bank", "Link");
+
+
+
+
             } else {
                 bankingFlowPage.checkCard('Add your bank', false)
             }
         })
+
+
+
+
+
+
+       
+        // bankingFlowPage.checkCard('Add your bank', false)
+
+        
 
     })
 })

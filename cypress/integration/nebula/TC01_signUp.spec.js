@@ -2,13 +2,14 @@
 import {SignUpPage, signUpSelectors, signUpTexts} from "../../support/Page_Objects/signUpPage.js";
 import {randomChars, randomLetter, randomNum} from "../../support/Helpers/common";
 import {checkMessage, messageSelectors, messageTexts} from "../../support/Helpers/common/messages";
+
 import {
     checkButtonIsActive,
     checkButtonIsDisabled,
     clickButtonByValue,
     verifyCheckbox
 } from "../../support/Helpers/common/button";
-
+import {navigateBack, verifyNavigation, verifyRedirection, visit} from "../../support/Helpers/common/navigation";
 import {
     checkEmptyInput,
     checkInputValue,
@@ -17,9 +18,9 @@ import {
     inputSelectors
 } from "../../support/Helpers/common/input";
 import {checkProgressAndHeader} from "../../support/Helpers/common/title";
-import {navigateBack, verifyNavigation, verifyRedirection, visit} from "../../support/Helpers/common/navigation";
-import {loadingSelectors, waitForLoader} from "../../support/Helpers/common/iframe";
 import {checkTooltip, tooltipSelectors, tooltipTexts} from "../../support/Helpers/common/tooltip";
+import {loadingSelectors, waitForLoader} from "../../support/Helpers/common/iframe";
+
 
 Cypress.on('uncaught:exception', () => {
     return false;
@@ -192,8 +193,8 @@ describe('Sign Up page', () => {
             .selectCountry("USA")
             .selectProvince('West Virginia')
 
-
         checkTooltip(tooltipSelectors.inputLabel,'Business Address', tooltipTexts.businessAddress)
+
         clickButtonByValue('Next')
 
         cy.wait('@nextStep', { timeout: 60000 })
@@ -211,7 +212,6 @@ describe('Sign Up page', () => {
         fillInputWithValue(inputSelectors.lastName, randomChars(4))
         checkTooltip(tooltipSelectors.inputLabel, 'Legal First Name', tooltipTexts.firstName)
         checkTooltip(tooltipSelectors.inputLabel, 'Preferred First Name', tooltipTexts.firstName)
-
         clickButtonByValue('Next')
 
         signUpPage

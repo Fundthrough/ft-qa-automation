@@ -3,7 +3,6 @@ export const messageSelectors = {
     agreementError: '.card__agreement__span_error',
     notificationDashboard: '.notification-container',
     success: '.green-text'
-
 }
 
 export const messageTexts = {
