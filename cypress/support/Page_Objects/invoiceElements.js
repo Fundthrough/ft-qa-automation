@@ -117,7 +117,7 @@ export class InvoiceUpload {
             .get(invoiceSelectors.due)
             .click()
 
-        if(currentDate >= 4 ) {
+        if(currentDate >= 29 ) {
             cy
                 .get('.chevron.right')
                 .should('be.visible')
