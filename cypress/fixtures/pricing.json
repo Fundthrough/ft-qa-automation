@@ -1,0 +1,25 @@
+{
+   "estimated_invoices": [
+     {
+       "id": "f2f95264-063c-43da-a7ad-eb39831cbd3a",
+       "number": "15",
+       "due_date": "2022-07-11",
+       "days_to_due_date": 7,
+       "funding_type": "velocity",
+       "fees_and_rates": {
+         "transaction_fee": "0",
+         "funding_fee": 0.0204081,
+         "advance_rate": 85.0002
+       },
+       "funding_values": {
+         "paid_today_value": "42300.0",
+         "when_paid_you_receive_value": "0.0",
+         "all_fees_value": "2700.0",
+         "transaction_fee_value": "2700.0",
+         "funding_fee_value": "0.0",
+         "advance_rate_value": "45000.0",
+         "face_value": "45000.0"
+       }
+     }
+   ]
+ }
