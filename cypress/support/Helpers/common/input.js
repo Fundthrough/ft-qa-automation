@@ -41,3 +41,4 @@ export const verifyInputLabels = (labels) => {
       cy.wrap(label).should('contain.text', labels[index])
     })
 }
+

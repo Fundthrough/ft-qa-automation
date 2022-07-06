@@ -19,7 +19,6 @@ export const invoiceSelectors = {
     addCustomer: ".item",
     clearCustomerName: ".clear",
     notification: ".notification__content",
-    
 }
 
 let day = new Date()
@@ -38,7 +37,7 @@ export function checkCard() {
 export class InvoiceUpload {
 
     checkCard() {
-       
+
     }
 
     selectCard(cardTitle, buttonTitle) {
@@ -163,9 +162,10 @@ export class InvoiceUpload {
         return this;
     }
 
-    addInvoiceUsingAddButton() {
+    addInvoiceFromDashboard() {
         cy.get('.AddInvoiceButton_uploadButton__2Wner').click()
 
         return this;
     }
+
 }
