@@ -5,6 +5,7 @@ import { clearInputValue, fillInputWithValue, inputSelectors, verifyInputLabels,
 import { checkButtonIsActive, checkButtonIsDisabled, clickButtonByValue } from "../../support/Helpers/common/button";
 import {checkMessage, messageSelectors, messageTexts} from "../../support/Helpers/common/messages";
 import { randomChars } from "../../support/Helpers/common.js";
+import {verifyTitle} from "../../support/Helpers/common/title";
 
 describe("Sign In Page", function test() {
 
