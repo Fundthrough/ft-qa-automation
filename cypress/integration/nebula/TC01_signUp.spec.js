@@ -8,7 +8,7 @@ import {
     clickButtonByValue,
     verifyCheckbox
 } from "../../support/Helpers/common/button";
-
+import {navigateBack, verifyNavigation, verifyRedirection, visit} from "../../support/Helpers/common/navigation";
 import {
     checkEmptyInput,
     checkInputValue,
@@ -17,9 +17,8 @@ import {
     inputSelectors
 } from "../../support/Helpers/common/input";
 import {checkProgressAndHeader} from "../../support/Helpers/common/title";
-import {navigateBack, verifyNavigation, verifyRedirection, visit} from "../../support/Helpers/common/navigation";
-import {loadingSelectors, waitForLoader} from "../../support/Helpers/common/iframe";
 import {checkTooltip, tooltipSelectors, tooltipTexts} from "../../support/Helpers/common/tooltip";
+import {loadingSelectors, waitForLoader} from "../../support/Helpers/common/iframe";
 
 Cypress.on('uncaught:exception', () => {
     return false;
@@ -191,7 +190,6 @@ describe('Sign Up page', () => {
         signUpPage
             .selectCountry("USA")
             .selectProvince('West Virginia')
-
 
         checkTooltip(tooltipSelectors.inputLabel,'Business Address', tooltipTexts.businessAddress)
         clickButtonByValue('Next')

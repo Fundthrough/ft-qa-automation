@@ -1,11 +1,11 @@
 //<reference types="cypress" />
 import { SignInPage } from "../../support/Page_Objects/signInElements_new.js";
-import { visit, verifyRedirection, verifyNavigation, clickBackArrow, reload } from "../../support/Helpers/common/navigation"
-import { verifyTitle} from "../../support/Helpers/common/title"
+import { visit, verifyNavigation, clickBackArrow, reload } from "../../support/Helpers/common/navigation"
 import { clearInputValue, fillInputWithValue, inputSelectors, verifyInputLabels, signInLabels } from "../../support/Helpers/common/input";
 import { checkButtonIsActive, checkButtonIsDisabled, clickButtonByValue } from "../../support/Helpers/common/button";
-import { checkMessage, messageSelectors, messageTexts } from "../../support/Helpers/common/messages";
+import {checkMessage, messageSelectors, messageTexts} from "../../support/Helpers/common/messages";
 import { randomChars } from "../../support/Helpers/common.js";
+import {verifyTitle} from "../../support/Helpers/common/title";
 
 describe("Sign In Page", function test() {
 
