@@ -5,10 +5,6 @@ import {DocumentationPage} from "../../support/Page_Objects/documentationPage";
 import {clickButtonByValue} from "../../support/Helpers/common/button";
 import {checkMessage, messageSelectors} from "../../support/Helpers/common/messages";
 
-Cypress.on('uncaught:exception', () => {
-    return false;
-});
-
 describe('Documentation page in navigation section', () => {
     beforeEach(() => {
         cy.clearLocalStorage()

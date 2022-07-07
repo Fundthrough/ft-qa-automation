@@ -21,10 +21,6 @@ import {checkTooltip, tooltipSelectors, tooltipTexts} from "../../support/Helper
 import {loadingSelectors, waitForLoader} from "../../support/Helpers/common/iframe";
 import {NavigationPage} from "../../support/Page_Objects/navigationPage";
 
-Cypress.on('uncaught:exception', () => {
-    return false;
-});
-
 describe('Sign Up page', () => {
     beforeEach(() => {
         cy.clearLocalStorage()
