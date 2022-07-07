@@ -1,0 +1,85 @@
+{
+    "invoices": [
+        {
+            "id": "c14b52b1-b190-498d-a22d-f5ed3a370ef5",
+            "currency": "cad",
+            "submitted_date": "2022-01-31",
+            "due_date": "2022-01-31",
+            "state": "eligible",
+            "customer_id": "b2d4d82c-81ef-4dd1-bb62-b9015c79ed0d",
+            "number": "USD_#MAPSXXJCF6",
+            "updated_at": "2022-01-31T13:15:57.991-05:00",
+            "created_at": "2022-01-31T13:15:57.991-05:00",
+            "source": "quickbooks",
+            "attachments": false,
+            "file_id": null,
+            "price": 0.06,
+            "face_value": 774.4,
+            "customer_name": "Amidst The Alders",
+            "auto_factor": false,
+            "invoice_attachments": []
+        },
+
+        { "id": "c14b52b1-b190-498d-a22d-f5ed3a370ef5",
+            "currency": "cad",
+            "submitted_date": "2022-01-31",
+            "due_date": "2022-01-31",
+            "state": "reviewing_customer",
+            "customer_id": "b2d4d82c-81ef-4dd1-bb62-b9015c79ed0d",
+            "number": "USD_#MAPSXXJCF6",
+            "updated_at": "2022-01-31T13:15:57.991-05:00",
+            "created_at": "2022-01-31T13:15:57.991-05:00",
+            "source": "quickbooks",
+            "attachments": false,
+            "file_id": null,
+            "price": 0.06,
+            "face_value": 774.4,
+            "customer_name": "Amidst The Alders",
+            "auto_factor": false,
+            "invoice_attachments": []},
+        {
+            "id": "24371b07-5540-4cc7-a785-caf65813d987",
+            "currency": "cad",
+            "submitted_date": "2022-02-01",
+            "due_date": "2022-02-01",
+            "state": "credit_funded",
+            "customer_id": "251ae2a8-331c-4014-8031-74428877d4b3",
+            "number": "#CA1256",
+            "updated_at": "2022-02-03T09:49:59.804-05:00",
+            "created_at": "2022-02-01T17:06:46.422-05:00",
+            "source": "quickbooks",
+            "attachments": true,
+            "file_id": "17904998.pdf",
+            "price": "0.025",
+            "face_value": 1242.5,
+            "customer_name": "Postman Test",
+            "auto_factor": false,
+            "invoice_attachments": [
+                {
+                    "file_name": "17904998.pdf",
+                    "mime_type": "application/pdf"
+                }
+            ]
+        }
+    ],
+    "customers": [
+        {
+            "id": "b2d4d82c-81ef-4dd1-bb62-b9015c79ed0d",
+            "name": "Amidst The Alders",
+            "current_page_count": 1
+        },
+        {
+            "id": "251ae2a8-331c-4014-8031-74428877d4b3",
+            "name": "Postman Test",
+            "current_page_count": 1
+        }
+    ],
+    "metadata": {
+        "current_page_count": 2,
+        "page_size": 100,
+        "total_count": 2,
+        "current_page": 1,
+        "offset": 0,
+        "total_pages": 1
+    }
+}
