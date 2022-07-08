@@ -15,7 +15,7 @@
       "nebula/fundingAgreement.spec.js",
       "nebula/bankingFlow.spec.js",
       "nebula/invoicePanel.spec.js",
-      "nebula/express.spec.js"
+      "nebula/test.spec.js"
     ],
     "retries" : 2
 }

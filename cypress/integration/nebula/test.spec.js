@@ -22,11 +22,11 @@ describe("Sign In Page", function test() {
 it("Sign In with valid credentials", function () {
 
   cy.login(this.user.username, this.user.password)
-  // cy.intercept('GET', '/users', (req) => {
-  //   req.reply({
-  //     statusCode: 200, // default
-  //     fixture: 'express.json'
-  //   })
+  cy.intercept('GET', '/users', (req) => {
+    req.reply({
+      statusCode: 200, // default
+      fixture: 'express.json'
+    })
 
     // cy.intercept('GET', '/users', (req) => {
     // req.reply({
@@ -49,7 +49,7 @@ it("Sign In with valid credentials", function () {
   //   //   statusCode: 200, // default
   //   //   fixture: 'ip_user.json'
   //   // })
-  // })
+   })
 
   });
 });
