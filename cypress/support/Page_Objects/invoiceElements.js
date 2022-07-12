@@ -36,10 +36,6 @@ export function checkCard() {
 
 export class InvoiceUpload {
 
-    checkCard() {
-
-    }
-
     selectCard(cardTitle, buttonTitle) {
         cy.get('.action-card-carousel').within(() => {
             cy.get('.ft-action-card-content-container').contains(cardTitle).should('be.visible')
@@ -138,6 +134,7 @@ export class InvoiceUpload {
                         cy
                             .wrap($el)
                             .should('exist')
+                            .wait(2000)
                             .click()
                     }
                 })
