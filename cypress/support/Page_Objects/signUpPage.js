@@ -28,8 +28,8 @@ export const signUpSelectors = {
     firstName: '#firstName',
     lastName: '#lastName',
     preferredName: '#preferredName',
-    checkbox: '.checkbox',
-}
+    checkbox: '.checkbox'
+};
 
 export const signUpTexts = {
     oneNumber: 'have at least one number',
@@ -41,54 +41,47 @@ export const signUpTexts = {
     accountSetupBusiness: 'Tell us about your business',
     accountSetupFunding: 'Review the funding agreement',
     accountSetupDeposit: 'Provide deposit information',
-    customerCallCheckbox: 'This is also what my customers call my business.',
-}
+    customerCallCheckbox: 'This is also what my customers call my business.'
+};
 
 export class SignUpPage {
 
     clickOnCard() {
         cy.get(signUpSelectors.signUpCard).click()
 
-        return this
+        return this;
     }
 
     revealPassword(reveal = false) {
-        cy.get(signUpSelectors.eyeIcon)
-            .should('be.visible')
-            .click()
-            .then((Password) => {
-                cy.wrap(Password).should(
-                    reveal ? 'be.visible' : 'not.be.visible'
-                )
+        cy.get(signUpSelectors.eyeIcon).should('be.visible').click().then(Password => {
+            cy.wrap(Password)
+                .should(reveal ? 'be.visible' : 'not.be.visible')
             })
         cy.get(inputSelectors.password)
             .invoke('attr', 'type')
             .should('eq', 'text')
 
-        return this
+        return this;
     }
  
     saveUserEmail_LS(){
         cy.get(inputSelectors.email).then(elem => {
             const emailInputValue = Cypress.$(elem).val()
-            cy.writeFile('./cypress/fixtures/profile.json', {
-                username: emailInputValue,
-                password: '1Password',
-            })
-        })
-        return this
+            cy.writeFile('./cypress/fixtures/profile.json', { username: emailInputValue, password: '1Password' })
+        });
+    return this;
     }
 
     checkTermsAndCond() {
-        cy.get(signUpSelectors.termsAndConditions).check({ force: true })
+        cy.get(signUpSelectors.termsAndConditions).check({force: true})
 
-        return this
+        return this;
     }
 
     uncheckTermsAndCond() {
-        cy.get(signUpSelectors.termsAndConditions).uncheck({ force: true })
+        cy.get(signUpSelectors.termsAndConditions).uncheck({force: true})
 
-        return this
+        return this;
     }
 
     checkOnboardingDirectionUrl() {
@@ -97,19 +90,19 @@ export class SignUpPage {
             cy.url().should('include', '/onboarding')
         })
 
-        return this
+        return this;
     }
 
     checkQuickBooksHeader () {
         cy.get('.bold-text').should('contain', signUpTexts.quickBooksHeader)
 
-        return this
+        return this;
     }
 
     checkImage() {
         cy.get(signUpSelectors.imageQuickBooks).should('be.visible')
 
-        return this
+        return this;
     }
 
     skipQuickBooksStep() {
@@ -117,7 +110,7 @@ export class SignUpPage {
             .contains(signUpTexts.skipQuickBooks)
             .click()
 
-        return this
+        return this;
     }
 
     selectCountry(country) {
@@ -128,7 +121,7 @@ export class SignUpPage {
             }
         })
 
-        return this
+        return this;
     }
 
     selectProvince(province) {
@@ -139,56 +132,7 @@ export class SignUpPage {
             }
         })
 
-        return this
-    }
-
-    checkHeardAboutUsInput() {
-        cy.get(signUpSelectors.heardAboutUs).should('be.empty')
-
-        return this
-    }
-
-
-    selectItemFromNavbar(itemName) {
-        cy.get(signUpSelectors.navbar).click()
-        cy.get(signUpSelectors.navItems)
-            .should('be.visible')
-            .contains(itemName)
-            .click({force: true})
-
-        return this
-    }
-
-    logOut() {
-        cy.get(signUpSelectors.navbar).click()
-        cy.get(signUpSelectors.navContent)
-            .should('be.visible')
-            .contains('Account Setup')
-            .click()
-        cy.get(signUpSelectors.navHeader).should('contain', 'Account Setup')
-        cy.get(signUpSelectors.cardContentHeader)
-            .find('h4')
-            .contains(signUpTexts.accountSetupBusiness)
-            .should('be.visible')
-        cy.get(signUpSelectors.cardContentHeader)
-            .find('h4')
-            .contains(signUpTexts.accountSetupFunding)
-            .should('be.visible')
-        cy.get(signUpSelectors.cardContentHeader)
-            .find('h4')
-            .contains(signUpTexts.accountSetupDeposit)
-            .should('be.visible')
-        cy.get(signUpSelectors.navbar).click()
-        cy.get(signUpSelectors.navSettings).click()
-        cy.get(signUpSelectors.menuContainerInvoice).should(
-            'contain',
-            'Invoicing Software'
-        )
-        cy.get(signUpSelectors.navbar).click()
-        cy.get(signUpSelectors.companyName).click()
-        cy.get(signUpSelectors.logOut).click()
-
-        return this
+        return this;
     }
 
     checkHeardAboutUsInput() {

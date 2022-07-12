@@ -1,4 +1,3 @@
-// <reference types="cypress" />
 import {SignUpPage, signUpSelectors, signUpTexts} from "../../support/Page_Objects/signUpPage.js";
 import {randomChars, randomLetter, randomNum} from "../../support/Helpers/common";
 import {checkMessage, messageSelectors, messageTexts} from "../../support/Helpers/common/messages";
@@ -19,10 +18,7 @@ import {
 import {checkProgressAndHeader} from "../../support/Helpers/common/title";
 import {checkTooltip, tooltipSelectors, tooltipTexts} from "../../support/Helpers/common/tooltip";
 import {loadingSelectors, waitForLoader} from "../../support/Helpers/common/iframe";
-
-Cypress.on('uncaught:exception', () => {
-    return false
-})
+import {NavigationPage} from "../../support/Page_Objects/navigationPage";
 
 describe('Sign Up page', () => {
     beforeEach(() => {
@@ -30,7 +26,7 @@ describe('Sign Up page', () => {
     })
 
     it('Sign Up with incorrect email formats', function () {
-        const signUpPage = new SignUpPage()
+        const signUpPage = new SignUpPage();
 
         visit('/signup')
         verifyNavigation('signup')
@@ -87,7 +83,7 @@ describe('Sign Up page', () => {
     })
 
     it('Sign up with incorrect passwords', function () {
-        const signUpPage = new SignUpPage()
+        const signUpPage = new SignUpPage();
 
         visit('/signup')
         verifyNavigation('signup')
@@ -122,9 +118,10 @@ describe('Sign Up page', () => {
     })
 
     it('Sign Up with correct credentials', function () {
-        const signUpPage = new SignUpPage()
+        const signUpPage = new SignUpPage();
+        const navigationPage = new NavigationPage()
 
-        const email = 'techadmin' + randomChars(4) + '@fundthrough.com'
+        const email = "techadmin" + randomChars(4) + "@fundthrough.com";
 
         visit('/signup')
         verifyNavigation('signup')
@@ -152,7 +149,8 @@ describe('Sign Up page', () => {
 
         checkMessage(messageSelectors.error, messageTexts.termsAndConditions)
 
-        signUpPage.checkTermsAndCond()
+        signUpPage
+            .checkTermsAndCond()
 
         clickButtonByValue('Next')
 
@@ -211,7 +209,8 @@ describe('Sign Up page', () => {
 
         clickButtonByValue('Next')
 
-        signUpPage.checkHeardAboutUsInput()
+        signUpPage
+            .checkHeardAboutUsInput()
 
         checkProgressAndHeader("How did you hear about us? (Optional)", 6, 6)
 
@@ -220,7 +219,7 @@ describe('Sign Up page', () => {
 
         waitForLoader(loadingSelectors.loaderDefault)
 
-        signUpPage
+        navigationPage
             .logOut()
 
     verifyNavigation('signin')
