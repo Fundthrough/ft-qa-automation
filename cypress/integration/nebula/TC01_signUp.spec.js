@@ -24,9 +24,6 @@ Cypress.on('uncaught:exception', () => {
     return false
 })
 
-import {NavigationPage} from "../../support/Page_Objects/navigationPage";
-
-
 describe('Sign Up page', () => {
     beforeEach(() => {
         cy.clearLocalStorage()
@@ -125,8 +122,7 @@ describe('Sign Up page', () => {
     })
 
     it('Sign Up with correct credentials', function () {
-        const signUpPage = new SignUpPage();
-        const navigationPage = new NavigationPage()
+        const signUpPage = new SignUpPage()
 
         const email = 'techadmin' + randomChars(4) + '@fundthrough.com'
 
@@ -224,7 +220,7 @@ describe('Sign Up page', () => {
 
         waitForLoader(loadingSelectors.loaderDefault)
 
-        navigationPage
+        signUpPage
             .logOut()
 
     verifyNavigation('signin')
