@@ -145,3 +145,4 @@ export class InvoiceDetails {
         return this
     }
 }
+

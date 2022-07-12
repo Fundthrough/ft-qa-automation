@@ -1,3 +1,10 @@
+import {signUpSelectors} from "../../Page_Objects/signUpPage";
+
+export const tooltipSelectors = {
+    inputLabel: '.input-label',
+    header: '.header'
+}
+
 export const tooltipTexts = {
     taxYear:
         'This should be the first year for which your business filed taxes and is typically the year your business began operating. If you are a new business and have not yet filed taxes, select the year in which you began operations.',
@@ -21,14 +28,22 @@ export const tooltipTexts = {
         'This is the date on which the invoice is issued to your customer',
 }
 
-export const checkTooltip = (tooltipLabel, tooltipMessage) => {
-    cy.get('.input-label')
+export const checkTooltip = (selector, tooltipLabel, tooltipMessage) => {
+    cy.get(selector)
         .contains(tooltipLabel)
         .within(() => {
-            cy.get('.question').trigger('mouseover')
+            cy.get(signUpSelectors.tooltipIcon).trigger('mouseover')
         })
-    cy.get('.description')
+    cy.get(signUpSelectors.tooltipDescription)
         .invoke('show')
         .should('be.visible')
         .should('contain', tooltipMessage)
 }
+
+
+
+
+
+
+
+

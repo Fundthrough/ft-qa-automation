@@ -35,6 +35,10 @@ export function checkCard() {
 }
 
 export class InvoiceUpload {
+    checkCard() {
+
+    }
+   
     selectCard(cardTitle, buttonTitle) {
         cy.get('.action-card-carousel').within(() => {
             cy.get('.ft-action-card-content-container')
@@ -140,7 +144,7 @@ export class InvoiceUpload {
         return this
     }
 
-    addInvoiceUsingAddButton() {
+    addInvoiceFromDashboard() {
         cy.get('.AddInvoiceButton_uploadButton__2Wner').click()
 
         return this

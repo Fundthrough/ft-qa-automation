@@ -1,172 +1,150 @@
 //<reference types="cypress" />
-import { SignInPage } from '../../support/Page_Objects/signInElements_new.js'
-import {
-    visit,
-    verifyRedirection,
-    verifyNavigation,
-    clickBackArrow,
-    reload,
-} from '../../support/Helpers/common/navigation'
-import { verifyTitle } from '../../support/Helpers/common/title'
-import {
-    clearInputValue,
-    fillInputWithValue,
-    inputSelectors,
-    verifyInputLabels,
-    signInLabels,
-} from '../../support/Helpers/common/input'
-import {
-    checkButtonIsActive,
-    checkButtonIsDisabled,
-    clickButtonByValue,
-} from '../../support/Helpers/common/button'
-import {
-    checkMessage,
-    messageSelectors,
-    messageTexts,
-} from '../../support/Helpers/common/messages'
-import { randomChars } from '../../support/Helpers/common.js'
+import { SignInPage } from "../../support/Page_Objects/signInElements_new.js";
+import { visit, verifyNavigation, clickBackArrow, reload } from "../../support/Helpers/common/navigation"
+import { clearInputValue, fillInputWithValue, inputSelectors, verifyInputLabels, signInLabels } from "../../support/Helpers/common/input";
+import { checkButtonIsActive, checkButtonIsDisabled, clickButtonByValue } from "../../support/Helpers/common/button";
+import {checkMessage, messageSelectors, messageTexts} from "../../support/Helpers/common/messages";
+import { randomChars } from "../../support/Helpers/common.js";
+import {verifyTitle} from "../../support/Helpers/common/title";
 
-describe('Sign In Page', function test() {
-    beforeEach(() => {
-        cy.fixture('profile.json').then(function (user) {
-            this.user = user
-        })
-    })
+describe("Sign In Page", function test() {
 
-    it('Sign In page format', function () {
-        const signInPage = new SignInPage()
+  beforeEach(() => {
+    cy.fixture("profile.json").then(function (user) {
+      this.user = user;
+    });
 
-        visit('/signin')
+  });
 
-        signInPage.verifySignIn().verifyImage()
+  it("Sign In page format", function () {
+    const signInPage = new SignInPage();
 
-        verifyTitle('Sign In')
-        //verifyRedirection()
-        verifyInputLabels(signInLabels)
+    visit("/signin")
 
-        signInPage
-            .verifyStyling('Email')
-            .verifyStyling('Password')
-            .verifyForgotPwdText()
-            .clickForgotPwd()
+    signInPage
+      .verifySignIn()
+      .verifyImage()
 
-        verifyNavigation('/forgot-password')
-        verifyTitle('Reset your password')
-        //Invalid email format
-        clearInputValue(inputSelectors.email)
-        fillInputWithValue(
-            inputSelectors.email,
-            'techadmin' + randomChars(3) + '@fundthrough'
-        )
-        checkButtonIsDisabled('Send Code')
-        clickButtonByValue('Send Code')
-        checkMessage(messageSelectors.error, messageTexts.emailError)
-        //Incorrect email
-        clearInputValue(inputSelectors.email)
-        fillInputWithValue(
-            inputSelectors.email,
-            'techadmin' + randomChars(4) + '@fundthrough.com'
-        )
-        clickButtonByValue('Send Code')
+    verifyTitle("Sign In")
+    //verifyRedirection()
+    verifyInputLabels(signInLabels)
 
-        signInPage.resetEmailError()
+    signInPage
+      .verifyStyling("Email")
+      .verifyStyling("Password")
+      .verifyForgotPwdText()
+      .clickForgotPwd()
 
-        //Send code to the correct email address
-        clearInputValue(inputSelectors.email)
-        fillInputWithValue(inputSelectors.email, this.user.username)
-        checkButtonIsActive('Send Code')
-        //clickButtonByValue("Send Code");
-        //To discuss and setup an email server to validate the email code
-        clickBackArrow('BACK')
-        verifyNavigation('/signin')
+    verifyNavigation("/forgot-password")
+    verifyTitle("Reset your password")
+    //Invalid email format
+    clearInputValue(inputSelectors.email)
+    fillInputWithValue(inputSelectors.email, "techadmin" + randomChars(3) + "@fundthrough");
+    checkButtonIsDisabled("Send Code");
+    clickButtonByValue("Send Code");
+    checkMessage(messageSelectors.error, messageTexts.emailError);
+    //Incorrect email
+    clearInputValue(inputSelectors.email)
+    fillInputWithValue(inputSelectors.email, "techadmin" + randomChars(4) + "@fundthrough.com");
+    clickButtonByValue("Send Code");
 
-        signInPage.verifySignIn().verifySignUpPage()
-    })
+    signInPage
+      .resetEmailError();
 
-    it('Sign In with incorrect emails', () => {
-        visit('/signin')
+    //Send code to the correct email address
+    clearInputValue(inputSelectors.email)
+    fillInputWithValue(inputSelectors.email, this.user.username);
+    checkButtonIsActive("Send Code");
+    //clickButtonByValue("Send Code");
+    //To discuss and setup an email server to validate the email code
+    clickBackArrow("BACK")
+    verifyNavigation("/signin")
 
-        //attempt one
-        fillInputWithValue(
-            inputSelectors.email,
-            'techadmin' + randomChars(5) + 'fundthrough'
-        )
-        clickButtonByValue('Sign In')
-        checkMessage(messageSelectors.error, messageTexts.emailError)
-        clearInputValue(inputSelectors.email)
+    signInPage
+      .verifySignIn()
+      .verifySignUpPage();
+  })
 
-        //attempt two
-        fillInputWithValue(
-            inputSelectors.email,
-            'techadmin' + randomChars(3) + '@com'
-        )
-        clickButtonByValue('Sign In')
-        checkMessage(messageSelectors.error, messageTexts.emailError)
-        clearInputValue(inputSelectors.email)
+  it("Sign In with incorrect emails", () => {
 
-        //attempt three
-        fillInputWithValue(
-            inputSelectors.email,
-            'techadmin' + randomChars(2) + '@fundthrough'
-        )
-        clickButtonByValue('Sign In')
-        checkMessage(messageSelectors.error, messageTexts.emailError)
-        clearInputValue(inputSelectors.email)
+    visit("/signin")
 
-        //empty input
-        clickButtonByValue('Sign In')
-        checkMessage(messageSelectors.error, messageTexts.emailError)
-    })
+    //attempt one
+    fillInputWithValue(inputSelectors.email, "techadmin" + randomChars(5) + "fundthrough");
+    clickButtonByValue("Sign In");
+    checkMessage(messageSelectors.error, messageTexts.emailError)
+    clearInputValue(inputSelectors.email)
 
-    it('Sign In with incorrect passwords', () => {
-        visit('/signin')
+    //attempt two
+    fillInputWithValue(inputSelectors.email, "techadmin" + randomChars(3) + "@com")
+    clickButtonByValue("Sign In");
+    checkMessage(messageSelectors.error, messageTexts.emailError)
+    clearInputValue(inputSelectors.email)
 
-        //attempt one
-        fillInputWithValue(inputSelectors.password, randomChars(4))
-        clickButtonByValue('Sign In')
-        checkMessage(messageSelectors.error, messageTexts.passwordError)
-        clearInputValue(inputSelectors.password)
+    //attempt three
+    fillInputWithValue(inputSelectors.email, "techadmin" + randomChars(2) + "@fundthrough");
+    clickButtonByValue("Sign In");
+    checkMessage(messageSelectors.error, messageTexts.emailError)
+    clearInputValue(inputSelectors.email);
 
-        //attempt two
-        fillInputWithValue(inputSelectors.password, randomChars(7))
-        clickButtonByValue('Sign In')
-        checkMessage(messageSelectors.error, messageTexts.passwordError)
-        clearInputValue(inputSelectors.password)
+    //empty input
+    clickButtonByValue("Sign In");
+    checkMessage(messageSelectors.error, messageTexts.emailError)
 
-        //attempt three
-        fillInputWithValue(inputSelectors.password, '1')
-        clickButtonByValue('Sign In')
-        checkMessage(messageSelectors.error, messageTexts.passwordError)
-    })
+  });
 
-    it('Sign In with incorrect credentials', function () {
-        const signInPage = new SignInPage()
+  it("Sign In with incorrect passwords", () => {
 
-        //incorrect username
-        visit('/signin')
-        fillInputWithValue(
-            inputSelectors.email,
-            'techadmin' + randomChars(4) + '@fundthrough.com'
-        )
-        fillInputWithValue(inputSelectors.password, this.user.password)
-        clickButtonByValue('Sign In')
+    visit("/signin")
 
-        signInPage.authenticationError()
+    //attempt one
+    fillInputWithValue(inputSelectors.password, randomChars(4));
+    clickButtonByValue("Sign In");
+    checkMessage(messageSelectors.error, messageTexts.passwordError)
+    clearInputValue(inputSelectors.password)
 
-        //incorrect password
-        Cypress._.times(5, () => {
-            clearInputValue(inputSelectors.email)
-            clearInputValue(inputSelectors.password)
-            fillInputWithValue(inputSelectors.email, this.user.username)
-            fillInputWithValue(inputSelectors.password, randomChars(10))
-            clickButtonByValue('Sign In')
-        })
-    })
+    //attempt two
+    fillInputWithValue(inputSelectors.password, randomChars(7));
+    clickButtonByValue("Sign In");
+    checkMessage(messageSelectors.error, messageTexts.passwordError)
+    clearInputValue(inputSelectors.password)
 
-    it('Sign In with valid credentials', function () {
-        reload()
-        cy.login(this.user.username, this.user.password)
-        verifyNavigation('/invoices')
-    })
-})
+    //attempt three
+    fillInputWithValue(inputSelectors.password, "1");
+    clickButtonByValue("Sign In");
+    checkMessage(messageSelectors.error, messageTexts.passwordError)
+
+  });
+
+  it("Sign In with incorrect credentials", function () {
+
+    const signInPage = new SignInPage();
+
+    //incorrect username
+    visit("/signin")
+    fillInputWithValue(inputSelectors.email, "techadmin" + randomChars(4) + "@fundthrough.com")
+    fillInputWithValue(inputSelectors.password, this.user.password);
+    clickButtonByValue("Sign In");
+
+    signInPage
+      .authenticationError();
+
+    //incorrect password
+    Cypress._.times(5, () => {
+      clearInputValue(inputSelectors.email)
+      clearInputValue(inputSelectors.password)
+      fillInputWithValue(inputSelectors.email, this.user.username)
+      fillInputWithValue(inputSelectors.password, randomChars(10));
+      clickButtonByValue("Sign In");
+    })  
+
+  });
+
+  it("Sign In with valid credentials", function () {
+
+    reload()
+    cy.login(this.user.username, this.user.password)
+    verifyNavigation("/invoices")
+
+  });
+});
