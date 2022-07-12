@@ -1,17 +1,16 @@
 import {BankingFlowPage} from "../../support/Page_Objects/dashboard/bankingFlow";
 import {checkHeaderText, checkProgressAndHeader} from "../../support/Helpers/common/title";
 import {
-    checkButtonIsActive,
+    checkButtonIsActive, checkButtonNotExists,
     checkTheCheckbox,
     clickButtonByValue,
     verifyCheckbox
 } from "../../support/Helpers/common/button";
 import {getIframeBody, iframeSelectors, loadingSelectors, waitForLoader} from "../../support/Helpers/common/iframe";
 import {fillInputWithValue} from "../../support/Helpers/common/input";
-import {SignUpPage} from "../../support/Page_Objects/signUpPage";
 import {verifyNavigation} from "../../support/Helpers/common/navigation";
 import {checkMessage, messageSelectors} from "../../support/Helpers/common/messages";
-import {checkCard} from "../../support/Page_Objects/invoiceElements";
+import {NavigationPage} from "../../support/Page_Objects/navigationPage";
 
 describe('Legal Details', () => {
     beforeEach(() => {
@@ -23,12 +22,9 @@ describe('Legal Details', () => {
 
     it('Valid Banking Flow form submission', function () {
         const bankingFlowPage = new BankingFlowPage();
-        const signUpPage = new SignUpPage();
+        const navigationPage = new NavigationPage();
         cy.login(this.user.username, this.user.password)
 
-        // bankingFlowPage
-        //     .checkCard('Add your bank', true)
-        //     .selectCard('Add your bank', 'Link')
 
         cy.checkCard().then(element => {
             if (element.text().includes('Add your bank')) {
@@ -99,8 +95,4 @@ describe('Legal Details', () => {
         })
 
     })
-})
-
-Cypress.on('uncaught:exception', () => {
-    return false
 })

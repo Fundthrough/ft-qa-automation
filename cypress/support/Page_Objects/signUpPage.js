@@ -24,15 +24,6 @@ export const signUpSelectors = {
     postalCode: '#postalCode',
     phoneNumber: '#phoneNumber',
     dropdown: '.dropdown',
-    navbar: '.bars',
-    navHeader: '.flex-left > .ui',
-    navSettings: '[href="/settings"]',
-    navContent: '[href="/account"] > div',
-    navItems: '.nav__menu__items',
-    cardContentHeader: '.card-content-left',
-    menuContainerInvoice: '.menu-container',
-    companyName: '.accordion__company-name',
-    logOut: '.accordion__content_button',
     heardAboutUs: '#howYouHeardAboutUs',
     firstName: '#firstName',
     lastName: '#lastName',
@@ -157,6 +148,7 @@ export class SignUpPage {
         return this
     }
 
+
     selectItemFromNavbar(itemName) {
         cy.get(signUpSelectors.navbar).click()
         cy.get(signUpSelectors.navItems)
@@ -205,3 +197,4 @@ export class SignUpPage {
         return this;
     }
 }
+
