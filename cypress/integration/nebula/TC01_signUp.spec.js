@@ -125,7 +125,7 @@ describe('Sign Up page', () => {
     })
 
     it('Sign Up with correct credentials', function () {
-nst signUpPage = new SignUpPage();
+        const signUpPage = new SignUpPage();
         const navigationPage = new NavigationPage()
 
         const email = 'techadmin' + randomChars(4) + '@fundthrough.com'
