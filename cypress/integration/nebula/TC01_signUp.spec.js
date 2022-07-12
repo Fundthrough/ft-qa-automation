@@ -1,4 +1,3 @@
-// <reference types="cypress" />
 import {SignUpPage, signUpSelectors, signUpTexts} from "../../support/Page_Objects/signUpPage.js";
 import {randomChars, randomLetter, randomNum} from "../../support/Helpers/common";
 import {checkMessage, messageSelectors, messageTexts} from "../../support/Helpers/common/messages";

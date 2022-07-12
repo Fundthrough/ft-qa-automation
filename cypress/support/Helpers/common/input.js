@@ -10,11 +10,18 @@ export const inputSelectors = {
     phoneNumber: '#phoneNumber',
     firstName: '#firstName',
     lastName: '#lastName',
-    preferredName: '#preferredName'
+    preferredName: '#preferredName',
 }
 
-export const invoiceLabels = ["Customer Name", "Invoice Number", "Invoice Date", "Due Date", "Payment Terms (Days)", "Invoice Total"]
-export const signInLabels = ["Business Email", "Password"]
+export const invoiceLabels = [
+    'Customer Name',
+    'Invoice Number',
+    'Invoice Date',
+    'Due Date',
+    'Payment Terms (Days)',
+    'Invoice Total',
+]
+export const signInLabels = ['Business Email', 'Password']
 
 export const checkEmptyInput = (inputName) => {
     cy.get(inputName)
@@ -38,7 +45,6 @@ export const clearInputValue = (inputName) => {
 
 export const verifyInputLabels = (labels) => {
     cy.get('.input-label').each((label, index) => {
-      cy.wrap(label).should('contain.text', labels[index])
+        cy.wrap(label).should('contain.text', labels[index])
     })
 }
-

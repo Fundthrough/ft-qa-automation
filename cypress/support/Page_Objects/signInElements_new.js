@@ -1,27 +1,27 @@
 export const signInSelectors = {
-  image: ".ui.image",
-  label: ".input-label",
-  forgotPwd: ".forgot-password",
-  signUp: ".signup_prompt_parent > p",
-  authenticate: "[data-test=authenticator-error]",
-  button: "button",
-  backbutton: ".green-text",
-  content: ".content",
-};
+    image: '.ui.image',
+    label: '.input-label',
+    forgotPwd: '.forgot-password',
+    signUp: '.signup_prompt_parent > p',
+    authenticate: '[data-test=authenticator-error]',
+    button: 'button',
+    backbutton: '.green-text',
+    content: '.content',
+}
 
 export const signInTexts = {
-  email: "Business Email",
-  password: "Password",
-  forgotPassword: "Forgot your password?",
-  forgotPasswordUrlText: "forgot-password",
-  resetPwd: "Reset your password",
-  signInButton: "Sign In",
-  emailText: "Email",
-  signUpText: "Don't have an account?Sign Up",
-  code: "Send Code",
-  resetText:
-    "Reset Password FailedPlease recheck your email and try again. If the issue persists reach out to support or check with the partner sign in page (eg: QuickBooks). ",
-};
+    email: 'Business Email',
+    password: 'Password',
+    forgotPassword: 'Forgot your password?',
+    forgotPasswordUrlText: 'forgot-password',
+    resetPwd: 'Reset your password',
+    signInButton: 'Sign In',
+    emailText: 'Email',
+    signUpText: "Don't have an account?Sign Up",
+    code: 'Send Code',
+    resetText:
+        'Reset Password FailedPlease recheck your email and try again. If the issue persists reach out to support or check with the partner sign in page (eg: QuickBooks). ',
+}
 
 export class SignInPage {
   verifySignIn() {

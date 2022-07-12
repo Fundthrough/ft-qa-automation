@@ -141,3 +141,4 @@ export class SignUpPage {
         return this;
     }
 }
+

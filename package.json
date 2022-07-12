@@ -1,25 +1,32 @@
 {
-  "name": "package.json",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "cypress:open": "cypress open",
-    "cy:run": "cypress run",
-    "cypress:help": "cypress help"
-  },
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "cypress": "^6.7.1",
-    "cypress-cucumber-preprocessor": "^4.1.0",
-    "cypress-file-upload": "^5.0.8",
-    "cypress-image-snapshot": "^4.0.1",
-    "cypress-postgres": "^1.1.1",
-    "cypress-postgresql": "^1.0.8"
-  },
-  "cypress-cucumber-preprocessor": {
-    "nonGlobalStepDefinitions": true
-  }
+    "name": "package.json",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "cypress:open": "cypress open",
+        "cy:run": "cypress run",
+        "cypress:help": "cypress help",
+        "prepare": "husky install"
+    },
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "cypress": "^6.7.1",
+        "cypress-cucumber-preprocessor": "^4.1.0",
+        "cypress-file-upload": "^5.0.8",
+        "cypress-image-snapshot": "^4.0.1",
+        "cypress-postgres": "^1.1.1",
+        "cypress-postgresql": "^1.0.8",
+        "husky": "^8.0.1",
+        "lint-staged": "^13.0.1",
+        "prettier": "2.6.2"
+    },
+    "cypress-cucumber-preprocessor": {
+        "nonGlobalStepDefinitions": true
+    },
+    "lint-staged": {
+        "*.{js,css,md}": "prettier --write"
+    }
 }
