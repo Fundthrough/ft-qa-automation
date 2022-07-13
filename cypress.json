@@ -10,12 +10,12 @@
   "chromeWebSecurity": false,
   "testFiles": [
    
-    "nebula/signup.spec.js",
-    "nebula/signin.spec.js",
-    "nebula/uploadinvoice.spec.js",
-    "nebula/bankingflow.spec.js",
-    "nebula/fundingAgreement.spec.js",
-    "nebula/invoicepanel.spec.js"
+    "nebula/TC01_signup.spec.js",
+    "nebula/TC02_signin.spec.js",
+    "nebula/TC03_uploadinvoice.spec.js",
+    "nebula/TC04_fundingagreement.spec.js",
+    "nebula/TC05_bankingflow.spec.js",
+    "nebula/TC06_invoicepanel.spec.js"
   ],
   "retries": 2
 }
