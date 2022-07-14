@@ -1,20 +1,14 @@
+import { invoiceStates } from "../../Helpers/common/invoiceStates";
+import { checkPopup, tooltipSelectors, tooltipTexts } from "../../Helpers/common/tooltip";
+
 export const dashboardSelectors = {
     invoiceDropdown: '.InvoiceStatusesDropdown_icon__146MF',
     all: '[name="all"]',
-    tooltip: '.top',
     table: '#invoice-table',
 }
 
 export const dashboardTexts = {
     all: 'All',
-    reviewingTooltip: 'Your application is being reviewed. You will receive an email upon approval to inform you of next steps.',
-    pendingTooltip: 'Your invoice has been submitted for Express funding. Funds should be deposited shortly. You will then receive a transaction summary email.',
-    fundedTooltip: 'Your funds have been sent to your account.',
-    reviewingCustomerTooltip: 'Your customer is being reviewed. You will receive an email upon approval about next steps.',
-    sentTooltip: 'Your invoice is pending approval/verification from your customer. (Please get in touch with your customer to help speed up the process).',
-    verifiedTooltip: 'We have verified your invoice. It is now pending Velocity funding. You will receive a transaction summary email shortly.',
-    paidTooltip: 'Your invoice has been fully repaid.',
-    closedTooltip: 'Your invoice is no longer eligible for funding. Please contact your account manager for details.',
 }
 
 export class Dashboard {
@@ -39,39 +33,39 @@ export class Dashboard {
 
     verifyDescription() {
         cy.get('.invoice__state').each($el => {
-            if($el.text() == 'Reviewing') {
+            if($el.text() == invoiceStates.reviewing) {
                 cy.wrap($el).trigger('mouseover')
-                cy.get(dashboardSelectors.tooltip).invoke('text').then(text => {
+                cy.get(tooltipSelectors.tooltip).invoke('text').then(text => {
                     if(text.includes('customer')) {
-                        cy.get(dashboardSelectors.tooltip).contains(dashboardTexts.reviewingCustomerTooltip)
+                        checkPopup(tooltipSelectors.tooltip, tooltipTexts.reviewingCustomerTooltip)
                     } else {
-                        cy.get(dashboardSelectors.tooltip).contains(dashboardTexts.reviewingTooltip)
+                        checkPopup(tooltipSelectors.tooltip, tooltipTexts.reviewingTooltip)
                     }
                 })
                 this.clickOnDashboard()
-            } else if($el.text() == 'Pending') {
+            } else if($el.text() == invoiceStates.pending) {
                 cy.wrap($el).trigger('mouseover')
-                cy.get(dashboardSelectors.tooltip).contains(dashboardTexts.pendingTooltip)
+                checkPopup(tooltipSelectors.tooltip, tooltipTexts.pendingTooltip)
                 this.clickOnDashboard()
-            } else if($el.text() == 'Funded') {
+            } else if($el.text() == invoiceStates.funded) {
                 cy.wrap($el).trigger('mouseover')
-                cy.get(dashboardSelectors.tooltip).contains(dashboardTexts.fundedTooltip)
+                checkPopup(tooltipSelectors.tooltip, tooltipTexts.fundedTooltip)
                 this.clickOnDashboard()
-            } else if($el.text() == 'sent') {
+            } else if($el.text() == invoiceStates.sent) {
                 cy.wrap($el).trigger('mouseover')
-                cy.get(dashboardSelectors.tooltip).contains(dashboardTexts.sentTooltip)
+                checkPopup(tooltipSelectors.tooltip, tooltipTexts.sentTooltip)
                 this.clickOnDashboard()
-            } else if($el.text == 'Verified') {
+            } else if($el.text == invoiceStates.verified) {
                 cy.wrap($el).trigger('mouseover')
-                cy.get(dashboardSelectors.tooltip).contains(dashboardTexts.verifiedTooltip)
+                checkPopup(tooltipSelectors.tooltip, tooltipTexts.verifiedTooltip)
                 this.clickOnDashboard()
-            } else if($el.text() == 'Paid') {
+            } else if($el.text() == invoiceStates.paid) {
                 cy.wrap($el).trigger('mouseover')
-                cy.get(dashboardSelectors.tooltip).contains(dashboardTexts.paidTooltip)
+                checkPopup(tooltipSelectors.tooltip, tooltipTexts.paidTooltip)
                 this.clickOnDashboard()
-            } else if($el.text() == 'Closed') {
+            } else if($el.text() == invoiceStates.closed) {
                 cy.wrap($el).trigger('mouseover')
-                cy.get(dashboardSelectors.tooltip).contains(dashboardTexts.closedTooltip)
+                checkPopup(tooltipSelectors.tooltip, tooltipTexts.closedTooltip)
                 this.clickOnDashboard()
             }
         })
