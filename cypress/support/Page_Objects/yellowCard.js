@@ -39,7 +39,7 @@ export const cardTexts = {
 
 export const amount = ['Unlimited', 'TBD']
 
-export class cardContent {
+export class CardContent {
     checkCard() {
         cy.get('#yellow_card_wrapper').should('exist')
 
@@ -61,11 +61,8 @@ export class cardContent {
         return this
     }
 
-    expressTitle() {
-        cy.get(cardSelectors.expressTitle).should(
-            'have.text',
-            cardTexts.express
-        )
+    expressTitle(title) {
+        cy.get(cardSelectors.expressTitle).should('have.text', title)
 
         return this
     }
@@ -162,7 +159,15 @@ export class cardContent {
         return this
     }
 
+    verifyAllowedAmount(amount) {
+        cy.get(cardSelectors.amount).contains(amount).should('exist')
+
+        return this
+    }
+
     closeIcon() {
         cy.get(cardSelectors.closeIcon).should('be.visible').click()
+
+        return this
     }
 }

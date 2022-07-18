@@ -3,7 +3,7 @@ import {
     verifyNavigation,
     visit,
 } from '../../support/Helpers/common/navigation'
-import { cardContent, cardTexts } from '../../support/Page_Objects/yellowCard'
+import { CardContent, cardTexts } from '../../support/Page_Objects/yellowCard'
 
 describe('Yellow action card', () => {
     beforeEach(() => {
@@ -13,18 +13,18 @@ describe('Yellow action card', () => {
     })
 
     it('Yellow card content validations', function () {
-        const cardcontent = new cardContent()
+        const cardContent = new CardContent()
 
         visit('/signin')
         cy.login(this.user.username, this.user.password)
 
         verifyNavigation('/invoices')
 
-        cardcontent
+        cardContent
             .checkCard()
             .verifyTitle()
             .velocityTitle()
-            .expressTitle()
+            .expressTitle(cardTexts.express)
             .verifyDesc(cardTexts.velocity, cardTexts.velocityDesc)
             .verifyDesc(cardTexts.express, cardTexts.expressDesc)
             .clickOnYellowCard()
@@ -39,9 +39,29 @@ describe('Yellow action card', () => {
 
         verifyNavigation('/invoices')
 
-        cardcontent.clickOnYellowCard()
+        cardContent.clickOnYellowCard()
 
         clickButtonByValue('Close')
         verifyNavigation('/invoices')
+    })
+
+    it('Check yellow card when the limit is set', function () {
+        const cardContent = new CardContent()
+
+        cy.login(this.user.username, this.user.password)
+        cy.intercept('GET', '/users', (req) => {
+            req.reply({
+                statusCode: 200,
+                fixture: 'express.json',
+            })
+        }).as('prequel')
+
+        cy.wait('@prequel')
+
+        cardContent
+            .clickOnYellowCard()
+            .verifySubTitle('$10,000', cardTexts.expressSubTitle)
+            .closeIcon()
+            .expressTitle('$10,000')
     })
 })
