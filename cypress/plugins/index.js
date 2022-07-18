@@ -21,16 +21,17 @@
 //   // `config` is the resolved Cypress config
 // }
 module.exports = (on, config) => {
-  config.env.sharedSecret =
-    process.env.NODE_ENV === 'qa' ? 'hoop brick tort' : 'sushi cup lemon'
-    
-  return config
+    config.env.sharedSecret =
+        process.env.NODE_ENV === 'qa' ? 'hoop brick tort' : 'sushi cup lemon'
+
+    return config
 }
 
 //adding a new cypress task for Database
-module.exports = on => {
-  on("task", {
-    orbit: (query) => require("cypress-postgres")(query.query, query.connection)
-  });
-  return null
-};
+module.exports = (on) => {
+    on('task', {
+        orbit: (query) =>
+            require('cypress-postgres')(query.query, query.connection),
+    })
+    return null
+}

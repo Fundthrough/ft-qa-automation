@@ -1,17 +1,16 @@
 version: 2.1
 orbs:
-  cypress: cypress-io/cypress@1
-  aws-s3: circleci/aws-s3@3.0.0
+    cypress: cypress-io/cypress@1
+    aws-s3: circleci/aws-s3@3.0.0
 executors:
-  with-chrome:
-    docker:
-      - image: 'cypress/browsers:node14.16.0-chrome90-ff88'
+    with-chrome:
+        docker:
+            - image: 'cypress/browsers:node14.16.0-chrome90-ff88'
 workflows:
-  build:
-    jobs:
-      - cypress/run:
-          executor: with-chrome
-          browser: chrome
-          record: true
-          store_artifacts: true
-    
+    build:
+        jobs:
+            - cypress/run:
+                  executor: with-chrome
+                  browser: chrome
+                  record: true
+                  store_artifacts: true

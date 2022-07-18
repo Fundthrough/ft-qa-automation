@@ -8,6 +8,7 @@ export const tooltipSelectors = {
 }
 
 export const tooltipTexts = {
+
     taxYear: 'This should be the first year for which your business filed taxes and is typically the year your business began operating. If you are a new business and have not yet filed taxes, select the year in which you began operations.',
     businessNumber: 'Your Business Number (BN) is a 9-digit number that identifies your business to the federal government. You can find it on your last CRA tax return.',
     personalAddress: 'Your personal address will be used in the agreement in the following step to identify you as the person responsible for your business.',
@@ -26,6 +27,7 @@ export const tooltipTexts = {
     verifiedTooltip: 'We have verified your invoice. It is now pending Velocity funding. You will receive a transaction summary email shortly.',
     paidTooltip: 'Your invoice has been fully repaid.',
     closedTooltip: 'Your invoice is no longer eligible for funding. Please contact your account manager for details.',
+
 }
 
 export const checkTooltip = (selector, tooltipLabel, tooltipMessage) => {

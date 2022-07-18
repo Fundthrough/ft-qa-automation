@@ -19,7 +19,7 @@ export const checkButtonNotExists = (buttonName) => {
 }
 
 export const clickBackButtonByValue = (value) => {
-    cy.get(".left.arrow").should('not.be.disabled').contains(value).click()
+    cy.get('.left.arrow').should('not.be.disabled').contains(value).click()
 }
 
 export const clickBackButtonByUrl = (url) => {
