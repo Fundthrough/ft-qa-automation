@@ -20,7 +20,7 @@ import {
 import {checkTooltip, tooltipSelectors, tooltipTexts} from "../../support/Helpers/common/tooltip";
 import {inputSelectors} from "../../support/Helpers/common/input";
 import {getIframeBody, iframeSelectors} from "../../support/Helpers/common/iframe";
-import {verifyNavigation} from "../../support/Helpers/common/navigation";
+import {reload, verifyNavigation} from "../../support/Helpers/common/navigation";
 
 describe('Legal Details', () => {
     beforeEach(() => {
@@ -86,7 +86,7 @@ describe('Legal Details', () => {
 
     
 
-    it('Valid Legal Details form submission', function () {
+    it.only('Valid Legal Details form submission', function () {
      
         cy.login(this.user.username, this.user.password)
         const fundingAgreementPage = new FundingAgreementPage();
@@ -97,18 +97,16 @@ describe('Legal Details', () => {
                 cy.log("Review the funding agreement with action card")
                 
 
-                    fundingAgreementPage
+                fundingAgreementPage
                     .selectCard(fundingAgreementTexts.fundingAgreement, 'Review')
                     .checkProgress( 'Legal Stuff',1, 4)
         
                 clickButtonByValue('Get Started')
-                checkButtonIsActive('Back')
-                checkButtonIsActive('Looks Correct')
         
                 fundingAgreementPage
                     .checkProgress( fundingAgreementTexts.legalInformation,2, 4)
         
-        
+    
                 clickButtonByValue("Back");
                 verifyNavigation("/legal");
         
@@ -148,6 +146,19 @@ describe('Legal Details', () => {
                 checkTheCheckbox('.checkbox', 'accept the Master Purchase and Sale Agreement and have the authority to bind the Corporation.')
                 checkTheCheckbox('.checkbox', 'accept the Personal Guarantee.')
                 clickButtonByValue('I Agree')
+                clickButtonByValue('Not Now')
+                verifyNavigation('/invoices')
+                reload()
+
+                fundingAgreementPage
+                    .selectCard(fundingAgreementTexts.fundingAgreement, 'Review')
+                    .checkProgress( 'Legal Stuff',1, 4)
+        
+                clickButtonByValue('Get Started')
+
+                fundingAgreementPage
+                    .checkProgress('Agree to the tax authorization',4,4)
+
                 getIframeBody(iframeSelectors.signingDocIframe).wait(9000)
                 getIframeBody(iframeSelectors.signingDocIframe).find(iframeSelectors.signatureContentIframe).within(() => {
                     clickButtonByValue('OK')
@@ -160,9 +171,7 @@ describe('Legal Details', () => {
                     clickButtonByValue('Continue')
                     clickButtonByValue('I agree')
                     clickButtonByValue('Close')
-                  
                 })
-        
                 signUpPage
                     .selectItemFromNavbar('Invoices')
         
@@ -174,8 +183,4 @@ describe('Legal Details', () => {
         })
     })
 
-
-Cypress.on('uncaught:exception', () => {
-    return false
-})
 })
