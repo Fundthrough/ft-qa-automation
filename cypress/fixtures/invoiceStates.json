@@ -1,0 +1,254 @@
+{
+    "invoices": [
+      {
+        "id": "fda65168-9e0a-4ce7-a905-d12882f3a731",
+        "currency": "other",
+        "submitted_date": "2022-07-11",
+        "due_date": "2022-07-18",
+        "state": "reviewing_client",
+        "customer_id": "bbc1944d-ddf1-4686-b010-010d1daa39f4",
+        "number": "abc123",
+        "updated_at": "2022-07-11T17:31:53.024-04:00",
+        "created_at": "2022-07-11T17:31:53.024-04:00",
+        "source": "manual",
+        "attachments": true,
+        "file_id": "27d0-da3-7d7-a1f0-8f48641abe07.png",
+        "price": 0.025,
+        "face_value": 629,
+        "customer_name": "customer_1",
+        "auto_factor": false,
+        "requested": false,
+        "invoice_attachments": [
+          {
+            "file_name": "27d0-da3-7d7-a1f0-8f48641abe07.png",
+            "mime_type": "image/png"
+          }
+        ]
+      },
+      {
+        "id": "ce9b4951-e8ea-4dd7-adea-caf79e5151eb",
+        "currency": "other",
+        "submitted_date": "2022-07-11",
+        "due_date": "2022-07-29",
+        "state": "credit_pending",
+        "customer_id": "2172681a-25fa-4bec-b4ce-fe47ca3a49c5",
+        "number": "wf619c",
+        "updated_at": "2022-07-11T17:38:06.280-04:00",
+        "created_at": "2022-07-11T17:38:06.280-04:00",
+        "source": "manual",
+        "attachments": true,
+        "file_id": "2d2dfb-483b-31a2-cb72-82f2f11600c.png",
+        "price": 0.025,
+        "face_value": 763,
+        "customer_name": "dcpypauw",
+        "auto_factor": false,
+        "requested": false,
+        "invoice_attachments": [
+          {
+            "file_name": "2d2dfb-483b-31a2-cb72-82f2f11600c.png",
+            "mime_type": "image/png"
+          }
+        ]
+      },
+      {
+        "id": "0b5c1524-6303-4c0d-afc5-792d746df844",
+        "currency": "other",
+        "submitted_date": "2022-07-11",
+        "due_date": "2022-07-01",
+        "state": "credit_funded",
+        "customer_id": "5ccc151d-268d-4c0a-9da1-6b55f7a8de98",
+        "number": "7xlp8k",
+        "updated_at": "2022-07-11T17:37:38.735-04:00",
+        "created_at": "2022-07-11T17:37:38.735-04:00",
+        "source": "manual",
+        "attachments": true,
+        "file_id": "d1cb52-00a5-e46b-e4c-7f12e0f71b1e.png",
+        "price": 0.06,
+        "face_value": 436,
+        "customer_name": "drtsqpld",
+        "auto_factor": false,
+        "requested": false,
+        "invoice_attachments": [
+          {
+            "file_name": "d1cb52-00a5-e46b-e4c-7f12e0f71b1e.png",
+            "mime_type": "image/png"
+          }
+        ]
+      },
+      {
+        "id": "daebd404-b0bc-4b0a-9622-c6516730a34c",
+        "currency": "other",
+        "submitted_date": "2022-07-11",
+        "due_date": "2022-07-15",
+        "state": "reviewing_customer",
+        "customer_id": "3f3d86bb-db22-4c3e-8480-c0e01639749e",
+        "number": "ya9l9d",
+        "updated_at": "2022-07-11T17:37:51.789-04:00",
+        "created_at": "2022-07-11T17:37:51.789-04:00",
+        "source": "manual",
+        "attachments": true,
+        "file_id": "5452314-c46-d74-200b-ff3a8badb.png",
+        "price": 0.025,
+        "face_value": 824,
+        "customer_name": "fahemaaa",
+        "auto_factor": false,
+        "requested": false,
+        "invoice_attachments": [
+          {
+            "file_name": "5452314-c46-d74-200b-ff3a8badb.png",
+            "mime_type": "image/png"
+          }
+        ]
+      },
+      {
+        "id": "b45f2deb-26cd-4c0d-93f6-528aec216065",
+        "currency": "other",
+        "submitted_date": "2022-07-11",
+        "due_date": "2022-07-18",
+        "state": "sent",
+        "customer_id": "773db13a-2759-4ddd-a24a-14f0965b02d5",
+        "number": "8o2gs8",
+        "updated_at": "2022-07-11T17:37:26.963-04:00",
+        "created_at": "2022-07-11T17:37:26.963-04:00",
+        "source": "manual",
+        "attachments": true,
+        "file_id": "678104-3ac0-4341-fa44-bdcc6410ba8.png",
+        "price": 0.025,
+        "face_value": 497,
+        "customer_name": "mwjmcwnb",
+        "auto_factor": false,
+        "requested": false,
+        "invoice_attachments": [
+          {
+            "file_name": "678104-3ac0-4341-fa44-bdcc6410ba8.png",
+            "mime_type": "image/png"
+          }
+        ]
+      },
+      {
+        "id": "e4391ed8-0845-4d85-9835-5b4814713dbb",
+        "currency": "other",
+        "submitted_date": "2022-07-11",
+        "due_date": "2022-07-08",
+        "state": "Verified",
+        "customer_id": "284abe18-593c-4187-96d7-4e86d6f5a3a6",
+        "number": "eth3iv",
+        "updated_at": "2022-07-11T17:37:45.174-04:00",
+        "created_at": "2022-07-11T17:37:45.174-04:00",
+        "source": "manual",
+        "attachments": true,
+        "file_id": "0e34875-dba6-35dd-674b-a0032435e1.png",
+        "price": 0.06,
+        "face_value": 646,
+        "customer_name": "rbzyoecz",
+        "auto_factor": false,
+        "requested": false,
+        "invoice_attachments": [
+          {
+            "file_name": "0e34875-dba6-35dd-674b-a0032435e1.png",
+            "mime_type": "image/png"
+          }
+        ]
+      },
+      {
+        "id": "d0f16f77-7c72-4325-b8d4-2273d457ee25",
+        "currency": "other",
+        "submitted_date": "2022-07-11",
+        "due_date": "2022-07-25",
+        "state": "Paid",
+        "customer_id": "589cc000-b293-492f-a191-a011310cc1e6",
+        "number": "5qpjme",
+        "updated_at": "2022-07-11T17:37:32.721-04:00",
+        "created_at": "2022-07-11T17:37:32.721-04:00",
+        "source": "manual",
+        "attachments": true,
+        "file_id": "665a67-e183-5f0f-bcfe-51e3f37dcce5.png",
+        "price": 0.025,
+        "face_value": 738,
+        "customer_name": "sbgrwnyu",
+        "auto_factor": false,
+        "requested": false,
+        "invoice_attachments": [
+          {
+            "file_name": "665a67-e183-5f0f-bcfe-51e3f37dcce5.png",
+            "mime_type": "image/png"
+          }
+        ]
+      },
+      {
+        "id": "71d20ffe-f74a-4d78-b31c-6e87394d4ae5",
+        "currency": "other",
+        "submitted_date": "2022-07-11",
+        "due_date": "2022-07-22",
+        "state": "Closed",
+        "customer_id": "10b8cda9-b7d7-4718-abb7-6661e5c8c0f5",
+        "number": "z29xlb",
+        "updated_at": "2022-07-11T17:37:58.660-04:00",
+        "created_at": "2022-07-11T17:37:58.660-04:00",
+        "source": "manual",
+        "attachments": true,
+        "file_id": "bb18b37-e450-64c2-0fd6-af04c7e108bc.png",
+        "price": 0.025,
+        "face_value": 381,
+        "customer_name": "shpsewij",
+        "auto_factor": false,
+        "requested": false,
+        "invoice_attachments": [
+          {
+            "file_name": "bb18b37-e450-64c2-0fd6-af04c7e108bc.png",
+            "mime_type": "image/png"
+          }
+        ]
+      }
+    ],
+    "customers": [
+      {
+        "id": "bbc1944d-ddf1-4686-b010-010d1daa39f4",
+        "name": "customer_1",
+        "current_page_count": 1
+      },
+      {
+        "id": "2172681a-25fa-4bec-b4ce-fe47ca3a49c5",
+        "name": "dcpypauw",
+        "current_page_count": 1
+      },
+      {
+        "id": "5ccc151d-268d-4c0a-9da1-6b55f7a8de98",
+        "name": "drtsqpld",
+        "current_page_count": 1
+      },
+      {
+        "id": "3f3d86bb-db22-4c3e-8480-c0e01639749e",
+        "name": "fahemaaa",
+        "current_page_count": 1
+      },
+      {
+        "id": "773db13a-2759-4ddd-a24a-14f0965b02d5",
+        "name": "mwjmcwnb",
+        "current_page_count": 1
+      },
+      {
+        "id": "284abe18-593c-4187-96d7-4e86d6f5a3a6",
+        "name": "rbzyoecz",
+        "current_page_count": 1
+      },
+      {
+        "id": "589cc000-b293-492f-a191-a011310cc1e6",
+        "name": "sbgrwnyu",
+        "current_page_count": 1
+      },
+      {
+        "id": "10b8cda9-b7d7-4718-abb7-6661e5c8c0f5",
+        "name": "shpsewij",
+        "current_page_count": 1
+      }
+    ],
+    "metadata": {
+      "current_page_count": 8,
+      "page_size": 100,
+      "total_count": 8,
+      "current_page": 1,
+      "offset": 0,
+      "total_pages": 1
+    }
+  }
