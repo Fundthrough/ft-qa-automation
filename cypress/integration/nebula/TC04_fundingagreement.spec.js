@@ -86,7 +86,7 @@ describe('Legal Details', () => {
 
     
 
-    it.only('Valid Legal Details form submission', function () {
+    it('Valid Legal Details form submission', function () {
      
         cy.login(this.user.username, this.user.password)
         const fundingAgreementPage = new FundingAgreementPage();
