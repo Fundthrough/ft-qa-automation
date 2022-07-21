@@ -1,8 +1,10 @@
 export const messageSelectors = {
     error: '.error',
+    success: '.green-text',
     agreementError: '.card__agreement__span_error',
     notificationDashboard: '.notification-container',
-    success: '.green-text'
+    success: '.green-text',
+    errorInvoice: '.error-bar'
 }
 
 export const messageTexts = {
@@ -27,6 +29,7 @@ export const messageTexts = {
     success: 'Got it!',
 }
 
-export const checkMessage = (selector, message) => {
-    cy.get(selector).should('contain', message)
+
+export const checkMessage = (messageType, message) => {
+    cy.get(messageType).should('contain', message)
 }

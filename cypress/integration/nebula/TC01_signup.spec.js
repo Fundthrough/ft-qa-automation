@@ -1,8 +1,6 @@
-// <reference types="cypress" />
 import {SignUpPage, signUpSelectors, signUpTexts} from "../../support/Page_Objects/signUpPage.js";
 import {randomChars, randomLetter, randomNum} from "../../support/Helpers/common";
 import {checkMessage, messageSelectors, messageTexts} from "../../support/Helpers/common/messages";
-
 import {
     checkButtonIsActive,
     checkButtonIsDisabled,
@@ -20,11 +18,7 @@ import {
 import {checkProgressAndHeader} from "../../support/Helpers/common/title";
 import {checkTooltip, tooltipSelectors, tooltipTexts} from "../../support/Helpers/common/tooltip";
 import {loadingSelectors, waitForLoader} from "../../support/Helpers/common/iframe";
-
-
-Cypress.on('uncaught:exception', () => {
-    return false;
-});
+import {NavigationPage} from "../../support/Page_Objects/navigationPage";
 
 describe('Sign Up page', () => {
     beforeEach(() => {
@@ -125,6 +119,7 @@ describe('Sign Up page', () => {
 
     it('Sign Up with correct credentials', function () {
         const signUpPage = new SignUpPage();
+        const navigationPage = new NavigationPage()
 
         const email = "techadmin" + randomChars(4) + "@fundthrough.com";
 
@@ -194,7 +189,6 @@ describe('Sign Up page', () => {
             .selectProvince('West Virginia')
 
         checkTooltip(tooltipSelectors.inputLabel,'Business Address', tooltipTexts.businessAddress)
-
         clickButtonByValue('Next')
 
         cy.wait('@nextStep', { timeout: 60000 })
@@ -212,6 +206,7 @@ describe('Sign Up page', () => {
         fillInputWithValue(inputSelectors.lastName, randomChars(4))
         checkTooltip(tooltipSelectors.inputLabel, 'Legal First Name', tooltipTexts.firstName)
         checkTooltip(tooltipSelectors.inputLabel, 'Preferred First Name', tooltipTexts.firstName)
+
         clickButtonByValue('Next')
 
         signUpPage
@@ -224,7 +219,7 @@ describe('Sign Up page', () => {
 
         waitForLoader(loadingSelectors.loaderDefault)
 
-        signUpPage
+        navigationPage
             .logOut()
 
     verifyNavigation('signin')

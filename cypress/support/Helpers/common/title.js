@@ -16,6 +16,11 @@ export const verifyTitle = (title) => {
     cy.get(".normal-text").should("have.text", title)
 }
 
+export const verifyInputLabels = (labels) => {
+  cy.get('.input-label').each((label, index) => {
+    cy.wrap(label).should('contain.text', labels[index])
+  })
+}
 
 export const verifyHeader = (headerName) => {
     cy.get('h1.header').should('have.text', headerName)
@@ -23,12 +28,6 @@ export const verifyHeader = (headerName) => {
 
 export const verifyFundHeader = (fundHeader) => {
     cy.get('h4.fund-header').should("have.text", fundHeader )
-
-}
-export const verifyInputLabels = (labels) => {
-  cy.get('.input-label').each((label, index) => {
-    cy.wrap(label).should('contain.text', labels[index])
-  })
 }
 
 export const checkProgressAndHeader = (section, currentStep, lastStep) => {
