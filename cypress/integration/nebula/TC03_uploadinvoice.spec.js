@@ -1,6 +1,7 @@
-import { checkCard, invoiceSelectors, InvoiceUpload } from "../../support/Page_Objects/invoiceElements";
+import { invoiceSelectors, InvoiceUpload } from "../../support/Page_Objects/invoiceElements";
 import {
-  verifyNavigation, visit,
+  verifyNavigation,
+
 } from "../../support/Helpers/common/navigation";
 import {
   clearInputValue,
@@ -22,7 +23,7 @@ import {
     messageSelectors,
     messageTexts,
 } from "../../support/Helpers/common/messages";
-import { checkTooltip, tooltipTexts } from "../../support/Helpers/common/tooltip";
+import {checkTooltip, tooltipSelectors, tooltipTexts} from "../../support/Helpers/common/tooltip";
 import {randomChars, randomLetter, randomNum} from "../../support/Helpers/common";
 import {loadingSelectors, waitForLoader} from "../../support/Helpers/common/iframe";
 
@@ -68,8 +69,8 @@ describe("Upload your first invoice", () => {
           .verifyFormHeaders()
 
         verifyInputLabels(invoiceLabels)
-//         checkTooltip('Invoice Number', tooltipTexts.invoiceNumber)
-//         checkTooltip('Invoice Date', tooltipTexts.invoiceDate)
+        checkTooltip(tooltipSelectors.inputLabel,'Invoice Number', tooltipTexts.invoiceNumber)
+        checkTooltip(tooltipSelectors.inputLabel,'Invoice Date', tooltipTexts.invoiceDate)
 
         //validate error of customer name field
         fillInputWithValue(invoiceSelectors.customer, randomLetter(8))

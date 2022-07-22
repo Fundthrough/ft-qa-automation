@@ -115,3 +115,4 @@ describe('Legal Details', () => {
 Cypress.on('uncaught:exception', () => {
     return false
 })
+

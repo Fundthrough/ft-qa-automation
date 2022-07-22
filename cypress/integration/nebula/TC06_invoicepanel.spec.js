@@ -17,3 +17,4 @@ describe('Invoice Details Grid', () => {
             .verifyInvoiceDetails()
     })
 })
+
